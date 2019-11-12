@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.DiscussesRepliesLikesExample;
 import com.dbcourse.curriculum_design.mapper.DiscussesRepliesLikesMapper;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
+import com.dbcourse.curriculum_design.model.DiscussesRepliesLikesExample;
 import com.dbcourse.curriculum_design.service.DiscussesRepliesLikesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesService{
+public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesService {
 
     @Resource
     private DiscussesRepliesLikesMapper discussesRepliesLikesMapper;
@@ -49,13 +51,13 @@ public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesSe
     }
 
     @Override
-    public int updateByExampleSelective(DiscussesRepliesLikes record,DiscussesRepliesLikesExample example) {
-        return discussesRepliesLikesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(DiscussesRepliesLikes record, DiscussesRepliesLikesExample example) {
+        return discussesRepliesLikesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(DiscussesRepliesLikes record,DiscussesRepliesLikesExample example) {
-        return discussesRepliesLikesMapper.updateByExample(record,example);
+    public int updateByExample(DiscussesRepliesLikes record, DiscussesRepliesLikesExample example) {
+        return discussesRepliesLikesMapper.updateByExample(record, example);
     }
 
     @Override

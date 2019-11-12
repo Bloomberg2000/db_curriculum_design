@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
-import com.dbcourse.curriculum_design.model.LongCommentsRepliesExample;
 import com.dbcourse.curriculum_design.model.LongCommentsReplies;
-public interface LongCommentsRepliesService{
+import com.dbcourse.curriculum_design.model.LongCommentsRepliesExample;
+
+import java.util.List;
+
+public interface LongCommentsRepliesService {
 
 
     long countByExample(LongCommentsRepliesExample example);
@@ -20,9 +22,9 @@ public interface LongCommentsRepliesService{
 
     LongCommentsReplies selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(LongCommentsReplies record,LongCommentsRepliesExample example);
+    int updateByExampleSelective(LongCommentsReplies record, LongCommentsRepliesExample example);
 
-    int updateByExample(LongCommentsReplies record,LongCommentsRepliesExample example);
+    int updateByExample(LongCommentsReplies record, LongCommentsRepliesExample example);
 
     int updateByPrimaryKeySelective(LongCommentsReplies record);
 

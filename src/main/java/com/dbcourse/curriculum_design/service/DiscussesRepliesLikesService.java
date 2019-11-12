@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
-import com.dbcourse.curriculum_design.model.DiscussesRepliesLikesExample;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
-public interface DiscussesRepliesLikesService{
+import com.dbcourse.curriculum_design.model.DiscussesRepliesLikesExample;
+
+import java.util.List;
+
+public interface DiscussesRepliesLikesService {
 
 
     long countByExample(DiscussesRepliesLikesExample example);
@@ -20,9 +22,9 @@ public interface DiscussesRepliesLikesService{
 
     DiscussesRepliesLikes selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(DiscussesRepliesLikes record,DiscussesRepliesLikesExample example);
+    int updateByExampleSelective(DiscussesRepliesLikes record, DiscussesRepliesLikesExample example);
 
-    int updateByExample(DiscussesRepliesLikes record,DiscussesRepliesLikesExample example);
+    int updateByExample(DiscussesRepliesLikes record, DiscussesRepliesLikesExample example);
 
     int updateByPrimaryKeySelective(DiscussesRepliesLikes record);
 

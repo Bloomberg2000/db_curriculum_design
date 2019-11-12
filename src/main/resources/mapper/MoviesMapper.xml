@@ -6,7 +6,7 @@
     <!--@Table dbo.Movies-->
     <id column="n_id" jdbcType="INTEGER" property="nId" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
-    <result column="c_film_length" jdbcType="INTEGER" property="cFilmLength" />
+    <result column="n_film_length" jdbcType="INTEGER" property="nFilmLength" />
     <result column="c_alias" jdbcType="VARCHAR" property="cAlias" />
     <result column="d_release_date" jdbcType="DATE" property="dReleaseDate" />
     <result column="c_date_str" jdbcType="VARCHAR" property="cDateStr" />
@@ -74,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    n_id, c_name, c_film_length, c_alias, d_release_date, c_date_str, c_info
+    n_id, c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -112,10 +112,10 @@
   </delete>
   <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Movies">
     <!--@mbg.generated-->
-    insert into dbo.Movies (n_id, c_name, c_film_length, 
+    insert into dbo.Movies (n_id, c_name, n_film_length, 
       c_alias, d_release_date, c_date_str, 
       c_info)
-    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cFilmLength,jdbcType=INTEGER}, 
+    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{nFilmLength,jdbcType=INTEGER}, 
       #{cAlias,jdbcType=VARCHAR}, #{dReleaseDate,jdbcType=DATE}, #{cDateStr,jdbcType=VARCHAR}, 
       #{cInfo,jdbcType=VARCHAR})
   </insert>
@@ -129,8 +129,8 @@
       <if test="cName != null">
         c_name,
       </if>
-      <if test="cFilmLength != null">
-        c_film_length,
+      <if test="nFilmLength != null">
+        n_film_length,
       </if>
       <if test="cAlias != null">
         c_alias,
@@ -152,8 +152,8 @@
       <if test="cName != null">
         #{cName,jdbcType=VARCHAR},
       </if>
-      <if test="cFilmLength != null">
-        #{cFilmLength,jdbcType=INTEGER},
+      <if test="nFilmLength != null">
+        #{nFilmLength,jdbcType=INTEGER},
       </if>
       <if test="cAlias != null">
         #{cAlias,jdbcType=VARCHAR},
@@ -186,8 +186,8 @@
       <if test="record.cName != null">
         c_name = #{record.cName,jdbcType=VARCHAR},
       </if>
-      <if test="record.cFilmLength != null">
-        c_film_length = #{record.cFilmLength,jdbcType=INTEGER},
+      <if test="record.nFilmLength != null">
+        n_film_length = #{record.nFilmLength,jdbcType=INTEGER},
       </if>
       <if test="record.cAlias != null">
         c_alias = #{record.cAlias,jdbcType=VARCHAR},
@@ -211,7 +211,7 @@
     update dbo.Movies
     set n_id = #{record.nId,jdbcType=INTEGER},
       c_name = #{record.cName,jdbcType=VARCHAR},
-      c_film_length = #{record.cFilmLength,jdbcType=INTEGER},
+      n_film_length = #{record.nFilmLength,jdbcType=INTEGER},
       c_alias = #{record.cAlias,jdbcType=VARCHAR},
       d_release_date = #{record.dReleaseDate,jdbcType=DATE},
       c_date_str = #{record.cDateStr,jdbcType=VARCHAR},
@@ -227,8 +227,8 @@
       <if test="cName != null">
         c_name = #{cName,jdbcType=VARCHAR},
       </if>
-      <if test="cFilmLength != null">
-        c_film_length = #{cFilmLength,jdbcType=INTEGER},
+      <if test="nFilmLength != null">
+        n_film_length = #{nFilmLength,jdbcType=INTEGER},
       </if>
       <if test="cAlias != null">
         c_alias = #{cAlias,jdbcType=VARCHAR},
@@ -249,7 +249,7 @@
     <!--@mbg.generated-->
     update dbo.Movies
     set c_name = #{cName,jdbcType=VARCHAR},
-      c_film_length = #{cFilmLength,jdbcType=INTEGER},
+      n_film_length = #{nFilmLength,jdbcType=INTEGER},
       c_alias = #{cAlias,jdbcType=VARCHAR},
       d_release_date = #{dReleaseDate,jdbcType=DATE},
       c_date_str = #{cDateStr,jdbcType=VARCHAR},
@@ -259,10 +259,10 @@
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into dbo.Movies
-    (n_id, c_name, c_film_length, c_alias, d_release_date, c_date_str, c_info)
+    (n_id, c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.cFilmLength,jdbcType=INTEGER}, 
+      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.nFilmLength,jdbcType=INTEGER}, 
         #{item.cAlias,jdbcType=VARCHAR}, #{item.dReleaseDate,jdbcType=DATE}, #{item.cDateStr,jdbcType=VARCHAR}, 
         #{item.cInfo,jdbcType=VARCHAR})
     </foreach>

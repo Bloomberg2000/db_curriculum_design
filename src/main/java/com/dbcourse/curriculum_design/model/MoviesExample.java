@@ -16,20 +16,20 @@ public class MoviesExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
-    }
-
     public String getOrderByClause() {
         return orderByClause;
     }
 
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
+    public void setOrderByClause(String orderByClause) {
+        this.orderByClause = orderByClause;
     }
 
     public boolean isDistinct() {
         return distinct;
+    }
+
+    public void setDistinct(boolean distinct) {
+        this.distinct = distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -262,63 +262,63 @@ public class MoviesExample {
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthIsNull() {
-            addCriterion("c_film_length is null");
+        public Criteria andNFilmLengthIsNull() {
+            addCriterion("n_film_length is null");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthIsNotNull() {
-            addCriterion("c_film_length is not null");
+        public Criteria andNFilmLengthIsNotNull() {
+            addCriterion("n_film_length is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthEqualTo(Integer value) {
-            addCriterion("c_film_length =", value, "cFilmLength");
+        public Criteria andNFilmLengthEqualTo(Integer value) {
+            addCriterion("n_film_length =", value, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthNotEqualTo(Integer value) {
-            addCriterion("c_film_length <>", value, "cFilmLength");
+        public Criteria andNFilmLengthNotEqualTo(Integer value) {
+            addCriterion("n_film_length <>", value, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthGreaterThan(Integer value) {
-            addCriterion("c_film_length >", value, "cFilmLength");
+        public Criteria andNFilmLengthGreaterThan(Integer value) {
+            addCriterion("n_film_length >", value, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthGreaterThanOrEqualTo(Integer value) {
-            addCriterion("c_film_length >=", value, "cFilmLength");
+        public Criteria andNFilmLengthGreaterThanOrEqualTo(Integer value) {
+            addCriterion("n_film_length >=", value, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthLessThan(Integer value) {
-            addCriterion("c_film_length <", value, "cFilmLength");
+        public Criteria andNFilmLengthLessThan(Integer value) {
+            addCriterion("n_film_length <", value, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthLessThanOrEqualTo(Integer value) {
-            addCriterion("c_film_length <=", value, "cFilmLength");
+        public Criteria andNFilmLengthLessThanOrEqualTo(Integer value) {
+            addCriterion("n_film_length <=", value, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthIn(List<Integer> values) {
-            addCriterion("c_film_length in", values, "cFilmLength");
+        public Criteria andNFilmLengthIn(List<Integer> values) {
+            addCriterion("n_film_length in", values, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthNotIn(List<Integer> values) {
-            addCriterion("c_film_length not in", values, "cFilmLength");
+        public Criteria andNFilmLengthNotIn(List<Integer> values) {
+            addCriterion("n_film_length not in", values, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthBetween(Integer value1, Integer value2) {
-            addCriterion("c_film_length between", value1, value2, "cFilmLength");
+        public Criteria andNFilmLengthBetween(Integer value1, Integer value2) {
+            addCriterion("n_film_length between", value1, value2, "nFilmLength");
             return (Criteria) this;
         }
 
-        public Criteria andCFilmLengthNotBetween(Integer value1, Integer value2) {
-            addCriterion("c_film_length not between", value1, value2, "cFilmLength");
+        public Criteria andNFilmLengthNotBetween(Integer value1, Integer value2) {
+            addCriterion("n_film_length not between", value1, value2, "nFilmLength");
             return (Criteria) this;
         }
 
@@ -617,38 +617,6 @@ public class MoviesExample {
 
         private String typeHandler;
 
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
-
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -683,6 +651,38 @@ public class MoviesExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
+        }
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
         }
     }
 }

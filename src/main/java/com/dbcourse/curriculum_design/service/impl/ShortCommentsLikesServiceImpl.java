@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.ShortCommentsLikesExample;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsLikesMapper;
 import com.dbcourse.curriculum_design.model.ShortCommentsLikes;
+import com.dbcourse.curriculum_design.model.ShortCommentsLikesExample;
 import com.dbcourse.curriculum_design.service.ShortCommentsLikesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService{
+public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService {
 
     @Resource
     private ShortCommentsLikesMapper shortCommentsLikesMapper;
@@ -49,13 +51,13 @@ public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService{
     }
 
     @Override
-    public int updateByExampleSelective(ShortCommentsLikes record,ShortCommentsLikesExample example) {
-        return shortCommentsLikesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(ShortCommentsLikes record, ShortCommentsLikesExample example) {
+        return shortCommentsLikesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(ShortCommentsLikes record,ShortCommentsLikesExample example) {
-        return shortCommentsLikesMapper.updateByExample(record,example);
+    public int updateByExample(ShortCommentsLikes record, ShortCommentsLikesExample example) {
+        return shortCommentsLikesMapper.updateByExample(record, example);
     }
 
     @Override

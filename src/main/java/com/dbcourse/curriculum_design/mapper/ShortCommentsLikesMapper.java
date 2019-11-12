@@ -2,9 +2,10 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.ShortCommentsLikes;
 import com.dbcourse.curriculum_design.model.ShortCommentsLikesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface ShortCommentsLikesMapper {

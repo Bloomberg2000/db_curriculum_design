@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
+import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.LongCommentsExample;
 import com.dbcourse.curriculum_design.service.LongCommentsService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class LongCommentsServiceImpl implements LongCommentsService{
+public class LongCommentsServiceImpl implements LongCommentsService {
 
     @Resource
     private LongCommentsMapper longCommentsMapper;
@@ -49,13 +51,13 @@ public class LongCommentsServiceImpl implements LongCommentsService{
     }
 
     @Override
-    public int updateByExampleSelective(LongComments record,LongCommentsExample example) {
-        return longCommentsMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(LongComments record, LongCommentsExample example) {
+        return longCommentsMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(LongComments record,LongCommentsExample example) {
-        return longCommentsMapper.updateByExample(record,example);
+    public int updateByExample(LongComments record, LongCommentsExample example) {
+        return longCommentsMapper.updateByExample(record, example);
     }
 
     @Override

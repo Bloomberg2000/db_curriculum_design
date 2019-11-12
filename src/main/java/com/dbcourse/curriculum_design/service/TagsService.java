@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
-import com.dbcourse.curriculum_design.model.TagsExample;
 import com.dbcourse.curriculum_design.model.Tags;
-public interface TagsService{
+import com.dbcourse.curriculum_design.model.TagsExample;
+
+import java.util.List;
+
+public interface TagsService {
 
 
     long countByExample(TagsExample example);
@@ -20,9 +22,9 @@ public interface TagsService{
 
     Tags selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(Tags record,TagsExample example);
+    int updateByExampleSelective(Tags record, TagsExample example);
 
-    int updateByExample(Tags record,TagsExample example);
+    int updateByExample(Tags record, TagsExample example);
 
     int updateByPrimaryKeySelective(Tags record);
 

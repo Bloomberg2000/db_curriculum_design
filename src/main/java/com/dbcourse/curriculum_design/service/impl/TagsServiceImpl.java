@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
+import com.dbcourse.curriculum_design.mapper.TagsMapper;
+import com.dbcourse.curriculum_design.model.Tags;
+import com.dbcourse.curriculum_design.model.TagsExample;
+import com.dbcourse.curriculum_design.service.TagsService;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
-import com.dbcourse.curriculum_design.mapper.TagsMapper;
-import com.dbcourse.curriculum_design.model.TagsExample;
-import com.dbcourse.curriculum_design.model.Tags;
-import com.dbcourse.curriculum_design.service.TagsService;
+
 @Service
-public class TagsServiceImpl implements TagsService{
+public class TagsServiceImpl implements TagsService {
 
     @Resource
     private TagsMapper tagsMapper;
@@ -49,13 +51,13 @@ public class TagsServiceImpl implements TagsService{
     }
 
     @Override
-    public int updateByExampleSelective(Tags record,TagsExample example) {
-        return tagsMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Tags record, TagsExample example) {
+        return tagsMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Tags record,TagsExample example) {
-        return tagsMapper.updateByExample(record,example);
+    public int updateByExample(Tags record, TagsExample example) {
+        return tagsMapper.updateByExample(record, example);
     }
 
     @Override

@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.DiscussesExample;
 import com.dbcourse.curriculum_design.mapper.DiscussesMapper;
 import com.dbcourse.curriculum_design.model.Discusses;
+import com.dbcourse.curriculum_design.model.DiscussesExample;
 import com.dbcourse.curriculum_design.service.DiscussesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class DiscussesServiceImpl implements DiscussesService{
+public class DiscussesServiceImpl implements DiscussesService {
 
     @Resource
     private DiscussesMapper discussesMapper;
@@ -49,13 +51,13 @@ public class DiscussesServiceImpl implements DiscussesService{
     }
 
     @Override
-    public int updateByExampleSelective(Discusses record,DiscussesExample example) {
-        return discussesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Discusses record, DiscussesExample example) {
+        return discussesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Discusses record,DiscussesExample example) {
-        return discussesMapper.updateByExample(record,example);
+    public int updateByExample(Discusses record, DiscussesExample example) {
+        return discussesMapper.updateByExample(record, example);
     }
 
     @Override

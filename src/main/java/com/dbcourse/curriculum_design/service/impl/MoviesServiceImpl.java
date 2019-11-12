@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import com.dbcourse.curriculum_design.mapper.MoviesMapper;
-import java.util.List;
 import com.dbcourse.curriculum_design.model.Movies;
 import com.dbcourse.curriculum_design.model.MoviesExample;
 import com.dbcourse.curriculum_design.service.MoviesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class MoviesServiceImpl implements MoviesService{
+public class MoviesServiceImpl implements MoviesService {
 
     @Resource
     private MoviesMapper moviesMapper;
@@ -49,13 +51,13 @@ public class MoviesServiceImpl implements MoviesService{
     }
 
     @Override
-    public int updateByExampleSelective(Movies record,MoviesExample example) {
-        return moviesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Movies record, MoviesExample example) {
+        return moviesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Movies record,MoviesExample example) {
-        return moviesMapper.updateByExample(record,example);
+    public int updateByExample(Movies record, MoviesExample example) {
+        return moviesMapper.updateByExample(record, example);
     }
 
     @Override
@@ -74,3 +76,4 @@ public class MoviesServiceImpl implements MoviesService{
     }
 
 }
+

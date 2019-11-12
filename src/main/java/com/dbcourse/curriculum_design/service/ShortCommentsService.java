@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
-import com.dbcourse.curriculum_design.model.ShortCommentsExample;
 import com.dbcourse.curriculum_design.model.ShortComments;
-public interface ShortCommentsService{
+import com.dbcourse.curriculum_design.model.ShortCommentsExample;
+
+import java.util.List;
+
+public interface ShortCommentsService {
 
 
     long countByExample(ShortCommentsExample example);
@@ -20,9 +22,9 @@ public interface ShortCommentsService{
 
     ShortComments selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(ShortComments record,ShortCommentsExample example);
+    int updateByExampleSelective(ShortComments record, ShortCommentsExample example);
 
-    int updateByExample(ShortComments record,ShortCommentsExample example);
+    int updateByExample(ShortComments record, ShortCommentsExample example);
 
     int updateByPrimaryKeySelective(ShortComments record);
 

@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
 import com.dbcourse.curriculum_design.model.MoviesStaffs;
 import com.dbcourse.curriculum_design.model.MoviesStaffsExample;
-public interface MoviesStaffsService{
+
+import java.util.List;
+
+public interface MoviesStaffsService {
 
 
     long countByExample(MoviesStaffsExample example);
@@ -20,9 +22,9 @@ public interface MoviesStaffsService{
 
     MoviesStaffs selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(MoviesStaffs record,MoviesStaffsExample example);
+    int updateByExampleSelective(MoviesStaffs record, MoviesStaffsExample example);
 
-    int updateByExample(MoviesStaffs record,MoviesStaffsExample example);
+    int updateByExample(MoviesStaffs record, MoviesStaffsExample example);
 
     int updateByPrimaryKeySelective(MoviesStaffs record);
 

@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.MoviesTagsExample;
 import com.dbcourse.curriculum_design.mapper.MoviesTagsMapper;
 import com.dbcourse.curriculum_design.model.MoviesTags;
+import com.dbcourse.curriculum_design.model.MoviesTagsExample;
 import com.dbcourse.curriculum_design.service.MoviesTagsService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class MoviesTagsServiceImpl implements MoviesTagsService{
+public class MoviesTagsServiceImpl implements MoviesTagsService {
 
     @Resource
     private MoviesTagsMapper moviesTagsMapper;
@@ -49,13 +51,13 @@ public class MoviesTagsServiceImpl implements MoviesTagsService{
     }
 
     @Override
-    public int updateByExampleSelective(MoviesTags record,MoviesTagsExample example) {
-        return moviesTagsMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(MoviesTags record, MoviesTagsExample example) {
+        return moviesTagsMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(MoviesTags record,MoviesTagsExample example) {
-        return moviesTagsMapper.updateByExample(record,example);
+    public int updateByExample(MoviesTags record, MoviesTagsExample example) {
+        return moviesTagsMapper.updateByExample(record, example);
     }
 
     @Override

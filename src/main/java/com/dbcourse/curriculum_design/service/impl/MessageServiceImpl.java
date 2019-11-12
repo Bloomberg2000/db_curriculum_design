@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import com.dbcourse.curriculum_design.model.MessageExample;
-import java.util.List;
 import com.dbcourse.curriculum_design.mapper.MessageMapper;
 import com.dbcourse.curriculum_design.model.Message;
+import com.dbcourse.curriculum_design.model.MessageExample;
 import com.dbcourse.curriculum_design.service.MessageService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class MessageServiceImpl implements MessageService{
+public class MessageServiceImpl implements MessageService {
 
     @Resource
     private MessageMapper messageMapper;
@@ -49,13 +51,13 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public int updateByExampleSelective(Message record,MessageExample example) {
-        return messageMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Message record, MessageExample example) {
+        return messageMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Message record,MessageExample example) {
-        return messageMapper.updateByExample(record,example);
+    public int updateByExample(Message record, MessageExample example) {
+        return messageMapper.updateByExample(record, example);
     }
 
     @Override

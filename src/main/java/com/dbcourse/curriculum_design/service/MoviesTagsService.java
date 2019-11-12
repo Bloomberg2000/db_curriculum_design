@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
-import com.dbcourse.curriculum_design.model.MoviesTagsExample;
 import com.dbcourse.curriculum_design.model.MoviesTags;
-public interface MoviesTagsService{
+import com.dbcourse.curriculum_design.model.MoviesTagsExample;
+
+import java.util.List;
+
+public interface MoviesTagsService {
 
 
     long countByExample(MoviesTagsExample example);
@@ -20,9 +22,9 @@ public interface MoviesTagsService{
 
     MoviesTags selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(MoviesTags record,MoviesTagsExample example);
+    int updateByExampleSelective(MoviesTags record, MoviesTagsExample example);
 
-    int updateByExample(MoviesTags record,MoviesTagsExample example);
+    int updateByExample(MoviesTags record, MoviesTagsExample example);
 
     int updateByPrimaryKeySelective(MoviesTags record);
 

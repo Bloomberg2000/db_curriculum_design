@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import com.dbcourse.curriculum_design.model.UserInfoExample;
-import java.util.List;
 import com.dbcourse.curriculum_design.model.UserInfo;
-public interface UserInfoService{
+import com.dbcourse.curriculum_design.model.UserInfoExample;
+
+import java.util.List;
+
+public interface UserInfoService {
 
 
     long countByExample(UserInfoExample example);
@@ -20,9 +22,9 @@ public interface UserInfoService{
 
     UserInfo selectByPrimaryKey(Integer cId);
 
-    int updateByExampleSelective(UserInfo record,UserInfoExample example);
+    int updateByExampleSelective(UserInfo record, UserInfoExample example);
 
-    int updateByExample(UserInfo record,UserInfoExample example);
+    int updateByExample(UserInfo record, UserInfoExample example);
 
     int updateByPrimaryKeySelective(UserInfo record);
 

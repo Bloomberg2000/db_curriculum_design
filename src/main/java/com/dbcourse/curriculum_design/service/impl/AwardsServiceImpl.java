@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import com.dbcourse.curriculum_design.mapper.AwardsMapper;
-import java.util.List;
 import com.dbcourse.curriculum_design.model.Awards;
 import com.dbcourse.curriculum_design.model.AwardsExample;
 import com.dbcourse.curriculum_design.service.AwardsService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class AwardsServiceImpl implements AwardsService{
+public class AwardsServiceImpl implements AwardsService {
 
     @Resource
     private AwardsMapper awardsMapper;
@@ -49,13 +51,13 @@ public class AwardsServiceImpl implements AwardsService{
     }
 
     @Override
-    public int updateByExampleSelective(Awards record,AwardsExample example) {
-        return awardsMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Awards record, AwardsExample example) {
+        return awardsMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Awards record,AwardsExample example) {
-        return awardsMapper.updateByExample(record,example);
+    public int updateByExample(Awards record, AwardsExample example) {
+        return awardsMapper.updateByExample(record, example);
     }
 
     @Override

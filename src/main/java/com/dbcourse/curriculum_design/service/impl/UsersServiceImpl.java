@@ -1,14 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import com.dbcourse.curriculum_design.model.UsersExample;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.mapper.UsersMapper;
+import com.dbcourse.curriculum_design.model.Users;
+import com.dbcourse.curriculum_design.model.UsersExample;
 import com.dbcourse.curriculum_design.service.UsersService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UsersServiceImpl implements UsersService {
 
     @Resource
     private UsersMapper usersMapper;
@@ -49,13 +51,13 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public int updateByExampleSelective(Users record,UsersExample example) {
-        return usersMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(Users record, UsersExample example) {
+        return usersMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(Users record,UsersExample example) {
-        return usersMapper.updateByExample(record,example);
+    public int updateByExample(Users record, UsersExample example) {
+        return usersMapper.updateByExample(record, example);
     }
 
     @Override

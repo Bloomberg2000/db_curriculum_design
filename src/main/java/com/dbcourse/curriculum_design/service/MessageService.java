@@ -1,9 +1,11 @@
 package com.dbcourse.curriculum_design.service;
 
-import com.dbcourse.curriculum_design.model.MessageExample;
-import java.util.List;
 import com.dbcourse.curriculum_design.model.Message;
-public interface MessageService{
+import com.dbcourse.curriculum_design.model.MessageExample;
+
+import java.util.List;
+
+public interface MessageService {
 
 
     long countByExample(MessageExample example);
@@ -20,9 +22,9 @@ public interface MessageService{
 
     Message selectByPrimaryKey(Integer nId);
 
-    int updateByExampleSelective(Message record,MessageExample example);
+    int updateByExampleSelective(Message record, MessageExample example);
 
-    int updateByExample(Message record,MessageExample example);
+    int updateByExample(Message record, MessageExample example);
 
     int updateByPrimaryKeySelective(Message record);
 
