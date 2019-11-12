@@ -33,3 +33,4 @@ public interface LongCommentsService {
     int batchInsert(List<LongComments> list);
 
 }
+

@@ -15,20 +15,20 @@ public class LongCommentsExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -604,6 +604,66 @@ public class LongCommentsExample {
             addCriterion("c_content not between", value1, value2, "cContent");
             return (Criteria) this;
         }
+
+        public Criteria andNTopicIdIsNull() {
+            addCriterion("n_topic_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdIsNotNull() {
+            addCriterion("n_topic_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdEqualTo(Integer value) {
+            addCriterion("n_topic_id =", value, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdNotEqualTo(Integer value) {
+            addCriterion("n_topic_id <>", value, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdGreaterThan(Integer value) {
+            addCriterion("n_topic_id >", value, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("n_topic_id >=", value, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdLessThan(Integer value) {
+            addCriterion("n_topic_id <", value, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdLessThanOrEqualTo(Integer value) {
+            addCriterion("n_topic_id <=", value, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdIn(List<Integer> values) {
+            addCriterion("n_topic_id in", values, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdNotIn(List<Integer> values) {
+            addCriterion("n_topic_id not in", values, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdBetween(Integer value1, Integer value2) {
+            addCriterion("n_topic_id between", value1, value2, "nTopicId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNTopicIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("n_topic_id not between", value1, value2, "nTopicId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -629,6 +689,38 @@ public class LongCommentsExample {
         private boolean listValue;
 
         private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -664,38 +756,6 @@ public class LongCommentsExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

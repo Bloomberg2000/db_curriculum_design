@@ -12,6 +12,7 @@
     <result column="n_score" jdbcType="SMALLINT" property="nScore" />
     <result column="c_title" jdbcType="VARCHAR" property="cTitle" />
     <result column="c_content" jdbcType="VARCHAR" property="cContent" />
+    <result column="n_topic_id" jdbcType="INTEGER" property="nTopicId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -75,7 +76,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content
+    n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content, 
+    n_topic_id
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.LongCommentsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -115,10 +117,12 @@
     <!--@mbg.generated-->
     insert into dbo.LongComments (n_id, n_user_id, n_movie_id, 
       d_create_time, d_edit_time, n_score, 
-      c_title, c_content)
+      c_title, c_content, n_topic_id
+      )
     values (#{nId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, 
       #{dCreateTime,jdbcType=TIMESTAMP}, #{dEditTime,jdbcType=TIMESTAMP}, #{nScore,jdbcType=SMALLINT}, 
-      #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR})
+      #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR}, #{nTopicId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.LongComments">
     <!--@mbg.generated-->
@@ -148,6 +152,9 @@
       <if test="cContent != null">
         c_content,
       </if>
+      <if test="nTopicId != null">
+        n_topic_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="nId != null">
@@ -173,6 +180,9 @@
       </if>
       <if test="cContent != null">
         #{cContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nTopicId != null">
+        #{nTopicId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -211,6 +221,9 @@
       <if test="record.cContent != null">
         c_content = #{record.cContent,jdbcType=VARCHAR},
       </if>
+      <if test="record.nTopicId != null">
+        n_topic_id = #{record.nTopicId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,7 +239,8 @@
       d_edit_time = #{record.dEditTime,jdbcType=TIMESTAMP},
       n_score = #{record.nScore,jdbcType=SMALLINT},
       c_title = #{record.cTitle,jdbcType=VARCHAR},
-      c_content = #{record.cContent,jdbcType=VARCHAR}
+      c_content = #{record.cContent,jdbcType=VARCHAR},
+      n_topic_id = #{record.nTopicId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,6 +270,9 @@
       <if test="cContent != null">
         c_content = #{cContent,jdbcType=VARCHAR},
       </if>
+      <if test="nTopicId != null">
+        n_topic_id = #{nTopicId,jdbcType=INTEGER},
+      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -268,19 +285,21 @@
       d_edit_time = #{dEditTime,jdbcType=TIMESTAMP},
       n_score = #{nScore,jdbcType=SMALLINT},
       c_title = #{cTitle,jdbcType=VARCHAR},
-      c_content = #{cContent,jdbcType=VARCHAR}
+      c_content = #{cContent,jdbcType=VARCHAR},
+      n_topic_id = #{nTopicId,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into dbo.LongComments
-    (n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content
-      )
+    (n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content, 
+      n_topic_id)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.nId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, 
         #{item.dCreateTime,jdbcType=TIMESTAMP}, #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.nScore,jdbcType=SMALLINT}, 
-        #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR})
+        #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR}, #{item.nTopicId,jdbcType=INTEGER}
+        )
     </foreach>
   </insert>
 </mapper>
