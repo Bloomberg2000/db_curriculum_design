@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.Users">
+    <!--@mbg.generated-->
+    <!--@Table Users-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="c_username" jdbcType="VARCHAR" property="cUsername" />
+    <result column="c_phonenum" jdbcType="VARCHAR" property="cPhonenum" />
+    <result column="c_email" jdbcType="VARCHAR" property="cEmail" />
+    <result column="c_password" jdbcType="VARCHAR" property="cPassword" />
+    <result column="c_wechat_openid" jdbcType="VARCHAR" property="cWechatOpenid" />
+    <result column="c_qq_openid" jdbcType="VARCHAR" property="cQqOpenid" />
+    <result column="c_weibo_openid" jdbcType="VARCHAR" property="cWeiboOpenid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, c_username, c_phonenum, c_email, c_password, c_wechat_openid, c_qq_openid, 
+    c_weibo_openid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Users
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Users
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Users">
+    <!--@mbg.generated-->
+    insert into Users (n_id, c_username, c_phonenum, 
+      c_email, c_password, c_wechat_openid, 
+      c_qq_openid, c_weibo_openid)
+    values (#{nId,jdbcType=INTEGER}, #{cUsername,jdbcType=VARCHAR}, #{cPhonenum,jdbcType=VARCHAR}, 
+      #{cEmail,jdbcType=VARCHAR}, #{cPassword,jdbcType=VARCHAR}, #{cWechatOpenid,jdbcType=VARCHAR}, 
+      #{cQqOpenid,jdbcType=VARCHAR}, #{cWeiboOpenid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Users">
+    <!--@mbg.generated-->
+    insert into Users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="cUsername != null">
+        c_username,
+      </if>
+      <if test="cPhonenum != null">
+        c_phonenum,
+      </if>
+      <if test="cEmail != null">
+        c_email,
+      </if>
+      <if test="cPassword != null">
+        c_password,
+      </if>
+      <if test="cWechatOpenid != null">
+        c_wechat_openid,
+      </if>
+      <if test="cQqOpenid != null">
+        c_qq_openid,
+      </if>
+      <if test="cWeiboOpenid != null">
+        c_weibo_openid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="cUsername != null">
+        #{cUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhonenum != null">
+        #{cPhonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="cEmail != null">
+        #{cEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cPassword != null">
+        #{cPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cWechatOpenid != null">
+        #{cWechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cQqOpenid != null">
+        #{cQqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cWeiboOpenid != null">
+        #{cWeiboOpenid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.Users">
+    <!--@mbg.generated-->
+    update Users
+    <set>
+      <if test="cUsername != null">
+        c_username = #{cUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhonenum != null">
+        c_phonenum = #{cPhonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="cEmail != null">
+        c_email = #{cEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cPassword != null">
+        c_password = #{cPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cWechatOpenid != null">
+        c_wechat_openid = #{cWechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cQqOpenid != null">
+        c_qq_openid = #{cQqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cWeiboOpenid != null">
+        c_weibo_openid = #{cWeiboOpenid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.Users">
+    <!--@mbg.generated-->
+    update Users
+    set c_username = #{cUsername,jdbcType=VARCHAR},
+      c_phonenum = #{cPhonenum,jdbcType=VARCHAR},
+      c_email = #{cEmail,jdbcType=VARCHAR},
+      c_password = #{cPassword,jdbcType=VARCHAR},
+      c_wechat_openid = #{cWechatOpenid,jdbcType=VARCHAR},
+      c_qq_openid = #{cQqOpenid,jdbcType=VARCHAR},
+      c_weibo_openid = #{cWeiboOpenid,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into Users
+    (n_id, c_username, c_phonenum, c_email, c_password, c_wechat_openid, c_qq_openid, 
+      c_weibo_openid)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.cUsername,jdbcType=VARCHAR}, #{item.cPhonenum,jdbcType=VARCHAR}, 
+        #{item.cEmail,jdbcType=VARCHAR}, #{item.cPassword,jdbcType=VARCHAR}, #{item.cWechatOpenid,jdbcType=VARCHAR}, 
+        #{item.cQqOpenid,jdbcType=VARCHAR}, #{item.cWeiboOpenid,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

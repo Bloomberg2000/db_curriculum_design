@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.TagsMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.Tags">
+    <!--@mbg.generated-->
+    <!--@Table Tags-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="c_content" jdbcType="VARCHAR" property="cContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, c_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Tags
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Tags
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Tags">
+    <!--@mbg.generated-->
+    insert into Tags (n_id, c_content)
+    values (#{nId,jdbcType=INTEGER}, #{cContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Tags">
+    <!--@mbg.generated-->
+    insert into Tags
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="cContent != null">
+        c_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="cContent != null">
+        #{cContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.Tags">
+    <!--@mbg.generated-->
+    update Tags
+    <set>
+      <if test="cContent != null">
+        c_content = #{cContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.Tags">
+    <!--@mbg.generated-->
+    update Tags
+    set c_content = #{cContent,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into Tags
+    (n_id, c_content)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.cContent,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

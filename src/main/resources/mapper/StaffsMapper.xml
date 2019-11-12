@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.StaffsMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.Staffs">
+    <!--@mbg.generated-->
+    <!--@Table Staffs-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="n_gender" jdbcType="SMALLINT" property="nGender" />
+    <result column="c_birthday" jdbcType="VARCHAR" property="cBirthday" />
+    <result column="c_occupation" jdbcType="VARCHAR" property="cOccupation" />
+    <result column="c_foreign_name" jdbcType="VARCHAR" property="cForeignName" />
+    <result column="c_birth_place" jdbcType="VARCHAR" property="cBirthPlace" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, c_name, n_gender, c_birthday, c_occupation, c_foreign_name, c_birth_place
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Staffs
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Staffs
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Staffs">
+    <!--@mbg.generated-->
+    insert into Staffs (n_id, c_name, n_gender, 
+      c_birthday, c_occupation, c_foreign_name, 
+      c_birth_place)
+    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{nGender,jdbcType=SMALLINT}, 
+      #{cBirthday,jdbcType=VARCHAR}, #{cOccupation,jdbcType=VARCHAR}, #{cForeignName,jdbcType=VARCHAR}, 
+      #{cBirthPlace,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Staffs">
+    <!--@mbg.generated-->
+    insert into Staffs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="nGender != null">
+        n_gender,
+      </if>
+      <if test="cBirthday != null">
+        c_birthday,
+      </if>
+      <if test="cOccupation != null">
+        c_occupation,
+      </if>
+      <if test="cForeignName != null">
+        c_foreign_name,
+      </if>
+      <if test="cBirthPlace != null">
+        c_birth_place,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="nGender != null">
+        #{nGender,jdbcType=SMALLINT},
+      </if>
+      <if test="cBirthday != null">
+        #{cBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="cOccupation != null">
+        #{cOccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="cForeignName != null">
+        #{cForeignName,jdbcType=VARCHAR},
+      </if>
+      <if test="cBirthPlace != null">
+        #{cBirthPlace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.Staffs">
+    <!--@mbg.generated-->
+    update Staffs
+    <set>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="nGender != null">
+        n_gender = #{nGender,jdbcType=SMALLINT},
+      </if>
+      <if test="cBirthday != null">
+        c_birthday = #{cBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="cOccupation != null">
+        c_occupation = #{cOccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="cForeignName != null">
+        c_foreign_name = #{cForeignName,jdbcType=VARCHAR},
+      </if>
+      <if test="cBirthPlace != null">
+        c_birth_place = #{cBirthPlace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.Staffs">
+    <!--@mbg.generated-->
+    update Staffs
+    set c_name = #{cName,jdbcType=VARCHAR},
+      n_gender = #{nGender,jdbcType=SMALLINT},
+      c_birthday = #{cBirthday,jdbcType=VARCHAR},
+      c_occupation = #{cOccupation,jdbcType=VARCHAR},
+      c_foreign_name = #{cForeignName,jdbcType=VARCHAR},
+      c_birth_place = #{cBirthPlace,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into Staffs
+    (n_id, c_name, n_gender, c_birthday, c_occupation, c_foreign_name, c_birth_place)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.nGender,jdbcType=SMALLINT}, 
+        #{item.cBirthday,jdbcType=VARCHAR}, #{item.cOccupation,jdbcType=VARCHAR}, #{item.cForeignName,jdbcType=VARCHAR}, 
+        #{item.cBirthPlace,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

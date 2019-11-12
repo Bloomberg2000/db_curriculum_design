@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.MoviesMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.Movies">
+    <!--@mbg.generated-->
+    <!--@Table Movies-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="c_film_length" jdbcType="INTEGER" property="cFilmLength" />
+    <result column="c_alias" jdbcType="VARCHAR" property="cAlias" />
+    <result column="d_release_date" jdbcType="DATE" property="dReleaseDate" />
+    <result column="c_date_str" jdbcType="VARCHAR" property="cDateStr" />
+    <result column="c_info" jdbcType="VARCHAR" property="cInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, c_name, c_film_length, c_alias, d_release_date, c_date_str, c_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Movies
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Movies
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Movies">
+    <!--@mbg.generated-->
+    insert into Movies (n_id, c_name, c_film_length, 
+      c_alias, d_release_date, c_date_str, 
+      c_info)
+    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cFilmLength,jdbcType=INTEGER}, 
+      #{cAlias,jdbcType=VARCHAR}, #{dReleaseDate,jdbcType=DATE}, #{cDateStr,jdbcType=VARCHAR}, 
+      #{cInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Movies">
+    <!--@mbg.generated-->
+    insert into Movies
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="cFilmLength != null">
+        c_film_length,
+      </if>
+      <if test="cAlias != null">
+        c_alias,
+      </if>
+      <if test="dReleaseDate != null">
+        d_release_date,
+      </if>
+      <if test="cDateStr != null">
+        c_date_str,
+      </if>
+      <if test="cInfo != null">
+        c_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cFilmLength != null">
+        #{cFilmLength,jdbcType=INTEGER},
+      </if>
+      <if test="cAlias != null">
+        #{cAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="dReleaseDate != null">
+        #{dReleaseDate,jdbcType=DATE},
+      </if>
+      <if test="cDateStr != null">
+        #{cDateStr,jdbcType=VARCHAR},
+      </if>
+      <if test="cInfo != null">
+        #{cInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.Movies">
+    <!--@mbg.generated-->
+    update Movies
+    <set>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cFilmLength != null">
+        c_film_length = #{cFilmLength,jdbcType=INTEGER},
+      </if>
+      <if test="cAlias != null">
+        c_alias = #{cAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="dReleaseDate != null">
+        d_release_date = #{dReleaseDate,jdbcType=DATE},
+      </if>
+      <if test="cDateStr != null">
+        c_date_str = #{cDateStr,jdbcType=VARCHAR},
+      </if>
+      <if test="cInfo != null">
+        c_info = #{cInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.Movies">
+    <!--@mbg.generated-->
+    update Movies
+    set c_name = #{cName,jdbcType=VARCHAR},
+      c_film_length = #{cFilmLength,jdbcType=INTEGER},
+      c_alias = #{cAlias,jdbcType=VARCHAR},
+      d_release_date = #{dReleaseDate,jdbcType=DATE},
+      c_date_str = #{cDateStr,jdbcType=VARCHAR},
+      c_info = #{cInfo,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into Movies
+    (n_id, c_name, c_film_length, c_alias, d_release_date, c_date_str, c_info)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.cFilmLength,jdbcType=INTEGER}, 
+        #{item.cAlias,jdbcType=VARCHAR}, #{item.dReleaseDate,jdbcType=DATE}, #{item.cDateStr,jdbcType=VARCHAR}, 
+        #{item.cInfo,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

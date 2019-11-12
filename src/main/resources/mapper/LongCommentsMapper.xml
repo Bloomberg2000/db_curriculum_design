@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.LongCommentsMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.LongComments">
+    <!--@mbg.generated-->
+    <!--@Table LongComments-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="n_user_id" jdbcType="INTEGER" property="nUserId" />
+    <result column="n_movie_id" jdbcType="INTEGER" property="nMovieId" />
+    <result column="d_create_time" jdbcType="TIMESTAMP" property="dCreateTime" />
+    <result column="d_edit_time" jdbcType="TIMESTAMP" property="dEditTime" />
+    <result column="n_score" jdbcType="SMALLINT" property="nScore" />
+    <result column="c_title" jdbcType="VARCHAR" property="cTitle" />
+    <result column="c_content" jdbcType="VARCHAR" property="cContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from LongComments
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from LongComments
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.LongComments">
+    <!--@mbg.generated-->
+    insert into LongComments (n_id, n_user_id, n_movie_id, 
+      d_create_time, d_edit_time, n_score, 
+      c_title, c_content)
+    values (#{nId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, 
+      #{dCreateTime,jdbcType=TIMESTAMP}, #{dEditTime,jdbcType=TIMESTAMP}, #{nScore,jdbcType=SMALLINT}, 
+      #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.LongComments">
+    <!--@mbg.generated-->
+    insert into LongComments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="nUserId != null">
+        n_user_id,
+      </if>
+      <if test="nMovieId != null">
+        n_movie_id,
+      </if>
+      <if test="dCreateTime != null">
+        d_create_time,
+      </if>
+      <if test="dEditTime != null">
+        d_edit_time,
+      </if>
+      <if test="nScore != null">
+        n_score,
+      </if>
+      <if test="cTitle != null">
+        c_title,
+      </if>
+      <if test="cContent != null">
+        c_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="nUserId != null">
+        #{nUserId,jdbcType=INTEGER},
+      </if>
+      <if test="nMovieId != null">
+        #{nMovieId,jdbcType=INTEGER},
+      </if>
+      <if test="dCreateTime != null">
+        #{dCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dEditTime != null">
+        #{dEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nScore != null">
+        #{nScore,jdbcType=SMALLINT},
+      </if>
+      <if test="cTitle != null">
+        #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cContent != null">
+        #{cContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.LongComments">
+    <!--@mbg.generated-->
+    update LongComments
+    <set>
+      <if test="nUserId != null">
+        n_user_id = #{nUserId,jdbcType=INTEGER},
+      </if>
+      <if test="nMovieId != null">
+        n_movie_id = #{nMovieId,jdbcType=INTEGER},
+      </if>
+      <if test="dCreateTime != null">
+        d_create_time = #{dCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dEditTime != null">
+        d_edit_time = #{dEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nScore != null">
+        n_score = #{nScore,jdbcType=SMALLINT},
+      </if>
+      <if test="cTitle != null">
+        c_title = #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cContent != null">
+        c_content = #{cContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.LongComments">
+    <!--@mbg.generated-->
+    update LongComments
+    set n_user_id = #{nUserId,jdbcType=INTEGER},
+      n_movie_id = #{nMovieId,jdbcType=INTEGER},
+      d_create_time = #{dCreateTime,jdbcType=TIMESTAMP},
+      d_edit_time = #{dEditTime,jdbcType=TIMESTAMP},
+      n_score = #{nScore,jdbcType=SMALLINT},
+      c_title = #{cTitle,jdbcType=VARCHAR},
+      c_content = #{cContent,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into LongComments
+    (n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, 
+        #{item.dCreateTime,jdbcType=TIMESTAMP}, #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.nScore,jdbcType=SMALLINT}, 
+        #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

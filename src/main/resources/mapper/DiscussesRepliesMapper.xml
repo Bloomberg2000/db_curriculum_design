@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.DiscussesRepliesMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.DiscussesReplies">
+    <!--@mbg.generated-->
+    <!--@Table DiscussesReplies-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="n_user_id" jdbcType="INTEGER" property="nUserId" />
+    <result column="n_discuss_id" jdbcType="INTEGER" property="nDiscussId" />
+    <result column="d_create_time" jdbcType="TIMESTAMP" property="dCreateTime" />
+    <result column="d_edit_time" jdbcType="TIMESTAMP" property="dEditTime" />
+    <result column="c_content" jdbcType="VARCHAR" property="cContent" />
+    <result column="n_parent_id" jdbcType="INTEGER" property="nParentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, n_user_id, n_discuss_id, d_create_time, d_edit_time, c_content, n_parent_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from DiscussesReplies
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from DiscussesReplies
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies">
+    <!--@mbg.generated-->
+    insert into DiscussesReplies (n_id, n_user_id, n_discuss_id, 
+      d_create_time, d_edit_time, c_content, 
+      n_parent_id)
+    values (#{nId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nDiscussId,jdbcType=INTEGER}, 
+      #{dCreateTime,jdbcType=TIMESTAMP}, #{dEditTime,jdbcType=TIMESTAMP}, #{cContent,jdbcType=VARCHAR}, 
+      #{nParentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies">
+    <!--@mbg.generated-->
+    insert into DiscussesReplies
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="nUserId != null">
+        n_user_id,
+      </if>
+      <if test="nDiscussId != null">
+        n_discuss_id,
+      </if>
+      <if test="dCreateTime != null">
+        d_create_time,
+      </if>
+      <if test="dEditTime != null">
+        d_edit_time,
+      </if>
+      <if test="cContent != null">
+        c_content,
+      </if>
+      <if test="nParentId != null">
+        n_parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="nUserId != null">
+        #{nUserId,jdbcType=INTEGER},
+      </if>
+      <if test="nDiscussId != null">
+        #{nDiscussId,jdbcType=INTEGER},
+      </if>
+      <if test="dCreateTime != null">
+        #{dCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dEditTime != null">
+        #{dEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cContent != null">
+        #{cContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nParentId != null">
+        #{nParentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies">
+    <!--@mbg.generated-->
+    update DiscussesReplies
+    <set>
+      <if test="nUserId != null">
+        n_user_id = #{nUserId,jdbcType=INTEGER},
+      </if>
+      <if test="nDiscussId != null">
+        n_discuss_id = #{nDiscussId,jdbcType=INTEGER},
+      </if>
+      <if test="dCreateTime != null">
+        d_create_time = #{dCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dEditTime != null">
+        d_edit_time = #{dEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cContent != null">
+        c_content = #{cContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nParentId != null">
+        n_parent_id = #{nParentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies">
+    <!--@mbg.generated-->
+    update DiscussesReplies
+    set n_user_id = #{nUserId,jdbcType=INTEGER},
+      n_discuss_id = #{nDiscussId,jdbcType=INTEGER},
+      d_create_time = #{dCreateTime,jdbcType=TIMESTAMP},
+      d_edit_time = #{dEditTime,jdbcType=TIMESTAMP},
+      c_content = #{cContent,jdbcType=VARCHAR},
+      n_parent_id = #{nParentId,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into DiscussesReplies
+    (n_id, n_user_id, n_discuss_id, d_create_time, d_edit_time, c_content, n_parent_id
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nDiscussId,jdbcType=INTEGER}, 
+        #{item.dCreateTime,jdbcType=TIMESTAMP}, #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.cContent,jdbcType=VARCHAR}, 
+        #{item.nParentId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

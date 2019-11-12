@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UserInfo">
+    <!--@mbg.generated-->
+    <!--@Table UserInfo-->
+    <id column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_user_id" jdbcType="INTEGER" property="cUserId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="n_gender" jdbcType="INTEGER" property="nGender" />
+    <result column="c_avatar" jdbcType="VARCHAR" property="cAvatar" />
+    <result column="c_address" jdbcType="VARCHAR" property="cAddress" />
+    <result column="c_info" jdbcType="VARCHAR" property="cInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    c_id, c_user_id, c_name, n_gender, c_avatar, c_address, c_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from UserInfo
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from UserInfo
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
+    <!--@mbg.generated-->
+    insert into UserInfo (c_id, c_user_id, c_name, 
+      n_gender, c_avatar, c_address, 
+      c_info)
+    values (#{cId,jdbcType=INTEGER}, #{cUserId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, 
+      #{nGender,jdbcType=INTEGER}, #{cAvatar,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR}, 
+      #{cInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
+    <!--@mbg.generated-->
+    insert into UserInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cUserId != null">
+        c_user_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="nGender != null">
+        n_gender,
+      </if>
+      <if test="cAvatar != null">
+        c_avatar,
+      </if>
+      <if test="cAddress != null">
+        c_address,
+      </if>
+      <if test="cInfo != null">
+        c_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cUserId != null">
+        #{cUserId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="nGender != null">
+        #{nGender,jdbcType=INTEGER},
+      </if>
+      <if test="cAvatar != null">
+        #{cAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="cAddress != null">
+        #{cAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cInfo != null">
+        #{cInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
+    <!--@mbg.generated-->
+    update UserInfo
+    <set>
+      <if test="cUserId != null">
+        c_user_id = #{cUserId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="nGender != null">
+        n_gender = #{nGender,jdbcType=INTEGER},
+      </if>
+      <if test="cAvatar != null">
+        c_avatar = #{cAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="cAddress != null">
+        c_address = #{cAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cInfo != null">
+        c_info = #{cInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
+    <!--@mbg.generated-->
+    update UserInfo
+    set c_user_id = #{cUserId,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR},
+      n_gender = #{nGender,jdbcType=INTEGER},
+      c_avatar = #{cAvatar,jdbcType=VARCHAR},
+      c_address = #{cAddress,jdbcType=VARCHAR},
+      c_info = #{cInfo,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into UserInfo
+    (c_id, c_user_id, c_name, n_gender, c_avatar, c_address, c_info)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.cId,jdbcType=INTEGER}, #{item.cUserId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, 
+        #{item.nGender,jdbcType=INTEGER}, #{item.cAvatar,jdbcType=VARCHAR}, #{item.cAddress,jdbcType=VARCHAR}, 
+        #{item.cInfo,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

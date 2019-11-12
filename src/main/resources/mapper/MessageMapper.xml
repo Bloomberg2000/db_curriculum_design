@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.Message">
+    <!--@mbg.generated-->
+    <!--@Table Message-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="n_sender_id" jdbcType="INTEGER" property="nSenderId" />
+    <result column="n_receiver_id" jdbcType="INTEGER" property="nReceiverId" />
+    <result column="d_send_time" jdbcType="TIMESTAMP" property="dSendTime" />
+    <result column="c_title" jdbcType="VARCHAR" property="cTitle" />
+    <result column="c_content" jdbcType="VARCHAR" property="cContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, n_sender_id, n_receiver_id, d_send_time, c_title, c_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Message
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Message
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Message">
+    <!--@mbg.generated-->
+    insert into Message (n_id, n_sender_id, n_receiver_id, 
+      d_send_time, c_title, c_content
+      )
+    values (#{nId,jdbcType=INTEGER}, #{nSenderId,jdbcType=INTEGER}, #{nReceiverId,jdbcType=INTEGER}, 
+      #{dSendTime,jdbcType=TIMESTAMP}, #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Message">
+    <!--@mbg.generated-->
+    insert into Message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="nSenderId != null">
+        n_sender_id,
+      </if>
+      <if test="nReceiverId != null">
+        n_receiver_id,
+      </if>
+      <if test="dSendTime != null">
+        d_send_time,
+      </if>
+      <if test="cTitle != null">
+        c_title,
+      </if>
+      <if test="cContent != null">
+        c_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="nSenderId != null">
+        #{nSenderId,jdbcType=INTEGER},
+      </if>
+      <if test="nReceiverId != null">
+        #{nReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="dSendTime != null">
+        #{dSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cTitle != null">
+        #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cContent != null">
+        #{cContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.Message">
+    <!--@mbg.generated-->
+    update Message
+    <set>
+      <if test="nSenderId != null">
+        n_sender_id = #{nSenderId,jdbcType=INTEGER},
+      </if>
+      <if test="nReceiverId != null">
+        n_receiver_id = #{nReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="dSendTime != null">
+        d_send_time = #{dSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cTitle != null">
+        c_title = #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cContent != null">
+        c_content = #{cContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.Message">
+    <!--@mbg.generated-->
+    update Message
+    set n_sender_id = #{nSenderId,jdbcType=INTEGER},
+      n_receiver_id = #{nReceiverId,jdbcType=INTEGER},
+      d_send_time = #{dSendTime,jdbcType=TIMESTAMP},
+      c_title = #{cTitle,jdbcType=VARCHAR},
+      c_content = #{cContent,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into Message
+    (n_id, n_sender_id, n_receiver_id, d_send_time, c_title, c_content)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.nSenderId,jdbcType=INTEGER}, #{item.nReceiverId,jdbcType=INTEGER}, 
+        #{item.dSendTime,jdbcType=TIMESTAMP}, #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+</mapper>

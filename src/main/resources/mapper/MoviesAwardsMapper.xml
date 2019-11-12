@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.MoviesAwardsMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.MoviesAwards">
+    <!--@mbg.generated-->
+    <!--@Table MoviesAwards-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="n_movie_id" jdbcType="INTEGER" property="nMovieId" />
+    <result column="n_award_id" jdbcType="INTEGER" property="nAwardId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, n_movie_id, n_award_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from MoviesAwards
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from MoviesAwards
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards">
+    <!--@mbg.generated-->
+    insert into MoviesAwards (n_id, n_movie_id, n_award_id
+      )
+    values (#{nId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, #{nAwardId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards">
+    <!--@mbg.generated-->
+    insert into MoviesAwards
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="nMovieId != null">
+        n_movie_id,
+      </if>
+      <if test="nAwardId != null">
+        n_award_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="nMovieId != null">
+        #{nMovieId,jdbcType=INTEGER},
+      </if>
+      <if test="nAwardId != null">
+        #{nAwardId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards">
+    <!--@mbg.generated-->
+    update MoviesAwards
+    <set>
+      <if test="nMovieId != null">
+        n_movie_id = #{nMovieId,jdbcType=INTEGER},
+      </if>
+      <if test="nAwardId != null">
+        n_award_id = #{nAwardId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards">
+    <!--@mbg.generated-->
+    update MoviesAwards
+    set n_movie_id = #{nMovieId,jdbcType=INTEGER},
+      n_award_id = #{nAwardId,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into MoviesAwards
+    (n_id, n_movie_id, n_award_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, #{item.nAwardId,jdbcType=INTEGER}
+        )
+    </foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.AwardsMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.Awards">
+    <!--@mbg.generated-->
+    <!--@Table Awards-->
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="d_start_date" jdbcType="TIMESTAMP" property="dStartDate" />
+    <result column="d_end_date" jdbcType="TIMESTAMP" property="dEndDate" />
+    <result column="c_location" jdbcType="VARCHAR" property="cLocation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    n_id, c_name, d_start_date, d_end_date, c_location
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Awards
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Awards
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Awards">
+    <!--@mbg.generated-->
+    insert into Awards (n_id, c_name, d_start_date, 
+      d_end_date, c_location)
+    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{dStartDate,jdbcType=TIMESTAMP}, 
+      #{dEndDate,jdbcType=TIMESTAMP}, #{cLocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Awards">
+    <!--@mbg.generated-->
+    insert into Awards
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        n_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="dStartDate != null">
+        d_start_date,
+      </if>
+      <if test="dEndDate != null">
+        d_end_date,
+      </if>
+      <if test="cLocation != null">
+        c_location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nId != null">
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="dStartDate != null">
+        #{dStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dEndDate != null">
+        #{dEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cLocation != null">
+        #{cLocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.Awards">
+    <!--@mbg.generated-->
+    update Awards
+    <set>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="dStartDate != null">
+        d_start_date = #{dStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dEndDate != null">
+        d_end_date = #{dEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cLocation != null">
+        c_location = #{cLocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.Awards">
+    <!--@mbg.generated-->
+    update Awards
+    set c_name = #{cName,jdbcType=VARCHAR},
+      d_start_date = #{dStartDate,jdbcType=TIMESTAMP},
+      d_end_date = #{dEndDate,jdbcType=TIMESTAMP},
+      c_location = #{cLocation,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into Awards
+    (n_id, c_name, d_start_date, d_end_date, c_location)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.dStartDate,jdbcType=TIMESTAMP}, 
+        #{item.dEndDate,jdbcType=TIMESTAMP}, #{item.cLocation,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>
