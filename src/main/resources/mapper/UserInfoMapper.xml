@@ -3,7 +3,7 @@
 <mapper namespace="com.dbcourse.curriculum_design.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
-    <!--@Table UserInfo-->
+    <!--@Table dbo.UserInfo-->
     <id column="c_id" jdbcType="INTEGER" property="cId" />
     <result column="c_user_id" jdbcType="INTEGER" property="cUserId" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
@@ -12,25 +12,107 @@
     <result column="c_address" jdbcType="VARCHAR" property="cAddress" />
     <result column="c_info" jdbcType="VARCHAR" property="cInfo" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     c_id, c_user_id, c_name, n_gender, c_avatar, c_address, c_info
   </sql>
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UserInfoExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dbo.UserInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from UserInfo
+    from dbo.UserInfo
     where c_id = #{cId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
-    delete from UserInfo
+    delete from dbo.UserInfo
     where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.UserInfoExample">
+    <!--@mbg.generated-->
+    delete from dbo.UserInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
-    insert into UserInfo (c_id, c_user_id, c_name, 
+    insert into dbo.UserInfo (c_id, c_user_id, c_name, 
       n_gender, c_avatar, c_address, 
       c_info)
     values (#{cId,jdbcType=INTEGER}, #{cUserId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, 
@@ -39,7 +121,7 @@
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
-    insert into UserInfo
+    insert into dbo.UserInfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cId != null">
         c_id,
@@ -87,9 +169,60 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.UserInfoExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from dbo.UserInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UserInfo
+    <set>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cUserId != null">
+        c_user_id = #{record.cUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cName != null">
+        c_name = #{record.cName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nGender != null">
+        n_gender = #{record.nGender,jdbcType=INTEGER},
+      </if>
+      <if test="record.cAvatar != null">
+        c_avatar = #{record.cAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cAddress != null">
+        c_address = #{record.cAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cInfo != null">
+        c_info = #{record.cInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UserInfo
+    set c_id = #{record.cId,jdbcType=INTEGER},
+      c_user_id = #{record.cUserId,jdbcType=INTEGER},
+      c_name = #{record.cName,jdbcType=VARCHAR},
+      n_gender = #{record.nGender,jdbcType=INTEGER},
+      c_avatar = #{record.cAvatar,jdbcType=VARCHAR},
+      c_address = #{record.cAddress,jdbcType=VARCHAR},
+      c_info = #{record.cInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
-    update UserInfo
+    update dbo.UserInfo
     <set>
       <if test="cUserId != null">
         c_user_id = #{cUserId,jdbcType=INTEGER},
@@ -114,7 +247,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
-    update UserInfo
+    update dbo.UserInfo
     set c_user_id = #{cUserId,jdbcType=INTEGER},
       c_name = #{cName,jdbcType=VARCHAR},
       n_gender = #{nGender,jdbcType=INTEGER},
@@ -125,7 +258,7 @@
   </update>
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
-    insert into UserInfo
+    insert into dbo.UserInfo
     (c_id, c_user_id, c_name, n_gender, c_avatar, c_address, c_info)
     values
     <foreach collection="list" item="item" separator=",">
