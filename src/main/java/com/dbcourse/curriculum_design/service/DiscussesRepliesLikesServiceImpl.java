@@ -1,13 +1,15 @@
 package com.dbcourse.curriculum_design.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.dbcourse.curriculum_design.mapper.DiscussesRepliesLikesMapper;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
 import com.dbcourse.curriculum_design.service.impl.DiscussesRepliesLikesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesService{
+public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesService {
 
     @Resource
     private DiscussesRepliesLikesMapper discussesRepliesLikesMapper;

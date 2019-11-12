@@ -1,13 +1,15 @@
 package com.dbcourse.curriculum_design.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsLikesMapper;
 import com.dbcourse.curriculum_design.model.ShortCommentsLikes;
 import com.dbcourse.curriculum_design.service.impl.ShortCommentsLikesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService{
+public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService {
 
     @Resource
     private ShortCommentsLikesMapper shortCommentsLikesMapper;

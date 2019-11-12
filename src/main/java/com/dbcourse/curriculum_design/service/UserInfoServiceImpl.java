@@ -1,13 +1,15 @@
 package com.dbcourse.curriculum_design.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.dbcourse.curriculum_design.mapper.UserInfoMapper;
 import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.service.impl.UserInfoService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class UserInfoServiceImpl implements UserInfoService{
+public class UserInfoServiceImpl implements UserInfoService {
 
     @Resource
     private UserInfoMapper userInfoMapper;

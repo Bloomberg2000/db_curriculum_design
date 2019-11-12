@@ -1,13 +1,15 @@
 package com.dbcourse.curriculum_design.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.dbcourse.curriculum_design.mapper.LongCommentsRepliesMapper;
 import com.dbcourse.curriculum_design.model.LongCommentsReplies;
 import com.dbcourse.curriculum_design.service.impl.LongCommentsRepliesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class LongCommentsRepliesServiceImpl implements LongCommentsRepliesService{
+public class LongCommentsRepliesServiceImpl implements LongCommentsRepliesService {
 
     @Resource
     private LongCommentsRepliesMapper longCommentsRepliesMapper;

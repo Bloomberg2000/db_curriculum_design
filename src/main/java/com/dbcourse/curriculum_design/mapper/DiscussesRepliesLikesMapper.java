@@ -1,9 +1,12 @@
 package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface DiscussesRepliesLikesMapper {
     int deleteByPrimaryKey(Integer nId);
 

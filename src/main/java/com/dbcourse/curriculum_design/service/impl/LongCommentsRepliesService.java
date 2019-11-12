@@ -1,8 +1,12 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import java.util.List;
 import com.dbcourse.curriculum_design.model.LongCommentsReplies;
-public interface LongCommentsRepliesService{
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface LongCommentsRepliesService {
 
 
     int deleteByPrimaryKey(Integer nId);

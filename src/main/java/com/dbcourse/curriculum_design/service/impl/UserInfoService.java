@@ -1,8 +1,12 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import java.util.List;
 import com.dbcourse.curriculum_design.model.UserInfo;
-public interface UserInfoService{
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface UserInfoService {
 
 
     int deleteByPrimaryKey(Integer cId);

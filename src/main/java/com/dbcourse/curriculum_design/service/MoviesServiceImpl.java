@@ -1,13 +1,15 @@
 package com.dbcourse.curriculum_design.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import com.dbcourse.curriculum_design.mapper.MoviesMapper;
-import java.util.List;
 import com.dbcourse.curriculum_design.model.Movies;
 import com.dbcourse.curriculum_design.service.impl.MoviesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class MoviesServiceImpl implements MoviesService{
+public class MoviesServiceImpl implements MoviesService {
 
     @Resource
     private MoviesMapper moviesMapper;

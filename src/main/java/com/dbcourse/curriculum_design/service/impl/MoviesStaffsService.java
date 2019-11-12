@@ -1,8 +1,12 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import java.util.List;
 import com.dbcourse.curriculum_design.model.MoviesStaffs;
-public interface MoviesStaffsService{
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface MoviesStaffsService {
 
 
     int deleteByPrimaryKey(Integer nId);

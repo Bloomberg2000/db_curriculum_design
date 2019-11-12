@@ -1,13 +1,15 @@
 package com.dbcourse.curriculum_design.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.dbcourse.curriculum_design.mapper.TagsMapper;
 import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.service.impl.TagsService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
-public class TagsServiceImpl implements TagsService{
+public class TagsServiceImpl implements TagsService {
 
     @Resource
     private TagsMapper tagsMapper;
