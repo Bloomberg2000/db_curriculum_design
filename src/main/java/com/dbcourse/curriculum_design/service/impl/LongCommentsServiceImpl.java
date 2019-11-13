@@ -17,7 +17,6 @@ public class LongCommentsServiceImpl implements LongCommentsService {
 
     @Resource
     private LongCommentsMapper longCommentsMapper;
-    private MoviesMapper moviesMapper;
 
     @Override
     public long countByExample(LongCommentsExample example) {
