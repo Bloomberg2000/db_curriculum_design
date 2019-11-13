@@ -40,8 +40,4 @@ public class LongComments implements Serializable {
     private Integer nTopicId;
 
     private static final long serialVersionUID = 1L;
-
-    public static LongCommentsBuilder builder() {
-        return new LongCommentsBuilder();
-    }
 }

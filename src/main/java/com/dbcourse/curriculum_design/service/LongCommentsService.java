@@ -2,6 +2,7 @@ package com.dbcourse.curriculum_design.service;
 
 import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.LongCommentsExample;
+import com.dbcourse.curriculum_design.model.Movies;
 
 import java.util.List;
 
@@ -32,5 +33,11 @@ public interface LongCommentsService {
 
     int batchInsert(List<LongComments> list);
 
+    /**
+     * @author christy
+     * @param n_movie_id movie的n_id
+     * @return a list of LongComments.
+     */
+    List<LongComments> getLongCommentsByMovieId(Integer n_movie_id);
 }
 
