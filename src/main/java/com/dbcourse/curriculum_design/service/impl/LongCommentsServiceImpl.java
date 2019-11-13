@@ -1,8 +1,11 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
+import com.dbcourse.curriculum_design.mapper.MoviesMapper;
 import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.LongCommentsExample;
+import com.dbcourse.curriculum_design.model.Movies;
+import com.dbcourse.curriculum_design.model.MoviesExample;
 import com.dbcourse.curriculum_design.service.LongCommentsService;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ public class LongCommentsServiceImpl implements LongCommentsService {
 
     @Resource
     private LongCommentsMapper longCommentsMapper;
+    private MoviesMapper moviesMapper;
 
     @Override
     public long countByExample(LongCommentsExample example) {
@@ -75,5 +79,12 @@ public class LongCommentsServiceImpl implements LongCommentsService {
         return longCommentsMapper.batchInsert(list);
     }
 
+    @Override
+    public List<LongComments> getLongCommentsByMovieId(Integer nMovieId) {
+        LongCommentsExample example = new LongCommentsExample();
+        LongCommentsExample.Criteria criteria = example.createCriteria();
+        criteria.andNMovieIdEqualTo(nMovieId);
+        return longCommentsMapper.selectByExample(example);
+    }
 }
 
