@@ -75,4 +75,12 @@ public class DiscussesServiceImpl implements DiscussesService {
         return discussesMapper.batchInsert(list);
     }
 
+    @Override
+    public List<Discusses> getDiscussesByMovieid(Integer n_movie_id) {
+        DiscussesExample example = new DiscussesExample();
+        DiscussesExample.Criteria criteria = example.createCriteria();
+        criteria.andNMovieIdEqualTo(n_movie_id);
+        return discussesMapper.selectByExample(example);
+    }
+
 }

@@ -32,4 +32,12 @@ public interface TopicsService {
 
     int batchInsert(List<Topics> list);
 
+    /**
+     * 加载电影话题list
+     * cty
+     * @param record
+     * @return 0或1
+     */
+    List<Topics> getMovieTopicsByMovieId(Integer nMovieId);
+
 }
