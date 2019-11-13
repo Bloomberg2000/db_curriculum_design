@@ -76,10 +76,9 @@ public class DiscussesServiceImpl implements DiscussesService {
     }
 
     @Override
-    public List<Discusses> getDiscussesByMovieid(Integer n_movie_id) {
+    public List<Discusses> getDiscussesByMovieid(Integer nMovieId) {
         DiscussesExample example = new DiscussesExample();
-        DiscussesExample.Criteria criteria = example.createCriteria();
-        criteria.andNMovieIdEqualTo(n_movie_id);
+        example.createCriteria().andNMovieIdEqualTo(nMovieId);
         return discussesMapper.selectByExample(example);
     }
 
