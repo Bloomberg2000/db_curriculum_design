@@ -12,6 +12,7 @@
     <result column="c_wechat_openid" jdbcType="VARCHAR" property="cWechatOpenid" />
     <result column="c_qq_openid" jdbcType="VARCHAR" property="cQqOpenid" />
     <result column="c_weibo_openid" jdbcType="VARCHAR" property="cWeiboOpenid" />
+    <result column="c_create_time" jdbcType="VARCHAR" property="cCreateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -76,7 +77,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     n_id, c_username, c_phonenum, c_email, c_password, c_wechat_openid, c_qq_openid, 
-    c_weibo_openid
+    c_weibo_openid, c_create_time
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -112,22 +113,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Users">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Users" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Users (n_id, c_username, c_phonenum, 
-      c_email, c_password, c_wechat_openid, 
-      c_qq_openid, c_weibo_openid)
-    values (#{nId,jdbcType=INTEGER}, #{cUsername,jdbcType=VARCHAR}, #{cPhonenum,jdbcType=VARCHAR}, 
-      #{cEmail,jdbcType=VARCHAR}, #{cPassword,jdbcType=VARCHAR}, #{cWechatOpenid,jdbcType=VARCHAR}, 
-      #{cQqOpenid,jdbcType=VARCHAR}, #{cWeiboOpenid,jdbcType=VARCHAR})
+    insert into dbo.Users (c_username, c_phonenum, c_email, 
+      c_password, c_wechat_openid, c_qq_openid, 
+      c_weibo_openid, c_create_time)
+    values (#{cUsername,jdbcType=VARCHAR}, #{cPhonenum,jdbcType=VARCHAR}, #{cEmail,jdbcType=VARCHAR}, 
+      #{cPassword,jdbcType=VARCHAR}, #{cWechatOpenid,jdbcType=VARCHAR}, #{cQqOpenid,jdbcType=VARCHAR}, 
+      #{cWeiboOpenid,jdbcType=VARCHAR}, #{cCreateTime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Users">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Users" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Users
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="cUsername != null">
         c_username,
       </if>
@@ -149,11 +147,11 @@
       <if test="cWeiboOpenid != null">
         c_weibo_openid,
       </if>
+      <if test="cCreateTime != null">
+        c_create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="cUsername != null">
         #{cUsername,jdbcType=VARCHAR},
       </if>
@@ -174,6 +172,9 @@
       </if>
       <if test="cWeiboOpenid != null">
         #{cWeiboOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cCreateTime != null">
+        #{cCreateTime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -212,6 +213,9 @@
       <if test="record.cWeiboOpenid != null">
         c_weibo_openid = #{record.cWeiboOpenid,jdbcType=VARCHAR},
       </if>
+      <if test="record.cCreateTime != null">
+        c_create_time = #{record.cCreateTime,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -227,7 +231,8 @@
       c_password = #{record.cPassword,jdbcType=VARCHAR},
       c_wechat_openid = #{record.cWechatOpenid,jdbcType=VARCHAR},
       c_qq_openid = #{record.cQqOpenid,jdbcType=VARCHAR},
-      c_weibo_openid = #{record.cWeiboOpenid,jdbcType=VARCHAR}
+      c_weibo_openid = #{record.cWeiboOpenid,jdbcType=VARCHAR},
+      c_create_time = #{record.cCreateTime,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +262,9 @@
       <if test="cWeiboOpenid != null">
         c_weibo_openid = #{cWeiboOpenid,jdbcType=VARCHAR},
       </if>
+      <if test="cCreateTime != null">
+        c_create_time = #{cCreateTime,jdbcType=VARCHAR},
+      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -269,19 +277,20 @@
       c_password = #{cPassword,jdbcType=VARCHAR},
       c_wechat_openid = #{cWechatOpenid,jdbcType=VARCHAR},
       c_qq_openid = #{cQqOpenid,jdbcType=VARCHAR},
-      c_weibo_openid = #{cWeiboOpenid,jdbcType=VARCHAR}
+      c_weibo_openid = #{cWeiboOpenid,jdbcType=VARCHAR},
+      c_create_time = #{cCreateTime,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Users
-    (n_id, c_username, c_phonenum, c_email, c_password, c_wechat_openid, c_qq_openid, 
-      c_weibo_openid)
+    (c_username, c_phonenum, c_email, c_password, c_wechat_openid, c_qq_openid, c_weibo_openid, 
+      c_create_time)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.cUsername,jdbcType=VARCHAR}, #{item.cPhonenum,jdbcType=VARCHAR}, 
-        #{item.cEmail,jdbcType=VARCHAR}, #{item.cPassword,jdbcType=VARCHAR}, #{item.cWechatOpenid,jdbcType=VARCHAR}, 
-        #{item.cQqOpenid,jdbcType=VARCHAR}, #{item.cWeiboOpenid,jdbcType=VARCHAR})
+      (#{item.cUsername,jdbcType=VARCHAR}, #{item.cPhonenum,jdbcType=VARCHAR}, #{item.cEmail,jdbcType=VARCHAR}, 
+        #{item.cPassword,jdbcType=VARCHAR}, #{item.cWechatOpenid,jdbcType=VARCHAR}, #{item.cQqOpenid,jdbcType=VARCHAR}, 
+        #{item.cWeiboOpenid,jdbcType=VARCHAR}, #{item.cCreateTime,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>
