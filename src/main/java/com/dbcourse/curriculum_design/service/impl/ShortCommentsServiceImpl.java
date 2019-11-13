@@ -75,4 +75,17 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
         return shortCommentsMapper.batchInsert(list);
     }
 
+    /**
+     *发布短评
+     *20191113 14:47
+     * @author cty
+     * @return 1:Successfuly issue the short comment.
+     */
+//    @Override
+//    public boolean issueShortCommentByUserIdAndMovieId(ShortComments record) {
+//        ShortComments SC;
+//        ShortCommentsMapper.insert();
+//    return false;
+//    }
+
 }

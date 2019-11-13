@@ -1,8 +1,8 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.LongCommentsLikesMapper;
-import com.dbcourse.curriculum_design.model.LongCommentsLikes;
-import com.dbcourse.curriculum_design.model.LongCommentsLikesExample;
+import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
+import com.dbcourse.curriculum_design.model.*;
 import com.dbcourse.curriculum_design.service.LongCommentsLikesService;
 import org.springframework.stereotype.Service;
 
@@ -74,5 +74,6 @@ public class LongCommentsLikesServiceImpl implements LongCommentsLikesService {
     public int batchInsert(List<LongCommentsLikes> list) {
         return longCommentsLikesMapper.batchInsert(list);
     }
+
 
 }

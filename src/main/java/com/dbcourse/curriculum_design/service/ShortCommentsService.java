@@ -32,4 +32,12 @@ public interface ShortCommentsService {
 
     int batchInsert(List<ShortComments> list);
 
+    /**
+     *发布短评
+     *20191113 14:47
+     * @author cty
+     * @return 1:Successfuly issue the short comment.
+     */
+//    boolean issueShortCommentByUserIdAndMovieId(Integer nUserId);
+
 }

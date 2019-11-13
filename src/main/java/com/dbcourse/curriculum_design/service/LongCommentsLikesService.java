@@ -1,5 +1,6 @@
 package com.dbcourse.curriculum_design.service;
 
+import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.LongCommentsLikes;
 import com.dbcourse.curriculum_design.model.LongCommentsLikesExample;
 
@@ -31,5 +32,7 @@ public interface LongCommentsLikesService {
     int updateByPrimaryKey(LongCommentsLikes record);
 
     int batchInsert(List<LongCommentsLikes> list);
+
+    List<LongComments> getLongCommentsByMovieId(Integer nMovieId);
 
 }

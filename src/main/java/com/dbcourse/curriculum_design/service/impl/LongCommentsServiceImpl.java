@@ -75,5 +75,30 @@ public class LongCommentsServiceImpl implements LongCommentsService {
         return longCommentsMapper.batchInsert(list);
     }
 
+    /**
+     * cty
+     * 2019.11.13 18:57
+     * @param nMovieId
+     * @return 1:Successfully get the specific movie's Long comments.
+     */
+
+    @Override
+    public int getLongCommentsByMovieId(Integer nCommentsId) {
+
+            //在一个具体的电影界面点进去一个长评，会得到具体的长评编号，如果点击查看全部长评，则可以加载全部长评论
+            LongCommentsExample example = new LongCommentsExample();
+            LongCommentsExample.Criteria criteria= example.createCriteria();
+            criteria.andNMovieIdEqualTo(nMovieId);
+            List<LongComments> longCommentsList = longCommentsMapper.selectByExample(example);
+            System.out.println(longCommentsList.size());
+            System.out.println(longCommentsList.);
+            System.out.println(longCommentsList.size());
+            return 1;
+        }
+
+
+    }
+
+
 }
 

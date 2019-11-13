@@ -32,5 +32,9 @@ public interface LongCommentsService {
 
     int batchInsert(List<LongComments> list);
 
+    int getLongCommentsByMovieId(Integer nMovieId);
+
+
+
 }
 
