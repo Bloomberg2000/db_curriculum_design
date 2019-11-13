@@ -20,7 +20,7 @@ public class MailUtil {
     private static final String sendEmailPassword = "Pb123456";
 
 
-    public static void sendCaptchaEmailToAddress() {
+    public static void sendCaptchaEmailToAddress(String captcha, String email) {
         Properties properties = new Properties();
         //设置发送邮件的基本参数
         //发送邮件服务器
@@ -43,12 +43,12 @@ public class MailUtil {
             //设置发件人
             message.setFrom(new InternetAddress("lzy@noqaqs.cn"));
             //设置收件人
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress("328274956@qq.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
             //设置主题
-            message.setSubject("你收到的验证码");
+            message.setSubject("OrangeGo 注册验证码");
             //设置邮件正文  第二个参数是邮件发送的类型
             // TODO 验证码的文案
-            message.setContent("hhhhh", "text/html;charset=UTF-8");
+            message.setContent(String.format("你的验证码是 %s", captcha), "text/html;charset=UTF-8");
             //发送一封邮件
             Transport.send(message);
         } catch (MessagingException ignored) {

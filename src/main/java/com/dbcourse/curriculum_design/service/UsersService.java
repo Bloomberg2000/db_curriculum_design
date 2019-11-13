@@ -32,4 +32,7 @@ public interface UsersService {
 
     int batchInsert(List<Users> list);
 
+    Users selectUserByEmailOrPhone(String user);
+
+    Users loginUserByEmailOrPhone(String user, String password);
 }
