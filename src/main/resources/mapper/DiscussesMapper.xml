@@ -109,22 +109,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Discusses">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Discusses" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Discusses (n_id, n_user_id, n_movie_id, 
-      d_create_time, d_edit_time, c_name
-      )
-    values (#{nId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, 
-      #{dCreateTime,jdbcType=TIMESTAMP}, #{dEditTime,jdbcType=TIMESTAMP}, #{cName,jdbcType=VARCHAR}
-      )
+    insert into dbo.Discusses (n_user_id, n_movie_id, d_create_time, 
+      d_edit_time, c_name)
+    values (#{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, #{dCreateTime,jdbcType=TIMESTAMP}, 
+      #{dEditTime,jdbcType=TIMESTAMP}, #{cName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Discusses">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Discusses" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Discusses
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nUserId != null">
         n_user_id,
       </if>
@@ -142,9 +137,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nUserId != null">
         #{nUserId,jdbcType=INTEGER},
       </if>
@@ -241,15 +233,14 @@
       c_name = #{cName,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Discusses
-    (n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, c_name)
+    (n_user_id, n_movie_id, d_create_time, d_edit_time, c_name)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, 
-        #{item.dCreateTime,jdbcType=TIMESTAMP}, #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.cName,jdbcType=VARCHAR}
-        )
+      (#{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, #{item.dCreateTime,jdbcType=TIMESTAMP}, 
+        #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.cName,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

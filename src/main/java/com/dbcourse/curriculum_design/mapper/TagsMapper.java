@@ -2,10 +2,11 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.TagsExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface TagsMapper {

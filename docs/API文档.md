@@ -5,7 +5,7 @@
 ### 登录
 |URL|Method|描述|
 |---|---|---|
-|/login|POST|登录|
+|/user/login|POST|登录|
 #### 参数
 ```json
 
@@ -14,7 +14,7 @@
 ### 注册
 |URL|Method|描述|
 |---|---|---|
-|/signUp|POST|注册|
+|/user/signUp|POST|注册|
 
 #### 参数
 ```json
