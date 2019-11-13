@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dbcourse.curriculum_design.mapper.UsersTopicsMapper">
-  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UsersTopics">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.MoviesTagAndTagMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.MoviesTagAndTag">
     <!--@mbg.generated-->
-    <!--@Table dbo.Users_Topics-->
-    <result column="Users_n_id" jdbcType="INTEGER" property="usersNId" />
-    <result column="c_username" jdbcType="VARCHAR" property="cUsername" />
-    <result column="Topics_n_id" jdbcType="INTEGER" property="topicsNId" />
-    <result column="n_movie_id" jdbcType="INTEGER" property="nMovieId" />
-    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <!--@Table dbo.MoviesTagAndTag-->
+    <result column="TagId" jdbcType="INTEGER" property="tagid" />
+    <result column="MoiveId" jdbcType="INTEGER" property="moiveid" />
+    <result column="TagContent" jdbcType="VARCHAR" property="tagcontent" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -72,16 +70,16 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    Users_n_id, c_username, Topics_n_id, n_movie_id, c_name
+    TagId, MoiveId, TagContent
   </sql>
-  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersTopicsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesTagAndTagExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from dbo.Users_Topics
+    from dbo.MoviesTagAndTag
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,83 +87,65 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.UsersTopicsExample">
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesTagAndTagExample">
     <!--@mbg.generated-->
-    delete from dbo.Users_Topics
+    delete from dbo.MoviesTagAndTag
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UsersTopics">
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.MoviesTagAndTag">
     <!--@mbg.generated-->
-    insert into dbo.Users_Topics (Users_n_id, c_username, Topics_n_id, 
-      n_movie_id, c_name)
-    values (#{usersNId,jdbcType=INTEGER}, #{cUsername,jdbcType=VARCHAR}, #{topicsNId,jdbcType=INTEGER}, 
-      #{nMovieId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR})
+    insert into dbo.MoviesTagAndTag (TagId, MoiveId, TagContent
+      )
+    values (#{tagid,jdbcType=INTEGER}, #{moiveid,jdbcType=INTEGER}, #{tagcontent,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersTopics">
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.MoviesTagAndTag">
     <!--@mbg.generated-->
-    insert into dbo.Users_Topics
+    insert into dbo.MoviesTagAndTag
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="usersNId != null">
-        Users_n_id,
+      <if test="tagid != null">
+        TagId,
       </if>
-      <if test="cUsername != null">
-        c_username,
+      <if test="moiveid != null">
+        MoiveId,
       </if>
-      <if test="topicsNId != null">
-        Topics_n_id,
-      </if>
-      <if test="nMovieId != null">
-        n_movie_id,
-      </if>
-      <if test="cName != null">
-        c_name,
+      <if test="tagcontent != null">
+        TagContent,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="usersNId != null">
-        #{usersNId,jdbcType=INTEGER},
+      <if test="tagid != null">
+        #{tagid,jdbcType=INTEGER},
       </if>
-      <if test="cUsername != null">
-        #{cUsername,jdbcType=VARCHAR},
+      <if test="moiveid != null">
+        #{moiveid,jdbcType=INTEGER},
       </if>
-      <if test="topicsNId != null">
-        #{topicsNId,jdbcType=INTEGER},
-      </if>
-      <if test="nMovieId != null">
-        #{nMovieId,jdbcType=INTEGER},
-      </if>
-      <if test="cName != null">
-        #{cName,jdbcType=VARCHAR},
+      <if test="tagcontent != null">
+        #{tagcontent,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.UsersTopicsExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesTagAndTagExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from dbo.Users_Topics
+    select count(*) from dbo.MoviesTagAndTag
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update dbo.Users_Topics
+    update dbo.MoviesTagAndTag
     <set>
-      <if test="record.usersNId != null">
-        Users_n_id = #{record.usersNId,jdbcType=INTEGER},
+      <if test="record.tagid != null">
+        TagId = #{record.tagid,jdbcType=INTEGER},
       </if>
-      <if test="record.cUsername != null">
-        c_username = #{record.cUsername,jdbcType=VARCHAR},
+      <if test="record.moiveid != null">
+        MoiveId = #{record.moiveid,jdbcType=INTEGER},
       </if>
-      <if test="record.topicsNId != null">
-        Topics_n_id = #{record.topicsNId,jdbcType=INTEGER},
-      </if>
-      <if test="record.nMovieId != null">
-        n_movie_id = #{record.nMovieId,jdbcType=INTEGER},
-      </if>
-      <if test="record.cName != null">
-        c_name = #{record.cName,jdbcType=VARCHAR},
+      <if test="record.tagcontent != null">
+        TagContent = #{record.tagcontent,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -174,24 +154,22 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update dbo.Users_Topics
-    set Users_n_id = #{record.usersNId,jdbcType=INTEGER},
-      c_username = #{record.cUsername,jdbcType=VARCHAR},
-      Topics_n_id = #{record.topicsNId,jdbcType=INTEGER},
-      n_movie_id = #{record.nMovieId,jdbcType=INTEGER},
-      c_name = #{record.cName,jdbcType=VARCHAR}
+    update dbo.MoviesTagAndTag
+    set TagId = #{record.tagid,jdbcType=INTEGER},
+      MoiveId = #{record.moiveid,jdbcType=INTEGER},
+      TagContent = #{record.tagcontent,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
-    insert into dbo.Users_Topics
-    (Users_n_id, c_username, Topics_n_id, n_movie_id, c_name)
+    insert into dbo.MoviesTagAndTag
+    (TagId, MoiveId, TagContent)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.usersNId,jdbcType=INTEGER}, #{item.cUsername,jdbcType=VARCHAR}, #{item.topicsNId,jdbcType=INTEGER}, 
-        #{item.nMovieId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR})
+      (#{item.tagid,jdbcType=INTEGER}, #{item.moiveid,jdbcType=INTEGER}, #{item.tagcontent,jdbcType=VARCHAR}
+        )
     </foreach>
   </insert>
 </mapper>

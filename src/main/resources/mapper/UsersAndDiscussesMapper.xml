@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.UsersAndDiscussesMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UsersAndDiscusses">
+    <!--@mbg.generated-->
+    <!--@Table dbo.UsersAndDiscusses-->
+    <result column="DiscussesId" jdbcType="INTEGER" property="discussesid" />
+    <result column="DiscussesCreateTime" jdbcType="TIMESTAMP" property="discussescreatetime" />
+    <result column="DiscussesEditTime" jdbcType="TIMESTAMP" property="discussesedittime" />
+    <result column="DiscussesName" jdbcType="VARCHAR" property="discussesname" />
+    <result column="UserId" jdbcType="INTEGER" property="userid" />
+    <result column="Nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="UserGender" jdbcType="INTEGER" property="usergender" />
+    <result column="UserAvatar" jdbcType="VARCHAR" property="useravatar" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    DiscussesId, DiscussesCreateTime, DiscussesEditTime, DiscussesName, UserId, Nickname, 
+    UserGender, UserAvatar
+  </sql>
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscussesExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dbo.UsersAndDiscusses
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscussesExample">
+    <!--@mbg.generated-->
+    delete from dbo.UsersAndDiscusses
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscusses">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndDiscusses (DiscussesId, DiscussesCreateTime, 
+      DiscussesEditTime, DiscussesName, UserId, 
+      Nickname, UserGender, UserAvatar
+      )
+    values (#{discussesid,jdbcType=INTEGER}, #{discussescreatetime,jdbcType=TIMESTAMP}, 
+      #{discussesedittime,jdbcType=TIMESTAMP}, #{discussesname,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{nickname,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscusses">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndDiscusses
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="discussesid != null">
+        DiscussesId,
+      </if>
+      <if test="discussescreatetime != null">
+        DiscussesCreateTime,
+      </if>
+      <if test="discussesedittime != null">
+        DiscussesEditTime,
+      </if>
+      <if test="discussesname != null">
+        DiscussesName,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="nickname != null">
+        Nickname,
+      </if>
+      <if test="usergender != null">
+        UserGender,
+      </if>
+      <if test="useravatar != null">
+        UserAvatar,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="discussesid != null">
+        #{discussesid,jdbcType=INTEGER},
+      </if>
+      <if test="discussescreatetime != null">
+        #{discussescreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discussesedittime != null">
+        #{discussesedittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discussesname != null">
+        #{discussesname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="usergender != null">
+        #{usergender,jdbcType=INTEGER},
+      </if>
+      <if test="useravatar != null">
+        #{useravatar,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscussesExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from dbo.UsersAndDiscusses
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UsersAndDiscusses
+    <set>
+      <if test="record.discussesid != null">
+        DiscussesId = #{record.discussesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.discussescreatetime != null">
+        DiscussesCreateTime = #{record.discussescreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.discussesedittime != null">
+        DiscussesEditTime = #{record.discussesedittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.discussesname != null">
+        DiscussesName = #{record.discussesname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.nickname != null">
+        Nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usergender != null">
+        UserGender = #{record.usergender,jdbcType=INTEGER},
+      </if>
+      <if test="record.useravatar != null">
+        UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UsersAndDiscusses
+    set DiscussesId = #{record.discussesid,jdbcType=INTEGER},
+      DiscussesCreateTime = #{record.discussescreatetime,jdbcType=TIMESTAMP},
+      DiscussesEditTime = #{record.discussesedittime,jdbcType=TIMESTAMP},
+      DiscussesName = #{record.discussesname,jdbcType=VARCHAR},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      Nickname = #{record.nickname,jdbcType=VARCHAR},
+      UserGender = #{record.usergender,jdbcType=INTEGER},
+      UserAvatar = #{record.useravatar,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndDiscusses
+    (DiscussesId, DiscussesCreateTime, DiscussesEditTime, DiscussesName, UserId, Nickname, 
+      UserGender, UserAvatar)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.discussesid,jdbcType=INTEGER}, #{item.discussescreatetime,jdbcType=TIMESTAMP}, 
+        #{item.discussesedittime,jdbcType=TIMESTAMP}, #{item.discussesname,jdbcType=VARCHAR}, 
+        #{item.userid,jdbcType=INTEGER}, #{item.nickname,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, 
+        #{item.useravatar,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

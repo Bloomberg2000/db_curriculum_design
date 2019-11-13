@@ -7,7 +7,6 @@
     <id column="n_id" jdbcType="INTEGER" property="nId" />
     <result column="n_movie_id" jdbcType="INTEGER" property="nMovieId" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
-    <result column="n_user_id" jdbcType="INTEGER" property="nUserId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -71,7 +70,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    n_id, n_movie_id, c_name, n_user_id
+    n_id, n_movie_id, c_name
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.TopicsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -109,10 +108,8 @@
   </delete>
   <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Topics" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Topics (n_movie_id, c_name, n_user_id
-      )
-    values (#{nMovieId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{nUserId,jdbcType=INTEGER}
-      )
+    insert into dbo.Topics (n_movie_id, c_name)
+    values (#{nMovieId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Topics" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -124,9 +121,6 @@
       <if test="cName != null">
         c_name,
       </if>
-      <if test="nUserId != null">
-        n_user_id,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="nMovieId != null">
@@ -134,9 +128,6 @@
       </if>
       <if test="cName != null">
         #{cName,jdbcType=VARCHAR},
-      </if>
-      <if test="nUserId != null">
-        #{nUserId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -160,9 +151,6 @@
       <if test="record.cName != null">
         c_name = #{record.cName,jdbcType=VARCHAR},
       </if>
-      <if test="record.nUserId != null">
-        n_user_id = #{record.nUserId,jdbcType=INTEGER},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -173,8 +161,7 @@
     update dbo.Topics
     set n_id = #{record.nId,jdbcType=INTEGER},
       n_movie_id = #{record.nMovieId,jdbcType=INTEGER},
-      c_name = #{record.cName,jdbcType=VARCHAR},
-      n_user_id = #{record.nUserId,jdbcType=INTEGER}
+      c_name = #{record.cName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -189,9 +176,6 @@
       <if test="cName != null">
         c_name = #{cName,jdbcType=VARCHAR},
       </if>
-      <if test="nUserId != null">
-        n_user_id = #{nUserId,jdbcType=INTEGER},
-      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -199,18 +183,16 @@
     <!--@mbg.generated-->
     update dbo.Topics
     set n_movie_id = #{nMovieId,jdbcType=INTEGER},
-      c_name = #{cName,jdbcType=VARCHAR},
-      n_user_id = #{nUserId,jdbcType=INTEGER}
+      c_name = #{cName,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
   <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Topics
-    (n_movie_id, c_name, n_user_id)
+    (n_movie_id, c_name)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nMovieId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.nUserId,jdbcType=INTEGER}
-        )
+      (#{item.nMovieId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>
