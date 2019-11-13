@@ -108,20 +108,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Awards">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Awards" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Awards (n_id, c_name, d_start_date, 
-      d_end_date, c_location)
-    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{dStartDate,jdbcType=TIMESTAMP}, 
-      #{dEndDate,jdbcType=TIMESTAMP}, #{cLocation,jdbcType=VARCHAR})
+    insert into dbo.Awards (c_name, d_start_date, d_end_date, 
+      c_location)
+    values (#{cName,jdbcType=VARCHAR}, #{dStartDate,jdbcType=TIMESTAMP}, #{dEndDate,jdbcType=TIMESTAMP}, 
+      #{cLocation,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Awards">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Awards" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Awards
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="cName != null">
         c_name,
       </if>
@@ -136,9 +133,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="cName != null">
         #{cName,jdbcType=VARCHAR},
       </if>
@@ -224,14 +218,14 @@
       c_location = #{cLocation,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Awards
-    (n_id, c_name, d_start_date, d_end_date, c_location)
+    (c_name, d_start_date, d_end_date, c_location)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.dStartDate,jdbcType=TIMESTAMP}, 
-        #{item.dEndDate,jdbcType=TIMESTAMP}, #{item.cLocation,jdbcType=VARCHAR})
+      (#{item.cName,jdbcType=VARCHAR}, #{item.dStartDate,jdbcType=TIMESTAMP}, #{item.dEndDate,jdbcType=TIMESTAMP}, 
+        #{item.cLocation,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

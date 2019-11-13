@@ -32,4 +32,11 @@ public interface DiscussesService {
 
     int batchInsert(List<Discusses> list);
 
+    /**
+     * 加载电影讨论区list
+     * @param n_movie_id
+     * @return list
+     */
+    List<Discusses> getDiscussesByMovieid(Integer n_movie_id);
+
 }

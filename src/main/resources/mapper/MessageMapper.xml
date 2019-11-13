@@ -109,22 +109,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Message">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Message" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Message (n_id, n_sender_id, n_receiver_id, 
-      d_send_time, c_title, c_content
-      )
-    values (#{nId,jdbcType=INTEGER}, #{nSenderId,jdbcType=INTEGER}, #{nReceiverId,jdbcType=INTEGER}, 
-      #{dSendTime,jdbcType=TIMESTAMP}, #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR}
-      )
+    insert into dbo.Message (n_sender_id, n_receiver_id, d_send_time, 
+      c_title, c_content)
+    values (#{nSenderId,jdbcType=INTEGER}, #{nReceiverId,jdbcType=INTEGER}, #{dSendTime,jdbcType=TIMESTAMP}, 
+      #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Message">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Message" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Message
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nSenderId != null">
         n_sender_id,
       </if>
@@ -142,9 +137,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nSenderId != null">
         #{nSenderId,jdbcType=INTEGER},
       </if>
@@ -241,15 +233,14 @@
       c_content = #{cContent,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Message
-    (n_id, n_sender_id, n_receiver_id, d_send_time, c_title, c_content)
+    (n_sender_id, n_receiver_id, d_send_time, c_title, c_content)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nSenderId,jdbcType=INTEGER}, #{item.nReceiverId,jdbcType=INTEGER}, 
-        #{item.dSendTime,jdbcType=TIMESTAMP}, #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR}
-        )
+      (#{item.nSenderId,jdbcType=INTEGER}, #{item.nReceiverId,jdbcType=INTEGER}, #{item.dSendTime,jdbcType=TIMESTAMP}, 
+        #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

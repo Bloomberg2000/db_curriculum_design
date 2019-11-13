@@ -110,22 +110,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.DiscussesReplies (n_id, n_user_id, n_discuss_id, 
-      d_create_time, d_edit_time, c_content, 
-      n_parent_id)
-    values (#{nId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nDiscussId,jdbcType=INTEGER}, 
-      #{dCreateTime,jdbcType=TIMESTAMP}, #{dEditTime,jdbcType=TIMESTAMP}, #{cContent,jdbcType=VARCHAR}, 
-      #{nParentId,jdbcType=INTEGER})
+    insert into dbo.DiscussesReplies (n_user_id, n_discuss_id, d_create_time, 
+      d_edit_time, c_content, n_parent_id
+      )
+    values (#{nUserId,jdbcType=INTEGER}, #{nDiscussId,jdbcType=INTEGER}, #{dCreateTime,jdbcType=TIMESTAMP}, 
+      #{dEditTime,jdbcType=TIMESTAMP}, #{cContent,jdbcType=VARCHAR}, #{nParentId,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.DiscussesReplies" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.DiscussesReplies
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nUserId != null">
         n_user_id,
       </if>
@@ -146,9 +143,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nUserId != null">
         #{nUserId,jdbcType=INTEGER},
       </if>
@@ -256,16 +250,15 @@
       n_parent_id = #{nParentId,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.DiscussesReplies
-    (n_id, n_user_id, n_discuss_id, d_create_time, d_edit_time, c_content, n_parent_id
-      )
+    (n_user_id, n_discuss_id, d_create_time, d_edit_time, c_content, n_parent_id)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nDiscussId,jdbcType=INTEGER}, 
-        #{item.dCreateTime,jdbcType=TIMESTAMP}, #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.cContent,jdbcType=VARCHAR}, 
-        #{item.nParentId,jdbcType=INTEGER})
+      (#{item.nUserId,jdbcType=INTEGER}, #{item.nDiscussId,jdbcType=INTEGER}, #{item.dCreateTime,jdbcType=TIMESTAMP}, 
+        #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.cContent,jdbcType=VARCHAR}, #{item.nParentId,jdbcType=INTEGER}
+        )
     </foreach>
   </insert>
 </mapper>
