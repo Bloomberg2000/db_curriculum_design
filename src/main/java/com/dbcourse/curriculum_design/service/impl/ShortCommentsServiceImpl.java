@@ -1,6 +1,8 @@
 package com.dbcourse.curriculum_design.service.impl;
 
+import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
+import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.ShortCommentsExample;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
@@ -74,5 +76,14 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
     public int batchInsert(List<ShortComments> list) {
         return shortCommentsMapper.batchInsert(list);
     }
+
+    @Override
+    public List<ShortComments> getShortCommentsByMovieID(Integer nMovieId) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        ShortCommentsExample.Criteria criteria = example.createCriteria();
+        criteria.andNMovieIdEqualTo(nMovieId);
+       return  shortCommentsMapper.selectByExample(example);
+    }
+
 
 }
