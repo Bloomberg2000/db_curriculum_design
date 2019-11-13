@@ -3,15 +3,15 @@ package com.dbcourse.curriculum_design;
 import com.dbcourse.curriculum_design.model.Discusses;
 import com.dbcourse.curriculum_design.service.DiscussesService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @SpringBootTest
 class DiscussesTests {
 
-    @Autowired
+    @Resource
     DiscussesService discussesService;
 
     @Test
