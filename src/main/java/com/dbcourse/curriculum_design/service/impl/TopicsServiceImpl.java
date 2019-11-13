@@ -1,5 +1,6 @@
 package com.dbcourse.curriculum_design.service.impl;
 
+import com.dbcourse.curriculum_design.model.Movies;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
@@ -71,6 +72,21 @@ public class TopicsServiceImpl implements TopicsService{
     @Override
     public int batchInsert(List<Topics> list) {
         return topicsMapper.batchInsert(list);
+    }
+
+    /**
+     * 加载电影话题list
+     * @author cty
+     * @param record
+     * @return 0或1
+     */
+    @Override
+    public List<Topics> getMovieTopicsByMovieId(Integer nMovieId) {
+        //获得电影id后进行查询显示
+        TopicsExample example = new TopicsExample();
+        TopicsExample.Criteria criteria= example.createCriteria();
+        criteria.andNMovieIdEqualTo(nMovieId);
+        return topicsMapper.selectByExample(example);
     }
 
 }
