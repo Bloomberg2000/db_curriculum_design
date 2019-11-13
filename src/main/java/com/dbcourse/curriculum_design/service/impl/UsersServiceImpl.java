@@ -4,6 +4,7 @@ import com.dbcourse.curriculum_design.mapper.UsersMapper;
 import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.model.UsersExample;
 import com.dbcourse.curriculum_design.service.UsersService;
+import com.dbcourse.curriculum_design.utils.SHA256Util;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,6 +33,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public int insert(Users record) {
+        record.setCPassword(SHA256Util.Encrypt(String.format("%s-%s", record.getCPassword(), record.getCCreateTime())));
         return usersMapper.insert(record);
     }
 
@@ -75,4 +77,33 @@ public class UsersServiceImpl implements UsersService {
         return usersMapper.batchInsert(list);
     }
 
+
+    @Override
+    public Users selectUserByEmailOrPhone(String user) {
+        UsersExample example = new UsersExample();
+        example.createCriteria().andCEmailEqualTo(user);
+        example.or().andCPhonenumEqualTo(user);
+        List<Users> users = usersMapper.selectByExample(example);
+        if (user.length() > 0) {
+            return users.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Users loginUserByEmailOrPhone(String userNum, String password) {
+        UsersExample example = new UsersExample();
+        example.createCriteria().andCEmailEqualTo(userNum);
+        example.or().andCPhonenumEqualTo(userNum);
+        List<Users> users = usersMapper.selectByExample(example);
+        if (userNum.length() > 0) {
+            Users user = users.get(0);
+            String needVerifyPassword = SHA256Util.Encrypt(String.format("%s-%s", password, user.getCCreateTime()));
+            if (needVerifyPassword != null && needVerifyPassword.equals(user.getCPassword())) {
+                return user;
+            }
+        }
+        return null;
+    }
 }
