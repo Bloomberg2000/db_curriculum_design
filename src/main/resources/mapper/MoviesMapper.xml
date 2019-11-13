@@ -11,6 +11,9 @@
     <result column="d_release_date" jdbcType="DATE" property="dReleaseDate" />
     <result column="c_date_str" jdbcType="VARCHAR" property="cDateStr" />
     <result column="c_info" jdbcType="VARCHAR" property="cInfo" />
+    <result column="c_moive_type" jdbcType="VARCHAR" property="cMoiveType" />
+    <result column="c_moive_area" jdbcType="VARCHAR" property="cMoiveArea" />
+    <result column="c_moive_language" jdbcType="VARCHAR" property="cMoiveLanguage" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -74,7 +77,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    n_id, c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info
+    n_id, c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info, c_moive_type, 
+    c_moive_area, c_moive_language
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -110,22 +114,21 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Movies">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Movies" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Movies (n_id, c_name, n_film_length, 
-      c_alias, d_release_date, c_date_str, 
-      c_info)
-    values (#{nId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{nFilmLength,jdbcType=INTEGER}, 
-      #{cAlias,jdbcType=VARCHAR}, #{dReleaseDate,jdbcType=DATE}, #{cDateStr,jdbcType=VARCHAR}, 
-      #{cInfo,jdbcType=VARCHAR})
+    insert into dbo.Movies (c_name, n_film_length, c_alias, 
+      d_release_date, c_date_str, c_info, 
+      c_moive_type, c_moive_area, c_moive_language
+      )
+    values (#{cName,jdbcType=VARCHAR}, #{nFilmLength,jdbcType=INTEGER}, #{cAlias,jdbcType=VARCHAR}, 
+      #{dReleaseDate,jdbcType=DATE}, #{cDateStr,jdbcType=VARCHAR}, #{cInfo,jdbcType=VARCHAR}, 
+      #{cMoiveType,jdbcType=VARCHAR}, #{cMoiveArea,jdbcType=VARCHAR}, #{cMoiveLanguage,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Movies">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Movies" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Movies
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="cName != null">
         c_name,
       </if>
@@ -144,11 +147,17 @@
       <if test="cInfo != null">
         c_info,
       </if>
+      <if test="cMoiveType != null">
+        c_moive_type,
+      </if>
+      <if test="cMoiveArea != null">
+        c_moive_area,
+      </if>
+      <if test="cMoiveLanguage != null">
+        c_moive_language,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="cName != null">
         #{cName,jdbcType=VARCHAR},
       </if>
@@ -166,6 +175,15 @@
       </if>
       <if test="cInfo != null">
         #{cInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cMoiveType != null">
+        #{cMoiveType,jdbcType=VARCHAR},
+      </if>
+      <if test="cMoiveArea != null">
+        #{cMoiveArea,jdbcType=VARCHAR},
+      </if>
+      <if test="cMoiveLanguage != null">
+        #{cMoiveLanguage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -201,6 +219,15 @@
       <if test="record.cInfo != null">
         c_info = #{record.cInfo,jdbcType=VARCHAR},
       </if>
+      <if test="record.cMoiveType != null">
+        c_moive_type = #{record.cMoiveType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cMoiveArea != null">
+        c_moive_area = #{record.cMoiveArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cMoiveLanguage != null">
+        c_moive_language = #{record.cMoiveLanguage,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -215,7 +242,10 @@
       c_alias = #{record.cAlias,jdbcType=VARCHAR},
       d_release_date = #{record.dReleaseDate,jdbcType=DATE},
       c_date_str = #{record.cDateStr,jdbcType=VARCHAR},
-      c_info = #{record.cInfo,jdbcType=VARCHAR}
+      c_info = #{record.cInfo,jdbcType=VARCHAR},
+      c_moive_type = #{record.cMoiveType,jdbcType=VARCHAR},
+      c_moive_area = #{record.cMoiveArea,jdbcType=VARCHAR},
+      c_moive_language = #{record.cMoiveLanguage,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +272,15 @@
       <if test="cInfo != null">
         c_info = #{cInfo,jdbcType=VARCHAR},
       </if>
+      <if test="cMoiveType != null">
+        c_moive_type = #{cMoiveType,jdbcType=VARCHAR},
+      </if>
+      <if test="cMoiveArea != null">
+        c_moive_area = #{cMoiveArea,jdbcType=VARCHAR},
+      </if>
+      <if test="cMoiveLanguage != null">
+        c_moive_language = #{cMoiveLanguage,jdbcType=VARCHAR},
+      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -253,18 +292,23 @@
       c_alias = #{cAlias,jdbcType=VARCHAR},
       d_release_date = #{dReleaseDate,jdbcType=DATE},
       c_date_str = #{cDateStr,jdbcType=VARCHAR},
-      c_info = #{cInfo,jdbcType=VARCHAR}
+      c_info = #{cInfo,jdbcType=VARCHAR},
+      c_moive_type = #{cMoiveType,jdbcType=VARCHAR},
+      c_moive_area = #{cMoiveArea,jdbcType=VARCHAR},
+      c_moive_language = #{cMoiveLanguage,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Movies
-    (n_id, c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info)
+    (c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info, c_moive_type, 
+      c_moive_area, c_moive_language)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.nFilmLength,jdbcType=INTEGER}, 
-        #{item.cAlias,jdbcType=VARCHAR}, #{item.dReleaseDate,jdbcType=DATE}, #{item.cDateStr,jdbcType=VARCHAR}, 
-        #{item.cInfo,jdbcType=VARCHAR})
+      (#{item.cName,jdbcType=VARCHAR}, #{item.nFilmLength,jdbcType=INTEGER}, #{item.cAlias,jdbcType=VARCHAR}, 
+        #{item.dReleaseDate,jdbcType=DATE}, #{item.cDateStr,jdbcType=VARCHAR}, #{item.cInfo,jdbcType=VARCHAR}, 
+        #{item.cMoiveType,jdbcType=VARCHAR}, #{item.cMoiveArea,jdbcType=VARCHAR}, #{item.cMoiveLanguage,jdbcType=VARCHAR}
+        )
     </foreach>
   </insert>
 </mapper>

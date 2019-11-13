@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.model;
 
 import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +18,11 @@ public class Topics implements Serializable {
 
     private String cName;
 
+    private Integer nUserId;
+
     private static final long serialVersionUID = 1L;
+
+    public static TopicsBuilder builder() {
+        return new TopicsBuilder();
+    }
 }

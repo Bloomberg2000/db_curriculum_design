@@ -106,20 +106,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.MoviesAwards (n_id, n_movie_id, n_award_id
-      )
-    values (#{nId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, #{nAwardId,jdbcType=INTEGER}
-      )
+    insert into dbo.MoviesAwards (n_movie_id, n_award_id)
+    values (#{nMovieId,jdbcType=INTEGER}, #{nAwardId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.MoviesAwards" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.MoviesAwards
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nMovieId != null">
         n_movie_id,
       </if>
@@ -128,9 +123,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nMovieId != null">
         #{nMovieId,jdbcType=INTEGER},
       </if>
@@ -194,14 +186,13 @@
       n_award_id = #{nAwardId,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.MoviesAwards
-    (n_id, n_movie_id, n_award_id)
+    (n_movie_id, n_award_id)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, #{item.nAwardId,jdbcType=INTEGER}
-        )
+      (#{item.nMovieId,jdbcType=INTEGER}, #{item.nAwardId,jdbcType=INTEGER})
     </foreach>
   </insert>
 </mapper>

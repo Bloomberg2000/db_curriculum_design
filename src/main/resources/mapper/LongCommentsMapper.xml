@@ -113,24 +113,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.LongComments">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.LongComments" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.LongComments (n_id, n_user_id, n_movie_id, 
-      d_create_time, d_edit_time, n_score, 
-      c_title, c_content, n_topic_id
-      )
-    values (#{nId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, 
-      #{dCreateTime,jdbcType=TIMESTAMP}, #{dEditTime,jdbcType=TIMESTAMP}, #{nScore,jdbcType=SMALLINT}, 
-      #{cTitle,jdbcType=VARCHAR}, #{cContent,jdbcType=VARCHAR}, #{nTopicId,jdbcType=INTEGER}
-      )
+    insert into dbo.LongComments (n_user_id, n_movie_id, d_create_time, 
+      d_edit_time, n_score, c_title, 
+      c_content, n_topic_id)
+    values (#{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, #{dCreateTime,jdbcType=TIMESTAMP}, 
+      #{dEditTime,jdbcType=TIMESTAMP}, #{nScore,jdbcType=SMALLINT}, #{cTitle,jdbcType=VARCHAR}, 
+      #{cContent,jdbcType=VARCHAR}, #{nTopicId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.LongComments">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.LongComments" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.LongComments
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nUserId != null">
         n_user_id,
       </if>
@@ -157,9 +152,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nUserId != null">
         #{nUserId,jdbcType=INTEGER},
       </if>
@@ -289,17 +281,16 @@
       n_topic_id = #{nTopicId,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.LongComments
-    (n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content, 
+    (n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content, 
       n_topic_id)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, 
-        #{item.dCreateTime,jdbcType=TIMESTAMP}, #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.nScore,jdbcType=SMALLINT}, 
-        #{item.cTitle,jdbcType=VARCHAR}, #{item.cContent,jdbcType=VARCHAR}, #{item.nTopicId,jdbcType=INTEGER}
-        )
+      (#{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, #{item.dCreateTime,jdbcType=TIMESTAMP}, 
+        #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.nScore,jdbcType=SMALLINT}, #{item.cTitle,jdbcType=VARCHAR}, 
+        #{item.cContent,jdbcType=VARCHAR}, #{item.nTopicId,jdbcType=INTEGER})
     </foreach>
   </insert>
 </mapper>

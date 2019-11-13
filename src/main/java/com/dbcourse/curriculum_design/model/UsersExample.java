@@ -14,20 +14,20 @@ public class UsersExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -653,6 +653,76 @@ public class UsersExample {
             addCriterion("c_weibo_openid not between", value1, value2, "cWeiboOpenid");
             return (Criteria) this;
         }
+
+        public Criteria andCCreateTimeIsNull() {
+            addCriterion("c_create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeIsNotNull() {
+            addCriterion("c_create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeEqualTo(String value) {
+            addCriterion("c_create_time =", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeNotEqualTo(String value) {
+            addCriterion("c_create_time <>", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeGreaterThan(String value) {
+            addCriterion("c_create_time >", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("c_create_time >=", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeLessThan(String value) {
+            addCriterion("c_create_time <", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeLessThanOrEqualTo(String value) {
+            addCriterion("c_create_time <=", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeLike(String value) {
+            addCriterion("c_create_time like", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeNotLike(String value) {
+            addCriterion("c_create_time not like", value, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeIn(List<String> values) {
+            addCriterion("c_create_time in", values, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeNotIn(List<String> values) {
+            addCriterion("c_create_time not in", values, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeBetween(String value1, String value2) {
+            addCriterion("c_create_time between", value1, value2, "cCreateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCCreateTimeNotBetween(String value1, String value2) {
+            addCriterion("c_create_time not between", value1, value2, "cCreateTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -678,6 +748,38 @@ public class UsersExample {
         private boolean listValue;
 
         private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -713,38 +815,6 @@ public class UsersExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

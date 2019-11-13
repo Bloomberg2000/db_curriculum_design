@@ -107,20 +107,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.ShortCommentsLikes">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.ShortCommentsLikes" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.ShortCommentsLikes (n_id, n_short_comment_id, n_user_id, 
-      n_type)
-    values (#{nId,jdbcType=INTEGER}, #{nShortCommentId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, 
-      #{nType,jdbcType=INTEGER})
+    insert into dbo.ShortCommentsLikes (n_short_comment_id, n_user_id, n_type
+      )
+    values (#{nShortCommentId,jdbcType=INTEGER}, #{nUserId,jdbcType=INTEGER}, #{nType,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.ShortCommentsLikes">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.ShortCommentsLikes" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.ShortCommentsLikes
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nShortCommentId != null">
         n_short_comment_id,
       </if>
@@ -132,9 +129,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nShortCommentId != null">
         #{nShortCommentId,jdbcType=INTEGER},
       </if>
@@ -209,14 +203,14 @@
       n_type = #{nType,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.ShortCommentsLikes
-    (n_id, n_short_comment_id, n_user_id, n_type)
+    (n_short_comment_id, n_user_id, n_type)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nShortCommentId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, 
-        #{item.nType,jdbcType=INTEGER})
+      (#{item.nShortCommentId,jdbcType=INTEGER}, #{item.nUserId,jdbcType=INTEGER}, #{item.nType,jdbcType=INTEGER}
+        )
     </foreach>
   </insert>
 </mapper>
