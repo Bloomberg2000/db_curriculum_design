@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.MoviesAndStaffsMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.MoviesAndStaffs">
+    <!--@mbg.generated-->
+    <!--@Table dbo.MoviesAndStaffs-->
+    <result column="StaffId" jdbcType="INTEGER" property="staffid" />
+    <result column="MoiveId" jdbcType="INTEGER" property="moiveid" />
+    <result column="StaffName" jdbcType="VARCHAR" property="staffname" />
+    <result column="StaffGender" jdbcType="SMALLINT" property="staffgender" />
+    <result column="StaffBirthday" jdbcType="VARCHAR" property="staffbirthday" />
+    <result column="StaffOccupation" jdbcType="VARCHAR" property="staffoccupation" />
+    <result column="StaffForeignName" jdbcType="VARCHAR" property="staffforeignname" />
+    <result column="StaffBirthPlace" jdbcType="VARCHAR" property="staffbirthplace" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    StaffId, MoiveId, StaffName, StaffGender, StaffBirthday, StaffOccupation, StaffForeignName, 
+    StaffBirthPlace
+  </sql>
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffsExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dbo.MoviesAndStaffs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffsExample">
+    <!--@mbg.generated-->
+    delete from dbo.MoviesAndStaffs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffs">
+    <!--@mbg.generated-->
+    insert into dbo.MoviesAndStaffs (StaffId, MoiveId, StaffName, 
+      StaffGender, StaffBirthday, StaffOccupation, 
+      StaffForeignName, StaffBirthPlace)
+    values (#{staffid,jdbcType=INTEGER}, #{moiveid,jdbcType=INTEGER}, #{staffname,jdbcType=VARCHAR}, 
+      #{staffgender,jdbcType=SMALLINT}, #{staffbirthday,jdbcType=VARCHAR}, #{staffoccupation,jdbcType=VARCHAR}, 
+      #{staffforeignname,jdbcType=VARCHAR}, #{staffbirthplace,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffs">
+    <!--@mbg.generated-->
+    insert into dbo.MoviesAndStaffs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staffid != null">
+        StaffId,
+      </if>
+      <if test="moiveid != null">
+        MoiveId,
+      </if>
+      <if test="staffname != null">
+        StaffName,
+      </if>
+      <if test="staffgender != null">
+        StaffGender,
+      </if>
+      <if test="staffbirthday != null">
+        StaffBirthday,
+      </if>
+      <if test="staffoccupation != null">
+        StaffOccupation,
+      </if>
+      <if test="staffforeignname != null">
+        StaffForeignName,
+      </if>
+      <if test="staffbirthplace != null">
+        StaffBirthPlace,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staffid != null">
+        #{staffid,jdbcType=INTEGER},
+      </if>
+      <if test="moiveid != null">
+        #{moiveid,jdbcType=INTEGER},
+      </if>
+      <if test="staffname != null">
+        #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="staffgender != null">
+        #{staffgender,jdbcType=SMALLINT},
+      </if>
+      <if test="staffbirthday != null">
+        #{staffbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="staffoccupation != null">
+        #{staffoccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffforeignname != null">
+        #{staffforeignname,jdbcType=VARCHAR},
+      </if>
+      <if test="staffbirthplace != null">
+        #{staffbirthplace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffsExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from dbo.MoviesAndStaffs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.MoviesAndStaffs
+    <set>
+      <if test="record.staffid != null">
+        StaffId = #{record.staffid,jdbcType=INTEGER},
+      </if>
+      <if test="record.moiveid != null">
+        MoiveId = #{record.moiveid,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffname != null">
+        StaffName = #{record.staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffgender != null">
+        StaffGender = #{record.staffgender,jdbcType=SMALLINT},
+      </if>
+      <if test="record.staffbirthday != null">
+        StaffBirthday = #{record.staffbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffoccupation != null">
+        StaffOccupation = #{record.staffoccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffforeignname != null">
+        StaffForeignName = #{record.staffforeignname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffbirthplace != null">
+        StaffBirthPlace = #{record.staffbirthplace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.MoviesAndStaffs
+    set StaffId = #{record.staffid,jdbcType=INTEGER},
+      MoiveId = #{record.moiveid,jdbcType=INTEGER},
+      StaffName = #{record.staffname,jdbcType=VARCHAR},
+      StaffGender = #{record.staffgender,jdbcType=SMALLINT},
+      StaffBirthday = #{record.staffbirthday,jdbcType=VARCHAR},
+      StaffOccupation = #{record.staffoccupation,jdbcType=VARCHAR},
+      StaffForeignName = #{record.staffforeignname,jdbcType=VARCHAR},
+      StaffBirthPlace = #{record.staffbirthplace,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into dbo.MoviesAndStaffs
+    (StaffId, MoiveId, StaffName, StaffGender, StaffBirthday, StaffOccupation, StaffForeignName, 
+      StaffBirthPlace)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.staffid,jdbcType=INTEGER}, #{item.moiveid,jdbcType=INTEGER}, #{item.staffname,jdbcType=VARCHAR}, 
+        #{item.staffgender,jdbcType=SMALLINT}, #{item.staffbirthday,jdbcType=VARCHAR}, 
+        #{item.staffoccupation,jdbcType=VARCHAR}, #{item.staffforeignname,jdbcType=VARCHAR}, 
+        #{item.staffbirthplace,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

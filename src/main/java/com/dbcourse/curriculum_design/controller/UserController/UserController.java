@@ -8,7 +8,6 @@ import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
 import com.dbcourse.curriculum_design.service.UsersService;
 import com.dbcourse.curriculum_design.utils.MailUtil;
-import com.dbcourse.curriculum_design.utils.SHA256Util;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

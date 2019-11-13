@@ -1,9 +1,9 @@
 package com.dbcourse.curriculum_design.service;
 
-import java.util.List;
-
 import com.dbcourse.curriculum_design.model.Topics;
 import com.dbcourse.curriculum_design.model.TopicsExample;
+
+import java.util.List;
 
 public interface TopicsService {
 

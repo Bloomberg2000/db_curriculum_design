@@ -293,66 +293,6 @@ public class TopicsExample {
             addCriterion("c_name not between", value1, value2, "cName");
             return (Criteria) this;
         }
-
-        public Criteria andNUserIdIsNull() {
-            addCriterion("n_user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdIsNotNull() {
-            addCriterion("n_user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdEqualTo(Integer value) {
-            addCriterion("n_user_id =", value, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdNotEqualTo(Integer value) {
-            addCriterion("n_user_id <>", value, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdGreaterThan(Integer value) {
-            addCriterion("n_user_id >", value, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("n_user_id >=", value, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdLessThan(Integer value) {
-            addCriterion("n_user_id <", value, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("n_user_id <=", value, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdIn(List<Integer> values) {
-            addCriterion("n_user_id in", values, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdNotIn(List<Integer> values) {
-            addCriterion("n_user_id not in", values, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("n_user_id between", value1, value2, "nUserId");
-            return (Criteria) this;
-        }
-
-        public Criteria andNUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("n_user_id not between", value1, value2, "nUserId");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {

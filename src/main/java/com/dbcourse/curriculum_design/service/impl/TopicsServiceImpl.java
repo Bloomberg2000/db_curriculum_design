@@ -1,14 +1,13 @@
 package com.dbcourse.curriculum_design.service.impl;
 
+import com.dbcourse.curriculum_design.mapper.TopicsMapper;
+import com.dbcourse.curriculum_design.model.Topics;
+import com.dbcourse.curriculum_design.model.TopicsExample;
+import com.dbcourse.curriculum_design.service.TopicsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
-import com.dbcourse.curriculum_design.model.Topics;
-import com.dbcourse.curriculum_design.model.TopicsExample;
-import com.dbcourse.curriculum_design.mapper.TopicsMapper;
-import com.dbcourse.curriculum_design.service.TopicsService;
 
 @Service
 public class TopicsServiceImpl implements TopicsService {
