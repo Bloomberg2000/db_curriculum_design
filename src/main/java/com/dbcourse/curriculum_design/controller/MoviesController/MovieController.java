@@ -93,14 +93,13 @@ public class MovieController {
 
     /**
      * 返回前十个标签
-     *
-     * @param
-     * @return
      */
     @RequestMapping(value = "/tags", method = RequestMethod.GET)
     public TagsInfoResponse MytenTags() {
         List<Tags> tags = tagsService.getTopNumTags(10);
         return new TagsInfoResponse(tags);
     }
+
+    // TODO 获取短评
 
 }

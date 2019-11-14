@@ -794,6 +794,66 @@ public class UsersAndShortCommentsExample {
             addCriterion("UserAvatar not between", value1, value2, "useravatar");
             return (Criteria) this;
         }
+
+        public Criteria andShortcommentslikenumIsNull() {
+            addCriterion("ShortCommentsLikeNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumIsNotNull() {
+            addCriterion("ShortCommentsLikeNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumEqualTo(Integer value) {
+            addCriterion("ShortCommentsLikeNum =", value, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumNotEqualTo(Integer value) {
+            addCriterion("ShortCommentsLikeNum <>", value, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumGreaterThan(Integer value) {
+            addCriterion("ShortCommentsLikeNum >", value, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ShortCommentsLikeNum >=", value, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumLessThan(Integer value) {
+            addCriterion("ShortCommentsLikeNum <", value, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumLessThanOrEqualTo(Integer value) {
+            addCriterion("ShortCommentsLikeNum <=", value, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumIn(List<Integer> values) {
+            addCriterion("ShortCommentsLikeNum in", values, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumNotIn(List<Integer> values) {
+            addCriterion("ShortCommentsLikeNum not in", values, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumBetween(Integer value1, Integer value2) {
+            addCriterion("ShortCommentsLikeNum between", value1, value2, "shortcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortcommentslikenumNotBetween(Integer value1, Integer value2) {
+            addCriterion("ShortCommentsLikeNum not between", value1, value2, "shortcommentslikenum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

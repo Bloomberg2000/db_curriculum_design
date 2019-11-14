@@ -34,6 +34,8 @@ public class UsersAndShortComments implements Serializable {
 
     private String useravatar;
 
+    private Integer shortcommentslikenum;
+
     private static final long serialVersionUID = 1L;
 
     public static UsersAndShortCommentsBuilder builder() {

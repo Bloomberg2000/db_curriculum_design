@@ -2,10 +2,10 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.ShortCommentsExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface ShortCommentsMapper {
@@ -32,4 +32,7 @@ public interface ShortCommentsMapper {
     int updateByPrimaryKey(ShortComments record);
 
     int batchInsert(@Param("list") List<ShortComments> list);
+
+    @Update("update ShortComments with (UPDLOCK) set n_like_num += #{addNum} where n_id = #{commentsId}")
+    int updateLikenNumWithLock(int commentsId, int addNum);
 }

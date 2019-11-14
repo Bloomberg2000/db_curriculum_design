@@ -1,7 +1,6 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.UsersAndShortCommentsMapper;
-import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import com.dbcourse.curriculum_design.model.UsersAndShortCommentsExample;
 import com.dbcourse.curriculum_design.service.UsersAndShortCommentsService;
@@ -61,22 +60,22 @@ public class UsersAndShortCommentsServiceImpl implements UsersAndShortCommentsSe
         UsersAndShortCommentsExample example = new UsersAndShortCommentsExample();
         example.createCriteria().andMoiveidEqualTo(movieId).andUseridEqualTo(userId);
         List<UsersAndShortComments> shortComments = usersAndShortCommentsMapper.selectByExample(example);
-        if (shortComments.size() > 0){
+        if (shortComments.size() > 0) {
             return shortComments.get(0);
-        }else {
+        } else {
             return null;
         }
     }
 
     @Override
-    public List<UsersAndShortComments> getShortCommentsbyPage(int pageIndex, int pageSize) {
-        if(pageIndex<=0){
+    public List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize) {
+        if (pageIndex <= 0) {
             pageIndex = 1;
         }
-        if(pageSize<=0){
+        if (pageSize <= 0) {
             pageSize = 10;
         }
-        return usersAndShortCommentsMapper.getShortCommentsbyPage(pageIndex,pageSize);
+        return usersAndShortCommentsMapper.getShortCommentsByPage(pageIndex, pageSize);
     }
 }
 
