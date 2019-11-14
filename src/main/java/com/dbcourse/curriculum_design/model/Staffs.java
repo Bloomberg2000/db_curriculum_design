@@ -1,7 +1,6 @@
 package com.dbcourse.curriculum_design.model;
 
 import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +24,11 @@ public class Staffs implements Serializable {
     private String cForeignName;
 
     private String cBirthPlace;
+
+    /**
+     * 照片
+     */
+    private String cPhoto;
 
     private static final long serialVersionUID = 1L;
 

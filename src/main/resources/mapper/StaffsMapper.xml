@@ -11,6 +11,7 @@
     <result column="c_occupation" jdbcType="VARCHAR" property="cOccupation" />
     <result column="c_foreign_name" jdbcType="VARCHAR" property="cForeignName" />
     <result column="c_birth_place" jdbcType="VARCHAR" property="cBirthPlace" />
+    <result column="c_photo" jdbcType="VARCHAR" property="cPhoto" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -74,7 +75,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    n_id, c_name, n_gender, c_birthday, c_occupation, c_foreign_name, c_birth_place
+    n_id, c_name, n_gender, c_birthday, c_occupation, c_foreign_name, c_birth_place, 
+    c_photo
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.StaffsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -113,11 +115,11 @@
   <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Staffs" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Staffs (c_name, n_gender, c_birthday, 
-      c_occupation, c_foreign_name, c_birth_place
-      )
+      c_occupation, c_foreign_name, c_birth_place, 
+      c_photo)
     values (#{cName,jdbcType=VARCHAR}, #{nGender,jdbcType=SMALLINT}, #{cBirthday,jdbcType=VARCHAR}, 
-      #{cOccupation,jdbcType=VARCHAR}, #{cForeignName,jdbcType=VARCHAR}, #{cBirthPlace,jdbcType=VARCHAR}
-      )
+      #{cOccupation,jdbcType=VARCHAR}, #{cForeignName,jdbcType=VARCHAR}, #{cBirthPlace,jdbcType=VARCHAR}, 
+      #{cPhoto,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Staffs" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -141,6 +143,9 @@
       <if test="cBirthPlace != null">
         c_birth_place,
       </if>
+      <if test="cPhoto != null">
+        c_photo,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cName != null">
@@ -160,6 +165,9 @@
       </if>
       <if test="cBirthPlace != null">
         #{cBirthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhoto != null">
+        #{cPhoto,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -195,6 +203,9 @@
       <if test="record.cBirthPlace != null">
         c_birth_place = #{record.cBirthPlace,jdbcType=VARCHAR},
       </if>
+      <if test="record.cPhoto != null">
+        c_photo = #{record.cPhoto,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -209,7 +220,8 @@
       c_birthday = #{record.cBirthday,jdbcType=VARCHAR},
       c_occupation = #{record.cOccupation,jdbcType=VARCHAR},
       c_foreign_name = #{record.cForeignName,jdbcType=VARCHAR},
-      c_birth_place = #{record.cBirthPlace,jdbcType=VARCHAR}
+      c_birth_place = #{record.cBirthPlace,jdbcType=VARCHAR},
+      c_photo = #{record.cPhoto,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -236,6 +248,9 @@
       <if test="cBirthPlace != null">
         c_birth_place = #{cBirthPlace,jdbcType=VARCHAR},
       </if>
+      <if test="cPhoto != null">
+        c_photo = #{cPhoto,jdbcType=VARCHAR},
+      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -247,18 +262,20 @@
       c_birthday = #{cBirthday,jdbcType=VARCHAR},
       c_occupation = #{cOccupation,jdbcType=VARCHAR},
       c_foreign_name = #{cForeignName,jdbcType=VARCHAR},
-      c_birth_place = #{cBirthPlace,jdbcType=VARCHAR}
+      c_birth_place = #{cBirthPlace,jdbcType=VARCHAR},
+      c_photo = #{cPhoto,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
   <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Staffs
-    (c_name, n_gender, c_birthday, c_occupation, c_foreign_name, c_birth_place)
+    (c_name, n_gender, c_birthday, c_occupation, c_foreign_name, c_birth_place, c_photo
+      )
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.cName,jdbcType=VARCHAR}, #{item.nGender,jdbcType=SMALLINT}, #{item.cBirthday,jdbcType=VARCHAR}, 
-        #{item.cOccupation,jdbcType=VARCHAR}, #{item.cForeignName,jdbcType=VARCHAR}, #{item.cBirthPlace,jdbcType=VARCHAR}
-        )
+        #{item.cOccupation,jdbcType=VARCHAR}, #{item.cForeignName,jdbcType=VARCHAR}, #{item.cBirthPlace,jdbcType=VARCHAR}, 
+        #{item.cPhoto,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

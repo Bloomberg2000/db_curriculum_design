@@ -46,7 +46,7 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     @Override
-    public Movies selectByPrimaryKey(Integer nId) {
+    public Movies getMovieById(Integer nId) {
         return moviesMapper.selectByPrimaryKey(nId);
     }
 
@@ -76,4 +76,6 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
 }
+
+
 

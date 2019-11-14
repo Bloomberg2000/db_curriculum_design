@@ -2,11 +2,12 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.TagsExample;
-
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface TagsMapper {
@@ -33,4 +34,9 @@ public interface TagsMapper {
     int updateByPrimaryKey(Tags record);
 
     int batchInsert(@Param("list") List<Tags> list);
+
+    @Select("select top (#{num, jdbcType=INTEGER})" +
+            " n_id, c_content " +
+            " from Tags ")
+    List<Tags> getTopNumTags(int num);
 }
