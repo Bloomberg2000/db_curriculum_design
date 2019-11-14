@@ -32,5 +32,7 @@ public interface UsersAndShortCommentsService {
      * @return a list of short UsersAndShortComments
      */
     List<UsersAndShortComments> selectByMovieId(Integer MovieId);
+  
+    List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize);
 }
 

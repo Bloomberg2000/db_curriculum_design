@@ -94,9 +94,6 @@ public class MovieController {
 
     /**
      * 返回前十个标签
-     *
-     * @param
-     * @return
      */
     @RequestMapping(value = "/tags", method = RequestMethod.GET)
     public TagsInfoResponse MytenTags() {
@@ -115,5 +112,6 @@ public class MovieController {
         List<Movies> movies = moviesService.getTopNumMovies(30);
         return new TopNumMovieInfoResponse(movies);
     }
+    // TODO 获取短评
 
 }

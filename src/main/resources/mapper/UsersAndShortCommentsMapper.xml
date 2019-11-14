@@ -15,6 +15,7 @@
     <result column="Nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="UserGender" jdbcType="INTEGER" property="usergender" />
     <result column="UserAvatar" jdbcType="VARCHAR" property="useravatar" />
+    <result column="ShortCommentsLikeNum" jdbcType="INTEGER" property="shortcommentslikenum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,7 +80,8 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     ShortCommentsId, MoiveId, ShortCommentsCreateTime, ShortCommentsEditTime, ShortCommentsScore, 
-    ShortCommentsContent, ShortCommentsType, UserId, Nickname, UserGender, UserAvatar
+    ShortCommentsContent, ShortCommentsType, UserId, Nickname, UserGender, UserAvatar, 
+    ShortCommentsLikeNum
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -109,12 +111,12 @@
       ShortCommentsEditTime, ShortCommentsScore, 
       ShortCommentsContent, ShortCommentsType, 
       UserId, Nickname, UserGender, 
-      UserAvatar)
+      UserAvatar, ShortCommentsLikeNum)
     values (#{shortcommentsid,jdbcType=INTEGER}, #{moiveid,jdbcType=INTEGER}, #{shortcommentscreatetime,jdbcType=TIMESTAMP}, 
       #{shortcommentsedittime,jdbcType=TIMESTAMP}, #{shortcommentsscore,jdbcType=SMALLINT}, 
       #{shortcommentscontent,jdbcType=VARCHAR}, #{shortcommentstype,jdbcType=INTEGER}, 
       #{userid,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, 
-      #{useravatar,jdbcType=VARCHAR})
+      #{useravatar,jdbcType=VARCHAR}, #{shortcommentslikenum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortComments">
     <!--@mbg.generated-->
@@ -153,6 +155,9 @@
       <if test="useravatar != null">
         UserAvatar,
       </if>
+      <if test="shortcommentslikenum != null">
+        ShortCommentsLikeNum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="shortcommentsid != null">
@@ -187,6 +192,9 @@
       </if>
       <if test="useravatar != null">
         #{useravatar,jdbcType=VARCHAR},
+      </if>
+      <if test="shortcommentslikenum != null">
+        #{shortcommentslikenum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -234,6 +242,9 @@
       <if test="record.useravatar != null">
         UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
       </if>
+      <if test="record.shortcommentslikenum != null">
+        ShortCommentsLikeNum = #{record.shortcommentslikenum,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -252,7 +263,8 @@
       UserId = #{record.userid,jdbcType=INTEGER},
       Nickname = #{record.nickname,jdbcType=VARCHAR},
       UserGender = #{record.usergender,jdbcType=INTEGER},
-      UserAvatar = #{record.useravatar,jdbcType=VARCHAR}
+      UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
+      ShortCommentsLikeNum = #{record.shortcommentslikenum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,15 +273,16 @@
     <!--@mbg.generated-->
     insert into dbo.UsersAndShortComments
     (ShortCommentsId, MoiveId, ShortCommentsCreateTime, ShortCommentsEditTime, ShortCommentsScore, 
-      ShortCommentsContent, ShortCommentsType, UserId, Nickname, UserGender, UserAvatar
-      )
+      ShortCommentsContent, ShortCommentsType, UserId, Nickname, UserGender, UserAvatar, 
+      ShortCommentsLikeNum)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.shortcommentsid,jdbcType=INTEGER}, #{item.moiveid,jdbcType=INTEGER}, #{item.shortcommentscreatetime,jdbcType=TIMESTAMP}, 
         #{item.shortcommentsedittime,jdbcType=TIMESTAMP}, #{item.shortcommentsscore,jdbcType=SMALLINT}, 
         #{item.shortcommentscontent,jdbcType=VARCHAR}, #{item.shortcommentstype,jdbcType=INTEGER}, 
         #{item.userid,jdbcType=INTEGER}, #{item.nickname,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, 
-        #{item.useravatar,jdbcType=VARCHAR})
+        #{item.useravatar,jdbcType=VARCHAR}, #{item.shortcommentslikenum,jdbcType=INTEGER}
+        )
     </foreach>
   </insert>
 </mapper>
