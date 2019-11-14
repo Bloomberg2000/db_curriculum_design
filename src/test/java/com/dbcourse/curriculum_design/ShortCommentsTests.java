@@ -1,5 +1,6 @@
 package com.dbcourse.curriculum_design;
 
+import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
 import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,16 @@ public class ShortCommentsTests {
         }
     }
 
+    @Resource
+    ShortCommentsMapper shortCommentsMapper;
+
+    @Test
+    void AddLikeNumTest(){
+        shortCommentsMapper.updateLikenNumWithLock(1, 1);
+        if (!shortCommentsMapper.selectByPrimaryKey(1).getNLikeNum().equals(3)){
+            throw new RuntimeException();
+        }
+    }
 
 }
 

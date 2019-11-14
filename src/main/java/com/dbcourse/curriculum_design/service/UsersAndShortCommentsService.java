@@ -26,6 +26,6 @@ public interface UsersAndShortCommentsService {
 
     UsersAndShortComments getUsersAndShortCommentsByMovieIdAndUserId(int movieId, int UserId);
 
-    List<UsersAndShortComments> getShortCommentsbyPage(int pageIndex,int pageSize);
+    List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize);
 }
 
