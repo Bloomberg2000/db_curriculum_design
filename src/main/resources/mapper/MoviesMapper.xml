@@ -14,6 +14,8 @@
     <result column="c_moive_type" jdbcType="VARCHAR" property="cMoiveType" />
     <result column="c_moive_area" jdbcType="VARCHAR" property="cMoiveArea" />
     <result column="c_moive_language" jdbcType="VARCHAR" property="cMoiveLanguage" />
+    <result column="c_moive_cover" jdbcType="VARCHAR" property="cMoiveCover" />
+    <result column="f_movie_score" jdbcType="REAL" property="fMovieScore" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -78,7 +80,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     n_id, c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info, c_moive_type, 
-    c_moive_area, c_moive_language
+    c_moive_area, c_moive_language, c_moive_cover, f_movie_score
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -118,12 +120,12 @@
     <!--@mbg.generated-->
     insert into dbo.Movies (c_name, n_film_length, c_alias, 
       d_release_date, c_date_str, c_info, 
-      c_moive_type, c_moive_area, c_moive_language
-      )
+      c_moive_type, c_moive_area, c_moive_language, 
+      c_moive_cover, f_movie_score)
     values (#{cName,jdbcType=VARCHAR}, #{nFilmLength,jdbcType=INTEGER}, #{cAlias,jdbcType=VARCHAR}, 
       #{dReleaseDate,jdbcType=DATE}, #{cDateStr,jdbcType=VARCHAR}, #{cInfo,jdbcType=VARCHAR}, 
-      #{cMoiveType,jdbcType=VARCHAR}, #{cMoiveArea,jdbcType=VARCHAR}, #{cMoiveLanguage,jdbcType=VARCHAR}
-      )
+      #{cMoiveType,jdbcType=VARCHAR}, #{cMoiveArea,jdbcType=VARCHAR}, #{cMoiveLanguage,jdbcType=VARCHAR}, 
+      #{cMoiveCover,jdbcType=VARCHAR}, #{fMovieScore,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Movies" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -156,6 +158,12 @@
       <if test="cMoiveLanguage != null">
         c_moive_language,
       </if>
+      <if test="cMoiveCover != null">
+        c_moive_cover,
+      </if>
+      <if test="fMovieScore != null">
+        f_movie_score,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cName != null">
@@ -184,6 +192,12 @@
       </if>
       <if test="cMoiveLanguage != null">
         #{cMoiveLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="cMoiveCover != null">
+        #{cMoiveCover,jdbcType=VARCHAR},
+      </if>
+      <if test="fMovieScore != null">
+        #{fMovieScore,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -228,6 +242,12 @@
       <if test="record.cMoiveLanguage != null">
         c_moive_language = #{record.cMoiveLanguage,jdbcType=VARCHAR},
       </if>
+      <if test="record.cMoiveCover != null">
+        c_moive_cover = #{record.cMoiveCover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fMovieScore != null">
+        f_movie_score = #{record.fMovieScore,jdbcType=REAL},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -245,7 +265,9 @@
       c_info = #{record.cInfo,jdbcType=VARCHAR},
       c_moive_type = #{record.cMoiveType,jdbcType=VARCHAR},
       c_moive_area = #{record.cMoiveArea,jdbcType=VARCHAR},
-      c_moive_language = #{record.cMoiveLanguage,jdbcType=VARCHAR}
+      c_moive_language = #{record.cMoiveLanguage,jdbcType=VARCHAR},
+      c_moive_cover = #{record.cMoiveCover,jdbcType=VARCHAR},
+      f_movie_score = #{record.fMovieScore,jdbcType=REAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -281,6 +303,12 @@
       <if test="cMoiveLanguage != null">
         c_moive_language = #{cMoiveLanguage,jdbcType=VARCHAR},
       </if>
+      <if test="cMoiveCover != null">
+        c_moive_cover = #{cMoiveCover,jdbcType=VARCHAR},
+      </if>
+      <if test="fMovieScore != null">
+        f_movie_score = #{fMovieScore,jdbcType=REAL},
+      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -295,20 +323,22 @@
       c_info = #{cInfo,jdbcType=VARCHAR},
       c_moive_type = #{cMoiveType,jdbcType=VARCHAR},
       c_moive_area = #{cMoiveArea,jdbcType=VARCHAR},
-      c_moive_language = #{cMoiveLanguage,jdbcType=VARCHAR}
+      c_moive_language = #{cMoiveLanguage,jdbcType=VARCHAR},
+      c_moive_cover = #{cMoiveCover,jdbcType=VARCHAR},
+      f_movie_score = #{fMovieScore,jdbcType=REAL}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
   <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Movies
     (c_name, n_film_length, c_alias, d_release_date, c_date_str, c_info, c_moive_type, 
-      c_moive_area, c_moive_language)
+      c_moive_area, c_moive_language, c_moive_cover, f_movie_score)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.cName,jdbcType=VARCHAR}, #{item.nFilmLength,jdbcType=INTEGER}, #{item.cAlias,jdbcType=VARCHAR}, 
         #{item.dReleaseDate,jdbcType=DATE}, #{item.cDateStr,jdbcType=VARCHAR}, #{item.cInfo,jdbcType=VARCHAR}, 
-        #{item.cMoiveType,jdbcType=VARCHAR}, #{item.cMoiveArea,jdbcType=VARCHAR}, #{item.cMoiveLanguage,jdbcType=VARCHAR}
-        )
+        #{item.cMoiveType,jdbcType=VARCHAR}, #{item.cMoiveArea,jdbcType=VARCHAR}, #{item.cMoiveLanguage,jdbcType=VARCHAR}, 
+        #{item.cMoiveCover,jdbcType=VARCHAR}, #{item.fMovieScore,jdbcType=REAL})
     </foreach>
   </insert>
 </mapper>

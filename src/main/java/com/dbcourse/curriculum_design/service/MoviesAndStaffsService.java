@@ -24,4 +24,8 @@ public interface MoviesAndStaffsService {
 
     int batchInsert(List<MoviesAndStaffs> list);
 
+    List<MoviesAndStaffs> getStaffsByMovieId(int movieId);
+
 }
+
+

@@ -78,6 +78,26 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
     }
 
     @Override
+    public ShortComments getShortCommentByUserIdAndMovieId(int userId, int movieId) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        example.createCriteria().andNUserIdEqualTo(userId).andNMovieIdEqualTo(movieId);
+        List<ShortComments> shortComments = shortCommentsMapper.selectByExample(example);
+        if (shortComments.size() > 0){
+            return shortComments.get(0);
+        }else {
+            return null;
+        }
+    }
+
+
+
+    @Override
+    public long countShortCommentsByScore(Short score) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        example.createCriteria().andNScoreEqualTo(score);
+        return shortCommentsMapper.countByExample(example);
+    }
+
     public List<ShortComments> getShortCommentsByMovieID(Integer nMovieId) {
         ShortCommentsExample example = new ShortCommentsExample();
         ShortCommentsExample.Criteria criteria = example.createCriteria();

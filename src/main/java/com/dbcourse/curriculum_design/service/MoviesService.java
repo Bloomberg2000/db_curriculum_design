@@ -20,7 +20,7 @@ public interface MoviesService {
 
     List<Movies> selectByExample(MoviesExample example);
 
-    Movies selectByPrimaryKey(Integer nId);
+    Movies getMovieById(Integer nId);
 
     int updateByExampleSelective(Movies record, MoviesExample example);
 
@@ -32,5 +32,8 @@ public interface MoviesService {
 
     int batchInsert(List<Movies> list);
 
+
 }
+
+
 
