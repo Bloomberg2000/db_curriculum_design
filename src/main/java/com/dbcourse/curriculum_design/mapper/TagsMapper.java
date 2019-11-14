@@ -4,6 +4,8 @@ import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.TagsExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -32,4 +34,9 @@ public interface TagsMapper {
     int updateByPrimaryKey(Tags record);
 
     int batchInsert(@Param("list") List<Tags> list);
+
+    @Select("select top (#{num, jdbcType=INTEGER})" +
+            " n_id, c_content " +
+            " from Tags ")
+    List<Tags> getTopNumTags(int num);
 }
