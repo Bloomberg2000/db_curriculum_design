@@ -68,6 +68,13 @@ public class UsersAndShortCommentsServiceImpl implements UsersAndShortCommentsSe
     }
 
     @Override
+    public List<UsersAndShortComments> selectByMovieId(Integer MovieId) {
+        UsersAndShortCommentsExample example = new UsersAndShortCommentsExample();
+        UsersAndShortCommentsExample.Criteria criteria = example.createCriteria();
+        criteria.andMoiveidEqualTo(MovieId);
+        return usersAndShortCommentsMapper.selectByExample(example);
+    }
+
     public List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize) {
         if (pageIndex <= 0) {
             pageIndex = 1;
