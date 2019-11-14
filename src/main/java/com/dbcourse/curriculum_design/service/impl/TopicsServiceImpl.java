@@ -80,8 +80,8 @@ public class TopicsServiceImpl implements TopicsService {
     /**
      * 加载电影话题list
      * @author cty
-     * @param record
-     * @return 0或1
+     * @param nMovieId : Select all the Topics by the movie id
+     * @return Topics List
      */
     @Override
     public List<Topics> getMovieTopicsByMovieId(Integer nMovieId) {
