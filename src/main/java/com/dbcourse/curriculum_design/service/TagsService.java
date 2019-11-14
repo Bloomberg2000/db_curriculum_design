@@ -32,4 +32,10 @@ public interface TagsService {
 
     int batchInsert(List<Tags> list);
 
+    /**
+     * 加载前num个标签
+     * @param nTagsnum
+     * @return
+     */
+    List<Tags> getTopNumTags(Integer nTagsnum);
 }
