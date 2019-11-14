@@ -67,5 +67,16 @@ public class UsersAndShortCommentsServiceImpl implements UsersAndShortCommentsSe
             return null;
         }
     }
+
+    @Override
+    public List<UsersAndShortComments> getShortCommentsbyPage(int pageIndex, int pageSize) {
+        if(pageIndex<=0){
+            pageIndex = 1;
+        }
+        if(pageSize<=0){
+            pageSize = 10;
+        }
+        return usersAndShortCommentsMapper.getShortCommentsbyPage(pageIndex,pageSize);
+    }
 }
 
