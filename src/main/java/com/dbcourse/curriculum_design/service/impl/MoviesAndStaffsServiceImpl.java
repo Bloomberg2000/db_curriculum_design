@@ -55,4 +55,12 @@ public class MoviesAndStaffsServiceImpl implements MoviesAndStaffsService {
         return moviesAndStaffsMapper.batchInsert(list);
     }
 
+    @Override
+    public List<MoviesAndStaffs> getStaffsByMovieId(int movieId) {
+        MoviesAndStaffsExample example = new MoviesAndStaffsExample();
+        example.createCriteria().andMoiveidEqualTo(movieId);
+        return moviesAndStaffsMapper.selectByExample(example);
+    }
 }
+
+

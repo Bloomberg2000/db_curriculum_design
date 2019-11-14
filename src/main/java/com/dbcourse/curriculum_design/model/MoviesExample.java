@@ -801,6 +801,136 @@ public class MoviesExample {
             addCriterion("c_moive_language not between", value1, value2, "cMoiveLanguage");
             return (Criteria) this;
         }
+
+        public Criteria andCMoiveCoverIsNull() {
+            addCriterion("c_moive_cover is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverIsNotNull() {
+            addCriterion("c_moive_cover is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverEqualTo(String value) {
+            addCriterion("c_moive_cover =", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotEqualTo(String value) {
+            addCriterion("c_moive_cover <>", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverGreaterThan(String value) {
+            addCriterion("c_moive_cover >", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverGreaterThanOrEqualTo(String value) {
+            addCriterion("c_moive_cover >=", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverLessThan(String value) {
+            addCriterion("c_moive_cover <", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverLessThanOrEqualTo(String value) {
+            addCriterion("c_moive_cover <=", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverLike(String value) {
+            addCriterion("c_moive_cover like", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotLike(String value) {
+            addCriterion("c_moive_cover not like", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverIn(List<String> values) {
+            addCriterion("c_moive_cover in", values, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotIn(List<String> values) {
+            addCriterion("c_moive_cover not in", values, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverBetween(String value1, String value2) {
+            addCriterion("c_moive_cover between", value1, value2, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotBetween(String value1, String value2) {
+            addCriterion("c_moive_cover not between", value1, value2, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreIsNull() {
+            addCriterion("f_movie_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreIsNotNull() {
+            addCriterion("f_movie_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreEqualTo(Float value) {
+            addCriterion("f_movie_score =", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreNotEqualTo(Float value) {
+            addCriterion("f_movie_score <>", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreGreaterThan(Float value) {
+            addCriterion("f_movie_score >", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreGreaterThanOrEqualTo(Float value) {
+            addCriterion("f_movie_score >=", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreLessThan(Float value) {
+            addCriterion("f_movie_score <", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreLessThanOrEqualTo(Float value) {
+            addCriterion("f_movie_score <=", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreIn(List<Float> values) {
+            addCriterion("f_movie_score in", values, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreNotIn(List<Float> values) {
+            addCriterion("f_movie_score not in", values, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreBetween(Float value1, Float value2) {
+            addCriterion("f_movie_score between", value1, value2, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreNotBetween(Float value1, Float value2) {
+            addCriterion("f_movie_score not between", value1, value2, "fMovieScore");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

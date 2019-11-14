@@ -32,4 +32,8 @@ public interface ShortCommentsService {
 
     int batchInsert(List<ShortComments> list);
 
+    ShortComments getShortCommentByUserIdAndMovieId(int userId, int movieId);
+
+    long countShortCommentsByScore(Short score);
+
 }

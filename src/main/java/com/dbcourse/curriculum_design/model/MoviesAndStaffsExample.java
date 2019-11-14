@@ -224,6 +224,66 @@ public class MoviesAndStaffsExample {
             return (Criteria) this;
         }
 
+        public Criteria andStafftypeIsNull() {
+            addCriterion("StaffType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeIsNotNull() {
+            addCriterion("StaffType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeEqualTo(Integer value) {
+            addCriterion("StaffType =", value, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeNotEqualTo(Integer value) {
+            addCriterion("StaffType <>", value, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeGreaterThan(Integer value) {
+            addCriterion("StaffType >", value, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("StaffType >=", value, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeLessThan(Integer value) {
+            addCriterion("StaffType <", value, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeLessThanOrEqualTo(Integer value) {
+            addCriterion("StaffType <=", value, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeIn(List<Integer> values) {
+            addCriterion("StaffType in", values, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeNotIn(List<Integer> values) {
+            addCriterion("StaffType not in", values, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeBetween(Integer value1, Integer value2) {
+            addCriterion("StaffType between", value1, value2, "stafftype");
+            return (Criteria) this;
+        }
+
+        public Criteria andStafftypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("StaffType not between", value1, value2, "stafftype");
+            return (Criteria) this;
+        }
+
         public Criteria andStaffnameIsNull() {
             addCriterion("StaffName is null");
             return (Criteria) this;
@@ -631,6 +691,76 @@ public class MoviesAndStaffsExample {
 
         public Criteria andStaffbirthplaceNotBetween(String value1, String value2) {
             addCriterion("StaffBirthPlace not between", value1, value2, "staffbirthplace");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoIsNull() {
+            addCriterion("StaffPhoto is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoIsNotNull() {
+            addCriterion("StaffPhoto is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoEqualTo(String value) {
+            addCriterion("StaffPhoto =", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoNotEqualTo(String value) {
+            addCriterion("StaffPhoto <>", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoGreaterThan(String value) {
+            addCriterion("StaffPhoto >", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoGreaterThanOrEqualTo(String value) {
+            addCriterion("StaffPhoto >=", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoLessThan(String value) {
+            addCriterion("StaffPhoto <", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoLessThanOrEqualTo(String value) {
+            addCriterion("StaffPhoto <=", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoLike(String value) {
+            addCriterion("StaffPhoto like", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoNotLike(String value) {
+            addCriterion("StaffPhoto not like", value, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoIn(List<String> values) {
+            addCriterion("StaffPhoto in", values, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoNotIn(List<String> values) {
+            addCriterion("StaffPhoto not in", values, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoBetween(String value1, String value2) {
+            addCriterion("StaffPhoto between", value1, value2, "staffphoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andStaffphotoNotBetween(String value1, String value2) {
+            addCriterion("StaffPhoto not between", value1, value2, "staffphoto");
             return (Criteria) this;
         }
     }

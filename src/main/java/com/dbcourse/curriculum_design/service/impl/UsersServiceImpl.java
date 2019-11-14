@@ -33,6 +33,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public int insert(Users record) {
+        // TODO 检测是否已有用户，如果有抛出异常
         record.setCPassword(SHA256Util.Encrypt(String.format("%s-%s", record.getCPassword(), record.getCCreateTime())));
         return usersMapper.insert(record);
     }

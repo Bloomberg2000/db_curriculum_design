@@ -861,6 +861,76 @@ public class MoviesAndAwardsExample {
             addCriterion("MoiveLanguage not between", value1, value2, "moivelanguage");
             return (Criteria) this;
         }
+
+        public Criteria andMoivecoverIsNull() {
+            addCriterion("MoiveCover is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverIsNotNull() {
+            addCriterion("MoiveCover is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverEqualTo(String value) {
+            addCriterion("MoiveCover =", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverNotEqualTo(String value) {
+            addCriterion("MoiveCover <>", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverGreaterThan(String value) {
+            addCriterion("MoiveCover >", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverGreaterThanOrEqualTo(String value) {
+            addCriterion("MoiveCover >=", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverLessThan(String value) {
+            addCriterion("MoiveCover <", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverLessThanOrEqualTo(String value) {
+            addCriterion("MoiveCover <=", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverLike(String value) {
+            addCriterion("MoiveCover like", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverNotLike(String value) {
+            addCriterion("MoiveCover not like", value, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverIn(List<String> values) {
+            addCriterion("MoiveCover in", values, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverNotIn(List<String> values) {
+            addCriterion("MoiveCover not in", values, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverBetween(String value1, String value2) {
+            addCriterion("MoiveCover between", value1, value2, "moivecover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoivecoverNotBetween(String value1, String value2) {
+            addCriterion("MoiveCover not between", value1, value2, "moivecover");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

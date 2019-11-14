@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.UsersAndShortCommentsMapper;
+import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import com.dbcourse.curriculum_design.model.UsersAndShortCommentsExample;
 import com.dbcourse.curriculum_design.service.UsersAndShortCommentsService;
@@ -55,4 +56,16 @@ public class UsersAndShortCommentsServiceImpl implements UsersAndShortCommentsSe
         return usersAndShortCommentsMapper.batchInsert(list);
     }
 
+    @Override
+    public UsersAndShortComments getUsersAndShortCommentsByMovieIdAndUserId(int movieId, int userId) {
+        UsersAndShortCommentsExample example = new UsersAndShortCommentsExample();
+        example.createCriteria().andMoiveidEqualTo(movieId).andUseridEqualTo(userId);
+        List<UsersAndShortComments> shortComments = usersAndShortCommentsMapper.selectByExample(example);
+        if (shortComments.size() > 0){
+            return shortComments.get(0);
+        }else {
+            return null;
+        }
+    }
 }
+

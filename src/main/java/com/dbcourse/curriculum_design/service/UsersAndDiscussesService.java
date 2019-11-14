@@ -25,3 +25,4 @@ public interface UsersAndDiscussesService {
     int batchInsert(List<UsersAndDiscusses> list);
 
 }
+
