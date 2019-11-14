@@ -3,6 +3,7 @@ package com.dbcourse.curriculum_design.service.impl;
 import com.dbcourse.curriculum_design.mapper.TagsMapper;
 import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.TagsExample;
+import com.dbcourse.curriculum_design.model.TopicsExample;
 import com.dbcourse.curriculum_design.service.TagsService;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +74,12 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public int batchInsert(List<Tags> list) {
         return tagsMapper.batchInsert(list);
+    }
+
+    @Override
+    public List<Tags> getTopNumTags(Integer nTagsnum) {
+        return tagsMapper.getTopNumTags(nTagsnum);
+
     }
 
 
