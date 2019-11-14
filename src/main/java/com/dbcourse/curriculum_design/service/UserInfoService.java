@@ -33,3 +33,4 @@ public interface UserInfoService {
     int batchInsert(List<UserInfo> list);
 
 }
+

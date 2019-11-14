@@ -32,4 +32,17 @@ public interface ShortCommentsService {
 
     int batchInsert(List<ShortComments> list);
 
+
+    ShortComments getShortCommentByUserIdAndMovieId(int userId, int movieId);
+
+    long countShortCommentsByScore(Short score);
+
+    /**
+     * 加载电影短评
+     * @param nMovieId 电影n_id
+     * @return list
+     */
+    List<ShortComments> getShortCommentsByMovieID(Integer nMovieId);
+
+
 }

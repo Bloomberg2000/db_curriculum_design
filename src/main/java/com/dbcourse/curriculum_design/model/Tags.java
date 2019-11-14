@@ -12,10 +12,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tags implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     /**
      * ???
      */
     private String cContent;
+
+    private static final long serialVersionUID = 1L;
+
+    public static TagsBuilder builder() {
+        return new TagsBuilder();
+    }
 }

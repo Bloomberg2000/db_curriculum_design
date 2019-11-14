@@ -16,20 +16,20 @@ public class MoviesExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -591,6 +591,346 @@ public class MoviesExample {
             addCriterion("c_info not between", value1, value2, "cInfo");
             return (Criteria) this;
         }
+
+        public Criteria andCMoiveTypeIsNull() {
+            addCriterion("c_moive_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeIsNotNull() {
+            addCriterion("c_moive_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeEqualTo(String value) {
+            addCriterion("c_moive_type =", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeNotEqualTo(String value) {
+            addCriterion("c_moive_type <>", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeGreaterThan(String value) {
+            addCriterion("c_moive_type >", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("c_moive_type >=", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeLessThan(String value) {
+            addCriterion("c_moive_type <", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeLessThanOrEqualTo(String value) {
+            addCriterion("c_moive_type <=", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeLike(String value) {
+            addCriterion("c_moive_type like", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeNotLike(String value) {
+            addCriterion("c_moive_type not like", value, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeIn(List<String> values) {
+            addCriterion("c_moive_type in", values, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeNotIn(List<String> values) {
+            addCriterion("c_moive_type not in", values, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeBetween(String value1, String value2) {
+            addCriterion("c_moive_type between", value1, value2, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveTypeNotBetween(String value1, String value2) {
+            addCriterion("c_moive_type not between", value1, value2, "cMoiveType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaIsNull() {
+            addCriterion("c_moive_area is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaIsNotNull() {
+            addCriterion("c_moive_area is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaEqualTo(String value) {
+            addCriterion("c_moive_area =", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaNotEqualTo(String value) {
+            addCriterion("c_moive_area <>", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaGreaterThan(String value) {
+            addCriterion("c_moive_area >", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaGreaterThanOrEqualTo(String value) {
+            addCriterion("c_moive_area >=", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaLessThan(String value) {
+            addCriterion("c_moive_area <", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaLessThanOrEqualTo(String value) {
+            addCriterion("c_moive_area <=", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaLike(String value) {
+            addCriterion("c_moive_area like", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaNotLike(String value) {
+            addCriterion("c_moive_area not like", value, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaIn(List<String> values) {
+            addCriterion("c_moive_area in", values, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaNotIn(List<String> values) {
+            addCriterion("c_moive_area not in", values, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaBetween(String value1, String value2) {
+            addCriterion("c_moive_area between", value1, value2, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveAreaNotBetween(String value1, String value2) {
+            addCriterion("c_moive_area not between", value1, value2, "cMoiveArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageIsNull() {
+            addCriterion("c_moive_language is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageIsNotNull() {
+            addCriterion("c_moive_language is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageEqualTo(String value) {
+            addCriterion("c_moive_language =", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageNotEqualTo(String value) {
+            addCriterion("c_moive_language <>", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageGreaterThan(String value) {
+            addCriterion("c_moive_language >", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageGreaterThanOrEqualTo(String value) {
+            addCriterion("c_moive_language >=", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageLessThan(String value) {
+            addCriterion("c_moive_language <", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageLessThanOrEqualTo(String value) {
+            addCriterion("c_moive_language <=", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageLike(String value) {
+            addCriterion("c_moive_language like", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageNotLike(String value) {
+            addCriterion("c_moive_language not like", value, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageIn(List<String> values) {
+            addCriterion("c_moive_language in", values, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageNotIn(List<String> values) {
+            addCriterion("c_moive_language not in", values, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageBetween(String value1, String value2) {
+            addCriterion("c_moive_language between", value1, value2, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveLanguageNotBetween(String value1, String value2) {
+            addCriterion("c_moive_language not between", value1, value2, "cMoiveLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverIsNull() {
+            addCriterion("c_moive_cover is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverIsNotNull() {
+            addCriterion("c_moive_cover is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverEqualTo(String value) {
+            addCriterion("c_moive_cover =", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotEqualTo(String value) {
+            addCriterion("c_moive_cover <>", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverGreaterThan(String value) {
+            addCriterion("c_moive_cover >", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverGreaterThanOrEqualTo(String value) {
+            addCriterion("c_moive_cover >=", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverLessThan(String value) {
+            addCriterion("c_moive_cover <", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverLessThanOrEqualTo(String value) {
+            addCriterion("c_moive_cover <=", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverLike(String value) {
+            addCriterion("c_moive_cover like", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotLike(String value) {
+            addCriterion("c_moive_cover not like", value, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverIn(List<String> values) {
+            addCriterion("c_moive_cover in", values, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotIn(List<String> values) {
+            addCriterion("c_moive_cover not in", values, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverBetween(String value1, String value2) {
+            addCriterion("c_moive_cover between", value1, value2, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andCMoiveCoverNotBetween(String value1, String value2) {
+            addCriterion("c_moive_cover not between", value1, value2, "cMoiveCover");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreIsNull() {
+            addCriterion("f_movie_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreIsNotNull() {
+            addCriterion("f_movie_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreEqualTo(Float value) {
+            addCriterion("f_movie_score =", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreNotEqualTo(Float value) {
+            addCriterion("f_movie_score <>", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreGreaterThan(Float value) {
+            addCriterion("f_movie_score >", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreGreaterThanOrEqualTo(Float value) {
+            addCriterion("f_movie_score >=", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreLessThan(Float value) {
+            addCriterion("f_movie_score <", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreLessThanOrEqualTo(Float value) {
+            addCriterion("f_movie_score <=", value, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreIn(List<Float> values) {
+            addCriterion("f_movie_score in", values, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreNotIn(List<Float> values) {
+            addCriterion("f_movie_score not in", values, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreBetween(Float value1, Float value2) {
+            addCriterion("f_movie_score between", value1, value2, "fMovieScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andFMovieScoreNotBetween(Float value1, Float value2) {
+            addCriterion("f_movie_score not between", value1, value2, "fMovieScore");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -616,6 +956,38 @@ public class MoviesExample {
         private boolean listValue;
 
         private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -651,38 +1023,6 @@ public class MoviesExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

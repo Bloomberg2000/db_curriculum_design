@@ -105,26 +105,20 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Tags">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Tags" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Tags (n_id, c_content)
-    values (#{nId,jdbcType=INTEGER}, #{cContent,jdbcType=VARCHAR})
+    insert into dbo.Tags (c_content)
+    values (#{cContent,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Tags">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Tags" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Tags
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="cContent != null">
         c_content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="cContent != null">
         #{cContent,jdbcType=VARCHAR},
       </if>
@@ -177,13 +171,13 @@
     set c_content = #{cContent,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Tags
-    (n_id, c_content)
+    (c_content)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.cContent,jdbcType=VARCHAR})
+      (#{item.cContent,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

@@ -12,9 +12,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShortCommentsLikes implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private Integer nShortCommentId;
+
     private Integer nUserId;
+
     private Integer nType;
+
+    private static final long serialVersionUID = 1L;
+
+    public static ShortCommentsLikesBuilder builder() {
+        return new ShortCommentsLikesBuilder();
+    }
 }

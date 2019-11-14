@@ -13,10 +13,19 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Awards implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private String cName;
+
     private Date dStartDate;
+
     private Date dEndDate;
+
     private String cLocation;
+
+    private static final long serialVersionUID = 1L;
+
+    public static AwardsBuilder builder() {
+        return new AwardsBuilder();
+    }
 }

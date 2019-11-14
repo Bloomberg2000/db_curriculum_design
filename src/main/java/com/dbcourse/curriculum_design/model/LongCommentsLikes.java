@@ -12,15 +12,23 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LongCommentsLikes implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     /**
      * ??
      */
     private Integer nLongCommentId;
+
     /**
      * ??
      */
     private Integer nUserId;
+
     private Integer nType;
+
+    private static final long serialVersionUID = 1L;
+
+    public static LongCommentsLikesBuilder builder() {
+        return new LongCommentsLikesBuilder();
+    }
 }

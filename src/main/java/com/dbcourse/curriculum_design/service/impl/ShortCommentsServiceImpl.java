@@ -1,6 +1,8 @@
 package com.dbcourse.curriculum_design.service.impl;
 
+import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
+import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.ShortCommentsExample;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
@@ -74,5 +76,34 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
     public int batchInsert(List<ShortComments> list) {
         return shortCommentsMapper.batchInsert(list);
     }
+
+    @Override
+    public ShortComments getShortCommentByUserIdAndMovieId(int userId, int movieId) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        example.createCriteria().andNUserIdEqualTo(userId).andNMovieIdEqualTo(movieId);
+        List<ShortComments> shortComments = shortCommentsMapper.selectByExample(example);
+        if (shortComments.size() > 0){
+            return shortComments.get(0);
+        }else {
+            return null;
+        }
+    }
+
+
+
+    @Override
+    public long countShortCommentsByScore(Short score) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        example.createCriteria().andNScoreEqualTo(score);
+        return shortCommentsMapper.countByExample(example);
+    }
+
+    public List<ShortComments> getShortCommentsByMovieID(Integer nMovieId) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        ShortCommentsExample.Criteria criteria = example.createCriteria();
+        criteria.andNMovieIdEqualTo(nMovieId);
+       return  shortCommentsMapper.selectByExample(example);
+    }
+
 
 }

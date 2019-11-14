@@ -14,20 +14,20 @@ public class StaffsExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -573,6 +573,76 @@ public class StaffsExample {
             addCriterion("c_birth_place not between", value1, value2, "cBirthPlace");
             return (Criteria) this;
         }
+
+        public Criteria andCPhotoIsNull() {
+            addCriterion("c_photo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoIsNotNull() {
+            addCriterion("c_photo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoEqualTo(String value) {
+            addCriterion("c_photo =", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoNotEqualTo(String value) {
+            addCriterion("c_photo <>", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoGreaterThan(String value) {
+            addCriterion("c_photo >", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoGreaterThanOrEqualTo(String value) {
+            addCriterion("c_photo >=", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoLessThan(String value) {
+            addCriterion("c_photo <", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoLessThanOrEqualTo(String value) {
+            addCriterion("c_photo <=", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoLike(String value) {
+            addCriterion("c_photo like", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoNotLike(String value) {
+            addCriterion("c_photo not like", value, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoIn(List<String> values) {
+            addCriterion("c_photo in", values, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoNotIn(List<String> values) {
+            addCriterion("c_photo not in", values, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoBetween(String value1, String value2) {
+            addCriterion("c_photo between", value1, value2, "cPhoto");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPhotoNotBetween(String value1, String value2) {
+            addCriterion("c_photo not between", value1, value2, "cPhoto");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -598,6 +668,38 @@ public class StaffsExample {
         private boolean listValue;
 
         private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -633,38 +735,6 @@ public class StaffsExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

@@ -14,20 +14,20 @@ public class UserInfoExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -104,123 +104,123 @@ public class UserInfoExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andCIdIsNull() {
-            addCriterion("c_id is null");
+        public Criteria andNIdIsNull() {
+            addCriterion("n_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCIdIsNotNull() {
-            addCriterion("c_id is not null");
+        public Criteria andNIdIsNotNull() {
+            addCriterion("n_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCIdEqualTo(Integer value) {
-            addCriterion("c_id =", value, "cId");
+        public Criteria andNIdEqualTo(Integer value) {
+            addCriterion("n_id =", value, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdNotEqualTo(Integer value) {
-            addCriterion("c_id <>", value, "cId");
+        public Criteria andNIdNotEqualTo(Integer value) {
+            addCriterion("n_id <>", value, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdGreaterThan(Integer value) {
-            addCriterion("c_id >", value, "cId");
+        public Criteria andNIdGreaterThan(Integer value) {
+            addCriterion("n_id >", value, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("c_id >=", value, "cId");
+        public Criteria andNIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("n_id >=", value, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdLessThan(Integer value) {
-            addCriterion("c_id <", value, "cId");
+        public Criteria andNIdLessThan(Integer value) {
+            addCriterion("n_id <", value, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdLessThanOrEqualTo(Integer value) {
-            addCriterion("c_id <=", value, "cId");
+        public Criteria andNIdLessThanOrEqualTo(Integer value) {
+            addCriterion("n_id <=", value, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdIn(List<Integer> values) {
-            addCriterion("c_id in", values, "cId");
+        public Criteria andNIdIn(List<Integer> values) {
+            addCriterion("n_id in", values, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdNotIn(List<Integer> values) {
-            addCriterion("c_id not in", values, "cId");
+        public Criteria andNIdNotIn(List<Integer> values) {
+            addCriterion("n_id not in", values, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdBetween(Integer value1, Integer value2) {
-            addCriterion("c_id between", value1, value2, "cId");
+        public Criteria andNIdBetween(Integer value1, Integer value2) {
+            addCriterion("n_id between", value1, value2, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("c_id not between", value1, value2, "cId");
+        public Criteria andNIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("n_id not between", value1, value2, "nId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdIsNull() {
-            addCriterion("c_user_id is null");
+        public Criteria andNUserIdIsNull() {
+            addCriterion("n_user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdIsNotNull() {
-            addCriterion("c_user_id is not null");
+        public Criteria andNUserIdIsNotNull() {
+            addCriterion("n_user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdEqualTo(Integer value) {
-            addCriterion("c_user_id =", value, "cUserId");
+        public Criteria andNUserIdEqualTo(Integer value) {
+            addCriterion("n_user_id =", value, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdNotEqualTo(Integer value) {
-            addCriterion("c_user_id <>", value, "cUserId");
+        public Criteria andNUserIdNotEqualTo(Integer value) {
+            addCriterion("n_user_id <>", value, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdGreaterThan(Integer value) {
-            addCriterion("c_user_id >", value, "cUserId");
+        public Criteria andNUserIdGreaterThan(Integer value) {
+            addCriterion("n_user_id >", value, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("c_user_id >=", value, "cUserId");
+        public Criteria andNUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("n_user_id >=", value, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdLessThan(Integer value) {
-            addCriterion("c_user_id <", value, "cUserId");
+        public Criteria andNUserIdLessThan(Integer value) {
+            addCriterion("n_user_id <", value, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("c_user_id <=", value, "cUserId");
+        public Criteria andNUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("n_user_id <=", value, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdIn(List<Integer> values) {
-            addCriterion("c_user_id in", values, "cUserId");
+        public Criteria andNUserIdIn(List<Integer> values) {
+            addCriterion("n_user_id in", values, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdNotIn(List<Integer> values) {
-            addCriterion("c_user_id not in", values, "cUserId");
+        public Criteria andNUserIdNotIn(List<Integer> values) {
+            addCriterion("n_user_id not in", values, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("c_user_id between", value1, value2, "cUserId");
+        public Criteria andNUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("n_user_id between", value1, value2, "nUserId");
             return (Criteria) this;
         }
 
-        public Criteria andCUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("c_user_id not between", value1, value2, "cUserId");
+        public Criteria andNUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("n_user_id not between", value1, value2, "nUserId");
             return (Criteria) this;
         }
 
@@ -589,6 +589,38 @@ public class UserInfoExample {
 
         private String typeHandler;
 
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -623,38 +655,6 @@ public class UserInfoExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

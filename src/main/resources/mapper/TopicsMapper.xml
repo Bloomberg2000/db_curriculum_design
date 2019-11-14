@@ -106,20 +106,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.Topics">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Topics" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.Topics (n_id, n_movie_id, c_name
-      )
-    values (#{nId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}
-      )
+    insert into dbo.Topics (n_movie_id, c_name)
+    values (#{nMovieId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.Topics">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.Topics" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Topics
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        n_id,
-      </if>
       <if test="nMovieId != null">
         n_movie_id,
       </if>
@@ -128,9 +123,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nId != null">
-        #{nId,jdbcType=INTEGER},
-      </if>
       <if test="nMovieId != null">
         #{nMovieId,jdbcType=INTEGER},
       </if>
@@ -194,14 +186,13 @@
       c_name = #{cName,jdbcType=VARCHAR}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.Topics
-    (n_id, n_movie_id, c_name)
+    (n_movie_id, c_name)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.nId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}
-        )
+      (#{item.nMovieId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

@@ -13,11 +13,21 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private Integer nSenderId;
+
     private Integer nReceiverId;
+
     private Date dSendTime;
+
     private String cTitle;
+
     private String cContent;
+
+    private static final long serialVersionUID = 1L;
+
+    public static MessageBuilder builder() {
+        return new MessageBuilder();
+    }
 }

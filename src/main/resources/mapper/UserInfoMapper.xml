@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
     <!--@Table dbo.UserInfo-->
-    <id column="c_id" jdbcType="INTEGER" property="cId" />
-    <result column="c_user_id" jdbcType="INTEGER" property="cUserId" />
+    <id column="n_id" jdbcType="INTEGER" property="nId" />
+    <result column="n_user_id" jdbcType="INTEGER" property="nUserId" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
     <result column="n_gender" jdbcType="INTEGER" property="nGender" />
     <result column="c_avatar" jdbcType="VARCHAR" property="cAvatar" />
@@ -74,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    c_id, c_user_id, c_name, n_gender, c_avatar, c_address, c_info
+    n_id, n_user_id, c_name, n_gender, c_avatar, c_address, c_info
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UserInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -96,12 +96,12 @@
     select 
     <include refid="Base_Column_List" />
     from dbo.UserInfo
-    where c_id = #{cId,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from dbo.UserInfo
-    where c_id = #{cId,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.UserInfoExample">
     <!--@mbg.generated-->
@@ -110,24 +110,21 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
+  <insert id="insert" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.UserInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into dbo.UserInfo (c_id, c_user_id, c_name, 
-      n_gender, c_avatar, c_address, 
-      c_info)
-    values (#{cId,jdbcType=INTEGER}, #{cUserId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, 
-      #{nGender,jdbcType=INTEGER}, #{cAvatar,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR}, 
-      #{cInfo,jdbcType=VARCHAR})
+    insert into dbo.UserInfo (n_user_id, c_name, n_gender, 
+      c_avatar, c_address, c_info
+      )
+    values (#{nUserId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{nGender,jdbcType=INTEGER}, 
+      #{cAvatar,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR}, #{cInfo,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
+  <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.UserInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.UserInfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cId != null">
-        c_id,
-      </if>
-      <if test="cUserId != null">
-        c_user_id,
+      <if test="nUserId != null">
+        n_user_id,
       </if>
       <if test="cName != null">
         c_name,
@@ -146,11 +143,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cId != null">
-        #{cId,jdbcType=INTEGER},
-      </if>
-      <if test="cUserId != null">
-        #{cUserId,jdbcType=INTEGER},
+      <if test="nUserId != null">
+        #{nUserId,jdbcType=INTEGER},
       </if>
       <if test="cName != null">
         #{cName,jdbcType=VARCHAR},
@@ -180,11 +174,11 @@
     <!--@mbg.generated-->
     update dbo.UserInfo
     <set>
-      <if test="record.cId != null">
-        c_id = #{record.cId,jdbcType=INTEGER},
+      <if test="record.nId != null">
+        n_id = #{record.nId,jdbcType=INTEGER},
       </if>
-      <if test="record.cUserId != null">
-        c_user_id = #{record.cUserId,jdbcType=INTEGER},
+      <if test="record.nUserId != null">
+        n_user_id = #{record.nUserId,jdbcType=INTEGER},
       </if>
       <if test="record.cName != null">
         c_name = #{record.cName,jdbcType=VARCHAR},
@@ -209,8 +203,8 @@
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
     update dbo.UserInfo
-    set c_id = #{record.cId,jdbcType=INTEGER},
-      c_user_id = #{record.cUserId,jdbcType=INTEGER},
+    set n_id = #{record.nId,jdbcType=INTEGER},
+      n_user_id = #{record.nUserId,jdbcType=INTEGER},
       c_name = #{record.cName,jdbcType=VARCHAR},
       n_gender = #{record.nGender,jdbcType=INTEGER},
       c_avatar = #{record.cAvatar,jdbcType=VARCHAR},
@@ -224,8 +218,8 @@
     <!--@mbg.generated-->
     update dbo.UserInfo
     <set>
-      <if test="cUserId != null">
-        c_user_id = #{cUserId,jdbcType=INTEGER},
+      <if test="nUserId != null">
+        n_user_id = #{nUserId,jdbcType=INTEGER},
       </if>
       <if test="cName != null">
         c_name = #{cName,jdbcType=VARCHAR},
@@ -243,28 +237,28 @@
         c_info = #{cInfo,jdbcType=VARCHAR},
       </if>
     </set>
-    where c_id = #{cId,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dbcourse.curriculum_design.model.UserInfo">
     <!--@mbg.generated-->
     update dbo.UserInfo
-    set c_user_id = #{cUserId,jdbcType=INTEGER},
+    set n_user_id = #{nUserId,jdbcType=INTEGER},
       c_name = #{cName,jdbcType=VARCHAR},
       n_gender = #{nGender,jdbcType=INTEGER},
       c_avatar = #{cAvatar,jdbcType=VARCHAR},
       c_address = #{cAddress,jdbcType=VARCHAR},
       c_info = #{cInfo,jdbcType=VARCHAR}
-    where c_id = #{cId,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.UserInfo
-    (c_id, c_user_id, c_name, n_gender, c_avatar, c_address, c_info)
+    (n_user_id, c_name, n_gender, c_avatar, c_address, c_info)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.cId,jdbcType=INTEGER}, #{item.cUserId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, 
-        #{item.nGender,jdbcType=INTEGER}, #{item.cAvatar,jdbcType=VARCHAR}, #{item.cAddress,jdbcType=VARCHAR}, 
-        #{item.cInfo,jdbcType=VARCHAR})
+      (#{item.nUserId,jdbcType=INTEGER}, #{item.cName,jdbcType=VARCHAR}, #{item.nGender,jdbcType=INTEGER}, 
+        #{item.cAvatar,jdbcType=VARCHAR}, #{item.cAddress,jdbcType=VARCHAR}, #{item.cInfo,jdbcType=VARCHAR}
+        )
     </foreach>
   </insert>
 </mapper>

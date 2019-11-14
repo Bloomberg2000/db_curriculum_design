@@ -13,13 +13,25 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShortComments implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private Integer nUserId;
+
     private Integer nMovieId;
+
     private Date dCreateTime;
+
     private Date dEditTime;
+
     private Short nScore;
+
     private String cContent;
+
     private Integer nType;
+
+    private static final long serialVersionUID = 1L;
+
+    public static ShortCommentsBuilder builder() {
+        return new ShortCommentsBuilder();
+    }
 }

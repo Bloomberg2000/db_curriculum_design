@@ -12,8 +12,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MoviesAwards implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private Integer nMovieId;
+
     private Integer nAwardId;
+
+    private static final long serialVersionUID = 1L;
+
+    public static MoviesAwardsBuilder builder() {
+        return new MoviesAwardsBuilder();
+    }
 }

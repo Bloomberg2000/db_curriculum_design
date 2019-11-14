@@ -13,12 +13,23 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DiscussesReplies implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private Integer nUserId;
+
     private Integer nDiscussId;
+
     private Date dCreateTime;
+
     private Date dEditTime;
+
     private String cContent;
+
     private Integer nParentId;
+
+    private static final long serialVersionUID = 1L;
+
+    public static DiscussesRepliesBuilder builder() {
+        return new DiscussesRepliesBuilder();
+    }
 }

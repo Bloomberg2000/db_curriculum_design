@@ -12,9 +12,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MoviesTags implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer nId;
+
     private Integer nMovieId;
+
     private Integer nTagId;
+
     private Integer nType;
+
+    private static final long serialVersionUID = 1L;
+
+    public static MoviesTagsBuilder builder() {
+        return new MoviesTagsBuilder();
+    }
 }
