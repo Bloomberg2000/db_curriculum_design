@@ -75,6 +75,11 @@ public class MoviesServiceImpl implements MoviesService {
         return moviesMapper.batchInsert(list);
     }
 
+    @Override
+    public List<Movies> getTopNumMovies(Integer num) {
+        return moviesMapper.getTopNumMovies(num);
+    }
+
 }
 
 
