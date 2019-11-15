@@ -65,4 +65,21 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         return usersAndLongCommentsMapper.selectByExample(example);
     }
 
+    /**
+     * lrc
+     * 按长评ID获取长评
+     * @param LongCommentId
+     * @return
+     */
+    @Override
+    public UsersAndLongComments selectLongCommentsByLongCommentId(Integer LongCommentId) {
+        UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
+        UsersAndLongCommentsExample.Criteria criteria = example.createCriteria();
+        criteria.andLongcommentsidEqualTo(LongCommentId);
+        if(usersAndLongCommentsMapper.selectByExample(example).size()>0)
+            return usersAndLongCommentsMapper.selectByExample(example).get(0);
+        return usersAndLongCommentsMapper.selectByExample(example).get(0);
+    }
+
+
 }
