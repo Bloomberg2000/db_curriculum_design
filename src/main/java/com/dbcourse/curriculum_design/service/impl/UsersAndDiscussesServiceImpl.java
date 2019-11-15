@@ -55,5 +55,16 @@ public class UsersAndDiscussesServiceImpl implements UsersAndDiscussesService {
         return usersAndDiscussesMapper.batchInsert(list);
     }
 
+    @Override
+    public UsersAndDiscusses getUsersAndDiscussesById(int discussesId) {
+        UsersAndDiscussesExample example = new UsersAndDiscussesExample();
+        example.createCriteria().andDiscussesidEqualTo(discussesId);
+        List<UsersAndDiscusses> usersAndDiscusses = usersAndDiscussesMapper.selectByExample(example);
+        if (usersAndDiscusses.size() > 0){
+            return usersAndDiscusses.get(0);
+        }else {
+            return null;
+        }
+    }
 }
 
