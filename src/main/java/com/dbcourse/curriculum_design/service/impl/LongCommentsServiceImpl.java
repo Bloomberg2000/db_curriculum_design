@@ -91,7 +91,6 @@ public class LongCommentsServiceImpl implements LongCommentsService {
             criteria.andNMovieIdEqualTo(nMovieId);
             List<LongComments> longCommentsList = longCommentsMapper.selectByExample(example);
             System.out.println(longCommentsList.size());
-            System.out.println(longCommentsList.);
             System.out.println(longCommentsList.size());
             return 1;
         }
@@ -100,5 +99,5 @@ public class LongCommentsServiceImpl implements LongCommentsService {
     }
 
 
-}
+
 

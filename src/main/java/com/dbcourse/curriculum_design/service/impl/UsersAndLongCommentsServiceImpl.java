@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.UsersAndLongCommentsMapper;
+import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.UsersAndLongComments;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsExample;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsService;
@@ -61,6 +62,11 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         UsersAndLongCommentsExample.Criteria criteria = example.createCriteria();
         criteria.andMovieidEqualTo(MovieId);
         return usersAndLongCommentsMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<LongComments> getTopNumLongCommentsByLongCommentsId(int pageNum, int pageSize) {
+        return usersAndLongCommentsMapper.getTopNumLongCommentsByLongCommentsId(pageNum,pageSize);
     }
 
 }
