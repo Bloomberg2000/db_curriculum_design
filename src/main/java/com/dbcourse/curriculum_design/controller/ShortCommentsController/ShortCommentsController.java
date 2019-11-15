@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShortCommentsController {
 
     @RequestMapping(value = "/{id:\\d+}")
-    public StatusResponse LikeShortComments(@PathVariable int id){
+    public StatusResponse LikeShortComments(@PathVariable int id) {
         return StatusResponse.ok();
     }
 }

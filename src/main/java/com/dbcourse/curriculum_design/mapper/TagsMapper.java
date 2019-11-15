@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -36,7 +37,8 @@ public interface TagsMapper {
     int batchInsert(@Param("list") List<Tags> list);
 
     @Select("select top (#{num, jdbcType=INTEGER})" +
-            " n_id, c_content " +
+            " n_id, c_content" +
             " from Tags ")
+    @ResultMap("BaseResultMap")
     List<Tags> getTopNumTags(int num);
 }
