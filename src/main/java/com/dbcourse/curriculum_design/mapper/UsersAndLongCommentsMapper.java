@@ -23,6 +23,4 @@ public interface UsersAndLongCommentsMapper {
     int updateByExample(@Param("record") UsersAndLongComments record, @Param("example") UsersAndLongCommentsExample example);
 
     int batchInsert(@Param("list") List<UsersAndLongComments> list);
-
-
 }

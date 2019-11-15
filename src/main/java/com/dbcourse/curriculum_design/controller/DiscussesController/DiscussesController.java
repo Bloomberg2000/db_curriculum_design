@@ -9,6 +9,7 @@ import com.dbcourse.curriculum_design.service.DiscussesRepliesLikesService;
 import com.dbcourse.curriculum_design.service.DiscussesRepliesService;
 import com.dbcourse.curriculum_design.service.UsersAndDiscussesRepliesService;
 import com.dbcourse.curriculum_design.service.UsersAndDiscussesService;
+import com.dbcourse.curriculum_design.utils.RequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,16 +45,9 @@ public class DiscussesController {
     @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
     public DiscussesInfoResponse GetDiscussesInfo(@PathVariable int id) {
         DiscussesInfoResponse response = new DiscussesInfoResponse();
-        String page = request.getParameter("page");
-        String pageSize = request.getParameter("size");
-        int pageNum = 1;
-        int pageSizeNum = 10;
-        if (page != null) {
-            pageNum = Integer.parseInt(page);
-        }
-        if (pageSize != null) {
-            pageSizeNum = Integer.parseInt(pageSize);
-        }
+
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
 
         // 获取讨论的详细页面
         UsersAndDiscusses usersAndDiscusses = usersAndDiscussesService.getUsersAndDiscussesById(id);

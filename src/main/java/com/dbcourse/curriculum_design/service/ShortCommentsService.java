@@ -44,5 +44,8 @@ public interface ShortCommentsService {
      */
     List<ShortComments> getShortCommentsByMovieID(Integer nMovieId);
 
+    // todo 插入或修改评论
+    int PutShortComments(ShortComments record);
+
 
 }
