@@ -3,11 +3,8 @@ package com.dbcourse.curriculum_design.mapper;
 import com.dbcourse.curriculum_design.model.UsersAndDiscusses;
 import com.dbcourse.curriculum_design.model.UsersAndDiscussesExample;
 import java.util.List;
-
-import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndDiscussesMapper {

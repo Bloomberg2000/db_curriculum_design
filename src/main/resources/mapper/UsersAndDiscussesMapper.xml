@@ -8,6 +8,7 @@
     <result column="DiscussesCreateTime" jdbcType="TIMESTAMP" property="discussescreatetime" />
     <result column="DiscussesEditTime" jdbcType="TIMESTAMP" property="discussesedittime" />
     <result column="DiscussesName" jdbcType="VARCHAR" property="discussesname" />
+    <result column="MovieId" jdbcType="INTEGER" property="movieid" />
     <result column="UserId" jdbcType="INTEGER" property="userid" />
     <result column="Nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="UserGender" jdbcType="INTEGER" property="usergender" />
@@ -75,8 +76,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    DiscussesId, DiscussesCreateTime, DiscussesEditTime, DiscussesName, UserId, Nickname, 
-    UserGender, UserAvatar
+    DiscussesId, DiscussesCreateTime, DiscussesEditTime, DiscussesName, MovieId, UserId, 
+    Nickname, UserGender, UserAvatar
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscussesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -103,13 +104,13 @@
   <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscusses">
     <!--@mbg.generated-->
     insert into dbo.UsersAndDiscusses (DiscussesId, DiscussesCreateTime, 
-      DiscussesEditTime, DiscussesName, UserId, 
-      Nickname, UserGender, UserAvatar
-      )
+      DiscussesEditTime, DiscussesName, MovieId, 
+      UserId, Nickname, UserGender, 
+      UserAvatar)
     values (#{discussesid,jdbcType=INTEGER}, #{discussescreatetime,jdbcType=TIMESTAMP}, 
-      #{discussesedittime,jdbcType=TIMESTAMP}, #{discussesname,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
-      #{nickname,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR}
-      )
+      #{discussesedittime,jdbcType=TIMESTAMP}, #{discussesname,jdbcType=VARCHAR}, #{movieid,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, 
+      #{useravatar,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscusses">
     <!--@mbg.generated-->
@@ -126,6 +127,9 @@
       </if>
       <if test="discussesname != null">
         DiscussesName,
+      </if>
+      <if test="movieid != null">
+        MovieId,
       </if>
       <if test="userid != null">
         UserId,
@@ -152,6 +156,9 @@
       </if>
       <if test="discussesname != null">
         #{discussesname,jdbcType=VARCHAR},
+      </if>
+      <if test="movieid != null">
+        #{movieid,jdbcType=INTEGER},
       </if>
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
@@ -190,6 +197,9 @@
       <if test="record.discussesname != null">
         DiscussesName = #{record.discussesname,jdbcType=VARCHAR},
       </if>
+      <if test="record.movieid != null">
+        MovieId = #{record.movieid,jdbcType=INTEGER},
+      </if>
       <if test="record.userid != null">
         UserId = #{record.userid,jdbcType=INTEGER},
       </if>
@@ -214,6 +224,7 @@
       DiscussesCreateTime = #{record.discussescreatetime,jdbcType=TIMESTAMP},
       DiscussesEditTime = #{record.discussesedittime,jdbcType=TIMESTAMP},
       DiscussesName = #{record.discussesname,jdbcType=VARCHAR},
+      MovieId = #{record.movieid,jdbcType=INTEGER},
       UserId = #{record.userid,jdbcType=INTEGER},
       Nickname = #{record.nickname,jdbcType=VARCHAR},
       UserGender = #{record.usergender,jdbcType=INTEGER},
@@ -225,14 +236,14 @@
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into dbo.UsersAndDiscusses
-    (DiscussesId, DiscussesCreateTime, DiscussesEditTime, DiscussesName, UserId, Nickname, 
-      UserGender, UserAvatar)
+    (DiscussesId, DiscussesCreateTime, DiscussesEditTime, DiscussesName, MovieId, UserId, 
+      Nickname, UserGender, UserAvatar)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.discussesid,jdbcType=INTEGER}, #{item.discussescreatetime,jdbcType=TIMESTAMP}, 
         #{item.discussesedittime,jdbcType=TIMESTAMP}, #{item.discussesname,jdbcType=VARCHAR}, 
-        #{item.userid,jdbcType=INTEGER}, #{item.nickname,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, 
-        #{item.useravatar,jdbcType=VARCHAR})
+        #{item.movieid,jdbcType=INTEGER}, #{item.userid,jdbcType=INTEGER}, #{item.nickname,jdbcType=VARCHAR}, 
+        #{item.usergender,jdbcType=INTEGER}, #{item.useravatar,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

@@ -355,6 +355,66 @@ public class UsersAndDiscussesExample {
             return (Criteria) this;
         }
 
+        public Criteria andMovieidIsNull() {
+            addCriterion("MovieId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidIsNotNull() {
+            addCriterion("MovieId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidEqualTo(Integer value) {
+            addCriterion("MovieId =", value, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidNotEqualTo(Integer value) {
+            addCriterion("MovieId <>", value, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidGreaterThan(Integer value) {
+            addCriterion("MovieId >", value, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MovieId >=", value, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidLessThan(Integer value) {
+            addCriterion("MovieId <", value, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidLessThanOrEqualTo(Integer value) {
+            addCriterion("MovieId <=", value, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidIn(List<Integer> values) {
+            addCriterion("MovieId in", values, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidNotIn(List<Integer> values) {
+            addCriterion("MovieId not in", values, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidBetween(Integer value1, Integer value2) {
+            addCriterion("MovieId between", value1, value2, "movieid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMovieidNotBetween(Integer value1, Integer value2) {
+            addCriterion("MovieId not between", value1, value2, "movieid");
+            return (Criteria) this;
+        }
+
         public Criteria andUseridIsNull() {
             addCriterion("UserId is null");
             return (Criteria) this;

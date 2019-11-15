@@ -56,15 +56,15 @@ public class UsersAndDiscussesServiceImpl implements UsersAndDiscussesService {
     }
 
     @Override
-    public List<UsersAndDiscusses> getDiscussesByPage(int pageIndex, int pageSize) {
-        if (pageIndex <= 0) {
-            pageIndex = 1;
+    public UsersAndDiscusses getUsersAndDiscussesById(int discussesId) {
+        UsersAndDiscussesExample example = new UsersAndDiscussesExample();
+        example.createCriteria().andDiscussesidEqualTo(discussesId);
+        List<UsersAndDiscusses> usersAndDiscusses = usersAndDiscussesMapper.selectByExample(example);
+        if (usersAndDiscusses.size() > 0) {
+            return usersAndDiscusses.get(0);
+        } else {
+            return null;
         }
-        if (pageSize <= 0) {
-            pageSize = 10;
-        }
-        return usersAndDiscussesMapper.getDiscussesByPage(pageIndex, pageSize);
     }
-
 }
 
