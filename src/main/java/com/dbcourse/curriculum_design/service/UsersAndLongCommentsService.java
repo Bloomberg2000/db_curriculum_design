@@ -26,6 +26,7 @@ public interface UsersAndLongCommentsService {
     int batchInsert(List<UsersAndLongComments> list);
 
 
+
     /**
      * 分页显示长评论
      * cty
@@ -35,6 +36,7 @@ public interface UsersAndLongCommentsService {
      * @return
      */
     List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize);
+
 
 
     /**

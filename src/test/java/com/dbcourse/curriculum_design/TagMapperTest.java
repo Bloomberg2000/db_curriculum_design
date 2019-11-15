@@ -17,9 +17,10 @@ public class TagMapperTest {
     @Test
     void GetTop10Mapper(){
         List<Tags> tags = tagsMapper.getTopNumTags(5);
-        if ( tags.size() != 5){
+        if ( tags.size() != 5 || tags.get(0) == null){
             throw new RuntimeException();
         }
+        tags.forEach(System.out::println);
     }
 
 }

@@ -57,10 +57,12 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
     }
 
 
+
     @Override
     public List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize) {
         return usersAndLongCommentsMapper.getLongCommentsByPage(pageIndex,pageSize);
     }
+
 
 
 
