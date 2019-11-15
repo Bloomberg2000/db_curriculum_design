@@ -3,9 +3,12 @@ package com.dbcourse.curriculum_design.controller.UserController;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.CaptchaRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
+import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserLongCommentsInfoResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.Users;
+import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
+import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
 import com.dbcourse.curriculum_design.service.UsersService;
 import com.dbcourse.curriculum_design.utils.MailUtil;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -32,6 +36,9 @@ public class UserController {
     UsersService usersService;
     @Resource
     CaptchaService captchaService;
+
+    @Resource
+    UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
 
     /**
      * 用户登录
@@ -84,6 +91,16 @@ public class UserController {
         MailUtil.sendCaptchaEmailToAddress(captcha, email);
         return StatusResponse.ok();
     }
+
+    /**
+     * 用户个人信息中的长评部分
+     */
+    @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
+    public UserLongCommentsInfoResponse MyLongComments(Integer userId) {
+        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId);
+        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies);
+    }
+
 
 
 }

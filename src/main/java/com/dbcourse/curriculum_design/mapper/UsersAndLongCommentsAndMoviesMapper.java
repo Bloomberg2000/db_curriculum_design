@@ -30,17 +30,34 @@ public interface UsersAndLongCommentsAndMoviesMapper {
 
     /**
      * 显示在用户个人信息页上
-     * 通过用户id找到发表的长评，显示长评总数 + list长评题目/内容///打分/用户名/电影名/电影封面
+     * 通过用户id找到发表的长评，list长评题目/内容///打分/用户名/电影名/电影封面
+     * 按照发表时间降序排列
      * @author Christy
      * @param userId 用户id
+     * @param pageIndex
+     * @param pageSize
      * @return a list of UsersAndLongComments
      */
 
     @Select("SELECT Username, CreateTimeDate, EditTimeDate, Score, LongCommentsTitle, LongCommentsContent, MovieCover, MovieName\n" +
             "FROM UsersAndLongCommentsAndMovies\n" +
-            "WHERE(UserId = #{userId, jdbcType=INTEGER})")
+            "WHERE(UserId = #{userId, jdbcType=INTEGER})\n" +
+            "ORDER BY EditTimeDate DESC " +
+            "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
+            "fetch next #{pageSize,jdbcType=INTEGER} rows only")
     @ResultMap("BaseResultMap")
-    List<UsersAndLongCommentsAndMoviesMapper> selectByUserId(Integer userId);
+    List<UsersAndLongCommentsAndMoviesMapper> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
+
+    
+    /**
+     * 接上面，按照用户id显示长评的总数
+     */
+
+    @Select("select count(*) from UsersAndLongCommentsAndMovies")
+    @ResultMap("BaseResultMap")
+    Integer countLongComments(Integer userId);
+
+
 
 
 }
