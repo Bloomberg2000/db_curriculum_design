@@ -28,7 +28,7 @@ public interface UsersAndDiscussesMapper {
     int batchInsert(@Param("list") List<UsersAndDiscusses> list);
 
     @Select("select * from UsersAndDiscusses order by DiscussesId DESC " +
-            "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
+            "offset ((#{pageIndex,jdbcType=INTEGER} - 1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
     List<UsersAndDiscusses> getDiscussesByPage(int pageIndex, int pageSize);
 }
