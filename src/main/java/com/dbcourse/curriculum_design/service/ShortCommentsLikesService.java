@@ -14,7 +14,7 @@ public interface ShortCommentsLikesService {
 
     int deleteByPrimaryKey(Integer nId);
 
-    int insert(ShortCommentsLikes record);
+    int like(ShortCommentsLikes record);
 
     int insertSelective(ShortCommentsLikes record);
 
@@ -33,4 +33,6 @@ public interface ShortCommentsLikesService {
     int batchInsert(List<ShortCommentsLikes> list);
 
     List<ShortCommentsLikes> getShortCommentsLikesByCommentsIdListAndUserId(List<Integer> ids, int userId);
+
+
 }

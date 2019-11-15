@@ -1,7 +1,9 @@
 package com.dbcourse.curriculum_design;
 
+import com.dbcourse.curriculum_design.mapper.ShortCommentsLikesMapper;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
 import com.dbcourse.curriculum_design.model.ShortComments;
+import com.dbcourse.curriculum_design.model.ShortCommentsLikes;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +37,16 @@ public class ShortCommentsTests {
 
     @Test
     void AddLikeNumTest(){
-        shortCommentsMapper.updateLikenNumWithLock(1, 1);
-        if (!shortCommentsMapper.selectByPrimaryKey(1).getNLikeNum().equals(3)){
-            throw new RuntimeException();
-        }
+        shortCommentsMapper.updateLikenNumWithLock(1, -1);
+        System.out.println(shortCommentsMapper.selectByPrimaryKey(1).getNLikeNum());
+//        if (!shortCommentsMapper.selectByPrimaryKey(1).getNLikeNum().equals(4)){
+//            throw new RuntimeException();
+//        }
     }
+
+    @Resource
+    ShortCommentsLikesMapper shortCommentsLikesMapper;
+
 
 }
 

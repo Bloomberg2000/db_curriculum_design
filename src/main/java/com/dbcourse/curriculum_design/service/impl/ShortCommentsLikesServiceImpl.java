@@ -4,6 +4,7 @@ import com.dbcourse.curriculum_design.mapper.ShortCommentsLikesMapper;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
 import com.dbcourse.curriculum_design.model.ShortCommentsLikes;
 import com.dbcourse.curriculum_design.model.ShortCommentsLikesExample;
+import com.dbcourse.curriculum_design.model.TopicsExample;
 import com.dbcourse.curriculum_design.service.ShortCommentsLikesService;
 import org.springframework.stereotype.Service;
 
@@ -35,15 +36,18 @@ public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService 
     }
 
     @Override
-    public int insert(ShortCommentsLikes record) {
+    public int like(ShortCommentsLikes record) {
         ShortCommentsLikesExample example = new ShortCommentsLikesExample();
         example.createCriteria().andNUserIdEqualTo(record.getNUserId());
         List<ShortCommentsLikes> likes = shortCommentsLikesMapper.selectByExample(example);
         if (likes.size() > 0) {
-            return 0;
+            shortCommentsMapper.updateLikenNumWithLock(record.getNShortCommentId(), -1);
+            return shortCommentsLikesMapper.deleteByExample(example);
+        }else {
+            shortCommentsMapper.updateLikenNumWithLock(record.getNShortCommentId(), 1);
+            return shortCommentsLikesMapper.insert(record);
         }
-        shortCommentsMapper.updateLikenNumWithLock(record.getNShortCommentId(), 1);
-        return shortCommentsLikesMapper.insert(record);
+
     }
 
     @Override
@@ -93,5 +97,7 @@ public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService 
         example.createCriteria().andNShortCommentIdIn(ids).andNUserIdEqualTo(userId);
         return shortCommentsLikesMapper.selectByExample(example);
     }
+
+
 
 }
