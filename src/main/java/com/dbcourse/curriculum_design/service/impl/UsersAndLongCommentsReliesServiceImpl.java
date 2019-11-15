@@ -53,35 +53,4 @@ public class UsersAndLongCommentsReliesServiceImpl implements UsersAndLongCommen
         return usersAndLongCommentsReliesMapper.batchInsert(list);
     }
 
-    /**
-     * 分页获取长评回复
-     * @param pageIndex
-     * @param pageSize
-     * @return
-     */
-    @Override
-    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int pageIndex, int pageSize) {
-
-        if (pageIndex <= 0) {
-            pageIndex = 1;
-        }
-        if (pageSize <= 0) {
-            pageSize = 10;
-        }
-        return usersAndLongCommentsReliesMapper.getLongCommentsRepliesByPage(pageIndex,pageSize);
-    }
-
-    /**
-     * 按长评ID获取长评回复
-     * @param LongCommentId
-     * @return
-     */
-    @Override
-    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByLongCommentId(Integer LongCommentId) {
-        UsersAndLongCommentsReliesExample example = new UsersAndLongCommentsReliesExample();
-        UsersAndLongCommentsReliesExample.Criteria criteria = example.createCriteria();
-        criteria.andLongcommentsidEqualTo(LongCommentId);
-        return usersAndLongCommentsReliesMapper.selectByExample(example);
-    }
-
 }

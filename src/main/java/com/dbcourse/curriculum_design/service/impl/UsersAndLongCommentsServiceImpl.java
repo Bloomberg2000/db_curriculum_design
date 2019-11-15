@@ -56,7 +56,6 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
     }
 
 
-
     @Override
     public List<UsersAndLongComments> selectByMovieId(Integer MovieId) {
         UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
@@ -65,21 +64,15 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         return usersAndLongCommentsMapper.selectByExample(example);
     }
 
-    /**
-     * lrc
-     * 按长评ID获取长评
-     * @param LongCommentId
-     * @return
-     */
     @Override
-    public UsersAndLongComments selectLongCommentsByLongCommentId(Integer LongCommentId) {
-        UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
-        UsersAndLongCommentsExample.Criteria criteria = example.createCriteria();
-        criteria.andLongcommentsidEqualTo(LongCommentId);
-        if(usersAndLongCommentsMapper.selectByExample(example).size()>0)
-            return usersAndLongCommentsMapper.selectByExample(example).get(0);
-        return null;
+    public List<UsersAndLongComments> getLongCommentsByPage(int movieId, int page, int size) {
+        if (page <= 0) {
+            page = 1;
+        }
+        if (size <= 0) {
+            size = 10;
+        }
+        return usersAndLongCommentsMapper.getLongCommentsByPage(movieId, page, size);
     }
-
-
 }
+

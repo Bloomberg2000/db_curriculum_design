@@ -27,11 +27,11 @@ public class UsersAndShortCommentsServiceTest {
 
     @Test
     void getShortCommentsbyPageTest(){
-        List<UsersAndShortComments> l = usersAndShortCommentsService.getShortCommentsByPage(1,1);
+        List<UsersAndShortComments> l = usersAndShortCommentsService.getShortCommentsByPage(1,1,1);
         if (!l.get(0).getShortcommentscontent().equals("短评2")){
             throw new RuntimeException();
         }
-        l = usersAndShortCommentsService.getShortCommentsByPage(2,1);
+        l = usersAndShortCommentsService.getShortCommentsByPage(1,2,1);
         if (!l.get(0).getShortcommentscontent().equals("短评1")){
             throw new RuntimeException();
         }

@@ -1,8 +1,6 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
 import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
-import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.ShortCommentsExample;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
@@ -82,13 +80,12 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
         ShortCommentsExample example = new ShortCommentsExample();
         example.createCriteria().andNUserIdEqualTo(userId).andNMovieIdEqualTo(movieId);
         List<ShortComments> shortComments = shortCommentsMapper.selectByExample(example);
-        if (shortComments.size() > 0){
+        if (shortComments.size() > 0) {
             return shortComments.get(0);
-        }else {
+        } else {
             return null;
         }
     }
-
 
 
     @Override
@@ -102,8 +99,19 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
         ShortCommentsExample example = new ShortCommentsExample();
         ShortCommentsExample.Criteria criteria = example.createCriteria();
         criteria.andNMovieIdEqualTo(nMovieId);
-       return  shortCommentsMapper.selectByExample(example);
+        return shortCommentsMapper.selectByExample(example);
     }
 
+    @Override
+    public int PutShortComments(ShortComments record) {
+        // 先检查有没有，有则更新，无则插入
+        ShortCommentsExample example = new ShortCommentsExample();
+        example.createCriteria().andNMovieIdEqualTo(record.getNMovieId()).andNUserIdEqualTo(record.getNUserId());
 
+        if (shortCommentsMapper.selectByExample(example).size() > 0) {
+            return shortCommentsMapper.updateByExample(record, example);
+        }
+
+        return shortCommentsMapper.insert(record);
+    }
 }

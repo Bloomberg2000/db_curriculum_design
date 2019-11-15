@@ -1,4 +1,4 @@
-package com.dbcourse.curriculum_design.controller.DiscussesController.response;
+package com.dbcourse.curriculum_design.controller.DiscussesController.bean.response;
 
 
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @Data
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class DiscussesInfoResponse {
 

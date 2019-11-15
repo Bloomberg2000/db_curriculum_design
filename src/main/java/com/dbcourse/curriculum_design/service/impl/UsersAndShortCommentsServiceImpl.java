@@ -75,14 +75,14 @@ public class UsersAndShortCommentsServiceImpl implements UsersAndShortCommentsSe
         return usersAndShortCommentsMapper.selectByExample(example);
     }
 
-    public List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize) {
+    public List<UsersAndShortComments> getShortCommentsByPage(int movieId, int pageIndex, int pageSize) {
         if (pageIndex <= 0) {
             pageIndex = 1;
         }
         if (pageSize <= 0) {
             pageSize = 10;
         }
-        return usersAndShortCommentsMapper.getShortCommentsByPage(pageIndex, pageSize);
+        return usersAndShortCommentsMapper.getShortCommentsByPage(movieId, pageIndex, pageSize);
     }
 }
 
