@@ -33,4 +33,11 @@ public interface UsersAndLongCommentsService {
      */
     List<UsersAndLongComments> selectByMovieId(Integer MovieId);
 
+    /**
+     * lrc
+     * 显示长评详细信息
+     * @param LongCommentId
+     * @return
+     */
+     UsersAndLongComments selectLongCommentsByLongCommentId(Integer LongCommentId);
 }

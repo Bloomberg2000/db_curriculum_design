@@ -30,4 +30,12 @@ public class UsersAndLongCommentsServiceTest {
         if (!list.get(0).getNickname().equals("liuzy"))
             throw new RuntimeException();
     }
+
+    @Test
+    void selectLongCommentsByLongCommentIdTest(){
+        UsersAndLongComments usersAndLongComments = usersAndLongCommentsService.selectLongCommentsByLongCommentId(1);
+        if(!usersAndLongComments.getLongcommentstitle().equals("长评题目1"))
+            throw new RuntimeException();
+
+    }
 }
