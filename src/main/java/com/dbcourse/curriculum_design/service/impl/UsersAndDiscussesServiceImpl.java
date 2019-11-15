@@ -55,5 +55,16 @@ public class UsersAndDiscussesServiceImpl implements UsersAndDiscussesService {
         return usersAndDiscussesMapper.batchInsert(list);
     }
 
+    @Override
+    public List<UsersAndDiscusses> getDiscussesByPage(int pageIndex, int pageSize) {
+        if (pageIndex <= 0) {
+            pageIndex = 1;
+        }
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+        return usersAndDiscussesMapper.getDiscussesByPage(pageIndex, pageSize);
+    }
+
 }
 
