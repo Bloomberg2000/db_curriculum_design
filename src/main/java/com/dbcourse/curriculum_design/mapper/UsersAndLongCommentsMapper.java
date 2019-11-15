@@ -37,6 +37,6 @@ public interface UsersAndLongCommentsMapper {
     @Select ("select * from UsersAndLongComments"+
     "LongCommentsCreateTime"+
     "offset (((#{page, jdbcType=INTEGER})-1)*(#{size, jdbcType=INTEGER})) rows"+
-    "fetch next 5 rows only")
+    "fetch next (#{size, jdbcType=INTEGER}) rows only")
     List<LongComments> getTopNumLongCommentsByLongCommentsId(int pageNum, int pageSize);
 }
