@@ -78,7 +78,7 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         criteria.andLongcommentsidEqualTo(LongCommentId);
         if(usersAndLongCommentsMapper.selectByExample(example).size()>0)
             return usersAndLongCommentsMapper.selectByExample(example).get(0);
-        return usersAndLongCommentsMapper.selectByExample(example).get(0);
+        return null;
     }
 
 
