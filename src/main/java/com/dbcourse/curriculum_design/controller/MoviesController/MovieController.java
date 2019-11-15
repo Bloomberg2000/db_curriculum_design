@@ -42,6 +42,8 @@ public class MovieController {
     @Resource
     private UsersAndLongCommentsService usersAndLongCommentsService;
 
+    @Resource
+    private UsersAndDiscussesService usersAndDiscussesService;
     /**
      * 返回电影的详细信息
      *
@@ -133,6 +135,11 @@ public class MovieController {
         return shortCommentsResponse;
     }
 
+    /**
+     * 获取电影长评列表
+     * @param movieId
+     * @return
+     */
     @RequestMapping(value = "/{id:\\d+}/longComment", method = RequestMethod.GET)
     public LongCommentsResponse LongCommentsByPage(@PathVariable("id") int movieId) {
         int pageNum = RequestUtils.GetPage(request);
@@ -153,6 +160,28 @@ public class MovieController {
             comment.setContent(content);
             response.addComment(comment);
         });
+
+        return response;
+    }
+
+    /**
+     * 获取电影讨论区
+     * @param movieId
+     * @return
+     */
+    @RequestMapping(value = "/{id:\\d+}/discusses", method = RequestMethod.GET)
+    public DiscussesResponse DiscussesByPage(@PathVariable("id") int movieId) {
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
+
+        DiscussesResponse response = new DiscussesResponse();
+        List<UsersAndDiscusses> longComments = usersAndDiscussesService.getDiscussesByPage(movieId, pageNum, pageSizeNum);
+        longComments.forEach(c -> response.addComment(DiscussesResponse.Discus.builder()
+                .avatar(c.getUseravatar())
+                .createTime(String.valueOf(c.getDiscussescreatetime().getTime()))
+                .title(c.getDiscussesname())
+                .username(c.getNickname())
+                .build()));
 
         return response;
     }

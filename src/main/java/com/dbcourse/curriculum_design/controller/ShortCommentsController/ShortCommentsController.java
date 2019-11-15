@@ -43,6 +43,7 @@ public class ShortCommentsController {
         return StatusResponse.ok();
     }
 
+    // TODO
     @RequestMapping(value = "/{id:\\d+}/like", method = RequestMethod.POST)
     public StatusResponse LikeShortComments(@PathVariable int id) {
         Integer user = RequestUtils.GetUser(request);
