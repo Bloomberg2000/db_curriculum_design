@@ -60,9 +60,9 @@ public class UsersAndDiscussesServiceImpl implements UsersAndDiscussesService {
         UsersAndDiscussesExample example = new UsersAndDiscussesExample();
         example.createCriteria().andDiscussesidEqualTo(discussesId);
         List<UsersAndDiscusses> usersAndDiscusses = usersAndDiscussesMapper.selectByExample(example);
-        if (usersAndDiscusses.size() > 0){
+        if (usersAndDiscusses.size() > 0) {
             return usersAndDiscusses.get(0);
-        }else {
+        } else {
             return null;
         }
     }
