@@ -21,5 +21,11 @@ public class MoviesMapperTest {
         if ( movies.size() != 5){
             throw new RuntimeException();
         }
+
+        // display the result
+        for (int i = 0; i < movies.size(); i++)
+        {
+            System.out.println(movies.get(i) );
+        }
     }
 }

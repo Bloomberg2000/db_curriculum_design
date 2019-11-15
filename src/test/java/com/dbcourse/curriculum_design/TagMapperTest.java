@@ -20,6 +20,7 @@ public class TagMapperTest {
         if ( tags.size() != 5){
             throw new RuntimeException();
         }
+        tags.forEach(System.out::println);
     }
 
 }

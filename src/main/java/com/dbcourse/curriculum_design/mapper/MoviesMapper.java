@@ -38,7 +38,7 @@ public interface MoviesMapper {
      * @param num
      * @return
      */
-    @Select("select top(#{num, jdbcType=INTEGER}) n_id, c_name, f_movie_score " +
+    @Select("select top(#{num, jdbcType=INTEGER}) * " +
             "from Movies " +
             "where d_release_date >= dateadd(month,-1,getdate())" +
             "order by d_release_date desc")
