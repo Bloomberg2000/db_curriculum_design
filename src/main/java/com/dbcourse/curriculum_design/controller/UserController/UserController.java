@@ -92,13 +92,21 @@ public class UserController {
         return StatusResponse.ok();
     }
 
+
+
     /**
      * 用户个人信息中的长评部分
+     * @param userId
+     * @param pageIndex
+     * @param pageSize
+     * @return
      */
     @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
-    public UserLongCommentsInfoResponse MyLongComments(Integer userId) {
-        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, 2, 2);
-        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies);
+    public UserLongCommentsInfoResponse MyLongComments(Integer userId, Integer pageIndex, Integer pageSize) {
+        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
+        Integer num = usersAndLongCommentsAndMoviesService.countLongComments(userId);
+
+        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);
     }
 
 
