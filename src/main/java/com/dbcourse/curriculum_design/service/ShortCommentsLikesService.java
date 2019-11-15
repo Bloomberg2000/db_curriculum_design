@@ -32,4 +32,5 @@ public interface ShortCommentsLikesService {
 
     int batchInsert(List<ShortCommentsLikes> list);
 
+    List<ShortCommentsLikes> getShortCommentsLikesByCommentsIdListAndUserId(List<Integer> ids, int userId);
 }
