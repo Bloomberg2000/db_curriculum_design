@@ -23,9 +23,6 @@ public class MoviesMapperTest {
         }
 
         // display the result
-        for (int i = 0; i < movies.size(); i++)
-        {
-            System.out.println(movies.get(i) );
-        }
+        movies.forEach(System.out::println);
     }
 }

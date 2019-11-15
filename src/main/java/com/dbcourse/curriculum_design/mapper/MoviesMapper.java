@@ -5,6 +5,7 @@ import com.dbcourse.curriculum_design.model.MoviesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -38,9 +39,10 @@ public interface MoviesMapper {
      * @param num
      * @return
      */
-    @Select("select top(#{num, jdbcType=INTEGER}) * " +
+    @Select("select top(#{num, jdbcType=INTEGER}) n_id, c_name, f_movie_score " +
             "from Movies " +
             "where d_release_date >= dateadd(month,-1,getdate())" +
             "order by d_release_date desc")
+    @ResultMap("BaseResultMap")
     List<Movies> getTopNumMovies(Integer num);
 }
