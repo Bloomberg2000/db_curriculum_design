@@ -2,7 +2,10 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.TagsExample;
+
 import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import java.util.List;
 
@@ -33,7 +36,7 @@ public interface TagsMapper {
     int batchInsert(@Param("list") List<Tags> list);
 
     @Select("select top (#{num, jdbcType=INTEGER})" +
-            " n_id, c_content " +
+            " n_id, c_content" +
             " from Tags ")
     @ResultMap("BaseResultMap")
     List<Tags> getTopNumTags(int num);

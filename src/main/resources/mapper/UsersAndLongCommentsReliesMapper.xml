@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.UsersAndLongCommentsReliesMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UsersAndLongCommentsRelies">
+    <!--@mbg.generated-->
+    <!--@Table dbo.UsersAndLongCommentsRelies-->
+    <result column="LongCommentsReplyId" jdbcType="INTEGER" property="longcommentsreplyid" />
+    <result column="UserId" jdbcType="INTEGER" property="userid" />
+    <result column="LongCommentsId" jdbcType="INTEGER" property="longcommentsid" />
+    <result column="LongCommentsReplyCreateTime" jdbcType="TIMESTAMP" property="longcommentsreplycreatetime" />
+    <result column="LongCommentsReplyEditTime" jdbcType="TIMESTAMP" property="longcommentsreplyedittime" />
+    <result column="LongCommentsReplyContent" jdbcType="VARCHAR" property="longcommentsreplycontent" />
+    <result column="LongCommentsReplyParent" jdbcType="INTEGER" property="longcommentsreplyparent" />
+    <result column="Username" jdbcType="VARCHAR" property="username" />
+    <result column="UserGender" jdbcType="INTEGER" property="usergender" />
+    <result column="UserAvatar" jdbcType="VARCHAR" property="useravatar" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    LongCommentsReplyId, UserId, LongCommentsId, LongCommentsReplyCreateTime, LongCommentsReplyEditTime, 
+    LongCommentsReplyContent, LongCommentsReplyParent, Username, UserGender, UserAvatar
+  </sql>
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsReliesExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dbo.UsersAndLongCommentsRelies
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsReliesExample">
+    <!--@mbg.generated-->
+    delete from dbo.UsersAndLongCommentsRelies
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsRelies">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndLongCommentsRelies (LongCommentsReplyId, UserId, LongCommentsId, 
+      LongCommentsReplyCreateTime, LongCommentsReplyEditTime, 
+      LongCommentsReplyContent, LongCommentsReplyParent, 
+      Username, UserGender, UserAvatar
+      )
+    values (#{longcommentsreplyid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{longcommentsid,jdbcType=INTEGER}, 
+      #{longcommentsreplycreatetime,jdbcType=TIMESTAMP}, #{longcommentsreplyedittime,jdbcType=TIMESTAMP}, 
+      #{longcommentsreplycontent,jdbcType=VARCHAR}, #{longcommentsreplyparent,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsRelies">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndLongCommentsRelies
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="longcommentsreplyid != null">
+        LongCommentsReplyId,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="longcommentsid != null">
+        LongCommentsId,
+      </if>
+      <if test="longcommentsreplycreatetime != null">
+        LongCommentsReplyCreateTime,
+      </if>
+      <if test="longcommentsreplyedittime != null">
+        LongCommentsReplyEditTime,
+      </if>
+      <if test="longcommentsreplycontent != null">
+        LongCommentsReplyContent,
+      </if>
+      <if test="longcommentsreplyparent != null">
+        LongCommentsReplyParent,
+      </if>
+      <if test="username != null">
+        Username,
+      </if>
+      <if test="usergender != null">
+        UserGender,
+      </if>
+      <if test="useravatar != null">
+        UserAvatar,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="longcommentsreplyid != null">
+        #{longcommentsreplyid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="longcommentsid != null">
+        #{longcommentsid,jdbcType=INTEGER},
+      </if>
+      <if test="longcommentsreplycreatetime != null">
+        #{longcommentsreplycreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longcommentsreplyedittime != null">
+        #{longcommentsreplyedittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longcommentsreplycontent != null">
+        #{longcommentsreplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="longcommentsreplyparent != null">
+        #{longcommentsreplyparent,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usergender != null">
+        #{usergender,jdbcType=INTEGER},
+      </if>
+      <if test="useravatar != null">
+        #{useravatar,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsReliesExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from dbo.UsersAndLongCommentsRelies
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UsersAndLongCommentsRelies
+    <set>
+      <if test="record.longcommentsreplyid != null">
+        LongCommentsReplyId = #{record.longcommentsreplyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.longcommentsid != null">
+        LongCommentsId = #{record.longcommentsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.longcommentsreplycreatetime != null">
+        LongCommentsReplyCreateTime = #{record.longcommentsreplycreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.longcommentsreplyedittime != null">
+        LongCommentsReplyEditTime = #{record.longcommentsreplyedittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.longcommentsreplycontent != null">
+        LongCommentsReplyContent = #{record.longcommentsreplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longcommentsreplyparent != null">
+        LongCommentsReplyParent = #{record.longcommentsreplyparent,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        Username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usergender != null">
+        UserGender = #{record.usergender,jdbcType=INTEGER},
+      </if>
+      <if test="record.useravatar != null">
+        UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UsersAndLongCommentsRelies
+    set LongCommentsReplyId = #{record.longcommentsreplyid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      LongCommentsId = #{record.longcommentsid,jdbcType=INTEGER},
+      LongCommentsReplyCreateTime = #{record.longcommentsreplycreatetime,jdbcType=TIMESTAMP},
+      LongCommentsReplyEditTime = #{record.longcommentsreplyedittime,jdbcType=TIMESTAMP},
+      LongCommentsReplyContent = #{record.longcommentsreplycontent,jdbcType=VARCHAR},
+      LongCommentsReplyParent = #{record.longcommentsreplyparent,jdbcType=INTEGER},
+      Username = #{record.username,jdbcType=VARCHAR},
+      UserGender = #{record.usergender,jdbcType=INTEGER},
+      UserAvatar = #{record.useravatar,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndLongCommentsRelies
+    (LongCommentsReplyId, UserId, LongCommentsId, LongCommentsReplyCreateTime, LongCommentsReplyEditTime, 
+      LongCommentsReplyContent, LongCommentsReplyParent, Username, UserGender, UserAvatar
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.longcommentsreplyid,jdbcType=INTEGER}, #{item.userid,jdbcType=INTEGER}, #{item.longcommentsid,jdbcType=INTEGER}, 
+        #{item.longcommentsreplycreatetime,jdbcType=TIMESTAMP}, #{item.longcommentsreplyedittime,jdbcType=TIMESTAMP}, 
+        #{item.longcommentsreplycontent,jdbcType=VARCHAR}, #{item.longcommentsreplyparent,jdbcType=INTEGER}, 
+        #{item.username,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, #{item.useravatar,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+</mapper>
