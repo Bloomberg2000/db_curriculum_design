@@ -24,4 +24,18 @@ public class UsersAndShortCommentsServiceTest {
         if (!list.get(1).getShortcommentscontent().equals("短评2"))
             throw new RuntimeException();
     }
+
+    @Test
+    void getShortCommentsbyPageTest(){
+        List<UsersAndShortComments> l = usersAndShortCommentsService.getShortCommentsByPage(1,1);
+        if (!l.get(0).getShortcommentscontent().equals("短评2")){
+            throw new RuntimeException();
+        }
+        l = usersAndShortCommentsService.getShortCommentsByPage(2,1);
+        if (!l.get(0).getShortcommentscontent().equals("短评1")){
+            throw new RuntimeException();
+        }
+
+        l.forEach(System.out::println);
+    }
 }
