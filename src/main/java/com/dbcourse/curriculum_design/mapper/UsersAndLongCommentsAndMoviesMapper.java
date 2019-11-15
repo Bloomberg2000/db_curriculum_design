@@ -46,18 +46,15 @@ public interface UsersAndLongCommentsAndMoviesMapper {
             "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
     @ResultMap("BaseResultMap")
-    List<UsersAndLongCommentsAndMoviesMapper> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
+    List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
 
-    
+
     /**
      * 接上面，按照用户id显示长评的总数
      */
 
     @Select("select count(*) from UsersAndLongCommentsAndMovies")
     @ResultMap("BaseResultMap")
-    Integer countLongComments(Integer userId);
-
-
-
+    int countLongComments(Integer userId);
 
 }

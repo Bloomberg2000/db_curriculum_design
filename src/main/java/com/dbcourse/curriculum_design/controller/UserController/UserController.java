@@ -97,7 +97,7 @@ public class UserController {
      */
     @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
     public UserLongCommentsInfoResponse MyLongComments(Integer userId) {
-        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId);
+        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, 2, 2);
         return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies);
     }
 
