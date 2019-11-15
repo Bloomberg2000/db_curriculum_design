@@ -53,8 +53,10 @@ public interface UsersAndLongCommentsAndMoviesMapper {
      * 接上面，按照用户id显示长评的总数
      */
 
-    @Select("select count(*) from UsersAndLongCommentsAndMovies")
-    @ResultMap("BaseResultMap")
-    int countLongComments(Integer userId);
+    @Select("SELECT COUNT(UserId) \n" +
+            "FROM UsersAndLongCommentsAndMovies\n" +
+            "WHERE UserId = #{userId, jdbcType=INTEGER}")
+//    @ResultMap("BaseResultMap")
+    Integer countLongComments(Integer userId);
 
 }

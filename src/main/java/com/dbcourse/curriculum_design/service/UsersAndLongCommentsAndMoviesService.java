@@ -36,7 +36,7 @@ public interface UsersAndLongCommentsAndMoviesService {
     /**
      * 根据用户id计算他的长评总数
      */
-    int countLongComments(Integer userId);
+    Integer countLongComments(Integer userId);
 
 }
 
