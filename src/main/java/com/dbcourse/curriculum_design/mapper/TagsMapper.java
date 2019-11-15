@@ -2,11 +2,10 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.TagsExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+
+import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import java.util.List;
 
