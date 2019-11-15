@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.DiscussesRepliesLikesMapper;
+import com.dbcourse.curriculum_design.model.DiscussesRepliesExample;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikesExample;
 import com.dbcourse.curriculum_design.service.DiscussesRepliesLikesService;
@@ -75,4 +76,10 @@ public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesSe
         return discussesRepliesLikesMapper.batchInsert(list);
     }
 
+    @Override
+    public List<DiscussesRepliesLikes> getDiscussesRepliesLikesByDIdListAndUserId(List<Integer> ids, int userId) {
+        DiscussesRepliesLikesExample example = new DiscussesRepliesLikesExample();
+        example.createCriteria().andNDiscussReplyIdIn(ids).andNUserIdEqualTo(userId);
+        return discussesRepliesLikesMapper.selectByExample(example);
+    }
 }
