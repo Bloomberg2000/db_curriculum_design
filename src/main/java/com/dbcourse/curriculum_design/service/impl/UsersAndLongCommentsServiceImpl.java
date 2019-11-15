@@ -56,7 +56,6 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
     }
 
 
-
     @Override
     public List<UsersAndLongComments> selectByMovieId(Integer MovieId) {
         UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
@@ -65,4 +64,15 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         return usersAndLongCommentsMapper.selectByExample(example);
     }
 
+    @Override
+    public List<UsersAndLongComments> getLongCommentsByPage(int movieId, int page, int size) {
+        if (page <= 0) {
+            page = 1;
+        }
+        if (size <= 0) {
+            size = 10;
+        }
+        return usersAndLongCommentsMapper.getLongCommentsByPage(movieId, page, size);
+    }
 }
+

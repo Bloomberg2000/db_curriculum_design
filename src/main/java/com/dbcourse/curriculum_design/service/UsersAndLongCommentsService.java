@@ -25,12 +25,12 @@ public interface UsersAndLongCommentsService {
     int batchInsert(List<UsersAndLongComments> list);
 
 
-
     /**
-     *
      * @param MovieId
      * @return a list of UsersAndLongComments
      */
     List<UsersAndLongComments> selectByMovieId(Integer MovieId);
 
+    List<UsersAndLongComments> getLongCommentsByPage(int movieId, int page, int size);
 }
+

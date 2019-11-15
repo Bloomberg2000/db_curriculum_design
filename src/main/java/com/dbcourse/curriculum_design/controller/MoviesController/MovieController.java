@@ -1,14 +1,9 @@
 package com.dbcourse.curriculum_design.controller.MoviesController;
 
-import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.MovieInfoResponse;
-import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.ScoreCount;
-import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.ShortCommentsResponse;
-import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.TagsInfoResponse;
-
+import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.*;
 import com.dbcourse.curriculum_design.model.*;
 import com.dbcourse.curriculum_design.service.*;
-import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.TopNumMovieInfoResponse;
-
+import com.dbcourse.curriculum_design.utils.HtmlToPlainText;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +38,9 @@ public class MovieController {
 
     @Resource
     private ShortCommentsLikesService shortCommentsLikesService;
+
+    @Resource
+    private UsersAndLongCommentsService usersAndLongCommentsService;
 
     /**
      * 返回电影的详细信息
@@ -105,15 +103,15 @@ public class MovieController {
 
     // 获取短评
     @RequestMapping(value = "/{id:\\d+}/shortComment", method = RequestMethod.GET)
-    public ShortCommentsResponse ShortCommentsByPage(@PathVariable("id") int movieId){
+    public ShortCommentsResponse ShortCommentsByPage(@PathVariable("id") int movieId) {
         int pageNum = RequestUtils.GetPage(request);
         int pageSizeNum = RequestUtils.GetPageSize(request);
 
-        List<UsersAndShortComments> usersAndShortComments = usersAndShortCommentsService.getShortCommentsByPage(pageNum, pageSizeNum);
+        List<UsersAndShortComments> usersAndShortComments = usersAndShortCommentsService.getShortCommentsByPage(movieId, pageNum, pageSizeNum);
         ShortCommentsResponse shortCommentsResponse = new ShortCommentsResponse();
 
         Integer user = (Integer) request.getSession().getAttribute("user");
-        if (user != null){
+        if (user != null) {
             List<Integer> shortCommentsIds = new ArrayList<>();
             usersAndShortComments.forEach(s -> shortCommentsIds.add(s.getShortcommentsid()));
             List<ShortCommentsLikes> likes = shortCommentsLikesService.getShortCommentsLikesByCommentsIdListAndUserId(shortCommentsIds, user);
@@ -126,16 +124,38 @@ public class MovieController {
                         break;
                     }
                 }
-               shortCommentsResponse.newShort(usersAndShortComment, like);
+                shortCommentsResponse.newShort(usersAndShortComment, like);
             }
-        }else {
+        } else {
             usersAndShortComments.forEach(s -> shortCommentsResponse.newShort(s, false));
         }
 
         return shortCommentsResponse;
     }
 
-//    @RequestMapping(value = "/{id:\\d+}/shortComment", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:\\d+}/longComment", method = RequestMethod.GET)
+    public LongCommentsResponse LongCommentsByPage(@PathVariable("id") int movieId) {
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
+
+        LongCommentsResponse response = new LongCommentsResponse();
+        List<UsersAndLongComments> longComments = usersAndLongCommentsService.getLongCommentsByPage(movieId, pageNum, pageSizeNum);
+        longComments.forEach(c -> {
+            LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
+                    .username(c.getNickname()).avatar(c.getUseravatar())
+                    .createTime(String.valueOf(c.getLongcommentscreatetime().getTime()))
+                    .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
+                    .title(c.getLongcommentstitle()).build();
+            String content = HtmlToPlainText.toPlainText(c.getLongcommentscontent());
+            if (content.length() > 100){
+                content = content.substring(0, 100);
+            }
+            comment.setContent(content);
+            response.addComment(comment);
+        });
+
+        return response;
+    }
 
 
     /**
@@ -149,7 +169,6 @@ public class MovieController {
         List<Movies> movies = moviesService.getTopNumMovies(30);
         return new TopNumMovieInfoResponse(movies);
     }
-
 
 
 }
