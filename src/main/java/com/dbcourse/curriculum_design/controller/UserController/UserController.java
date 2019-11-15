@@ -102,10 +102,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
-    public UserLongCommentsInfoResponse MyLongComments(Integer userId, Integer pageIndex, Integer pageSize) {
+    public UserLongCommentsInfoResponse getMyLongComments(Integer userId, Integer pageIndex, Integer pageSize) {
         List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
         Integer num = usersAndLongCommentsAndMoviesService.countLongComments(userId);
-
         return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);
     }
 
