@@ -1,4 +1,4 @@
-package com.dbcourse.curriculum_design.controller.DiscussesController.response;
+package com.dbcourse.curriculum_design.controller.DiscussesController.bean.response;
 
 
 import lombok.AllArgsConstructor;

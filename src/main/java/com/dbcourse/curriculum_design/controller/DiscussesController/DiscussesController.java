@@ -1,28 +1,26 @@
 package com.dbcourse.curriculum_design.controller.DiscussesController;
 
 
-import com.dbcourse.curriculum_design.controller.DiscussesController.response.DiscussesInfoResponse;
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.DiscussesRequest;
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.response.DiscussesInfoResponse;
+import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
+import com.dbcourse.curriculum_design.model.Discusses;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
 import com.dbcourse.curriculum_design.model.UsersAndDiscusses;
 import com.dbcourse.curriculum_design.model.UsersAndDiscussesReplies;
-import com.dbcourse.curriculum_design.service.DiscussesRepliesLikesService;
-import com.dbcourse.curriculum_design.service.DiscussesRepliesService;
-import com.dbcourse.curriculum_design.service.UsersAndDiscussesRepliesService;
-import com.dbcourse.curriculum_design.service.UsersAndDiscussesService;
+import com.dbcourse.curriculum_design.service.*;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/discusses", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
+@RequestMapping(value = "/api/discusses", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
 public class DiscussesController {
 
     @Resource
@@ -40,6 +38,8 @@ public class DiscussesController {
     @Resource
     DiscussesRepliesLikesService discussesRepliesLikesService;
 
+    @Resource
+    DiscussesService discussesService;
 
     // 查看讨论详细
     @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
@@ -115,6 +115,13 @@ public class DiscussesController {
         return response;
     }
 
-    // TODO 发起讨论
+    // 发起讨论
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public StatusResponse AddDiscusses(@RequestBody DiscussesRequest discussesRequest){
+        Integer user = RequestUtils.GetUser(request);
+        discussesService.insert(Discusses.builder().cName(discussesRequest.getDiscussesName())
+        .nMovieId(discussesRequest.getMovieId()).nUserId(user).dCreateTime(new Date()).build());
+        return StatusResponse.ok();
+    }
 
 }
