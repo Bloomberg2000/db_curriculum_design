@@ -25,7 +25,17 @@ public interface UsersAndLongCommentsService {
 
     int batchInsert(List<UsersAndLongComments> list);
 
-}
+
+    /**
+     * 分页显示长评论
+     * cty
+     * 2019.11.15
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize);
+
 
     /**
      *

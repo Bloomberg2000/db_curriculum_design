@@ -27,6 +27,7 @@ public interface UsersAndLongCommentsMapper {
 
     int batchInsert(@Param("list") List<UsersAndLongComments> list);
 
+
     /**
      * cty
      * 2019.11.14 17:21
@@ -39,4 +40,10 @@ public interface UsersAndLongCommentsMapper {
     "offset (((#{page, jdbcType=INTEGER})-1)*(#{size, jdbcType=INTEGER})) rows"+
     "fetch next (#{size, jdbcType=INTEGER}) rows only")
     List<LongComments> getTopNumLongCommentsByLongCommentsId(int pageNum, int pageSize);
+
+
+    @Select("select * from UsersAndLongComments order by LongCommentsId DESC " +
+            "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
+            "fetch next #{pageSize,jdbcType=INTEGER} rows only")
+    List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize);
 }

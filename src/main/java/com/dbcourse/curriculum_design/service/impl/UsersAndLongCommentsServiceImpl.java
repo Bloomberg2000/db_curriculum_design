@@ -56,7 +56,13 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         return usersAndLongCommentsMapper.batchInsert(list);
     }
 
-}
+
+    @Override
+    public List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize) {
+        return usersAndLongCommentsMapper.getLongCommentsByPage(pageIndex,pageSize);
+    }
+
+
 
     @Override
     public List<UsersAndLongComments> selectByMovieId(Integer MovieId) {

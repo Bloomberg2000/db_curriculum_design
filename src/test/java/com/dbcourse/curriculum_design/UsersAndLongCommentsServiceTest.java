@@ -3,7 +3,6 @@ package com.dbcourse.curriculum_design;
 import com.dbcourse.curriculum_design.model.UsersAndLongComments;
 import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsService;
-import com.dbcourse.curriculum_design.service.UsersAndShortCommentsService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,6 +14,7 @@ public class UsersAndLongCommentsServiceTest {
 
     @Resource
     UsersAndLongCommentsService usersAndLongCommentsService;
+    List<UsersAndLongComments> list;
 
     @Test
     void selectByMovieIdTest(){
@@ -30,4 +30,12 @@ public class UsersAndLongCommentsServiceTest {
         if (!list.get(0).getNickname().equals("liuzy"))
             throw new RuntimeException();
     }
+
+    @Test
+    List<UsersAndLongComments> getLongCommentsByPageTest(int pageIndex, int pageSize)
+    {
+        return usersAndLongCommentsService.getLongCommentsByPage(1,5);
+    }
+
+
 }
