@@ -32,6 +32,12 @@ public interface MoviesService {
 
     int batchInsert(List<Movies> list);
 
+    /**
+     *
+     * @param num
+     * @return
+     */
+    List<Movies> getTopNumMovies(Integer num);
 
 }
 

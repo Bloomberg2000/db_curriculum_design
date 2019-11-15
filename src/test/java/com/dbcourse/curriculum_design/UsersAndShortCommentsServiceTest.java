@@ -9,20 +9,19 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @SpringBootTest
-public class UsersAndShortCommentsServiceTests {
+public class UsersAndShortCommentsServiceTest {
 
     @Resource
     UsersAndShortCommentsService usersAndShortCommentsService;
 
     @Test
-    void getShortCommentsbyPageTest(){
-        List<UsersAndShortComments> l = usersAndShortCommentsService.getShortCommentsByPage(1,1);
-        if (!l.get(0).getShortcommentscontent().equals("短评2")){
+    void selectByMovieIdTest(){
+        List<UsersAndShortComments> list = usersAndShortCommentsService.selectByMovieId(1);
+        if (list.size() != 2)
             throw new RuntimeException();
-        }
-        l = usersAndShortCommentsService.getShortCommentsByPage(2,1);
-        if (!l.get(0).getShortcommentscontent().equals("短评1")){
+        if (!list.get(0).getNickname().equals("pb"))
             throw new RuntimeException();
-        }
+        if (!list.get(1).getShortcommentscontent().equals("短评2"))
+            throw new RuntimeException();
     }
 }

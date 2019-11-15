@@ -4,8 +4,7 @@ import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import com.dbcourse.curriculum_design.model.UsersAndShortCommentsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndShortCommentsMapper {
@@ -25,10 +24,8 @@ public interface UsersAndShortCommentsMapper {
 
     int batchInsert(@Param("list") List<UsersAndShortComments> list);
 
-    @Select("select * from UsersAndShortComments order by ShortCommentsId DESC "+
-            "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows "+
+    @Select("select * from UsersAndShortComments order by ShortCommentsId DESC " +
+            "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    List<UsersAndShortComments> getShortCommentsbyPage(int pageIndex,int pageSize);
-
-
+    List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize);
 }

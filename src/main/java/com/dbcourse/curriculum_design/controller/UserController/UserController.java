@@ -3,7 +3,7 @@ package com.dbcourse.curriculum_design.controller.UserController;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.CaptchaRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
-import com.dbcourse.curriculum_design.controller.UserController.bean.response.StatusResponse;
+import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
 import com.dbcourse.curriculum_design.service.UsersService;
