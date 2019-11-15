@@ -594,6 +594,66 @@ public class ShortCommentsExample {
             addCriterion("n_type not between", value1, value2, "nType");
             return (Criteria) this;
         }
+
+        public Criteria andNLikeNumIsNull() {
+            addCriterion("n_like_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumIsNotNull() {
+            addCriterion("n_like_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumEqualTo(Integer value) {
+            addCriterion("n_like_num =", value, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumNotEqualTo(Integer value) {
+            addCriterion("n_like_num <>", value, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumGreaterThan(Integer value) {
+            addCriterion("n_like_num >", value, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("n_like_num >=", value, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumLessThan(Integer value) {
+            addCriterion("n_like_num <", value, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumLessThanOrEqualTo(Integer value) {
+            addCriterion("n_like_num <=", value, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumIn(List<Integer> values) {
+            addCriterion("n_like_num in", values, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumNotIn(List<Integer> values) {
+            addCriterion("n_like_num not in", values, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumBetween(Integer value1, Integer value2) {
+            addCriterion("n_like_num between", value1, value2, "nLikeNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andNLikeNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("n_like_num not between", value1, value2, "nLikeNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

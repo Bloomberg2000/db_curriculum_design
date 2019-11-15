@@ -1,4 +1,4 @@
-package com.dbcourse.curriculum_design.controller.UserController.bean.response;
+package com.dbcourse.curriculum_design.controller.been.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

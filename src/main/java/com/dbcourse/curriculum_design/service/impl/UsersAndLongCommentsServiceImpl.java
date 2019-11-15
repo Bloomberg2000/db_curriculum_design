@@ -56,6 +56,8 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         return usersAndLongCommentsMapper.batchInsert(list);
     }
 
+}
+
     @Override
     public List<UsersAndLongComments> selectByMovieId(Integer MovieId) {
         UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
