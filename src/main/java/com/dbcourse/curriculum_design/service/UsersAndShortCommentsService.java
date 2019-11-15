@@ -25,5 +25,14 @@ public interface UsersAndShortCommentsService {
     int batchInsert(List<UsersAndShortComments> list);
 
     UsersAndShortComments getUsersAndShortCommentsByMovieIdAndUserId(int movieId, int UserId);
+
+    /**
+     *
+     * @param MovieId
+     * @return a list of short UsersAndShortComments
+     */
+    List<UsersAndShortComments> selectByMovieId(Integer MovieId);
+  
+    List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize);
 }
 

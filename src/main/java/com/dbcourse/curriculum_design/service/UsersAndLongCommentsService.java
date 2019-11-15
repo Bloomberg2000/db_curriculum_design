@@ -26,3 +26,11 @@ public interface UsersAndLongCommentsService {
 
 }
 
+    /**
+     *
+     * @param MovieId
+     * @return a list of UsersAndLongComments
+     */
+    List<UsersAndLongComments> selectByMovieId(Integer MovieId);
+
+}

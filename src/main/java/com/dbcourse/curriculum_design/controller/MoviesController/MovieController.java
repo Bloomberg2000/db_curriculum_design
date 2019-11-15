@@ -2,12 +2,16 @@ package com.dbcourse.curriculum_design.controller.MoviesController;
 
 import com.dbcourse.curriculum_design.controller.MoviesController.been.response.MovieInfoResponse;
 import com.dbcourse.curriculum_design.controller.MoviesController.been.response.ScoreCount;
+import com.dbcourse.curriculum_design.controller.MoviesController.been.response.TagsInfoResponse;
+import com.dbcourse.curriculum_design.controller.MoviesController.been.response.TopNumMovieInfoResponse;
 import com.dbcourse.curriculum_design.model.Movies;
 import com.dbcourse.curriculum_design.model.MoviesAndStaffs;
 import com.dbcourse.curriculum_design.model.ShortComments;
+import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.service.MoviesAndStaffsService;
 import com.dbcourse.curriculum_design.service.MoviesService;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
+import com.dbcourse.curriculum_design.service.TagsService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +38,9 @@ public class MovieController {
 
     @Resource
     private ShortCommentsService shortCommentsService;
+
+    @Resource
+    private TagsService tagsService;
 
     /**
      * 返回电影的详细信息
@@ -84,4 +91,27 @@ public class MovieController {
         }
         return shortComments;
     }
+
+    /**
+     * 返回前十个标签
+     */
+    @RequestMapping(value = "/tags", method = RequestMethod.GET)
+    public TagsInfoResponse MytenTags() {
+        List<Tags> tags = tagsService.getTopNumTags(10);
+        return new TagsInfoResponse(tags);
+    }
+
+    /**
+     * 返回前30个电影
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/movies", method = RequestMethod.GET)
+    public TopNumMovieInfoResponse My30Tags() {
+        List<Movies> movies = moviesService.getTopNumMovies(30);
+        return new TopNumMovieInfoResponse(movies);
+    }
+    // TODO 获取短评
+
 }

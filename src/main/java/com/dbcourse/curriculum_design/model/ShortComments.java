@@ -1,12 +1,11 @@
 package com.dbcourse.curriculum_design.model;
 
+import java.io.Serializable;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @Builder
@@ -28,6 +27,8 @@ public class ShortComments implements Serializable {
     private String cContent;
 
     private Integer nType;
+
+    private Integer nLikeNum;
 
     private static final long serialVersionUID = 1L;
 
