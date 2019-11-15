@@ -5,6 +5,7 @@ import com.dbcourse.curriculum_design.model.MoviesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MoviesMapper {
@@ -31,4 +32,7 @@ public interface MoviesMapper {
     int updateByPrimaryKey(Movies record);
 
     int batchInsert(@Param("list") List<Movies> list);
+
+    @Select("select top(#{num, jdbcType=INTEGER}) n_id, c_name, f_movie_score from Movies")
+    List<Movies> getTopNumMovies(Integer num);
 }

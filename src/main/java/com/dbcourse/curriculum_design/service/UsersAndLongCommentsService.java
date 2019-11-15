@@ -24,6 +24,8 @@ public interface UsersAndLongCommentsService {
 
     int batchInsert(List<UsersAndLongComments> list);
 
+}
+
     /**
      *
      * @param MovieId

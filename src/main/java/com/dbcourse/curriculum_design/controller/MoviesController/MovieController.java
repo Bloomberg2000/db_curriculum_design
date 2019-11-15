@@ -4,8 +4,11 @@ import com.dbcourse.curriculum_design.controller.MoviesController.been.response.
 import com.dbcourse.curriculum_design.controller.MoviesController.been.response.ScoreCount;
 import com.dbcourse.curriculum_design.controller.MoviesController.been.response.ShortCommentsResponse;
 import com.dbcourse.curriculum_design.controller.MoviesController.been.response.TagsInfoResponse;
+
 import com.dbcourse.curriculum_design.model.*;
 import com.dbcourse.curriculum_design.service.*;
+import com.dbcourse.curriculum_design.controller.MoviesController.been.response.TopNumMovieInfoResponse;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -139,5 +142,19 @@ public class MovieController {
 
         return shortCommentsResponse;
     }
+  
+    /**
+     * 返回前30个电影
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/movies", method = RequestMethod.GET)
+    public TopNumMovieInfoResponse My30Tags() {
+        List<Movies> movies = moviesService.getTopNumMovies(30);
+        return new TopNumMovieInfoResponse(movies);
+    }
+    // TODO 获取短评
+
 
 }
