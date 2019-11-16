@@ -3,6 +3,7 @@ package com.dbcourse.curriculum_design.controller.UserController;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.CaptchaRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
+import com.dbcourse.curriculum_design.controller.UserController.bean.request.UpdateUserInfoRequest;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.model.Users;
@@ -101,11 +102,25 @@ public class UserController {
         return StatusResponse.ok();
     }
 
-    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public UserInfo getUserInfo(){
         Integer user = RequestUtils.GetUser(request);
         return userInfoService.getUserInfoById(user);
     }
 
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    public StatusResponse updateUserInfo(@RequestBody UpdateUserInfoRequest updateUserInfoRequest){
+        Integer user = RequestUtils.GetUser(request);
+        UserInfo userInfo = UserInfo.builder().nUserId(user)
+                .cName(updateUserInfoRequest.getNickname())
+                .cAddress(updateUserInfoRequest.getAddress())
+                .cInfo(updateUserInfoRequest.getInfo())
+                .cAvatar(updateUserInfoRequest.getAvatar())
+                .nGender(updateUserInfoRequest.getGender())
+                .build();
+        userInfoService.updateByUserId(user, userInfo);
+        return StatusResponse.ok();
+    }
 
 }

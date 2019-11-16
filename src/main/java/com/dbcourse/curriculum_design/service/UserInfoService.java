@@ -33,5 +33,7 @@ public interface UserInfoService {
     int batchInsert(List<UserInfo> list);
 
     UserInfo getUserInfoById(int userId);
+
+    int updateByUserId(int userId, UserInfo record);
 }
 
