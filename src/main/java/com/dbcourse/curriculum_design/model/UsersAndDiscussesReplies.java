@@ -32,5 +32,11 @@ public class UsersAndDiscussesReplies implements Serializable {
 
     private String useravatar;
 
+    private Integer discussesreplieslikenum;
+
     private static final long serialVersionUID = 1L;
+
+    public static UsersAndDiscussesRepliesBuilder builder() {
+        return new UsersAndDiscussesRepliesBuilder();
+    }
 }

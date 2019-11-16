@@ -34,8 +34,9 @@ public class DiscussesInfoResponse {
         String userAvatar;
         String replyCreateTime;
         String replyContent;
-        // TODO 好像缺了一个这个回复的点赞数量
         boolean like;
+        int likeNum;
+
 
         public Reply(String userName, String userAvatar, String replyCreateTime, String replyContent) {
             this.userName = userName;

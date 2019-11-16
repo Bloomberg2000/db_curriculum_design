@@ -734,6 +734,66 @@ public class UsersAndDiscussesRepliesExample {
             addCriterion("UserAvatar not between", value1, value2, "useravatar");
             return (Criteria) this;
         }
+
+        public Criteria andDiscussesreplieslikenumIsNull() {
+            addCriterion("DiscussesRepliesLikeNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumIsNotNull() {
+            addCriterion("DiscussesRepliesLikeNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumEqualTo(Integer value) {
+            addCriterion("DiscussesRepliesLikeNum =", value, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumNotEqualTo(Integer value) {
+            addCriterion("DiscussesRepliesLikeNum <>", value, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumGreaterThan(Integer value) {
+            addCriterion("DiscussesRepliesLikeNum >", value, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("DiscussesRepliesLikeNum >=", value, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumLessThan(Integer value) {
+            addCriterion("DiscussesRepliesLikeNum <", value, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumLessThanOrEqualTo(Integer value) {
+            addCriterion("DiscussesRepliesLikeNum <=", value, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumIn(List<Integer> values) {
+            addCriterion("DiscussesRepliesLikeNum in", values, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumNotIn(List<Integer> values) {
+            addCriterion("DiscussesRepliesLikeNum not in", values, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumBetween(Integer value1, Integer value2) {
+            addCriterion("DiscussesRepliesLikeNum between", value1, value2, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscussesreplieslikenumNotBetween(Integer value1, Integer value2) {
+            addCriterion("DiscussesRepliesLikeNum not between", value1, value2, "discussesreplieslikenum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

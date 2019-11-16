@@ -8,7 +8,7 @@ import com.dbcourse.curriculum_design.model.UsersAndDiscussesRepliesExample;
 import com.dbcourse.curriculum_design.model.UsersAndDiscussesReplies;
 import com.dbcourse.curriculum_design.service.UsersAndDiscussesRepliesService;
 @Service
-public class UsersAndDiscussesRepliesServiceImpl implements UsersAndDiscussesRepliesService{
+public class UsersAndDiscussesRepliesServiceImpl implements UsersAndDiscussesRepliesService {
 
     @Resource
     private UsersAndDiscussesRepliesMapper usersAndDiscussesRepliesMapper;
@@ -39,13 +39,13 @@ public class UsersAndDiscussesRepliesServiceImpl implements UsersAndDiscussesRep
     }
 
     @Override
-    public int updateByExampleSelective(UsersAndDiscussesReplies record,UsersAndDiscussesRepliesExample example) {
-        return usersAndDiscussesRepliesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(UsersAndDiscussesReplies record, UsersAndDiscussesRepliesExample example) {
+        return usersAndDiscussesRepliesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(UsersAndDiscussesReplies record,UsersAndDiscussesRepliesExample example) {
-        return usersAndDiscussesRepliesMapper.updateByExample(record,example);
+    public int updateByExample(UsersAndDiscussesReplies record, UsersAndDiscussesRepliesExample example) {
+        return usersAndDiscussesRepliesMapper.updateByExample(record, example);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UsersAndDiscussesRepliesServiceImpl implements UsersAndDiscussesRep
         return usersAndDiscussesRepliesMapper.getRepliesByPage(id, page, size);
     }
 
-    public List<UsersAndDiscussesReplies> getRepliesByParentsIds(List<Integer> ids){
+    public List<UsersAndDiscussesReplies> getRepliesByParentsIds(List<Integer> ids) {
         UsersAndDiscussesRepliesExample example = new UsersAndDiscussesRepliesExample();
         example.createCriteria().andDiscussesidIn(ids);
         return usersAndDiscussesRepliesMapper.selectByExample(example);
