@@ -60,6 +60,7 @@ public class UserController {
     public StatusResponse SignUp(@RequestBody SignUpRequest signUpRequest) {
         // 比较用户所发送的验证码是否正确
         String email = signUpRequest.getEmail();
+        // TODO 判断该邮箱是否已经被注册了
         String captcha = captchaService.GetEmailCaptcha(email);
         if (!captcha.equals(signUpRequest.getCaptcha())) {
             return StatusResponse.err("403", "captcha error");
@@ -81,6 +82,7 @@ public class UserController {
     @RequestMapping(value = "/captcha", method = RequestMethod.POST)
     public StatusResponse getEmailCaptcha(@RequestBody CaptchaRequest captchaRequest) {
         String email = captchaRequest.getEmail();
+        // TODO 判断该邮箱是否已经被注册了
         String captcha = captchaService.StoreEmailCaptcha(email);
         MailUtil.sendCaptchaEmailToAddress(captcha, email);
         return StatusResponse.ok();

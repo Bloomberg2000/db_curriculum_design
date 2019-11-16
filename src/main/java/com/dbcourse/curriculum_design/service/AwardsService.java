@@ -20,7 +20,7 @@ public interface AwardsService {
 
     List<Awards> selectByExample(AwardsExample example);
 
-    Awards selectByPrimaryKey(Integer nId);
+    Awards selectByAwardId(Integer nId);
 
     int updateByExampleSelective(Awards record, AwardsExample example);
 

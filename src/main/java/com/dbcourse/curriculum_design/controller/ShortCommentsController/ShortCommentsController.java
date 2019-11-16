@@ -29,7 +29,7 @@ public class ShortCommentsController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public StatusResponse AddShortComments(@RequestBody AddShortCommentRequest addShortCommentRequest){
+    public StatusResponse AddShortComments(@RequestBody AddShortCommentRequest addShortCommentRequest) {
         Integer user = RequestUtils.GetUser(request);
         ShortComments shortComments = ShortComments.builder()
                 .cContent(addShortCommentRequest.getContent())
@@ -43,10 +43,13 @@ public class ShortCommentsController {
         return StatusResponse.ok();
     }
 
-    // TODO
+    // 短评点赞
     @RequestMapping(value = "/{id:\\d+}/like", method = RequestMethod.POST)
     public StatusResponse LikeShortComments(@PathVariable int id) {
         Integer user = RequestUtils.GetUser(request);
+        ShortCommentsLikes like = ShortCommentsLikes.builder()
+                .nShortCommentId(id).nUserId(user).build();
+        shortCommentsLikesService.like(like);
         return StatusResponse.ok();
     }
 

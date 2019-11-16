@@ -75,6 +75,7 @@ public class MovieController {
                 .star1((double) star1Num / starSum)
                 .comment_num(starSum).build());
 
+        // TODO 返回电影获奖情况
         return result;
     }
 
