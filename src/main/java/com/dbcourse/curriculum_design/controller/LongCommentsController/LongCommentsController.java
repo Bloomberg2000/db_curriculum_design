@@ -1,22 +1,18 @@
 package com.dbcourse.curriculum_design.controller.LongCommentsController;
 
 
+import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.response.LongCommentsInfoResponse;
-import com.dbcourse.curriculum_design.model.LongCommentsLikes;
-import com.dbcourse.curriculum_design.model.UsersAndLongComments;
-import com.dbcourse.curriculum_design.model.UsersAndLongCommentsRelies;
-import com.dbcourse.curriculum_design.service.LongCommentsLikesService;
-import com.dbcourse.curriculum_design.service.UsersAndLongCommentsReliesService;
-import com.dbcourse.curriculum_design.service.UsersAndLongCommentsService;
+import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
+import com.dbcourse.curriculum_design.model.*;
+import com.dbcourse.curriculum_design.service.*;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -35,6 +31,12 @@ public class LongCommentsController {
 
     @Resource
     private UsersAndLongCommentsReliesService usersAndLongCommentsReliesService;
+
+    @Resource
+    private ShortCommentsService shortCommentsService;
+
+    @Resource
+    private LongCommentsService longCommentsService;
 
     @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
     public LongCommentsInfoResponse GetLongCommentsInfo(@PathVariable int id) {
@@ -99,5 +101,33 @@ public class LongCommentsController {
     }
 
 
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public StatusResponse PostLongComments(@RequestBody PostLongCommentsRequest postLongCommentsRequest) {
+
+        int score;
+        Integer user = (Integer) request.getSession().getAttribute("user");
+        ShortComments shortComments = shortCommentsService.getShortCommentByUserIdAndMovieId(user, postLongCommentsRequest.getMovieId());
+        if (shortComments != null) {
+            score = shortComments.getNScore();
+        } else {
+            score = shortCommentsService.PutShortComments(
+                    ShortComments.builder()
+                            .dCreateTime(new Date())
+                            .nMovieId(postLongCommentsRequest.getMovieId())
+                            .nUserId(user)
+                            .nType(0)
+                            .nScore((short) postLongCommentsRequest.getScore()).build()
+            ).getNScore();
+        }
+        LongComments comments = LongComments.builder()
+                .cContent(postLongCommentsRequest.getContent())
+                .cTitle(postLongCommentsRequest.getTitle())
+                .nMovieId(postLongCommentsRequest.getMovieId())
+                .nScore((short) score)
+                .dCreateTime(new Date()).build();
+        longCommentsService.insert(comments);
+
+        return StatusResponse.ok();
+    }
 
 }
