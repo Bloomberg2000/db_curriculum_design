@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.controller.LongCommentsController;
 
 
+import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsReplyRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.response.LongCommentsInfoResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
@@ -37,6 +38,9 @@ public class LongCommentsController {
 
     @Resource
     private LongCommentsService longCommentsService;
+
+    @Resource
+    private LongCommentsRepliesService longCommentsRepliesService;
 
     @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
     public LongCommentsInfoResponse GetLongCommentsInfo(@PathVariable int id) {
@@ -126,6 +130,24 @@ public class LongCommentsController {
                 .nScore((short) score)
                 .dCreateTime(new Date()).build();
         longCommentsService.insert(comments);
+
+        return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.POST)
+    public StatusResponse PostLongCommentsReply(@PathVariable int id,
+                                                @RequestBody PostLongCommentsReplyRequest replyRequest) {
+
+        Integer user = (Integer) request.getSession().getAttribute("user");
+
+        LongCommentsReplies reply = LongCommentsReplies.builder()
+                .cContent(replyRequest.getContent())
+                .nParentId(replyRequest.getParentId())
+                .dCreateTime(new Date())
+                .nLongCommentId(id)
+                .nUserId(user).build();
+
+        longCommentsRepliesService.insert(reply);
 
         return StatusResponse.ok();
     }
