@@ -103,15 +103,23 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
     }
 
     @Override
-    public int PutShortComments(ShortComments record) {
+    public ShortComments PutShortComments(ShortComments record) {
         // 先检查有没有，有则更新，无则插入
         ShortCommentsExample example = new ShortCommentsExample();
         example.createCriteria().andNMovieIdEqualTo(record.getNMovieId()).andNUserIdEqualTo(record.getNUserId());
 
-        if (shortCommentsMapper.selectByExample(example).size() > 0) {
-            return shortCommentsMapper.updateByExample(record, example);
+        if (record.getNScore() > 5) {
+            record.setNScore((short) 5);
+        } else if (record.getNScore() < 1) {
+            record.setNScore((short) 1);
         }
 
-        return shortCommentsMapper.insert(record);
+        if (shortCommentsMapper.selectByExample(example).size() > 0) {
+            shortCommentsMapper.updateByExample(record, example);
+            return record;
+        }
+
+        shortCommentsMapper.insert(record);
+        return record;
     }
 }

@@ -49,6 +49,9 @@ public class DiscussesController {
 
         // 获取讨论的详细页面
         UsersAndDiscusses usersAndDiscusses = usersAndDiscussesService.getUsersAndDiscussesById(id);
+        if (usersAndDiscusses == null){
+            return response;
+        }
         // 获取讨论的回复信息
         List<UsersAndDiscussesReplies> replies = usersAndDiscussesRepliesService.getRepliesByIdAndPage(id, pageNum, pageSizeNum);
 
@@ -62,7 +65,7 @@ public class DiscussesController {
             if (r.getDiscussesrepliesparentid() != null) {
                 parentsIds.add(r.getDiscussesrepliesparentid());
             }
-            repliesIds.add(r.getDiscussesid());
+            repliesIds.add(r.getDiscussesrepliesid());
         });
 
         // 看用户是否对评论点过赞

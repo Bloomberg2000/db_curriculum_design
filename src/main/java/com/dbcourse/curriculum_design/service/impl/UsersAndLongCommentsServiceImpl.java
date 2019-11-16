@@ -57,10 +57,21 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
 
 
     @Override
+    public UsersAndLongComments getLongCommentsById(int longCommentsId) {
+        UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
+        example.createCriteria().andLongcommentsidEqualTo(longCommentsId);
+        List<UsersAndLongComments> comments = usersAndLongCommentsMapper.selectByExample(example);
+        if (comments.size() > 0){
+            return comments.get(0);
+        }else {
+            return null;
+        }
+    }
+
+    @Override
     public List<UsersAndLongComments> selectByMovieId(Integer MovieId) {
         UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
-        UsersAndLongCommentsExample.Criteria criteria = example.createCriteria();
-        criteria.andMovieidEqualTo(MovieId);
+        example.createCriteria().andMovieidEqualTo(MovieId);
         return usersAndLongCommentsMapper.selectByExample(example);
     }
 
