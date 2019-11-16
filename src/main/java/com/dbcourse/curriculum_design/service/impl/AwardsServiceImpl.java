@@ -46,7 +46,7 @@ public class AwardsServiceImpl implements AwardsService {
     }
 
     @Override
-    public Awards selectByPrimaryKey(Integer nId) {
+    public Awards selectByAwardId(Integer nId) {
         return awardsMapper.selectByPrimaryKey(nId);
     }
 

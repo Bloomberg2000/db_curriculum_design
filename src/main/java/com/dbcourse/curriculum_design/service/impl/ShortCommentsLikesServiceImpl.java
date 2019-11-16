@@ -35,12 +35,13 @@ public class ShortCommentsLikesServiceImpl implements ShortCommentsLikesService 
     }
 
     @Override
-    public int insert(ShortCommentsLikes record) {
+    public int like(ShortCommentsLikes record) {
         ShortCommentsLikesExample example = new ShortCommentsLikesExample();
-        example.createCriteria().andNUserIdEqualTo(record.getNUserId());
+        example.createCriteria().andNUserIdEqualTo(record.getNUserId()).andNShortCommentIdEqualTo(record.getNShortCommentId());
         List<ShortCommentsLikes> likes = shortCommentsLikesMapper.selectByExample(example);
         if (likes.size() > 0) {
-            return 0;
+            shortCommentsMapper.updateLikenNumWithLock(record.getNShortCommentId(), -1);
+            return shortCommentsLikesMapper.deleteByExample(example);
         }
         shortCommentsMapper.updateLikenNumWithLock(record.getNShortCommentId(), 1);
         return shortCommentsLikesMapper.insert(record);

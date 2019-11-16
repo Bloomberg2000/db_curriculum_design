@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.controller.LongCommentsController;
 
 
+import com.dbcourse.curriculum_design.controller.LongCommentsController.request.LongCommentsLikeRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsReplyRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.response.LongCommentsInfoResponse;
@@ -69,7 +70,7 @@ public class LongCommentsController {
         Integer user = (Integer) request.getSession().getAttribute("user");
         LongCommentsLikes like = null;
         if (user != null) {
-            like = longCommentsLikesService.getCommentLikeByUserId(user);
+            like = longCommentsLikesService.getCommentLikeByCommentsAndUserId(user, id);
         }
         LongCommentsInfoResponse.Reply reply;
         List<UsersAndLongCommentsRelies> ParentReplies = usersAndLongCommentsReliesService.getRepliesByParentsIds(new ArrayList<>(parentsIds));
@@ -134,7 +135,7 @@ public class LongCommentsController {
         return StatusResponse.ok();
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id:\\d+}/reply", method = RequestMethod.POST)
     public StatusResponse PostLongCommentsReply(@PathVariable int id,
                                                 @RequestBody PostLongCommentsReplyRequest replyRequest) {
 
@@ -149,6 +150,16 @@ public class LongCommentsController {
 
         longCommentsRepliesService.insert(reply);
 
+        return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/{id:\\d+}/like", method = RequestMethod.POST)
+    public StatusResponse LongCommentsLike(@PathVariable int id,
+                                           @RequestBody LongCommentsLikeRequest likeRequest) {
+        Integer user = (Integer) request.getSession().getAttribute("user");
+
+        longCommentsLikesService.likeOrUnLike(LongCommentsLikes.builder()
+                .nLongCommentId(id).nType(likeRequest.getType()).nUserId(user).build());
         return StatusResponse.ok();
     }
 

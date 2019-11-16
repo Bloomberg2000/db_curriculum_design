@@ -14,6 +14,7 @@
     <result column="Username" jdbcType="VARCHAR" property="username" />
     <result column="UserGender" jdbcType="INTEGER" property="usergender" />
     <result column="UserAvatar" jdbcType="VARCHAR" property="useravatar" />
+    <result column="DiscussesRepliesLikeNum" jdbcType="INTEGER" property="discussesreplieslikenum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -78,7 +79,8 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     DiscussesRepliesId, UserId, DiscussesId, DiscussesRepliesCreateTime, DiscussesRepliesEditTime, 
-    DiscussesRepliesContent, DiscussesRepliesParentId, Username, UserGender, UserAvatar
+    DiscussesRepliesContent, DiscussesRepliesParentId, Username, UserGender, UserAvatar, 
+    DiscussesRepliesLikeNum
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscussesRepliesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -107,13 +109,13 @@
     insert into dbo.UsersAndDiscussesReplies (DiscussesRepliesId, UserId, DiscussesId, 
       DiscussesRepliesCreateTime, DiscussesRepliesEditTime, 
       DiscussesRepliesContent, DiscussesRepliesParentId, 
-      Username, UserGender, UserAvatar
-      )
+      Username, UserGender, UserAvatar, 
+      DiscussesRepliesLikeNum)
     values (#{discussesrepliesid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{discussesid,jdbcType=INTEGER}, 
       #{discussesrepliescreatetime,jdbcType=TIMESTAMP}, #{discussesrepliesedittime,jdbcType=TIMESTAMP}, 
       #{discussesrepliescontent,jdbcType=VARCHAR}, #{discussesrepliesparentid,jdbcType=INTEGER}, 
-      #{username,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR}
-      )
+      #{username,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR}, 
+      #{discussesreplieslikenum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndDiscussesReplies">
     <!--@mbg.generated-->
@@ -149,6 +151,9 @@
       <if test="useravatar != null">
         UserAvatar,
       </if>
+      <if test="discussesreplieslikenum != null">
+        DiscussesRepliesLikeNum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="discussesrepliesid != null">
@@ -180,6 +185,9 @@
       </if>
       <if test="useravatar != null">
         #{useravatar,jdbcType=VARCHAR},
+      </if>
+      <if test="discussesreplieslikenum != null">
+        #{discussesreplieslikenum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -224,6 +232,9 @@
       <if test="record.useravatar != null">
         UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
       </if>
+      <if test="record.discussesreplieslikenum != null">
+        DiscussesRepliesLikeNum = #{record.discussesreplieslikenum,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,7 +252,8 @@
       DiscussesRepliesParentId = #{record.discussesrepliesparentid,jdbcType=INTEGER},
       Username = #{record.username,jdbcType=VARCHAR},
       UserGender = #{record.usergender,jdbcType=INTEGER},
-      UserAvatar = #{record.useravatar,jdbcType=VARCHAR}
+      UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
+      DiscussesRepliesLikeNum = #{record.discussesreplieslikenum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -250,15 +262,15 @@
     <!--@mbg.generated-->
     insert into dbo.UsersAndDiscussesReplies
     (DiscussesRepliesId, UserId, DiscussesId, DiscussesRepliesCreateTime, DiscussesRepliesEditTime, 
-      DiscussesRepliesContent, DiscussesRepliesParentId, Username, UserGender, UserAvatar
-      )
+      DiscussesRepliesContent, DiscussesRepliesParentId, Username, UserGender, UserAvatar, 
+      DiscussesRepliesLikeNum)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.discussesrepliesid,jdbcType=INTEGER}, #{item.userid,jdbcType=INTEGER}, #{item.discussesid,jdbcType=INTEGER}, 
         #{item.discussesrepliescreatetime,jdbcType=TIMESTAMP}, #{item.discussesrepliesedittime,jdbcType=TIMESTAMP}, 
         #{item.discussesrepliescontent,jdbcType=VARCHAR}, #{item.discussesrepliesparentid,jdbcType=INTEGER}, 
-        #{item.username,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, #{item.useravatar,jdbcType=VARCHAR}
-        )
+        #{item.username,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, #{item.useravatar,jdbcType=VARCHAR}, 
+        #{item.discussesreplieslikenum,jdbcType=INTEGER})
     </foreach>
   </insert>
 </mapper>

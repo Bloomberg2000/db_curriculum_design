@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.controller.DiscussesController;
 
 
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.DiscussesReplyLikeRequest;
 import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.DiscussesRequest;
 import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.ReplyRequest;
 import com.dbcourse.curriculum_design.controller.DiscussesController.bean.response.DiscussesInfoResponse;
@@ -103,7 +104,7 @@ public class DiscussesController {
             }
 
             response.newReply(new DiscussesInfoResponse.Reply(reply, r.getUsername(), r.getUseravatar(),
-                    String.valueOf(r.getDiscussesrepliescreatetime().getTime()), r.getDiscussesrepliescontent(), like));
+                    String.valueOf(r.getDiscussesrepliescreatetime().getTime()), r.getDiscussesrepliescontent(), like, r.getDiscussesreplieslikenum()));
 
         }
 
@@ -125,7 +126,7 @@ public class DiscussesController {
         return StatusResponse.ok();
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id:\\d+}/reply", method = RequestMethod.POST)
     public StatusResponse AddDiscussesReply(@PathVariable String id,
                                             @RequestBody ReplyRequest replyRequest) {
         Integer user = RequestUtils.GetUser(request);
@@ -138,5 +139,13 @@ public class DiscussesController {
         return StatusResponse.ok();
     }
 
+    @RequestMapping(value = "/reply/like", method = RequestMethod.POST)
+    public StatusResponse LikeDiscussesReply(@RequestBody DiscussesReplyLikeRequest discussesReplyLikeRequest){
+        Integer user = RequestUtils.GetUser(request);
+        DiscussesRepliesLikes like = DiscussesRepliesLikes.builder()
+                .nDiscussReplyId(discussesReplyLikeRequest.getReplyId()).nUserId(user).build();
+        discussesRepliesLikesService.like(like);
+        return StatusResponse.ok();
+    }
 
 }
