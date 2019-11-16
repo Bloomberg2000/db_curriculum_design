@@ -75,4 +75,14 @@ public class LongCommentsLikesServiceImpl implements LongCommentsLikesService {
         return longCommentsLikesMapper.batchInsert(list);
     }
 
+    @Override
+    public LongCommentsLikes getCommentLikeByUserId(int userId) {
+        LongCommentsLikesExample example = new LongCommentsLikesExample();
+        example.createCriteria().andNUserIdEqualTo(userId);
+        List<LongCommentsLikes> likes = longCommentsLikesMapper.selectByExample(example);
+        if (likes.size() > 0){
+            return likes.get(0);
+        }
+        return null;
+    }
 }
