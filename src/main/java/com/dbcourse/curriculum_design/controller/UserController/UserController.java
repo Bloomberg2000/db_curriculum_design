@@ -47,6 +47,7 @@ public class UserController {
 
         // 设置 Session
         HttpSession session = request.getSession();
+
         session.setAttribute("user", user.getNId());
 
         return StatusResponse.ok();
@@ -82,6 +83,13 @@ public class UserController {
         String email = captchaRequest.getEmail();
         String captcha = captchaService.StoreEmailCaptcha(email);
         MailUtil.sendCaptchaEmailToAddress(captcha, email);
+        return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
+    public StatusResponse loginOut(){
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
         return StatusResponse.ok();
     }
 
