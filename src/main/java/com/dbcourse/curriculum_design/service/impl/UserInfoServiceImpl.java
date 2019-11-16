@@ -75,5 +75,16 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfoMapper.batchInsert(list);
     }
 
+    @Override
+    public UserInfo getUserInfoById(int userId) {
+        UserInfoExample example = new UserInfoExample();
+        example.createCriteria().andNUserIdEqualTo(userId);
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
+        if (userInfos.size() > 0){
+            return userInfos.get(0);
+        }
+        return null;
+    }
+
 }
 

@@ -4,10 +4,13 @@ import com.dbcourse.curriculum_design.controller.UserController.bean.request.Cap
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
+import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
+import com.dbcourse.curriculum_design.service.UserInfoService;
 import com.dbcourse.curriculum_design.service.UsersService;
 import com.dbcourse.curriculum_design.utils.MailUtil;
+import com.dbcourse.curriculum_design.utils.RequestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +35,9 @@ public class UserController {
     UsersService usersService;
     @Resource
     CaptchaService captchaService;
+
+    @Resource
+    UserInfoService userInfoService;
 
     /**
      * 用户登录
@@ -93,6 +99,12 @@ public class UserController {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
         return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    public UserInfo getUserInfo(){
+        Integer user = RequestUtils.GetUser(request);
+        return userInfoService.getUserInfoById(user);
     }
 
 

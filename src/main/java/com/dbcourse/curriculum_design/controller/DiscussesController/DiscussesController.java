@@ -125,7 +125,7 @@ public class DiscussesController {
         return StatusResponse.ok();
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id:\\d+}/reply", method = RequestMethod.POST)
     public StatusResponse AddDiscussesReply(@PathVariable String id,
                                             @RequestBody ReplyRequest replyRequest) {
         Integer user = RequestUtils.GetUser(request);

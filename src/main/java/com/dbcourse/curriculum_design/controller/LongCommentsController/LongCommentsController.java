@@ -135,7 +135,7 @@ public class LongCommentsController {
         return StatusResponse.ok();
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id:\\d+}/reply", method = RequestMethod.POST)
     public StatusResponse PostLongCommentsReply(@PathVariable int id,
                                                 @RequestBody PostLongCommentsReplyRequest replyRequest) {
 

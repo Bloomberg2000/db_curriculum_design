@@ -1,6 +1,8 @@
 package com.dbcourse.curriculum_design.service.impl;
 
+import com.dbcourse.curriculum_design.mapper.UserInfoMapper;
 import com.dbcourse.curriculum_design.mapper.UsersMapper;
+import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.model.UsersExample;
 import com.dbcourse.curriculum_design.service.UsersService;
@@ -15,6 +17,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Resource
     private UsersMapper usersMapper;
+
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
     @Override
     public long countByExample(UsersExample example) {
@@ -35,7 +40,8 @@ public class UsersServiceImpl implements UsersService {
     public int insert(Users record) {
         // TODO 检测是否已有用户，如果有抛出异常
         record.setCPassword(SHA256Util.Encrypt(String.format("%s-%s", record.getCPassword(), record.getCCreateTime())));
-        return usersMapper.insert(record);
+        usersMapper.insert(record);
+        return userInfoMapper.insert(UserInfo.builder().nUserId(record.getNId()).cName(String.format("用户-%d", record.getNId())).build());
     }
 
     @Override
