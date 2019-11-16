@@ -32,6 +32,5 @@ public interface StaffsService {
 
     int batchInsert(List<Staffs> list);
 
-    Staffs getStaffById(int id);
 }
 

@@ -13,8 +13,6 @@
     <result column="LongCommentsTitle" jdbcType="VARCHAR" property="longcommentstitle" />
     <result column="LongCommentsContent" jdbcType="VARCHAR" property="longcommentscontent" />
     <result column="LongCommentsTopicId" jdbcType="INTEGER" property="longcommentstopicid" />
-    <result column="LongCommentsLikeNum" jdbcType="INTEGER" property="longcommentslikenum" />
-    <result column="LongCommentsUnLikeNum" jdbcType="INTEGER" property="longcommentsunlikenum" />
     <result column="Nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="UserGender" jdbcType="INTEGER" property="usergender" />
     <result column="UserAvatar" jdbcType="VARCHAR" property="useravatar" />
@@ -84,8 +82,8 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     LongCommentsId, MovieId, UserId, LongCommentsCreateTime, LongCommentsEditTime, LongCommentsScore, 
-    LongCommentsTitle, LongCommentsContent, LongCommentsTopicId, LongCommentsLikeNum, 
-    LongCommentsUnLikeNum, Nickname, UserGender, UserAvatar, TopicId, TopicName
+    LongCommentsTitle, LongCommentsContent, LongCommentsTopicId, Nickname, UserGender, 
+    UserAvatar, TopicId, TopicName
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -115,14 +113,12 @@
       LongCommentsCreateTime, LongCommentsEditTime, 
       LongCommentsScore, LongCommentsTitle, 
       LongCommentsContent, LongCommentsTopicId, 
-      LongCommentsLikeNum, LongCommentsUnLikeNum, 
       Nickname, UserGender, UserAvatar, 
       TopicId, TopicName)
     values (#{longcommentsid,jdbcType=INTEGER}, #{movieid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
       #{longcommentscreatetime,jdbcType=TIMESTAMP}, #{longcommentsedittime,jdbcType=TIMESTAMP}, 
       #{longcommentsscore,jdbcType=SMALLINT}, #{longcommentstitle,jdbcType=VARCHAR}, 
       #{longcommentscontent,jdbcType=VARCHAR}, #{longcommentstopicid,jdbcType=INTEGER}, 
-      #{longcommentslikenum,jdbcType=INTEGER}, #{longcommentsunlikenum,jdbcType=INTEGER}, 
       #{nickname,jdbcType=VARCHAR}, #{usergender,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR}, 
       #{topicid,jdbcType=INTEGER}, #{topicname,jdbcType=VARCHAR})
   </insert>
@@ -156,12 +152,6 @@
       </if>
       <if test="longcommentstopicid != null">
         LongCommentsTopicId,
-      </if>
-      <if test="longcommentslikenum != null">
-        LongCommentsLikeNum,
-      </if>
-      <if test="longcommentsunlikenum != null">
-        LongCommentsUnLikeNum,
       </if>
       <if test="nickname != null">
         Nickname,
@@ -206,12 +196,6 @@
       </if>
       <if test="longcommentstopicid != null">
         #{longcommentstopicid,jdbcType=INTEGER},
-      </if>
-      <if test="longcommentslikenum != null">
-        #{longcommentslikenum,jdbcType=INTEGER},
-      </if>
-      <if test="longcommentsunlikenum != null">
-        #{longcommentsunlikenum,jdbcType=INTEGER},
       </if>
       <if test="nickname != null">
         #{nickname,jdbcType=VARCHAR},
@@ -268,12 +252,6 @@
       <if test="record.longcommentstopicid != null">
         LongCommentsTopicId = #{record.longcommentstopicid,jdbcType=INTEGER},
       </if>
-      <if test="record.longcommentslikenum != null">
-        LongCommentsLikeNum = #{record.longcommentslikenum,jdbcType=INTEGER},
-      </if>
-      <if test="record.longcommentsunlikenum != null">
-        LongCommentsUnLikeNum = #{record.longcommentsunlikenum,jdbcType=INTEGER},
-      </if>
       <if test="record.nickname != null">
         Nickname = #{record.nickname,jdbcType=VARCHAR},
       </if>
@@ -306,8 +284,6 @@
       LongCommentsTitle = #{record.longcommentstitle,jdbcType=VARCHAR},
       LongCommentsContent = #{record.longcommentscontent,jdbcType=VARCHAR},
       LongCommentsTopicId = #{record.longcommentstopicid,jdbcType=INTEGER},
-      LongCommentsLikeNum = #{record.longcommentslikenum,jdbcType=INTEGER},
-      LongCommentsUnLikeNum = #{record.longcommentsunlikenum,jdbcType=INTEGER},
       Nickname = #{record.nickname,jdbcType=VARCHAR},
       UserGender = #{record.usergender,jdbcType=INTEGER},
       UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
@@ -321,15 +297,14 @@
     <!--@mbg.generated-->
     insert into dbo.UsersAndLongComments
     (LongCommentsId, MovieId, UserId, LongCommentsCreateTime, LongCommentsEditTime, LongCommentsScore, 
-      LongCommentsTitle, LongCommentsContent, LongCommentsTopicId, LongCommentsLikeNum, 
-      LongCommentsUnLikeNum, Nickname, UserGender, UserAvatar, TopicId, TopicName)
+      LongCommentsTitle, LongCommentsContent, LongCommentsTopicId, Nickname, UserGender, 
+      UserAvatar, TopicId, TopicName)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.longcommentsid,jdbcType=INTEGER}, #{item.movieid,jdbcType=INTEGER}, #{item.userid,jdbcType=INTEGER}, 
         #{item.longcommentscreatetime,jdbcType=TIMESTAMP}, #{item.longcommentsedittime,jdbcType=TIMESTAMP}, 
         #{item.longcommentsscore,jdbcType=SMALLINT}, #{item.longcommentstitle,jdbcType=VARCHAR}, 
         #{item.longcommentscontent,jdbcType=VARCHAR}, #{item.longcommentstopicid,jdbcType=INTEGER}, 
-        #{item.longcommentslikenum,jdbcType=INTEGER}, #{item.longcommentsunlikenum,jdbcType=INTEGER}, 
         #{item.nickname,jdbcType=VARCHAR}, #{item.usergender,jdbcType=INTEGER}, #{item.useravatar,jdbcType=VARCHAR}, 
         #{item.topicid,jdbcType=INTEGER}, #{item.topicname,jdbcType=VARCHAR})
     </foreach>

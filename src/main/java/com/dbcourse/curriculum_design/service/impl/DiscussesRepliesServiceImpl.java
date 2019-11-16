@@ -75,12 +75,4 @@ public class DiscussesRepliesServiceImpl implements DiscussesRepliesService {
         return discussesRepliesMapper.batchInsert(list);
     }
 
-
-    @Override
-    public long countRepliesNumById(int id) {
-        DiscussesRepliesExample example = new DiscussesRepliesExample();
-        example.createCriteria().andNDiscussIdEqualTo(id);
-        return discussesRepliesMapper.countByExample(example);
-    }
-
 }

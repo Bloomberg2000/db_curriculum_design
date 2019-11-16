@@ -32,5 +32,4 @@ public interface DiscussesRepliesMapper {
     int updateByPrimaryKey(DiscussesReplies record);
 
     int batchInsert(@Param("list") List<DiscussesReplies> list);
-
 }

@@ -53,28 +53,4 @@ public class UsersAndLongCommentsReliesServiceImpl implements UsersAndLongCommen
         return usersAndLongCommentsReliesMapper.batchInsert(list);
     }
 
-    @Override
-    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByIdAndPage(int commentsId, int page, int size) {
-        if (page <= 0) {
-            page = 1;
-        }
-        if (size <= 0) {
-            size = 10;
-        }
-        return usersAndLongCommentsReliesMapper.getLongCommentsRepliesByPage(commentsId,page,size);
-    }
-
-    @Override
-    public List<UsersAndLongCommentsRelies> getRepliesByParentsIds(List<Integer> ids) {
-        UsersAndLongCommentsReliesExample example = new UsersAndLongCommentsReliesExample();
-        example.createCriteria().andLongcommentsreplyidIn(ids);
-        return usersAndLongCommentsReliesMapper.selectByExample(example);
-    }
-
-    @Override
-    public long countRepliesNumByCommentsId(int commentsId) {
-        UsersAndLongCommentsReliesExample example = new UsersAndLongCommentsReliesExample();
-        example.createCriteria().andLongcommentsidEqualTo(commentsId);
-        return usersAndLongCommentsReliesMapper.countByExample(example);
-    }
 }

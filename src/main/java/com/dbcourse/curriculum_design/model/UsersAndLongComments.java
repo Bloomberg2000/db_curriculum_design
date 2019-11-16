@@ -30,10 +30,6 @@ public class UsersAndLongComments implements Serializable {
 
     private Integer longcommentstopicid;
 
-    private Integer longcommentslikenum;
-
-    private Integer longcommentsunlikenum;
-
     private String nickname;
 
     private Integer usergender;

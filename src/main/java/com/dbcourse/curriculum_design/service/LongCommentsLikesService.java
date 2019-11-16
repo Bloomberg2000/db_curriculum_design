@@ -32,5 +32,4 @@ public interface LongCommentsLikesService {
 
     int batchInsert(List<LongCommentsLikes> list);
 
-    LongCommentsLikes getCommentLikeByUserId(int userId);
 }

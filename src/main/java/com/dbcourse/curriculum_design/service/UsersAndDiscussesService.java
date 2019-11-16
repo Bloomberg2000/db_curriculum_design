@@ -24,9 +24,6 @@ public interface UsersAndDiscussesService {
 
     int batchInsert(List<UsersAndDiscusses> list);
 
-    UsersAndDiscusses getUsersAndDiscussesById(int discussesId);
-
-    List<UsersAndDiscusses> getDiscussesByPage(int movieId, int page, int size);
-
+    List<UsersAndDiscusses> getDiscussesByPage(int pageIndex, int pageSize);
 }
 

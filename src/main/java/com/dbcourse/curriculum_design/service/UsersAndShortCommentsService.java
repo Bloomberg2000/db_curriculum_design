@@ -33,6 +33,6 @@ public interface UsersAndShortCommentsService {
      */
     List<UsersAndShortComments> selectByMovieId(Integer MovieId);
   
-    List<UsersAndShortComments> getShortCommentsByPage(int movieId, int pageIndex, int pageSize);
+    List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize);
 }
 

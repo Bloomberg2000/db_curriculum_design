@@ -32,5 +32,4 @@ public interface DiscussesRepliesService {
 
     int batchInsert(List<DiscussesReplies> list);
 
-    long countRepliesNumById(int id);
 }

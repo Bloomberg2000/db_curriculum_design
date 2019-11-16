@@ -1,4 +1,4 @@
-package com.dbcourse.curriculum_design.controller.MoviesController.bean.response;
+package com.dbcourse.curriculum_design.controller.MoviesController.been.response;
 
 
 import lombok.AllArgsConstructor;

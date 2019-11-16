@@ -13,8 +13,6 @@
     <result column="c_title" jdbcType="VARCHAR" property="cTitle" />
     <result column="c_content" jdbcType="VARCHAR" property="cContent" />
     <result column="n_topic_id" jdbcType="INTEGER" property="nTopicId" />
-    <result column="n_like_num" jdbcType="INTEGER" property="nLikeNum" />
-    <result column="n_unlike_num" jdbcType="INTEGER" property="nUnlikeNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,7 +77,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     n_id, n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content, 
-    n_topic_id, n_like_num, n_unlike_num
+    n_topic_id
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.LongCommentsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -119,12 +117,10 @@
     <!--@mbg.generated-->
     insert into dbo.LongComments (n_user_id, n_movie_id, d_create_time, 
       d_edit_time, n_score, c_title, 
-      c_content, n_topic_id, n_like_num, 
-      n_unlike_num)
+      c_content, n_topic_id)
     values (#{nUserId,jdbcType=INTEGER}, #{nMovieId,jdbcType=INTEGER}, #{dCreateTime,jdbcType=TIMESTAMP}, 
       #{dEditTime,jdbcType=TIMESTAMP}, #{nScore,jdbcType=SMALLINT}, #{cTitle,jdbcType=VARCHAR}, 
-      #{cContent,jdbcType=VARCHAR}, #{nTopicId,jdbcType=INTEGER}, #{nLikeNum,jdbcType=INTEGER}, 
-      #{nUnlikeNum,jdbcType=INTEGER})
+      #{cContent,jdbcType=VARCHAR}, #{nTopicId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="n_id" keyProperty="nId" parameterType="com.dbcourse.curriculum_design.model.LongComments" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -154,12 +150,6 @@
       <if test="nTopicId != null">
         n_topic_id,
       </if>
-      <if test="nLikeNum != null">
-        n_like_num,
-      </if>
-      <if test="nUnlikeNum != null">
-        n_unlike_num,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="nUserId != null">
@@ -185,12 +175,6 @@
       </if>
       <if test="nTopicId != null">
         #{nTopicId,jdbcType=INTEGER},
-      </if>
-      <if test="nLikeNum != null">
-        #{nLikeNum,jdbcType=INTEGER},
-      </if>
-      <if test="nUnlikeNum != null">
-        #{nUnlikeNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -232,12 +216,6 @@
       <if test="record.nTopicId != null">
         n_topic_id = #{record.nTopicId,jdbcType=INTEGER},
       </if>
-      <if test="record.nLikeNum != null">
-        n_like_num = #{record.nLikeNum,jdbcType=INTEGER},
-      </if>
-      <if test="record.nUnlikeNum != null">
-        n_unlike_num = #{record.nUnlikeNum,jdbcType=INTEGER},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -254,9 +232,7 @@
       n_score = #{record.nScore,jdbcType=SMALLINT},
       c_title = #{record.cTitle,jdbcType=VARCHAR},
       c_content = #{record.cContent,jdbcType=VARCHAR},
-      n_topic_id = #{record.nTopicId,jdbcType=INTEGER},
-      n_like_num = #{record.nLikeNum,jdbcType=INTEGER},
-      n_unlike_num = #{record.nUnlikeNum,jdbcType=INTEGER}
+      n_topic_id = #{record.nTopicId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -289,12 +265,6 @@
       <if test="nTopicId != null">
         n_topic_id = #{nTopicId,jdbcType=INTEGER},
       </if>
-      <if test="nLikeNum != null">
-        n_like_num = #{nLikeNum,jdbcType=INTEGER},
-      </if>
-      <if test="nUnlikeNum != null">
-        n_unlike_num = #{nUnlikeNum,jdbcType=INTEGER},
-      </if>
     </set>
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
@@ -308,22 +278,19 @@
       n_score = #{nScore,jdbcType=SMALLINT},
       c_title = #{cTitle,jdbcType=VARCHAR},
       c_content = #{cContent,jdbcType=VARCHAR},
-      n_topic_id = #{nTopicId,jdbcType=INTEGER},
-      n_like_num = #{nLikeNum,jdbcType=INTEGER},
-      n_unlike_num = #{nUnlikeNum,jdbcType=INTEGER}
+      n_topic_id = #{nTopicId,jdbcType=INTEGER}
     where n_id = #{nId,jdbcType=INTEGER}
   </update>
   <insert id="batchInsert" keyColumn="n_id" keyProperty="nId" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into dbo.LongComments
     (n_user_id, n_movie_id, d_create_time, d_edit_time, n_score, c_title, c_content, 
-      n_topic_id, n_like_num, n_unlike_num)
+      n_topic_id)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.nUserId,jdbcType=INTEGER}, #{item.nMovieId,jdbcType=INTEGER}, #{item.dCreateTime,jdbcType=TIMESTAMP}, 
         #{item.dEditTime,jdbcType=TIMESTAMP}, #{item.nScore,jdbcType=SMALLINT}, #{item.cTitle,jdbcType=VARCHAR}, 
-        #{item.cContent,jdbcType=VARCHAR}, #{item.nTopicId,jdbcType=INTEGER}, #{item.nLikeNum,jdbcType=INTEGER}, 
-        #{item.nUnlikeNum,jdbcType=INTEGER})
+        #{item.cContent,jdbcType=VARCHAR}, #{item.nTopicId,jdbcType=INTEGER})
     </foreach>
   </insert>
 </mapper>

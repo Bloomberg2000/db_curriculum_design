@@ -24,10 +24,8 @@ public interface UsersAndShortCommentsMapper {
 
     int batchInsert(@Param("list") List<UsersAndShortComments> list);
 
-    @Select("select * from UsersAndShortComments " +
-            "where MoiveId = #{movieId}" +
-            "order by ShortCommentsId DESC " +
+    @Select("select * from UsersAndShortComments order by ShortCommentsId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    List<UsersAndShortComments> getShortCommentsByPage(int movieId, int pageIndex, int pageSize);
+    List<UsersAndShortComments> getShortCommentsByPage(int pageIndex, int pageSize);
 }

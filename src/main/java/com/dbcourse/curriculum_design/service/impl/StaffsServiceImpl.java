@@ -75,9 +75,5 @@ public class StaffsServiceImpl implements StaffsService {
         return staffsMapper.batchInsert(list);
     }
 
-    @Override
-    public Staffs getStaffById(int id) {
-        return staffsMapper.selectByPrimaryKey(id);
-    }
 }
 

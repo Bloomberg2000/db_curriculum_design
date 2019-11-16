@@ -1,4 +1,4 @@
-package com.dbcourse.curriculum_design.controller.MoviesController.bean.response;
+package com.dbcourse.curriculum_design.controller.MoviesController.been.response;
 
 import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import com.google.gson.annotations.SerializedName;

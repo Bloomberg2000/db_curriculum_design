@@ -22,9 +22,4 @@ public interface UsersAndLongCommentsReliesService{
 
     int batchInsert(List<UsersAndLongCommentsRelies> list);
 
-    List<UsersAndLongCommentsRelies> getLongCommentsRepliesByIdAndPage(int commentsId, int page, int size);
-
-    List<UsersAndLongCommentsRelies> getRepliesByParentsIds(List<Integer> ids);
-
-    long countRepliesNumByCommentsId(int commentsId);
 }
