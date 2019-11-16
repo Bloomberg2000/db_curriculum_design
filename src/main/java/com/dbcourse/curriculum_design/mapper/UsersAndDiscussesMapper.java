@@ -3,11 +3,8 @@ package com.dbcourse.curriculum_design.mapper;
 import com.dbcourse.curriculum_design.model.UsersAndDiscusses;
 import com.dbcourse.curriculum_design.model.UsersAndDiscussesExample;
 import java.util.List;
-
-import com.dbcourse.curriculum_design.model.UsersAndShortComments;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndDiscussesMapper {
@@ -27,8 +24,10 @@ public interface UsersAndDiscussesMapper {
 
     int batchInsert(@Param("list") List<UsersAndDiscusses> list);
 
-    @Select("select * from UsersAndDiscusses order by DiscussesId DESC " +
+    @Select("select * from UsersAndDiscusses " +
+            "where MovieId = #{movieId}" +
+            "order by DiscussesId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER} - 1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    List<UsersAndDiscusses> getDiscussesByPage(int pageIndex, int pageSize);
+    List<UsersAndDiscusses> getDiscussesByPage(int movieId, int pageIndex, int pageSize);
 }

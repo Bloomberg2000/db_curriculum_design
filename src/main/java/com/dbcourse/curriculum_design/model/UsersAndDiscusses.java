@@ -20,6 +20,8 @@ public class UsersAndDiscusses implements Serializable {
 
     private String discussesname;
 
+    private Integer movieid;
+
     private Integer userid;
 
     private String nickname;

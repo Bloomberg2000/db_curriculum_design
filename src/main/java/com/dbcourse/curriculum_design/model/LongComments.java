@@ -1,12 +1,11 @@
 package com.dbcourse.curriculum_design.model;
 
+import java.io.Serializable;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @Builder
@@ -40,5 +39,13 @@ public class LongComments implements Serializable {
 
     private Integer nTopicId;
 
+    private Integer nLikeNum;
+
+    private Integer nUnlikeNum;
+
     private static final long serialVersionUID = 1L;
+
+    public static LongCommentsBuilder builder() {
+        return new LongCommentsBuilder();
+    }
 }
