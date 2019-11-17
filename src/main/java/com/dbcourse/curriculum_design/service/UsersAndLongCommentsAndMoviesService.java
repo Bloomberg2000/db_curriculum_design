@@ -29,6 +29,12 @@ public interface UsersAndLongCommentsAndMoviesService{
      * @param userId 用户id
      * @return a list of UsersAndLongComments
      */
-    List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId);
+    List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
+
+
+    /**
+     * 根据用户id计算他的长评总数
+     */
+    int countLongComments(Integer userId);
 
 }

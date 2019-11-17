@@ -4,11 +4,14 @@ import com.dbcourse.curriculum_design.controller.UserController.bean.request.Cap
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.UpdateUserInfoRequest;
+import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserLongCommentsInfoResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.model.Users;
+import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
 import com.dbcourse.curriculum_design.service.UserInfoService;
+import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
 import com.dbcourse.curriculum_design.service.UsersService;
 import com.dbcourse.curriculum_design.utils.MailUtil;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -39,6 +43,9 @@ public class UserController {
 
     @Resource
     UserInfoService userInfoService;
+
+    @Resource
+    UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
 
     /**
      * 用户登录
@@ -128,7 +135,7 @@ public class UserController {
      */
     @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
     public UserLongCommentsInfoResponse MyLongComments(Integer userId) {
-        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId);
+        List<UsersAndLongCommentsAndMovies> usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, 2, 2);
         return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies);
     }
 
