@@ -13,4 +13,5 @@ import java.util.List;
 
 public class UserLongCommentsInfoResponse {
     List<UsersAndLongCommentsAndMovies> usersAndLongCommentsAndMoviesList;
+    Integer longCommentsNum;
 }
