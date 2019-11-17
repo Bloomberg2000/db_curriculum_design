@@ -123,4 +123,13 @@ public class UserController {
         return StatusResponse.ok();
     }
 
+    /**
+     * 用户个人信息中的长评部分
+     */
+    @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
+    public UserLongCommentsInfoResponse MyLongComments(Integer userId) {
+        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId);
+        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies);
+    }
+
 }
