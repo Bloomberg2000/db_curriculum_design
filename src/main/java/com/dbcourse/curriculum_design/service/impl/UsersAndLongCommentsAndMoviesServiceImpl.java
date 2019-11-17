@@ -53,4 +53,12 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
         return usersAndLongCommentsAndMoviesMapper.batchInsert(list);
     }
 
+    @Override
+    public List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId) {
+        UsersAndLongCommentsAndMoviesExample example = new UsersAndLongCommentsAndMoviesExample();
+        UsersAndLongCommentsAndMoviesExample.Criteria criteria = example.createCriteria();
+        criteria.andUseridEqualTo(userId);
+        return usersAndLongCommentsAndMoviesMapper.selectByExample(example);
+    }
+
 }
