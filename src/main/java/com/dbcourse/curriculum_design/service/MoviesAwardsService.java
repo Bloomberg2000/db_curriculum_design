@@ -32,4 +32,5 @@ public interface MoviesAwardsService {
 
     int batchInsert(List<MoviesAwards> list);
 
+    public List<MoviesAwards> getMoviesByAwardsId(Integer nAwardId);
 }

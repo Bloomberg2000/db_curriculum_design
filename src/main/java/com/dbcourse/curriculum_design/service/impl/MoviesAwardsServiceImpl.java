@@ -75,4 +75,17 @@ public class MoviesAwardsServiceImpl implements MoviesAwardsService {
         return moviesAwardsMapper.batchInsert(list);
     }
 
+    /**
+     * 通过AwardId找到对应的电影
+     * @param nAwardId
+     * @return
+     */
+    @Override
+    public List<MoviesAwards> getMoviesByAwardsId(Integer nAwardId) {
+        MoviesAwardsExample moviesAwardsExample = new MoviesAwardsExample();
+        MoviesAwardsExample.Criteria criteria = moviesAwardsExample.createCriteria();
+        criteria.andNAwardIdEqualTo(nAwardId);
+        return moviesAwardsMapper.selectByExample(moviesAwardsExample);
+    }
+
 }
