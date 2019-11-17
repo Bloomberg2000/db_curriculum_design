@@ -1,7 +1,6 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.UsersAndLongCommentsMapper;
-import com.dbcourse.curriculum_design.model.LongComments;
 import com.dbcourse.curriculum_design.model.UsersAndLongComments;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsExample;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsService;
@@ -57,26 +56,34 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
     }
 
 
-
     @Override
-    public List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize) {
-        return usersAndLongCommentsMapper.getLongCommentsByPage(pageIndex,pageSize);
+    public UsersAndLongComments getLongCommentsById(int longCommentsId) {
+        UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
+        example.createCriteria().andLongcommentsidEqualTo(longCommentsId);
+        List<UsersAndLongComments> comments = usersAndLongCommentsMapper.selectByExample(example);
+        if (comments.size() > 0){
+            return comments.get(0);
+        }else {
+            return null;
+        }
     }
-
-
-
 
     @Override
     public List<UsersAndLongComments> selectByMovieId(Integer MovieId) {
         UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
-        UsersAndLongCommentsExample.Criteria criteria = example.createCriteria();
-        criteria.andMovieidEqualTo(MovieId);
+        example.createCriteria().andMovieidEqualTo(MovieId);
         return usersAndLongCommentsMapper.selectByExample(example);
     }
 
     @Override
-    public List<LongComments> getTopNumLongCommentsByLongCommentsId(int pageNum, int pageSize) {
-        return usersAndLongCommentsMapper.getTopNumLongCommentsByLongCommentsId(pageNum,pageSize);
+    public List<UsersAndLongComments> getLongCommentsByPage(int movieId, int page, int size) {
+        if (page <= 0) {
+            page = 1;
+        }
+        if (size <= 0) {
+            size = 10;
+        }
+        return usersAndLongCommentsMapper.getLongCommentsByPage(movieId, page, size);
     }
-
 }
+

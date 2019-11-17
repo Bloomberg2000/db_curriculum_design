@@ -7,14 +7,7 @@
     <result column="AwardID" jdbcType="INTEGER" property="awardid" />
     <result column="MoiveId" jdbcType="INTEGER" property="moiveid" />
     <result column="MoiveName" jdbcType="VARCHAR" property="moivename" />
-    <result column="MoiveFilmLength" jdbcType="INTEGER" property="moivefilmlength" />
-    <result column="MoiveAlias" jdbcType="VARCHAR" property="moivealias" />
-    <result column="MoiveReleaseDate" jdbcType="DATE" property="moivereleasedate" />
-    <result column="MoiveDateStr" jdbcType="VARCHAR" property="moivedatestr" />
-    <result column="MoiveInfo" jdbcType="VARCHAR" property="moiveinfo" />
-    <result column="MoiveType" jdbcType="VARCHAR" property="moivetype" />
-    <result column="MoiveArea" jdbcType="VARCHAR" property="moivearea" />
-    <result column="MoiveLanguage" jdbcType="VARCHAR" property="moivelanguage" />
+    <result column="MovieScore" jdbcType="REAL" property="moviescore" />
     <result column="MoiveCover" jdbcType="VARCHAR" property="moivecover" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -79,8 +72,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    AwardID, MoiveId, MoiveName, MoiveFilmLength, MoiveAlias, MoiveReleaseDate, MoiveDateStr, 
-    MoiveInfo, MoiveType, MoiveArea, MoiveLanguage, MoiveCover
+    AwardID, MoiveId, MoiveName, MovieScore, MoiveCover
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesAndAwardsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -107,15 +99,9 @@
   <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.MoviesAndAwards">
     <!--@mbg.generated-->
     insert into dbo.MoviesAndAwards (AwardID, MoiveId, MoiveName, 
-      MoiveFilmLength, MoiveAlias, MoiveReleaseDate, 
-      MoiveDateStr, MoiveInfo, MoiveType, 
-      MoiveArea, MoiveLanguage, MoiveCover
-      )
+      MovieScore, MoiveCover)
     values (#{awardid,jdbcType=INTEGER}, #{moiveid,jdbcType=INTEGER}, #{moivename,jdbcType=VARCHAR}, 
-      #{moivefilmlength,jdbcType=INTEGER}, #{moivealias,jdbcType=VARCHAR}, #{moivereleasedate,jdbcType=DATE}, 
-      #{moivedatestr,jdbcType=VARCHAR}, #{moiveinfo,jdbcType=VARCHAR}, #{moivetype,jdbcType=VARCHAR}, 
-      #{moivearea,jdbcType=VARCHAR}, #{moivelanguage,jdbcType=VARCHAR}, #{moivecover,jdbcType=VARCHAR}
-      )
+      #{moviescore,jdbcType=REAL}, #{moivecover,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.MoviesAndAwards">
     <!--@mbg.generated-->
@@ -130,29 +116,8 @@
       <if test="moivename != null">
         MoiveName,
       </if>
-      <if test="moivefilmlength != null">
-        MoiveFilmLength,
-      </if>
-      <if test="moivealias != null">
-        MoiveAlias,
-      </if>
-      <if test="moivereleasedate != null">
-        MoiveReleaseDate,
-      </if>
-      <if test="moivedatestr != null">
-        MoiveDateStr,
-      </if>
-      <if test="moiveinfo != null">
-        MoiveInfo,
-      </if>
-      <if test="moivetype != null">
-        MoiveType,
-      </if>
-      <if test="moivearea != null">
-        MoiveArea,
-      </if>
-      <if test="moivelanguage != null">
-        MoiveLanguage,
+      <if test="moviescore != null">
+        MovieScore,
       </if>
       <if test="moivecover != null">
         MoiveCover,
@@ -168,29 +133,8 @@
       <if test="moivename != null">
         #{moivename,jdbcType=VARCHAR},
       </if>
-      <if test="moivefilmlength != null">
-        #{moivefilmlength,jdbcType=INTEGER},
-      </if>
-      <if test="moivealias != null">
-        #{moivealias,jdbcType=VARCHAR},
-      </if>
-      <if test="moivereleasedate != null">
-        #{moivereleasedate,jdbcType=DATE},
-      </if>
-      <if test="moivedatestr != null">
-        #{moivedatestr,jdbcType=VARCHAR},
-      </if>
-      <if test="moiveinfo != null">
-        #{moiveinfo,jdbcType=VARCHAR},
-      </if>
-      <if test="moivetype != null">
-        #{moivetype,jdbcType=VARCHAR},
-      </if>
-      <if test="moivearea != null">
-        #{moivearea,jdbcType=VARCHAR},
-      </if>
-      <if test="moivelanguage != null">
-        #{moivelanguage,jdbcType=VARCHAR},
+      <if test="moviescore != null">
+        #{moviescore,jdbcType=REAL},
       </if>
       <if test="moivecover != null">
         #{moivecover,jdbcType=VARCHAR},
@@ -217,29 +161,8 @@
       <if test="record.moivename != null">
         MoiveName = #{record.moivename,jdbcType=VARCHAR},
       </if>
-      <if test="record.moivefilmlength != null">
-        MoiveFilmLength = #{record.moivefilmlength,jdbcType=INTEGER},
-      </if>
-      <if test="record.moivealias != null">
-        MoiveAlias = #{record.moivealias,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moivereleasedate != null">
-        MoiveReleaseDate = #{record.moivereleasedate,jdbcType=DATE},
-      </if>
-      <if test="record.moivedatestr != null">
-        MoiveDateStr = #{record.moivedatestr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moiveinfo != null">
-        MoiveInfo = #{record.moiveinfo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moivetype != null">
-        MoiveType = #{record.moivetype,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moivearea != null">
-        MoiveArea = #{record.moivearea,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moivelanguage != null">
-        MoiveLanguage = #{record.moivelanguage,jdbcType=VARCHAR},
+      <if test="record.moviescore != null">
+        MovieScore = #{record.moviescore,jdbcType=REAL},
       </if>
       <if test="record.moivecover != null">
         MoiveCover = #{record.moivecover,jdbcType=VARCHAR},
@@ -255,14 +178,7 @@
     set AwardID = #{record.awardid,jdbcType=INTEGER},
       MoiveId = #{record.moiveid,jdbcType=INTEGER},
       MoiveName = #{record.moivename,jdbcType=VARCHAR},
-      MoiveFilmLength = #{record.moivefilmlength,jdbcType=INTEGER},
-      MoiveAlias = #{record.moivealias,jdbcType=VARCHAR},
-      MoiveReleaseDate = #{record.moivereleasedate,jdbcType=DATE},
-      MoiveDateStr = #{record.moivedatestr,jdbcType=VARCHAR},
-      MoiveInfo = #{record.moiveinfo,jdbcType=VARCHAR},
-      MoiveType = #{record.moivetype,jdbcType=VARCHAR},
-      MoiveArea = #{record.moivearea,jdbcType=VARCHAR},
-      MoiveLanguage = #{record.moivelanguage,jdbcType=VARCHAR},
+      MovieScore = #{record.moviescore,jdbcType=REAL},
       MoiveCover = #{record.moivecover,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -271,15 +187,11 @@
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into dbo.MoviesAndAwards
-    (AwardID, MoiveId, MoiveName, MoiveFilmLength, MoiveAlias, MoiveReleaseDate, MoiveDateStr, 
-      MoiveInfo, MoiveType, MoiveArea, MoiveLanguage, MoiveCover)
+    (AwardID, MoiveId, MoiveName, MovieScore, MoiveCover)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.awardid,jdbcType=INTEGER}, #{item.moiveid,jdbcType=INTEGER}, #{item.moivename,jdbcType=VARCHAR}, 
-        #{item.moivefilmlength,jdbcType=INTEGER}, #{item.moivealias,jdbcType=VARCHAR}, 
-        #{item.moivereleasedate,jdbcType=DATE}, #{item.moivedatestr,jdbcType=VARCHAR}, 
-        #{item.moiveinfo,jdbcType=VARCHAR}, #{item.moivetype,jdbcType=VARCHAR}, #{item.moivearea,jdbcType=VARCHAR}, 
-        #{item.moivelanguage,jdbcType=VARCHAR}, #{item.moivecover,jdbcType=VARCHAR})
+        #{item.moviescore,jdbcType=REAL}, #{item.moivecover,jdbcType=VARCHAR})
     </foreach>
   </insert>
 </mapper>

@@ -14,7 +14,7 @@ public interface ShortCommentsLikesService {
 
     int deleteByPrimaryKey(Integer nId);
 
-    int insert(ShortCommentsLikes record);
+    int like(ShortCommentsLikes record);
 
     int insertSelective(ShortCommentsLikes record);
 

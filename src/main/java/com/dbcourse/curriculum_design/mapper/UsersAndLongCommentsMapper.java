@@ -1,13 +1,10 @@
 package com.dbcourse.curriculum_design.mapper;
 
-import com.dbcourse.curriculum_design.model.LongComments;
-import com.dbcourse.curriculum_design.model.Tags;
 import com.dbcourse.curriculum_design.model.UsersAndLongComments;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndLongCommentsMapper {
@@ -27,23 +24,10 @@ public interface UsersAndLongCommentsMapper {
 
     int batchInsert(@Param("list") List<UsersAndLongComments> list);
 
-
-    /**
-     * cty
-     * 2019.11.14 17:21
-     * @param pageNum
-     * @param pageSize
-     * @return 每一页的所有长评论
-     */
-    @Select ("select * from UsersAndLongComments"+
-    "LongCommentsCreateTime"+
-    "offset (((#{page, jdbcType=INTEGER})-1)*(#{size, jdbcType=INTEGER})) rows"+
-    "fetch next (#{size, jdbcType=INTEGER}) rows only")
-    List<LongComments> getTopNumLongCommentsByLongCommentsId(int pageNum, int pageSize);
-
-
-    @Select("select * from UsersAndLongComments order by LongCommentsId DESC " +
+    @Select("select * from UsersAndLongComments " +
+            "where MovieId = #{movieId}" +
+            "order by LongCommentsId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
-            "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    List<UsersAndLongComments> getLongCommentsByPage(int pageIndex, int pageSize);
+            "fetch next #{pageSize,jdbcType=INTEGER} rows only ")
+    List<UsersAndLongComments> getLongCommentsByPage(int movieId, int pageIndex, int pageSize);
 }

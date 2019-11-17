@@ -3,8 +3,7 @@ package com.dbcourse.curriculum_design.service;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMoviesExample;
 import java.util.List;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
-
-public interface UsersAndLongCommentsAndMoviesService {
+public interface UsersAndLongCommentsAndMoviesService{
 
 
     long countByExample(UsersAndLongCommentsAndMoviesExample example);
@@ -17,11 +16,10 @@ public interface UsersAndLongCommentsAndMoviesService {
 
     List<UsersAndLongCommentsAndMovies> selectByExample(UsersAndLongCommentsAndMoviesExample example);
 
-    int updateByExampleSelective(UsersAndLongCommentsAndMovies record, UsersAndLongCommentsAndMoviesExample example);
+    int updateByExampleSelective(UsersAndLongCommentsAndMovies record,UsersAndLongCommentsAndMoviesExample example);
 
-    int updateByExample(UsersAndLongCommentsAndMovies record, UsersAndLongCommentsAndMoviesExample example);
+    int updateByExample(UsersAndLongCommentsAndMovies record,UsersAndLongCommentsAndMoviesExample example);
 
     int batchInsert(List<UsersAndLongCommentsAndMovies> list);
 
 }
-

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.UsersAndShortCommentsAndMoviesMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies">
+    <!--@mbg.generated-->
+    <!--@Table dbo.UsersAndShortCommentsAndMovies-->
+    <result column="UserId" jdbcType="INTEGER" property="userid" />
+    <result column="ShortCommentsId" jdbcType="INTEGER" property="shortcommentsid" />
+    <result column="MovieId" jdbcType="INTEGER" property="movieid" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="CreateTimeDate" jdbcType="TIMESTAMP" property="createtimedate" />
+    <result column="EditTimeDate" jdbcType="TIMESTAMP" property="edittimedate" />
+    <result column="Score" jdbcType="SMALLINT" property="score" />
+    <result column="ShortCommentsContent" jdbcType="VARCHAR" property="shortcommentscontent" />
+    <result column="MovieCover" jdbcType="VARCHAR" property="moviecover" />
+    <result column="MovieName" jdbcType="VARCHAR" property="moviename" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    UserId, ShortCommentsId, MovieId, UserName, CreateTimeDate, EditTimeDate, Score, 
+    ShortCommentsContent, MovieCover, MovieName
+  </sql>
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMoviesExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dbo.UsersAndShortCommentsAndMovies
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMoviesExample">
+    <!--@mbg.generated-->
+    delete from dbo.UsersAndShortCommentsAndMovies
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndShortCommentsAndMovies (UserId, ShortCommentsId, MovieId, 
+      UserName, CreateTimeDate, EditTimeDate, 
+      Score, ShortCommentsContent, MovieCover, 
+      MovieName)
+    values (#{userid,jdbcType=INTEGER}, #{shortcommentsid,jdbcType=INTEGER}, #{movieid,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{createtimedate,jdbcType=TIMESTAMP}, #{edittimedate,jdbcType=TIMESTAMP}, 
+      #{score,jdbcType=SMALLINT}, #{shortcommentscontent,jdbcType=VARCHAR}, #{moviecover,jdbcType=VARCHAR}, 
+      #{moviename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndShortCommentsAndMovies
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="shortcommentsid != null">
+        ShortCommentsId,
+      </if>
+      <if test="movieid != null">
+        MovieId,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="createtimedate != null">
+        CreateTimeDate,
+      </if>
+      <if test="edittimedate != null">
+        EditTimeDate,
+      </if>
+      <if test="score != null">
+        Score,
+      </if>
+      <if test="shortcommentscontent != null">
+        ShortCommentsContent,
+      </if>
+      <if test="moviecover != null">
+        MovieCover,
+      </if>
+      <if test="moviename != null">
+        MovieName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="shortcommentsid != null">
+        #{shortcommentsid,jdbcType=INTEGER},
+      </if>
+      <if test="movieid != null">
+        #{movieid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimedate != null">
+        #{createtimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittimedate != null">
+        #{edittimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=SMALLINT},
+      </if>
+      <if test="shortcommentscontent != null">
+        #{shortcommentscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="moviecover != null">
+        #{moviecover,jdbcType=VARCHAR},
+      </if>
+      <if test="moviename != null">
+        #{moviename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMoviesExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from dbo.UsersAndShortCommentsAndMovies
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UsersAndShortCommentsAndMovies
+    <set>
+      <if test="record.userid != null">
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shortcommentsid != null">
+        ShortCommentsId = #{record.shortcommentsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.movieid != null">
+        MovieId = #{record.movieid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtimedate != null">
+        CreateTimeDate = #{record.createtimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.edittimedate != null">
+        EditTimeDate = #{record.edittimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.score != null">
+        Score = #{record.score,jdbcType=SMALLINT},
+      </if>
+      <if test="record.shortcommentscontent != null">
+        ShortCommentsContent = #{record.shortcommentscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moviecover != null">
+        MovieCover = #{record.moviecover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moviename != null">
+        MovieName = #{record.moviename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.UsersAndShortCommentsAndMovies
+    set UserId = #{record.userid,jdbcType=INTEGER},
+      ShortCommentsId = #{record.shortcommentsid,jdbcType=INTEGER},
+      MovieId = #{record.movieid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=VARCHAR},
+      CreateTimeDate = #{record.createtimedate,jdbcType=TIMESTAMP},
+      EditTimeDate = #{record.edittimedate,jdbcType=TIMESTAMP},
+      Score = #{record.score,jdbcType=SMALLINT},
+      ShortCommentsContent = #{record.shortcommentscontent,jdbcType=VARCHAR},
+      MovieCover = #{record.moviecover,jdbcType=VARCHAR},
+      MovieName = #{record.moviename,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into dbo.UsersAndShortCommentsAndMovies
+    (UserId, ShortCommentsId, MovieId, UserName, CreateTimeDate, EditTimeDate, Score, 
+      ShortCommentsContent, MovieCover, MovieName)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userid,jdbcType=INTEGER}, #{item.shortcommentsid,jdbcType=INTEGER}, #{item.movieid,jdbcType=INTEGER}, 
+        #{item.username,jdbcType=VARCHAR}, #{item.createtimedate,jdbcType=TIMESTAMP}, #{item.edittimedate,jdbcType=TIMESTAMP}, 
+        #{item.score,jdbcType=SMALLINT}, #{item.shortcommentscontent,jdbcType=VARCHAR}, 
+        #{item.moviecover,jdbcType=VARCHAR}, #{item.moviename,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

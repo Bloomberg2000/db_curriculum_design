@@ -35,8 +35,4 @@ public class UsersAndLongCommentsAndMovies implements Serializable {
     private String moviename;
 
     private static final long serialVersionUID = 1L;
-
-    public static UsersAndLongCommentsAndMoviesBuilder builder() {
-        return new UsersAndLongCommentsAndMoviesBuilder();
-    }
 }

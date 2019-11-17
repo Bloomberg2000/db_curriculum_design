@@ -2,7 +2,8 @@ package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.LongCommentsLikesMapper;
 import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
-import com.dbcourse.curriculum_design.model.*;
+import com.dbcourse.curriculum_design.model.LongCommentsLikes;
+import com.dbcourse.curriculum_design.model.LongCommentsLikesExample;
 import com.dbcourse.curriculum_design.service.LongCommentsLikesService;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class LongCommentsLikesServiceImpl implements LongCommentsLikesService {
 
     @Resource
     private LongCommentsLikesMapper longCommentsLikesMapper;
+
+    @Resource
+    private LongCommentsMapper longCommentsMapper;
 
     @Override
     public long countByExample(LongCommentsLikesExample example) {
@@ -75,5 +79,37 @@ public class LongCommentsLikesServiceImpl implements LongCommentsLikesService {
         return longCommentsLikesMapper.batchInsert(list);
     }
 
+    @Override
+    public LongCommentsLikes getCommentLikeByCommentsAndUserId(int userId, int commentsId) {
+        LongCommentsLikesExample example = new LongCommentsLikesExample();
+        example.createCriteria().andNUserIdEqualTo(userId).andNLongCommentIdEqualTo(commentsId);
+        List<LongCommentsLikes> likes = longCommentsLikesMapper.selectByExample(example);
+        if (likes.size() > 0){
+            return likes.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public void likeOrUnLike(LongCommentsLikes record) {
+        LongCommentsLikesExample example = new LongCommentsLikesExample();
+        example.createCriteria().andNUserIdEqualTo(record.getNUserId()).andNLongCommentIdEqualTo(record.getNLongCommentId());
+        List<LongCommentsLikes> likes = longCommentsLikesMapper.selectByExample(example);
+        if (likes.size() > 0 ) {
+            if (likes.get(0).getNType().equals(record.getNType())){
+                if (record.getNType() == 0) longCommentsMapper.updateLikenNumWithLock(record.getNLongCommentId(), -1);
+                else longCommentsMapper.updateUnLikenNumWithLock(record.getNLongCommentId(), -1);
+                longCommentsLikesMapper.deleteByExample(example);
+                return;
+            }else {
+                if (record.getNType() == 0) longCommentsMapper.updateUnLikenNumWithLock(record.getNLongCommentId(), -1);
+                else longCommentsMapper.updateLikenNumWithLock(record.getNLongCommentId(), -1);
+                longCommentsLikesMapper.deleteByExample(example);
+            }
+        }
+        if (record.getNType() == 0) longCommentsMapper.updateLikenNumWithLock(record.getNLongCommentId(), 1);
+        else longCommentsMapper.updateUnLikenNumWithLock(record.getNLongCommentId(), 1);
+        longCommentsLikesMapper.insert(record);
+    }
 
 }

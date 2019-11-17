@@ -7,9 +7,8 @@ import java.util.List;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.mapper.UsersAndLongCommentsAndMoviesMapper;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
-
 @Service
-public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCommentsAndMoviesService {
+public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCommentsAndMoviesService{
 
     @Resource
     private UsersAndLongCommentsAndMoviesMapper usersAndLongCommentsAndMoviesMapper;
@@ -40,13 +39,13 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
     }
 
     @Override
-    public int updateByExampleSelective(UsersAndLongCommentsAndMovies record, UsersAndLongCommentsAndMoviesExample example) {
-        return usersAndLongCommentsAndMoviesMapper.updateByExampleSelective(record, example);
+    public int updateByExampleSelective(UsersAndLongCommentsAndMovies record,UsersAndLongCommentsAndMoviesExample example) {
+        return usersAndLongCommentsAndMoviesMapper.updateByExampleSelective(record,example);
     }
 
     @Override
-    public int updateByExample(UsersAndLongCommentsAndMovies record, UsersAndLongCommentsAndMoviesExample example) {
-        return usersAndLongCommentsAndMoviesMapper.updateByExample(record, example);
+    public int updateByExample(UsersAndLongCommentsAndMovies record,UsersAndLongCommentsAndMoviesExample example) {
+        return usersAndLongCommentsAndMoviesMapper.updateByExample(record,example);
     }
 
     @Override
@@ -55,4 +54,3 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
     }
 
 }
-

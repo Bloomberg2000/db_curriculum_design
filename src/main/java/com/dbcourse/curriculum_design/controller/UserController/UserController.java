@@ -3,11 +3,15 @@ package com.dbcourse.curriculum_design.controller.UserController;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.CaptchaRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
+import com.dbcourse.curriculum_design.controller.UserController.bean.request.UpdateUserInfoRequest;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
+import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
+import com.dbcourse.curriculum_design.service.UserInfoService;
 import com.dbcourse.curriculum_design.service.UsersService;
 import com.dbcourse.curriculum_design.utils.MailUtil;
+import com.dbcourse.curriculum_design.utils.RequestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +37,9 @@ public class UserController {
     @Resource
     CaptchaService captchaService;
 
+    @Resource
+    UserInfoService userInfoService;
+
     /**
      * 用户登录
      */
@@ -47,6 +54,7 @@ public class UserController {
 
         // 设置 Session
         HttpSession session = request.getSession();
+
         session.setAttribute("user", user.getNId());
 
         return StatusResponse.ok();
@@ -59,6 +67,7 @@ public class UserController {
     public StatusResponse SignUp(@RequestBody SignUpRequest signUpRequest) {
         // 比较用户所发送的验证码是否正确
         String email = signUpRequest.getEmail();
+        // TODO 判断该邮箱是否已经被注册了
         String captcha = captchaService.GetEmailCaptcha(email);
         if (!captcha.equals(signUpRequest.getCaptcha())) {
             return StatusResponse.err("403", "captcha error");
@@ -80,10 +89,38 @@ public class UserController {
     @RequestMapping(value = "/captcha", method = RequestMethod.POST)
     public StatusResponse getEmailCaptcha(@RequestBody CaptchaRequest captchaRequest) {
         String email = captchaRequest.getEmail();
+        // TODO 判断该邮箱是否已经被注册了
         String captcha = captchaService.StoreEmailCaptcha(email);
         MailUtil.sendCaptchaEmailToAddress(captcha, email);
         return StatusResponse.ok();
     }
 
+    @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
+    public StatusResponse loginOut(){
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    public UserInfo getUserInfo(){
+        Integer user = RequestUtils.GetUser(request);
+        return userInfoService.getUserInfoById(user);
+    }
+
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    public StatusResponse updateUserInfo(@RequestBody UpdateUserInfoRequest updateUserInfoRequest){
+        Integer user = RequestUtils.GetUser(request);
+        UserInfo userInfo = UserInfo.builder().nUserId(user)
+                .cName(updateUserInfoRequest.getNickname())
+                .cAddress(updateUserInfoRequest.getAddress())
+                .cInfo(updateUserInfoRequest.getInfo())
+                .cAvatar(updateUserInfoRequest.getAvatar())
+                .nGender(updateUserInfoRequest.getGender())
+                .build();
+        userInfoService.updateByUserId(user, userInfo);
+        return StatusResponse.ok();
+    }
 
 }
