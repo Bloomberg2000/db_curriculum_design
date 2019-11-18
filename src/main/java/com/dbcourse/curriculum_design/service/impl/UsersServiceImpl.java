@@ -113,4 +113,14 @@ public class UsersServiceImpl implements UsersService {
         }
         return null;
     }
+
+    @Override
+    public void updatePasswordByUserId(int userId, String password) {
+        UsersExample example = new UsersExample();
+        example.createCriteria().andNIdEqualTo(userId);
+        Users users = usersMapper.selectByPrimaryKey(userId);
+        usersMapper.updateByPrimaryKeySelective(Users.builder().nId(userId).cPassword(
+                SHA256Util.Encrypt(String.format("%s-%s", password, users.getCCreateTime()))
+        ).build());
+    }
 }

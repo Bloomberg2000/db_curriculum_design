@@ -90,7 +90,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public int updateByUserId(int userId, UserInfo record) {
         UserInfoExample example = new UserInfoExample();
         example.createCriteria().andNUserIdEqualTo(userId);
-        return userInfoMapper.updateByExample(record, example);
+        return userInfoMapper.updateByExampleSelective(record, example);
     }
 }
 

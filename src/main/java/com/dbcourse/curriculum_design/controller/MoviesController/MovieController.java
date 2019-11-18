@@ -154,6 +154,7 @@ public class MovieController {
                     .createTime(String.valueOf(c.getLongcommentscreatetime().getTime()))
                     .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
                     .title(c.getLongcommentstitle()).build();
+            // TODO 应该从数据库拿一部分不应拿全
             String content = HtmlToPlainText.toPlainText(c.getLongcommentscontent());
             if (content.length() > 100){
                 content = content.substring(0, 100);

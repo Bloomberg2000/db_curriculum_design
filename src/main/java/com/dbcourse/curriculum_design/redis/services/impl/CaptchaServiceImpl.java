@@ -16,14 +16,32 @@ public class CaptchaServiceImpl implements CaptchaService {
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public String StoreEmailCaptcha(String email) {
-        String captcha = CaptchaGenerator.generate();
-        stringRedisTemplate.opsForValue().set(String.format("c@%s", email), captcha, 1, TimeUnit.HOURS);
-        return captcha;
+    public String StoreSignUpEmailCaptcha(String email) {
+        return storeCaptcha(String.format("c@%s", email));
     }
 
     @Override
-    public String GetEmailCaptcha(String email) {
-        return stringRedisTemplate.opsForValue().get(String.format("c@%s", email));
+    public String GetSignUpEmailCaptcha(String email) {
+        return getCaptcha(String.format("c@%s", email));
+    }
+
+    @Override
+    public String StorePasswordEmailCaptcha(String email) {
+        return storeCaptcha(String.format("p@%s", email));
+    }
+
+    @Override
+    public String GetPasswordEmailCaptcha(String email) {
+        return getCaptcha(String.format("p@%s", email));
+    }
+
+    private String storeCaptcha(String key){
+        String captcha = CaptchaGenerator.generate();
+        stringRedisTemplate.opsForValue().set(key, captcha, 1, TimeUnit.HOURS);
+        return captcha;
+    }
+
+    private String getCaptcha(String key){
+        return stringRedisTemplate.opsForValue().get(key);
     }
 }

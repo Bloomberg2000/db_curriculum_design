@@ -1,9 +1,6 @@
 package com.dbcourse.curriculum_design.controller.UserController;
 
-import com.dbcourse.curriculum_design.controller.UserController.bean.request.CaptchaRequest;
-import com.dbcourse.curriculum_design.controller.UserController.bean.request.LoginRequest;
-import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
-import com.dbcourse.curriculum_design.controller.UserController.bean.request.UpdateUserInfoRequest;
+import com.dbcourse.curriculum_design.controller.UserController.bean.request.*;
 import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserLongCommentsInfoResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.UserInfo;
@@ -74,15 +71,19 @@ public class UserController {
     public StatusResponse SignUp(@RequestBody SignUpRequest signUpRequest) {
         // 比较用户所发送的验证码是否正确
         String email = signUpRequest.getEmail();
-        // TODO 判断该邮箱是否已经被注册了
-        String captcha = captchaService.GetEmailCaptcha(email);
-        if (!captcha.equals(signUpRequest.getCaptcha())) {
+        // 判断该邮箱是否已经被注册了
+        Users user = usersService.selectUserByEmailOrPhone(email);
+        if (user != null) {
+            return StatusResponse.err("401", "user is exist");
+        }
+        String captcha = captchaService.GetSignUpEmailCaptcha(email);
+        if (captcha == null || !captcha.equals(signUpRequest.getCaptcha())) {
             return StatusResponse.err("403", "captcha error");
         }
         String createTime = String.valueOf(new Date().getTime());
 
         // 将注册的用户插入数据库中
-        Users user = Users.builder().cUsername(signUpRequest.getUsername())
+        user = Users.builder().cUsername(signUpRequest.getUsername())
                 .cEmail(email).cCreateTime(createTime)
                 .cPassword(signUpRequest.getPassword()).build();
 
@@ -93,31 +94,35 @@ public class UserController {
     /**
      * 发送邮箱验证码
      */
-    @RequestMapping(value = "/captcha", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup/captcha", method = RequestMethod.POST)
     public StatusResponse getEmailCaptcha(@RequestBody CaptchaRequest captchaRequest) {
         String email = captchaRequest.getEmail();
-        // TODO 判断该邮箱是否已经被注册了
-        String captcha = captchaService.StoreEmailCaptcha(email);
+        Users user = usersService.selectUserByEmailOrPhone(email);
+        // 判断该邮箱是否已经被注册了
+        if (user != null) {
+            return StatusResponse.err("401", "user is exist");
+        }
+        String captcha = captchaService.StoreSignUpEmailCaptcha(email);
         MailUtil.sendCaptchaEmailToAddress(captcha, email);
         return StatusResponse.ok();
     }
 
     @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
-    public StatusResponse loginOut(){
+    public StatusResponse loginOut() {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
         return StatusResponse.ok();
     }
 
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-    public UserInfo getUserInfo(){
+    public UserInfo getUserInfo() {
         Integer user = RequestUtils.GetUser(request);
         return userInfoService.getUserInfoById(user);
     }
 
 
     @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
-    public StatusResponse updateUserInfo(@RequestBody UpdateUserInfoRequest updateUserInfoRequest){
+    public StatusResponse updateUserInfo(@RequestBody UpdateUserInfoRequest updateUserInfoRequest) {
         Integer user = RequestUtils.GetUser(request);
         UserInfo userInfo = UserInfo.builder().nUserId(user)
                 .cName(updateUserInfoRequest.getNickname())
@@ -130,18 +135,54 @@ public class UserController {
         return StatusResponse.ok();
     }
 
+    // 忘记密码的验证码
+    @RequestMapping(value = "/password/captcha", method = RequestMethod.POST)
+    public StatusResponse getEmailCaptchaToFindPassword(@RequestBody CaptchaRequest captchaRequest) {
+        String email = captchaRequest.getEmail();
+        // 判断该邮箱是否已经被注册了
+        Users user = usersService.selectUserByEmailOrPhone(email);
+        if (user == null) {
+            return StatusResponse.err("401", "user is not exist");
+        }
+        String captcha = captchaService.StorePasswordEmailCaptcha(email);
+        // TODO 修改发送验证码的正文信息
+        MailUtil.sendCaptchaEmailToAddress(captcha, email);
+        return StatusResponse.ok();
+    }
+
+    // 更改密码
+    @RequestMapping(value = "/password/change", method = RequestMethod.POST)
+    public StatusResponse changePasswordByEmail(@RequestBody ChangePasswordRequest changePasswordRequest) {
+        Integer user = RequestUtils.GetUser(request);
+        // TODO 通过正则表达式验证是否为邮箱
+        String captcha = captchaService.GetPasswordEmailCaptcha(changePasswordRequest.getEmail());
+        if (captcha == null || captcha.equals(changePasswordRequest.getCaptcha())) {
+            return StatusResponse.err("403", "captcha error");
+        }
+        usersService.updatePasswordByUserId(user, changePasswordRequest.getPassword());
+        return StatusResponse.ok();
+    }
+
+
     /**
      * 用户个人信息中的长评部分
-     * @param userId
-     * @param pageIndex
-     * @param pageSize
+     *
      * @return
      */
     @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
-    public UserLongCommentsInfoResponse getMyLongComments(Integer userId, Integer pageIndex, Integer pageSize) {
-        List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
+    public UserLongCommentsInfoResponse getMyLongComments() {
+        Integer userId = RequestUtils.GetUser(request);
+        int pageIndex = RequestUtils.GetPage(request);
+        int pageSize = RequestUtils.GetPageSize(request);
+        List<UsersAndLongCommentsAndMovies> usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
         Integer num = usersAndLongCommentsAndMoviesService.countLongComments(userId);
+        // TODO 返回正文摘要
+        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);
+    }
 
-        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);    }
+    // TODO 自己的短评
+
+    // TODO 自己的讨论（我发起的，我回复的）
+
 
 }
