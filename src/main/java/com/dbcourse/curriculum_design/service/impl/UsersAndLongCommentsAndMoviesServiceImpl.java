@@ -53,4 +53,23 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
         return usersAndLongCommentsAndMoviesMapper.batchInsert(list);
     }
 
+    /**
+     * 在用户信息页面显示的长评
+     * @param userId 用户id
+     * @return
+     */
+    @Override
+    public List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize) {
+        return usersAndLongCommentsAndMoviesMapper.selectByUserId(userId, pageIndex, pageSize);
+    }
+
+    /**
+     * 用户id的长评总数
+     * @param userId
+     * @return
+     */
+    @Override
+    public Integer countLongComments(Integer userId) {
+        return usersAndLongCommentsAndMoviesMapper.countLongComments(userId);
+    }
 }
