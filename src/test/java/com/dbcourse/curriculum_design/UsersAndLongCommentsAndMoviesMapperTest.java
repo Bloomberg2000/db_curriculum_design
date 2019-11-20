@@ -14,5 +14,8 @@ public class UsersAndLongCommentsAndMoviesMapperTest {
     void countLongCommentsTest(){
         Integer num = usersAndLongCommentsAndMoviesMapper.countLongComments(3);
         System.out.println(num);
+        num = usersAndLongCommentsAndMoviesMapper.countLongComments(2);
+        System.out.println("here:");
+        System.out.println(num);
     }
 }

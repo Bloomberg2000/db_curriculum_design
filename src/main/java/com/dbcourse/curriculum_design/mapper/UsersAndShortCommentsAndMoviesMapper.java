@@ -35,7 +35,7 @@ public interface UsersAndShortCommentsAndMoviesMapper {
      * @param userId 用户id
      * @param pageIndex
      * @param pageSize
-     * @return a list of UsersAndLongComments
+     * @return a list of UsersAndShortComments
      */
 
     @Select("SELECT Username, CreateTimeDate, EditTimeDate, Score, ShortCommentsContent, MovieName\n" +
@@ -52,9 +52,8 @@ public interface UsersAndShortCommentsAndMoviesMapper {
      */
 
     @Select("SELECT COUNT(UserId) \n" +
-            "FROM UsersAndLongCommentsAndMovies\n" +
+            "FROM UsersAndShortCommentsAndMovies\n" +
             "WHERE UserId = #{userId, jdbcType=INTEGER}")
-    //    @ResultMap("BaseResultMap")
     Integer countShortComments(Integer userId);
 
 }

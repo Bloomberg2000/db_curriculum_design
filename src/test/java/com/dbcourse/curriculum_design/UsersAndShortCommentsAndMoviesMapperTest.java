@@ -11,7 +11,7 @@ public class UsersAndShortCommentsAndMoviesMapperTest {
     @Resource
     UsersAndShortCommentsAndMoviesMapper usersAndShortCommentsAndMoviesMapper;
     @Test
-    void countLongCommentsTest(){
+    void countShortCommentsTest(){
         Integer num = usersAndShortCommentsAndMoviesMapper.countShortComments(3);
         System.out.println(num);
     }
