@@ -22,4 +22,23 @@ public interface UsersAndShortCommentsAndMoviesService{
 
     int batchInsert(List<UsersAndShortCommentsAndMovies> list);
 
+    /**
+     * 显示在用户个人信息页上
+     * 通过用户id找到发表的短评，list短评/内容///打分/用户名/电影名
+     * 按照发表时间降序排列
+     * @author Christy
+     * @param userId 用户id
+     * @param pageIndex
+     * @param pageSize
+     * @return a list of UsersAndShortComments
+     */
+    List<UsersAndShortCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
+
+
+    /**
+     * 接上面，按照用户id显示短评的总数
+     */
+
+    Integer countShortComments(Integer userId);
+
 }
