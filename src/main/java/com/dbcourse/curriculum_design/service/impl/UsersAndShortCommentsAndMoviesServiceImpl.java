@@ -53,4 +53,24 @@ public class UsersAndShortCommentsAndMoviesServiceImpl implements UsersAndShortC
         return usersAndShortCommentsAndMoviesMapper.batchInsert(list);
     }
 
+    /**
+     * 在用户信息页面显示的短评
+     * @param userId 用户id
+     * @return
+     */
+    @Override
+    public List<UsersAndShortCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize) {
+        return usersAndShortCommentsAndMoviesMapper.selectByUserId(userId, pageIndex, pageSize);
+    }
+
+    /**
+     * 用户id的短评总数
+     * @param userId
+     * @return
+     */
+    @Override
+    public Integer countShortComments(Integer userId) {
+        return usersAndShortCommentsAndMoviesMapper.countShortComments(userId);
+    }
+
 }
