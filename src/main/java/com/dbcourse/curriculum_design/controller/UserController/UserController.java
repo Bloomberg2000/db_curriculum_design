@@ -5,13 +5,16 @@ import com.dbcourse.curriculum_design.controller.UserController.bean.request.Log
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.SignUpRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.UpdateUserInfoRequest;
 import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserLongCommentsInfoResponse;
+import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserShortCommentsInfoResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.UserInfo;
 import com.dbcourse.curriculum_design.model.Users;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
+import com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
 import com.dbcourse.curriculum_design.service.UserInfoService;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
+import com.dbcourse.curriculum_design.service.UsersAndShortCommentsAndMoviesService;
 import com.dbcourse.curriculum_design.service.UsersService;
 import com.dbcourse.curriculum_design.utils.MailUtil;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
@@ -46,6 +49,9 @@ public class UserController {
 
     @Resource
     UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
+
+    @Resource
+    UsersAndShortCommentsAndMoviesService usersAndShortCommentsAndMoviesService;
 
     /**
      * 用户登录
@@ -132,6 +138,7 @@ public class UserController {
 
     /**
      * 用户个人信息中的长评部分
+     * list长评题目/内容///打分/用户名/电影名/电影封面
      * @param userId
      * @param pageIndex
      * @param pageSize
@@ -142,6 +149,22 @@ public class UserController {
         List<UsersAndLongCommentsAndMovies>  usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
         Integer num = usersAndLongCommentsAndMoviesService.countLongComments(userId);
 
-        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);    }
+        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);
+    }
+
+    /**
+     * 用户个人信息中的短评部分
+     * list短评/内容///打分/用户名/电影名
+     * @param userId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "/usershortcomments", method = RequestMethod.GET)
+    public UserShortCommentsInfoResponse getMyShortComments(Integer userId, Integer pageIndex, Integer pageSize) {
+        List<UsersAndShortCommentsAndMovies>  usersAndShortCommentsAndMovies = usersAndShortCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
+        Integer num = usersAndLongCommentsAndMoviesService.countLongComments(userId);
+        return new UserShortCommentsInfoResponse(usersAndShortCommentsAndMovies, num);
+    }
 
 }
