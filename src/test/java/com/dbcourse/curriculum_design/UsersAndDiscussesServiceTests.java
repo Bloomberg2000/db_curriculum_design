@@ -19,7 +19,7 @@ public class UsersAndDiscussesServiceTests {
 
     @Test
     void getDiscussesbyPageTest(){
-        List<UsersAndDiscusses> l = usersAndDiscussesService.getDiscussesByPage(1,1);
+        List<UsersAndDiscusses> l = usersAndDiscussesService.getDiscussesByIdAndPage(1,1);
         if (!l.get(0).getNickname() .equals("liuzy")){
             throw new RuntimeException();
         }

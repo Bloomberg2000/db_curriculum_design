@@ -17,11 +17,11 @@ public class UsersAndLongCommentsReliesServiceTests {
 
     @Test
     void getLongCommentsRepliesByPageTest(){
-        List<UsersAndLongCommentsRelies> l = usersAndLongCommentsReliesService.getLongCommentsRepliesByPage(1,1);
+        List<UsersAndLongCommentsRelies> l = usersAndLongCommentsReliesService.getLongCommentsRepliesByPage(1,1,1);
         if (!l.get(0).getLongcommentsreplycontent().equals("回复2")){
             throw new RuntimeException();
         }
-        l = usersAndLongCommentsReliesService.getLongCommentsRepliesByPage(2,1);
+        l = usersAndLongCommentsReliesService.getLongCommentsRepliesByPage(1,2,1);
         if (!l.get(0).getLongcommentsreplycontent().equals("回复1")){
             throw new RuntimeException();
         }

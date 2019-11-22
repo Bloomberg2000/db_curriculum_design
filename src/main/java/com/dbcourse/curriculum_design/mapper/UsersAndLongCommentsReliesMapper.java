@@ -30,12 +30,15 @@ public interface UsersAndLongCommentsReliesMapper {
     /**
      * lrc
      * 分页显示长评的回复
+     * @param longCommentsId
      * @param pageIndex
      * @param pageSize
      * @return
      */
-    @Select("select * from UsersAndLongCommentsRelies order by LongCommentsReplyId DESC " +
+    @Select("select * from UsersAndLongCommentsRelies" +
+            "where LongCommentsId = #{longcommentsId}" +
+            "order by LongCommentsReplyId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int pageIndex, int pageSize);
+    List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int longCommentsId, int pageIndex, int pageSize);
 }

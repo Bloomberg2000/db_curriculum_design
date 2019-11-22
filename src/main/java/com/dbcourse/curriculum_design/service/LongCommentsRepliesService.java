@@ -32,4 +32,6 @@ public interface LongCommentsRepliesService {
 
     int batchInsert(List<LongCommentsReplies> list);
 
+    long countRepliesNumById(int id);
+
 }

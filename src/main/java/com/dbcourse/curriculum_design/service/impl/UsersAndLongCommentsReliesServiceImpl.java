@@ -60,7 +60,7 @@ public class UsersAndLongCommentsReliesServiceImpl implements UsersAndLongCommen
      * @return
      */
     @Override
-    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int pageIndex, int pageSize) {
+    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int id, int pageIndex, int pageSize) {
 
         if (pageIndex <= 0) {
             pageIndex = 1;
@@ -68,7 +68,7 @@ public class UsersAndLongCommentsReliesServiceImpl implements UsersAndLongCommen
         if (pageSize <= 0) {
             pageSize = 10;
         }
-        return usersAndLongCommentsReliesMapper.getLongCommentsRepliesByPage(pageIndex,pageSize);
+        return usersAndLongCommentsReliesMapper.getLongCommentsRepliesByPage(id,pageIndex,pageSize);
     }
 
     /**

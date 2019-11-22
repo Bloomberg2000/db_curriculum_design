@@ -75,4 +75,11 @@ public class LongCommentsRepliesServiceImpl implements LongCommentsRepliesServic
         return longCommentsRepliesMapper.batchInsert(list);
     }
 
+    @Override
+    public long countRepliesNumById(int id) {
+        LongCommentsRepliesExample example = new LongCommentsRepliesExample();
+        example.createCriteria().andNLongCommentIdEqualTo(id);
+        return longCommentsRepliesMapper.countByExample(example);
+    }
+
 }
