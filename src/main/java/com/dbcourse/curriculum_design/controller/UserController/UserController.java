@@ -181,8 +181,10 @@ public class UserController {
     }
 
     // TODO 自己的短评
+    // TODO shortComments 和 movie
+
 
     // TODO 自己的讨论（我发起的，我回复的）
-
+    // TODO discus和 movie
 
 }

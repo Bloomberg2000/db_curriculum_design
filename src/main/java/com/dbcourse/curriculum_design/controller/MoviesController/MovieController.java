@@ -1,14 +1,12 @@
 package com.dbcourse.curriculum_design.controller.MoviesController;
 
+import com.dbcourse.curriculum_design.controller.MoviesController.bean.request.MovieSearchRequest;
 import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.*;
 import com.dbcourse.curriculum_design.model.*;
 import com.dbcourse.curriculum_design.service.*;
 import com.dbcourse.curriculum_design.utils.HtmlToPlainText;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +42,15 @@ public class MovieController {
 
     @Resource
     private UsersAndDiscussesService usersAndDiscussesService;
+
+    @Resource
+    private StaffsService staffsService;
+
+    @Resource
+    private UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
+
+    @Resource
+    private TagIdAndMovieInfoService tagIdAndMovieInfoService;
     /**
      * 返回电影的详细信息
      *
@@ -138,6 +145,7 @@ public class MovieController {
 
     /**
      * 获取电影长评列表
+     *
      * @param movieId
      * @return
      */
@@ -156,7 +164,7 @@ public class MovieController {
                     .title(c.getLongcommentstitle()).build();
             // TODO 应该从数据库拿一部分不应拿全
             String content = HtmlToPlainText.toPlainText(c.getLongcommentscontent());
-            if (content.length() > 100){
+            if (content.length() > 100) {
                 content = content.substring(0, 100);
             }
             comment.setContent(content);
@@ -168,6 +176,7 @@ public class MovieController {
 
     /**
      * 获取电影讨论区
+     *
      * @param movieId
      * @return
      */
@@ -201,5 +210,37 @@ public class MovieController {
         return new TopNumMovieInfoResponse(movies);
     }
 
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public MovieSearchResponse SearchMovies(@RequestBody MovieSearchRequest movieSearchRequest) {
+        MovieSearchResponse response = new MovieSearchResponse();
+
+        // 搜索电影名
+        List<Movies> movies = moviesService.searchMoviesByName(movieSearchRequest.getName());
+        if (movies.size() != 0){
+            response.setMovies(movies);
+        }
+        // 搜索演员名
+        List<Staffs> staffs = staffsService.searchStaffsByName(movieSearchRequest.getName());
+        if (staffs.size() != 0) {
+            response.setStaffs(staffs);
+        }
+        // 搜索标签名
+        List<Tags> tags = tagsService.searchTagsByName(movieSearchRequest.getName());
+        if (tags.size() != 0){
+            tags.forEach(tag ->{
+                List<TagIdAndMovieInfo> tagsMovie = tagIdAndMovieInfoService.getMoviesByTagId(tag.getNId());
+                if (tagsMovie.size() != 0){
+                    response.addTagMovies(tag.getCContent(), tagsMovie);
+                }
+            });
+        }
+        // 搜索长评
+        List<UsersAndLongCommentsAndMovies> longComments = usersAndLongCommentsAndMoviesService.searchLongCommentsByTitle(movieSearchRequest.getName());
+        if (longComments.size() != 0){
+            response.setLongComments(longComments);
+        }
+
+        return response;
+    }
 
 }

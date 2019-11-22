@@ -72,4 +72,11 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
     public Integer countLongComments(Integer userId) {
         return usersAndLongCommentsAndMoviesMapper.countLongComments(userId);
     }
+
+    @Override
+    public List<UsersAndLongCommentsAndMovies> searchLongCommentsByTitle(String str) {
+        UsersAndLongCommentsAndMoviesExample example = new UsersAndLongCommentsAndMoviesExample();
+        example.createCriteria().andLongcommentstitleLike(String.format("%%%s%%", str));
+        return usersAndLongCommentsAndMoviesMapper.selectByExample(example);
+    }
 }

@@ -80,6 +80,13 @@ public class MoviesServiceImpl implements MoviesService {
         return moviesMapper.getTopNumMovies(num);
     }
 
+    @Override
+    public List<Movies> searchMoviesByName(String name) {
+        MoviesExample example = new MoviesExample();
+        example.createCriteria().andCNameLike(String.format("%%%s%%", name));
+        return moviesMapper.selectByExample(example);
+    }
+
 }
 
 

@@ -31,7 +31,7 @@ public interface UsersAndLongCommentsAndMoviesService{
      */
     List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
 
-
+    List<UsersAndLongCommentsAndMovies> searchLongCommentsByTitle(String str);
     /**
      * 根据用户id计算他的长评总数
      */
