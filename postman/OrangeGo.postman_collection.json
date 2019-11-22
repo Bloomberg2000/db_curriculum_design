@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "25f5ab41-3098-4d5f-a164-411a83f611d6",
+		"name": "OrangeGo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "请求注册验证码",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"liuzhongyu@bjfu.edu.cn\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/api/user/signup/captcha",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"signup",
+						"captcha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注册用户",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"qaqs\",\n\t\"email\": \"lzy@noqaqs.cn\",\n\t\"password\":\"Pb123456\",\n\t\"code\":\"200192\"\n\t\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/api/user/signup",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户的详细信息",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SESSION=ZjlmNWYyM2MtYmFjNi00ZWY2LWExZTEtNGI3NjYyYTMxOGNj; Path=/; HttpOnly; SameSite=Lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/api/user/userInfo",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"userInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "电影的详细信息",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/api/movie/7",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movie",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查看电影的短评列表",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SESSION=ZjlmNWYyM2MtYmFjNi00ZWY2LWExZTEtNGI3NjYyYTMxOGNj; Path=/; HttpOnly; SameSite=Lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/api/movie/7/shortComment?page=1&size=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movie",
+						"7",
+						"shortComment"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查看电影的长评列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/api/movie/7/longComment?page=1&size=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movie",
+						"7",
+						"longComment"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发布短评",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SESSION=ZjlmNWYyM2MtYmFjNi00ZWY2LWExZTEtNGI3NjYyYTMxOGNj; Path=/; HttpOnly; SameSite=Lax",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movieId\": 7,\n\t\"score\":5,\n\t\"content\":\"牛逼\",\n\t\"type\":0\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/shortComments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"shortComments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "给短评点赞",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SESSION=ZjlmNWYyM2MtYmFjNi00ZWY2LWExZTEtNGI3NjYyYTMxOGNj; Path=/; HttpOnly; SameSite=Lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/shortComments/5/like",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"shortComments",
+						"5",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发布电影长评",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "SESSION=ZjlmNWYyM2MtYmFjNi00ZWY2LWExZTEtNGI3NjYyYTMxOGNj; Path=/; HttpOnly; SameSite=Lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"细品我不是药神\",\n\t\"content\":\"<h1>牛逼</h1>\",\n\t\"movieId\":7,\n\t\"score\":5\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/longComments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"longComments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查看\b\b长评详细信息",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/longComments/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"longComments",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "回复长评",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"content\":\"你说的太对了\",\n\t\"parentId\":3\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/longComments/8/reply",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"longComments",
+						"8",
+						"reply"
+					]
+				},
+				"description": "父id为选填\n"
+			},
+			"response": []
+		},
+		{
+			"name": "给长评点赞",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SESSION=ZjlmNWYyM2MtYmFjNi00ZWY2LWExZTEtNGI3NjYyYTMxOGNj; Path=/; HttpOnly; SameSite=Lax",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\":0\t\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/longComments/8/like",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"longComments",
+						"8",
+						"like"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
