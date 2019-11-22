@@ -1,27 +1,25 @@
 package com.dbcourse.curriculum_design.controller.DiscussesController;
 
 
-import com.dbcourse.curriculum_design.controller.DiscussesController.response.DiscussesInfoResponse;
-import com.dbcourse.curriculum_design.model.DiscussesRepliesLikes;
-import com.dbcourse.curriculum_design.model.UsersAndDiscusses;
-import com.dbcourse.curriculum_design.model.UsersAndDiscussesReplies;
-import com.dbcourse.curriculum_design.service.DiscussesRepliesLikesService;
-import com.dbcourse.curriculum_design.service.DiscussesRepliesService;
-import com.dbcourse.curriculum_design.service.UsersAndDiscussesRepliesService;
-import com.dbcourse.curriculum_design.service.UsersAndDiscussesService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.DiscussesReplyLikeRequest;
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.DiscussesRequest;
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.request.ReplyRequest;
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.response.DiscussesInfoResponse;
+import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
+import com.dbcourse.curriculum_design.model.*;
+import com.dbcourse.curriculum_design.service.*;
+import com.dbcourse.curriculum_design.utils.RequestUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/discusses", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
+@RequestMapping(value = "/api/discusses", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
 public class DiscussesController {
 
     @Resource
@@ -39,24 +37,22 @@ public class DiscussesController {
     @Resource
     DiscussesRepliesLikesService discussesRepliesLikesService;
 
+    @Resource
+    DiscussesService discussesService;
 
     // 查看讨论详细
     @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
     public DiscussesInfoResponse GetDiscussesInfo(@PathVariable int id) {
         DiscussesInfoResponse response = new DiscussesInfoResponse();
-        String page = request.getParameter("page");
-        String pageSize = request.getParameter("size");
-        int pageNum = 1;
-        int pageSizeNum = 10;
-        if (page != null) {
-            pageNum = Integer.parseInt(page);
-        }
-        if (pageSize != null) {
-            pageSizeNum = Integer.parseInt(pageSize);
-        }
+
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
 
         // 获取讨论的详细页面
         UsersAndDiscusses usersAndDiscusses = usersAndDiscussesService.getUsersAndDiscussesById(id);
+        if (usersAndDiscusses == null){
+            return response;
+        }
         // 获取讨论的回复信息
         List<UsersAndDiscussesReplies> replies = usersAndDiscussesRepliesService.getRepliesByIdAndPage(id, pageNum, pageSizeNum);
 
@@ -70,13 +66,13 @@ public class DiscussesController {
             if (r.getDiscussesrepliesparentid() != null) {
                 parentsIds.add(r.getDiscussesrepliesparentid());
             }
-            repliesIds.add(r.getDiscussesid());
+            repliesIds.add(r.getDiscussesrepliesid());
         });
 
         // 看用户是否对评论点过赞
         Integer user = (Integer) request.getSession().getAttribute("user");
         List<DiscussesRepliesLikes> likes = null;
-        if (user != null){
+        if (user != null) {
             likes = discussesRepliesLikesService.getDiscussesRepliesLikesByDIdListAndUserId(repliesIds, user);
         }
 
@@ -98,9 +94,9 @@ public class DiscussesController {
             }
 
             // 拼入是否对这个评论点赞
-            if (user != null){
+            if (user != null) {
                 for (DiscussesRepliesLikes l : likes) {
-                    if (l.getNDiscussReplyId().equals(r.getDiscussesid())){
+                    if (l.getNDiscussReplyId().equals(r.getDiscussesid())) {
                         like = true;
                         break;
                     }
@@ -108,7 +104,7 @@ public class DiscussesController {
             }
 
             response.newReply(new DiscussesInfoResponse.Reply(reply, r.getUsername(), r.getUseravatar(),
-                    String.valueOf(r.getDiscussesrepliescreatetime().getTime()), r.getDiscussesrepliescontent(), like));
+                    String.valueOf(r.getDiscussesrepliescreatetime().getTime()), r.getDiscussesrepliescontent(), like, r.getDiscussesreplieslikenum()));
 
         }
 
@@ -121,6 +117,35 @@ public class DiscussesController {
         return response;
     }
 
-    // TODO 发起讨论
+    // 发起讨论
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public StatusResponse AddDiscusses(@RequestBody DiscussesRequest discussesRequest) {
+        Integer user = RequestUtils.GetUser(request);
+        discussesService.insert(Discusses.builder().cName(discussesRequest.getDiscussesName())
+                .nMovieId(discussesRequest.getMovieId()).nUserId(user).dCreateTime(new Date()).build());
+        return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/{id:\\d+}/reply", method = RequestMethod.POST)
+    public StatusResponse AddDiscussesReply(@PathVariable String id,
+                                            @RequestBody ReplyRequest replyRequest) {
+        Integer user = RequestUtils.GetUser(request);
+        discussesRepliesService.insert(DiscussesReplies.builder()
+                .cContent(replyRequest.getContent())
+                .dCreateTime(new Date())
+                .nDiscussId(replyRequest.getDiscussesId())
+                .nParentId(replyRequest.getParentId())
+                .nUserId(user).build());
+        return StatusResponse.ok();
+    }
+
+    @RequestMapping(value = "/reply/like", method = RequestMethod.POST)
+    public StatusResponse LikeDiscussesReply(@RequestBody DiscussesReplyLikeRequest discussesReplyLikeRequest){
+        Integer user = RequestUtils.GetUser(request);
+        DiscussesRepliesLikes like = DiscussesRepliesLikes.builder()
+                .nDiscussReplyId(discussesReplyLikeRequest.getReplyId()).nUserId(user).build();
+        discussesRepliesLikesService.like(like);
+        return StatusResponse.ok();
+    }
 
 }

@@ -17,17 +17,17 @@ public class UsersAndDiscussesServiceTests {
     UsersAndDiscussesService usersAndDiscussesService;
 
 
-    @Test
-    void getDiscussesbyPageTest(){
-        List<UsersAndDiscusses> l = usersAndDiscussesService.getDiscussesByIdAndPage(1,1);
-        if (!l.get(0).getNickname() .equals("liuzy")){
-            throw new RuntimeException();
-        }
-        l = usersAndDiscussesService.getDiscussesByPage(2,1);
-//        l.forEach(System.out::println);
-        if (!l.get(0).getNickname().equals("pb")){
-            throw new RuntimeException();
-        }
-    }
+//    @Test
+//    void getDiscussesbyPageTest(){
+//        List<UsersAndDiscusses> l = usersAndDiscussesService.getDiscussesByPage(1,1);
+//        if (!l.get(0).getNickname() .equals("liuzy")){
+//            throw new RuntimeException();
+//        }
+//        l = usersAndDiscussesService.getDiscussesByPage(2,1);
+////        l.forEach(System.out::println);
+//        if (!l.get(0).getNickname().equals("pb")){
+//            throw new RuntimeException();
+//        }
+//    }
 
 }

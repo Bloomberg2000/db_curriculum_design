@@ -2,10 +2,10 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.DiscussesReplies;
 import com.dbcourse.curriculum_design.model.DiscussesRepliesExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface DiscussesRepliesMapper {
@@ -32,5 +32,8 @@ public interface DiscussesRepliesMapper {
     int updateByPrimaryKey(DiscussesReplies record);
 
     int batchInsert(@Param("list") List<DiscussesReplies> list);
+
+    @Update("update DiscussesReplies with (UPDLOCK) set n_like_num += #{addNum} where n_id = #{ReplyId}")
+    int updateLikenNumWithLock(int ReplyId, int addNum);
 
 }

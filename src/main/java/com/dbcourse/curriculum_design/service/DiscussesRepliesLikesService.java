@@ -32,5 +32,7 @@ public interface DiscussesRepliesLikesService {
 
     int batchInsert(List<DiscussesRepliesLikes> list);
 
-    public List<DiscussesRepliesLikes> getDiscussesRepliesLikesByDIdListAndUserId(List<Integer> ids, int userId);
+    List<DiscussesRepliesLikes> getDiscussesRepliesLikesByDIdListAndUserId(List<Integer> ids, int userId);
+
+    void like(DiscussesRepliesLikes record);
 }

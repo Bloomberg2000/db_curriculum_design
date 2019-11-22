@@ -66,5 +66,16 @@ public class UsersAndDiscussesServiceImpl implements UsersAndDiscussesService {
             return null;
         }
     }
+
+    @Override
+    public List<UsersAndDiscusses> getDiscussesByPage(int movieId, int page, int size) {
+        if (page <= 0) {
+            page = 1;
+        }
+        if (size <= 0) {
+            size = 10;
+        }
+        return usersAndDiscussesMapper.getDiscussesByPage(movieId, page, size);
+    }
 }
 

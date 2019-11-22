@@ -4,8 +4,7 @@ import com.dbcourse.curriculum_design.model.UsersAndDiscussesReplies;
 import com.dbcourse.curriculum_design.model.UsersAndDiscussesRepliesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndDiscussesRepliesMapper {
@@ -32,5 +31,4 @@ public interface UsersAndDiscussesRepliesMapper {
             "fetch next #{pageSize,jdbcType=INTEGER} rows only " +
             "")
     List<UsersAndDiscussesReplies> getRepliesByPage(int discussesId, int pageIndex, int pageSize);
-
 }

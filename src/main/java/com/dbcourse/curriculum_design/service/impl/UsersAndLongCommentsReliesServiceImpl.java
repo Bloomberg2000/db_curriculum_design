@@ -53,35 +53,28 @@ public class UsersAndLongCommentsReliesServiceImpl implements UsersAndLongCommen
         return usersAndLongCommentsReliesMapper.batchInsert(list);
     }
 
-    /**
-     * 分页获取长评回复
-     * @param pageIndex
-     * @param pageSize
-     * @return
-     */
     @Override
-    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int id, int pageIndex, int pageSize) {
-
-        if (pageIndex <= 0) {
-            pageIndex = 1;
+    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByIdAndPage(int commentsId, int page, int size) {
+        if (page <= 0) {
+            page = 1;
         }
-        if (pageSize <= 0) {
-            pageSize = 10;
+        if (size <= 0) {
+            size = 10;
         }
-        return usersAndLongCommentsReliesMapper.getLongCommentsRepliesByPage(id,pageIndex,pageSize);
+        return usersAndLongCommentsReliesMapper.getLongCommentsRepliesByPage(commentsId,page,size);
     }
 
-    /**
-     * 按长评ID获取长评回复
-     * @param LongCommentId
-     * @return
-     */
     @Override
-    public List<UsersAndLongCommentsRelies> getLongCommentsRepliesByLongCommentId(Integer LongCommentId) {
+    public List<UsersAndLongCommentsRelies> getRepliesByParentsIds(List<Integer> ids) {
         UsersAndLongCommentsReliesExample example = new UsersAndLongCommentsReliesExample();
-        UsersAndLongCommentsReliesExample.Criteria criteria = example.createCriteria();
-        criteria.andLongcommentsidEqualTo(LongCommentId);
+        example.createCriteria().andLongcommentsreplyidIn(ids);
         return usersAndLongCommentsReliesMapper.selectByExample(example);
     }
 
+    @Override
+    public long countRepliesNumByCommentsId(int commentsId) {
+        UsersAndLongCommentsReliesExample example = new UsersAndLongCommentsReliesExample();
+        example.createCriteria().andLongcommentsidEqualTo(commentsId);
+        return usersAndLongCommentsReliesMapper.countByExample(example);
+    }
 }

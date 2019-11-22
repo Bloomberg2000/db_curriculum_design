@@ -1,8 +1,9 @@
-package com.dbcourse.curriculum_design.controller.DiscussesController.response;
+package com.dbcourse.curriculum_design.controller.LongCommentsController.response;
 
 
+import com.dbcourse.curriculum_design.controller.DiscussesController.bean.response.DiscussesInfoResponse;
+import com.dbcourse.curriculum_design.model.UsersAndLongComments;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,30 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-public class DiscussesInfoResponse {
-
-    String userName;
-    String userAvatar;
-    String discussesCreateTime;
-    String discussesContent;
-    long replyNum;
-
+public class LongCommentsInfoResponse {
+    UsersAndLongComments comments;
     List<Reply> replies = new ArrayList<>();
+    long replyNum;
+    // 0 未评价 1 like 2 unlike
+    int likeType;
 
     public void newReply(Reply reply){
         replies.add(reply);
     }
 
+
     @AllArgsConstructor
     public static class Reply{
-        Reply parent;
+        LongCommentsInfoResponse.Reply parent;
         String userName;
         String userAvatar;
         String replyCreateTime;
         String replyContent;
-        boolean like;
 
         public Reply(String userName, String userAvatar, String replyCreateTime, String replyContent) {
             this.userName = userName;
@@ -42,9 +40,10 @@ public class DiscussesInfoResponse {
             this.replyContent = replyContent;
         }
 
-        public Reply setParent(Reply parent) {
+        public LongCommentsInfoResponse.Reply setParent(LongCommentsInfoResponse.Reply parent) {
             this.parent = parent;
             return this;
         }
     }
+
 }
