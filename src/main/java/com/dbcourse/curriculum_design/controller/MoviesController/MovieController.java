@@ -74,12 +74,16 @@ public class MovieController {
         long star1Num = shortCommentsService.countShortCommentsByScore((short) 1);
 
         long starSum = star5Num + star4Num + star3Num + star2Num + star1Num;
+        long d = starSum;
+        if (d == 0){
+            d = 1;
+        }
 
-        result.setScore(ScoreCount.builder().star5((double) star5Num / starSum)
-                .star4((double) star4Num / starSum)
-                .star3((double) star3Num / starSum)
-                .star2((double) star2Num / starSum)
-                .star1((double) star1Num / starSum)
+        result.setScore(ScoreCount.builder().star5((double) star5Num / d)
+                .star4((double) star4Num / d)
+                .star3((double) star3Num / d)
+                .star2((double) star2Num / d)
+                .star1((double) star1Num / d)
                 .comment_num(starSum).build());
 
         // TODO 返回电影获奖情况
@@ -158,16 +162,10 @@ public class MovieController {
         List<UsersAndLongComments> longComments = usersAndLongCommentsService.getLongCommentsByPage(movieId, pageNum, pageSizeNum);
         longComments.forEach(c -> {
             LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
-                    .username(c.getNickname()).avatar(c.getUseravatar())
+                    .username(c.getNickname()).avatar(c.getUseravatar()).longCommentsId(c.getLongcommentsid())
                     .createTime(String.valueOf(c.getLongcommentscreatetime().getTime()))
                     .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
-                    .title(c.getLongcommentstitle()).build();
-            // TODO 应该从数据库拿一部分不应拿全
-            String content = HtmlToPlainText.toPlainText(c.getLongcommentscontent());
-            if (content.length() > 100) {
-                content = content.substring(0, 100);
-            }
-            comment.setContent(content);
+                    .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).build();
             response.addComment(comment);
         });
 

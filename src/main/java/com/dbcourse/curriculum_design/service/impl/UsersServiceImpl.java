@@ -41,7 +41,7 @@ public class UsersServiceImpl implements UsersService {
         // TODO 检测是否已有用户，如果有抛出异常
         record.setCPassword(SHA256Util.Encrypt(String.format("%s-%s", record.getCPassword(), record.getCCreateTime())));
         usersMapper.insert(record);
-        return userInfoMapper.insert(UserInfo.builder().nUserId(record.getNId()).cName(String.format("用户-%d", record.getNId())).build());
+        return userInfoMapper.insert(UserInfo.builder().nUserId(record.getNId()).cName(record.getCUsername()).build());
     }
 
     @Override
@@ -91,7 +91,7 @@ public class UsersServiceImpl implements UsersService {
         example.createCriteria().andCEmailEqualTo(user);
         example.or().andCPhonenumEqualTo(user);
         List<Users> users = usersMapper.selectByExample(example);
-        if (user.length() > 0) {
+        if (users.size() > 0) {
             return users.get(0);
         } else {
             return null;

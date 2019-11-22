@@ -115,7 +115,9 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
         }
 
         if (shortCommentsMapper.selectByExample(example).size() > 0) {
-            shortCommentsMapper.updateByExample(record, example);
+            shortCommentsMapper.updateByExampleSelective(ShortComments.builder().dCreateTime(record.getDCreateTime())
+                    .nMovieId(record.getNMovieId()).nScore(record.getNScore()).nType(record.getNType()).nUserId(record.getNUserId())
+                    .cContent(record.getCContent()).build(), example);
             return record;
         }
 

@@ -1,5 +1,6 @@
 package com.dbcourse.curriculum_design.controller.been.response;
 
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StatusResponse {
-
+    @Expose
     String code;
+    @Expose
     String err;
 
     public static StatusResponse ok(){

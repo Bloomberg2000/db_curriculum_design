@@ -17,25 +17,47 @@ public class UsersAndLongCommentsAndMovies implements Serializable {
     @Expose(serialize = false)
     private Integer userid;
 
+    @Expose
     private Integer longcommentsid;
 
+    @Expose
     private Integer movieid;
 
+    @Expose
     private String username;
 
+    @Expose
     private Date createtimedate;
 
     private Date edittimedate;
 
+    @Expose
     private Short score;
 
+    @Expose
     private String longcommentstitle;
 
+    @Expose
     private String longcommentscontent;
 
+    @Expose
     private String moviecover;
 
+    @Expose
     private String moviename;
 
+    @Expose
+    private Integer longcommentslikenum;
+
+    @Expose
+    private Integer longcommentsunlikenum;
+
+    @Expose
+    private String useravatar;
+
     private static final long serialVersionUID = 1L;
+
+    public static UsersAndLongCommentsAndMoviesBuilder builder() {
+        return new UsersAndLongCommentsAndMoviesBuilder();
+    }
 }

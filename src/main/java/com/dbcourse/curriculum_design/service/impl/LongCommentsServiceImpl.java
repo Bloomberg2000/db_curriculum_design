@@ -7,6 +7,7 @@ import com.dbcourse.curriculum_design.model.LongCommentsExample;
 import com.dbcourse.curriculum_design.model.Movies;
 import com.dbcourse.curriculum_design.model.MoviesExample;
 import com.dbcourse.curriculum_design.service.LongCommentsService;
+import com.dbcourse.curriculum_design.utils.HtmlToPlainText;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -40,6 +41,11 @@ public class LongCommentsServiceImpl implements LongCommentsService {
 
     @Override
     public int insertSelective(LongComments record) {
+        String content = HtmlToPlainText.toPlainText(record.getCContent());
+        if (content.length() > 100) {
+            content = content.substring(0, 100);
+        }
+        record.setCPlainTextContent(content);
         return longCommentsMapper.insertSelective(record);
     }
 
@@ -86,4 +92,5 @@ public class LongCommentsServiceImpl implements LongCommentsService {
         return longCommentsMapper.selectByExample(example);
     }
 }
+
 

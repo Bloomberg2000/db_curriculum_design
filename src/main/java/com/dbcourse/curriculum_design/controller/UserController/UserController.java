@@ -30,8 +30,6 @@ public class UserController {
 
     @Resource
     private HttpServletRequest request;
-    @Resource
-    private HttpServletResponse response;
 
     @Resource
     UsersService usersService;
@@ -88,6 +86,8 @@ public class UserController {
                 .cPassword(signUpRequest.getPassword()).build();
 
         usersService.insert(user);
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user.getNId());
         return StatusResponse.ok();
     }
 
@@ -99,7 +99,7 @@ public class UserController {
         String email = captchaRequest.getEmail();
         Users user = usersService.selectUserByEmailOrPhone(email);
         // 判断该邮箱是否已经被注册了
-        if (user != null) {
+        if (user != null    ) {
             return StatusResponse.err("401", "user is exist");
         }
         String captcha = captchaService.StoreSignUpEmailCaptcha(email);

@@ -1,6 +1,7 @@
 package com.dbcourse.curriculum_design.controller.MoviesController.bean.response;
 
 import com.dbcourse.curriculum_design.model.UsersAndShortComments;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ShortCommentsResponse {
 
+    @Expose
+    @SerializedName("short_comments_list")
     public List<ShortComment> shortComments = new ArrayList<>();
 
     public void newShort(UsersAndShortComments shortComment, boolean like){
@@ -20,8 +23,11 @@ public class ShortCommentsResponse {
     }
 
     static class ShortComment{
-        @SerializedName("short_comments")
+        @SerializedName("short_comment")
+        @Expose
         UsersAndShortComments shortComments;
+
+        @Expose
         boolean like;
 
         public ShortComment(UsersAndShortComments shortComments, boolean like) {
