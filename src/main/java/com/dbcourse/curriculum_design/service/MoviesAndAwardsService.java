@@ -24,5 +24,7 @@ public interface MoviesAndAwardsService {
 
     int batchInsert(List<MoviesAndAwards> list);
 
+    List<MoviesAndAwards> getMoviesByAwardId(int awardId);
 }
+
 

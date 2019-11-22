@@ -55,5 +55,12 @@ public class MoviesAndAwardsServiceImpl implements MoviesAndAwardsService {
         return moviesAndAwardsMapper.batchInsert(list);
     }
 
+    @Override
+    public List<MoviesAndAwards> getMoviesByAwardId(int awardId) {
+        MoviesAndAwardsExample example = new MoviesAndAwardsExample();
+        example.createCriteria().andAwardidEqualTo(awardId);
+        return selectByExample(example);
+    }
 }
+
 

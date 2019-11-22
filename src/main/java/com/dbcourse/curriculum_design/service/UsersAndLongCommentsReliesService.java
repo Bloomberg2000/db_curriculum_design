@@ -22,7 +22,9 @@ public interface UsersAndLongCommentsReliesService{
 
     int batchInsert(List<UsersAndLongCommentsRelies> list);
 
-    List<UsersAndLongCommentsRelies> getLongCommentsRepliesByPage(int pageIndex, int pageSize);
+    List<UsersAndLongCommentsRelies> getLongCommentsRepliesByIdAndPage(int commentsId, int page, int size);
 
-    List<UsersAndLongCommentsRelies> getLongCommentsRepliesByLongCommentId(Integer LongCommentId);
+    List<UsersAndLongCommentsRelies> getRepliesByParentsIds(List<Integer> ids);
+
+    long countRepliesNumByCommentsId(int commentsId);
 }
