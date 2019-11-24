@@ -1,18 +1,18 @@
-package com.dbcourse.curriculum_design.controller.DiscussesController.bean.request;
+package com.dbcourse.curriculum_design.controller.StaffsController.request;
 
 import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReplyRequest {
+public class StaffsSearchRequest {
     @Expose
-    Integer discussesId;
+    String name;
     @Expose
-    Integer parentId;
-    @Expose
-    String content;
+    List<String> terms;
 }

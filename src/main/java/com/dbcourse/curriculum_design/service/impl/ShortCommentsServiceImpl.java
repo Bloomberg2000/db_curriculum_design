@@ -124,4 +124,11 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
         shortCommentsMapper.insert(record);
         return record;
     }
+
+    @Override
+    public long countShortCommentsByMovieId(int movieId) {
+        ShortCommentsExample example = new ShortCommentsExample();
+        example.createCriteria().andNMovieIdEqualTo(movieId);
+        return shortCommentsMapper.countByExample(example);
+    }
 }

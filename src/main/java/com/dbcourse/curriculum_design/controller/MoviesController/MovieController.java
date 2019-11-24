@@ -2,22 +2,43 @@ package com.dbcourse.curriculum_design.controller.MoviesController;
 
 import com.dbcourse.curriculum_design.controller.MoviesController.bean.request.MovieSearchRequest;
 import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.*;
+import com.dbcourse.curriculum_design.elasticsearch.SearchMovie;
 import com.dbcourse.curriculum_design.model.*;
 import com.dbcourse.curriculum_design.service.*;
-import com.dbcourse.curriculum_design.utils.HtmlToPlainText;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping(value = "/api/movie", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
 public class MovieController {
     @Resource
     private HttpServletRequest request;
+
+    @Resource
+    private LongCommentsService longCommentsService;
+
+    @Resource
+    private DiscussesService discussesService;
 
     @Resource
     private MoviesService moviesService;
@@ -143,7 +164,7 @@ public class MovieController {
         } else {
             usersAndShortComments.forEach(s -> shortCommentsResponse.newShort(s, false));
         }
-
+        shortCommentsResponse.setShortCommentsNum(shortCommentsService.countShortCommentsByMovieId(movieId));
         return shortCommentsResponse;
     }
 
@@ -168,7 +189,7 @@ public class MovieController {
                     .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).build();
             response.addComment(comment);
         });
-
+        response.setCommentsNum(longCommentsService.countLongCommentsByMovieId(movieId));
         return response;
     }
 
@@ -190,8 +211,9 @@ public class MovieController {
                 .createTime(String.valueOf(c.getDiscussescreatetime().getTime()))
                 .title(c.getDiscussesname())
                 .username(c.getNickname())
+                .DiscusId(c.getDiscussesid())
                 .build()));
-
+        response.setDiscusesNum(discussesService.countDiscussesByMovieId(movieId));
         return response;
     }
 
@@ -208,36 +230,20 @@ public class MovieController {
         return new TopNumMovieInfoResponse(movies);
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public MovieSearchResponse SearchMovies(@RequestBody MovieSearchRequest movieSearchRequest) {
-        MovieSearchResponse response = new MovieSearchResponse();
-
-        // 搜索电影名
-        List<Movies> movies = moviesService.searchMoviesByName(movieSearchRequest.getName());
-        if (movies.size() != 0){
-            response.setMovies(movies);
-        }
-        // 搜索演员名
-        List<Staffs> staffs = staffsService.searchStaffsByName(movieSearchRequest.getName());
-        if (staffs.size() != 0) {
-            response.setStaffs(staffs);
-        }
-        // 搜索标签名
-        List<Tags> tags = tagsService.searchTagsByName(movieSearchRequest.getName());
-        if (tags.size() != 0){
-            tags.forEach(tag ->{
-                List<TagIdAndMovieInfo> tagsMovie = tagIdAndMovieInfoService.getMoviesByTagId(tag.getNId());
-                if (tagsMovie.size() != 0){
-                    response.addTagMovies(tag.getCContent(), tagsMovie);
-                }
-            });
-        }
-        // 搜索长评
-        List<UsersAndLongCommentsAndMovies> longComments = usersAndLongCommentsAndMoviesService.searchLongCommentsByTitle(movieSearchRequest.getName());
-        if (longComments.size() != 0){
-            response.setLongComments(longComments);
-        }
-
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public MoviesSearchResponse SearchMovies(@RequestBody MovieSearchRequest movieSearchRequest){
+        SearchMovie movie = new SearchMovie();
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
+        StringBuilder builder = new StringBuilder();
+        movieSearchRequest.getTerms().forEach(t -> {
+            builder.append(t.replaceAll("\\s*", ""));
+            builder.append(" ");
+        });
+        String terms = builder.toString();
+        Object[] r = movie.search(terms,pageNum, pageSizeNum);
+        MoviesSearchResponse response =  new MoviesSearchResponse(r[0], r[1]);
+        movie.closeClient();
         return response;
     }
 

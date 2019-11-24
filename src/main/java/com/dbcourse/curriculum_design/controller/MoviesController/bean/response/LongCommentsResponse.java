@@ -18,6 +18,9 @@ public class LongCommentsResponse {
     @Expose
     List<LongComment> comments = new ArrayList<>();
 
+    @Expose
+    long commentsNum;
+
     public void addComment(LongComment longComment){
         comments.add(longComment);
     }

@@ -47,5 +47,6 @@ public interface ShortCommentsService {
     // 插入或修改评论
     ShortComments PutShortComments(ShortComments record);
 
+    long countShortCommentsByMovieId(int movieId);
 
 }

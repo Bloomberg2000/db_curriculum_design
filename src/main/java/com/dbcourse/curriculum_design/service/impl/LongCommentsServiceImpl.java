@@ -87,9 +87,15 @@ public class LongCommentsServiceImpl implements LongCommentsService {
     @Override
     public List<LongComments> getLongCommentsByMovieId(Integer nMovieId) {
         LongCommentsExample example = new LongCommentsExample();
-        LongCommentsExample.Criteria criteria = example.createCriteria();
-        criteria.andNMovieIdEqualTo(nMovieId);
+        example.createCriteria().andNMovieIdEqualTo(nMovieId);
         return longCommentsMapper.selectByExample(example);
+    }
+
+    @Override
+    public long countLongCommentsByMovieId(int movieId) {
+        LongCommentsExample example = new LongCommentsExample();
+        example.createCriteria().andNMovieIdEqualTo(movieId);
+        return longCommentsMapper.countByExample(example);
     }
 }
 

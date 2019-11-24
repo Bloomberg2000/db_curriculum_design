@@ -39,6 +39,9 @@ public interface LongCommentsService {
      * @author christy
      */
     List<LongComments> getLongCommentsByMovieId(Integer n_movie_id);
+
+    long countLongCommentsByMovieId(int movieId);
+
 }
 
 

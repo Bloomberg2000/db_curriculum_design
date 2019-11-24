@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
-@SpringBootApplication
+@SpringBootApplication(exclude = {JacksonAutoConfiguration.class})
 public class CurriculumDesignApplication {
     public static void main(String[] args) {
         SpringApplication.run(CurriculumDesignApplication.class, args);

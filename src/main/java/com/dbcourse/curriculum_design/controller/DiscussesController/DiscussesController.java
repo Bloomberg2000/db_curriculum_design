@@ -118,7 +118,7 @@ public class DiscussesController {
     }
 
     // 发起讨论
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public StatusResponse AddDiscusses(@RequestBody DiscussesRequest discussesRequest) {
         Integer user = RequestUtils.GetUser(request);
         discussesService.insert(Discusses.builder().cName(discussesRequest.getDiscussesName())

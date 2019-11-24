@@ -18,6 +18,10 @@ public class ShortCommentsResponse {
     @SerializedName("short_comments_list")
     public List<ShortComment> shortComments = new ArrayList<>();
 
+    @Expose
+    @SerializedName("short_comments_num")
+    long shortCommentsNum;
+
     public void newShort(UsersAndShortComments shortComment, boolean like){
         shortComments.add(new ShortComment(shortComment, like));
     }

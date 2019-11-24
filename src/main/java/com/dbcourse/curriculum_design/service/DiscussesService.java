@@ -39,4 +39,6 @@ public interface DiscussesService {
      */
     List<Discusses> getDiscussesByMovieid(Integer n_movie_id);
 
+    long countDiscussesByMovieId(int movieId);
+
 }

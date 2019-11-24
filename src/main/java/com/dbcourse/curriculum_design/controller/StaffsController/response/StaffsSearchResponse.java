@@ -1,4 +1,5 @@
-package com.dbcourse.curriculum_design.controller.DiscussesController.bean.request;
+package com.dbcourse.curriculum_design.controller.StaffsController.response;
+
 
 import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
@@ -8,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReplyRequest {
+public class StaffsSearchResponse {
     @Expose
-    Integer discussesId;
+    Object staffs;
     @Expose
-    Integer parentId;
-    @Expose
-    String content;
+    Object num;
 }
