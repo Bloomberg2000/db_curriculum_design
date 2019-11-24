@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReplyRequest {
     @Expose
-    Integer discussesId;
-    @Expose
     Integer parentId;
     @Expose
     String content;

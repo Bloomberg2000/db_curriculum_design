@@ -37,6 +37,8 @@ public class DiscussesInfoResponse {
     @AllArgsConstructor
     public static class Reply{
         @Expose
+        int replyId;
+        @Expose
         Reply parent;
         @Expose
         String userName;
@@ -47,11 +49,12 @@ public class DiscussesInfoResponse {
         @Expose
         String replyContent;
         @Expose
-        boolean like;
+        Boolean like;
         @Expose
-        int likeNum;
+        Integer likeNum;
 
-        public Reply(String userName, String userAvatar, String replyCreateTime, String replyContent) {
+        public Reply(int replyId, String userName, String userAvatar, String replyCreateTime, String replyContent) {
+            this.replyId = replyId;
             this.userName = userName;
             this.userAvatar = userAvatar;
             this.replyCreateTime = replyCreateTime;

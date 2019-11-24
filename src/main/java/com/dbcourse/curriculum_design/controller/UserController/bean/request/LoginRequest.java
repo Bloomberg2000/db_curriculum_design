@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginRequest {
-    @Expose(serialize = false, deserialize = false)
+    @Expose
     String username;
-    @Expose(serialize = false, deserialize = false)
+    @Expose
     String password;
 }

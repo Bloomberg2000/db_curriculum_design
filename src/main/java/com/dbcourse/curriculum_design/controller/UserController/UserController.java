@@ -121,7 +121,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/userInfo/update", method = RequestMethod.POST)
     public StatusResponse updateUserInfo(@RequestBody UpdateUserInfoRequest updateUserInfoRequest) {
         Integer user = RequestUtils.GetUser(request);
         UserInfo userInfo = UserInfo.builder().nUserId(user)
@@ -156,7 +156,7 @@ public class UserController {
         Integer user = RequestUtils.GetUser(request);
         // TODO 通过正则表达式验证是否为邮箱
         String captcha = captchaService.GetPasswordEmailCaptcha(changePasswordRequest.getEmail());
-        if (captcha == null || captcha.equals(changePasswordRequest.getCaptcha())) {
+        if (captcha == null || !captcha.equals(changePasswordRequest.getCaptcha())) {
             return StatusResponse.err("403", "captcha error");
         }
         usersService.updatePasswordByUserId(user, changePasswordRequest.getPassword());

@@ -12,7 +12,7 @@ public class UpdateUserInfoRequest {
     @Expose
     String nickname;
     @Expose
-    int gender;
+    Integer gender;
     @Expose
     String avatar;
     @Expose

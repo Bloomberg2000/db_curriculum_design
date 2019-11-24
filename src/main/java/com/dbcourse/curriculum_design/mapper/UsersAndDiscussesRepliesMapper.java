@@ -25,10 +25,9 @@ public interface UsersAndDiscussesRepliesMapper {
     int batchInsert(@Param("list") List<UsersAndDiscussesReplies> list);
 
     @Select("select * from UsersAndDiscussesReplies " +
-            "where DiscussesId = #{discussesId}" +
-            "order by DiscussesRepliesId DESC " +
+            "where DiscussesId = #{discussesId} " +
+            "order by DiscussesRepliesId " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
-            "fetch next #{pageSize,jdbcType=INTEGER} rows only " +
-            "")
+            "fetch next #{pageSize,jdbcType=INTEGER} rows only " )
     List<UsersAndDiscussesReplies> getRepliesByPage(int discussesId, int pageIndex, int pageSize);
 }
