@@ -72,7 +72,7 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
      * @return
      */
     @Override
-    public Integer countLongComments(Integer userId) {
+    public long countLongComments(Integer userId) {
         return usersAndLongCommentsAndMoviesMapper.countLongComments(userId);
     }
 

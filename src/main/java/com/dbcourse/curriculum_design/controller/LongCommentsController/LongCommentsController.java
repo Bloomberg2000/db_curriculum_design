@@ -83,7 +83,7 @@ public class LongCommentsController {
                                 parentReply.getLongcommentsreplyid(),
                                 parentReply.getUsername(),
                                 parentReply.getUseravatar(),
-                                String.valueOf(parentReply.getLongcommentsreplycreatetime().getTime()),
+                                parentReply.getLongcommentsreplycreatetime(),
                                 parentReply.getLongcommentsreplycontent()
                         );
                         break;
@@ -94,7 +94,7 @@ public class LongCommentsController {
                         r.getLongcommentsreplyid(),
                         r.getUsername(),
                         r.getUseravatar(),
-                        String.valueOf(r.getLongcommentsreplycreatetime().getTime()),
+                        r.getLongcommentsreplycreatetime(),
                         r.getLongcommentsreplycontent()
                 ));
             }

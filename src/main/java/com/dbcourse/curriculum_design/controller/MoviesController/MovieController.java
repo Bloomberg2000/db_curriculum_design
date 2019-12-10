@@ -64,14 +64,6 @@ public class MovieController {
     @Resource
     private UsersAndDiscussesService usersAndDiscussesService;
 
-    @Resource
-    private StaffsService staffsService;
-
-    @Resource
-    private UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
-
-    @Resource
-    private TagIdAndMovieInfoService tagIdAndMovieInfoService;
     /**
      * 返回电影的详细信息
      *
@@ -184,7 +176,7 @@ public class MovieController {
         longComments.forEach(c -> {
             LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
                     .username(c.getNickname()).avatar(c.getUseravatar()).longCommentsId(c.getLongcommentsid())
-                    .createTime(String.valueOf(c.getLongcommentscreatetime().getTime()))
+                    .createTime(c.getLongcommentscreatetime())
                     .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
                     .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).build();
             response.addComment(comment);
@@ -208,7 +200,7 @@ public class MovieController {
         List<UsersAndDiscusses> longComments = usersAndDiscussesService.getDiscussesByPage(movieId, pageNum, pageSizeNum);
         longComments.forEach(c -> response.addComment(DiscussesResponse.Discus.builder()
                 .avatar(c.getUseravatar())
-                .createTime(String.valueOf(c.getDiscussescreatetime().getTime()))
+                .createTime(c.getDiscussescreatetime())
                 .title(c.getDiscussesname())
                 .username(c.getNickname())
                 .DiscusId(c.getDiscussesid())

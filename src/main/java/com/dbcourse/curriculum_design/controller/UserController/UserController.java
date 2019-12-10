@@ -1,15 +1,13 @@
 package com.dbcourse.curriculum_design.controller.UserController;
 
 import com.dbcourse.curriculum_design.controller.UserController.bean.request.*;
-import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserLongCommentsInfoResponse;
+import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserDiscussesResponse;
+import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserLongCommentsResponse;
+import com.dbcourse.curriculum_design.controller.UserController.bean.response.UserShortCommentsResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
-import com.dbcourse.curriculum_design.model.UserInfo;
-import com.dbcourse.curriculum_design.model.Users;
-import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
+import com.dbcourse.curriculum_design.model.*;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
-import com.dbcourse.curriculum_design.service.UserInfoService;
-import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
-import com.dbcourse.curriculum_design.service.UsersService;
+import com.dbcourse.curriculum_design.service.*;
 import com.dbcourse.curriculum_design.utils.MailUtil;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +37,13 @@ public class UserController {
     UserInfoService userInfoService;
 
     @Resource
-    UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
+    LongCommentsAndMovieService longCommentsAndMovieService;
+
+    @Resource
+    ShortCommentsAndMovieService shortCommentsAndMovieService;
+
+    @Resource
+    DiscussesAndMovieService discussesAndMovieService;
 
     /**
      * 用户登录
@@ -169,22 +172,40 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/userlongcomments", method = RequestMethod.GET)
-    public UserLongCommentsInfoResponse getMyLongComments() {
+    @RequestMapping(value = "/userLongComments", method = RequestMethod.GET)
+    public UserLongCommentsResponse getMyLongComments() {
         Integer userId = RequestUtils.GetUser(request);
         int pageIndex = RequestUtils.GetPage(request);
         int pageSize = RequestUtils.GetPageSize(request);
-        List<UsersAndLongCommentsAndMovies> usersAndLongCommentsAndMovies = usersAndLongCommentsAndMoviesService.selectByUserId(userId, pageIndex, pageSize);
-        Integer num = usersAndLongCommentsAndMoviesService.countLongComments(userId);
-        // TODO 返回正文摘要
-        return new UserLongCommentsInfoResponse(usersAndLongCommentsAndMovies, num);
+
+        List<LongCommentsAndMovie> longCommentsAndMovies = longCommentsAndMovieService.selectByUserId(userId, pageIndex, pageSize);
+        long num = longCommentsAndMovieService.countLongComments(userId);
+        return new UserLongCommentsResponse(longCommentsAndMovies, num);
     }
 
-    // TODO 自己的短评
-    // TODO shortComments 和 movie
+    // 自己的短评
+    // shortComments 和 movie
+     @RequestMapping(value = "/userShortComments", method = RequestMethod.GET)
+     public UserShortCommentsResponse getMyShortComments() {
+         Integer userId = RequestUtils.GetUser(request);
+         int pageIndex = RequestUtils.GetPage(request);
+         int pageSize = RequestUtils.GetPageSize(request);
 
+         List<ShortCommentsAndMovie> shortCommentsAndMovies = shortCommentsAndMovieService.selectByUserId(userId, pageIndex, pageSize);
+         long num = shortCommentsAndMovieService.countShortComments(userId);
+         return new UserShortCommentsResponse(shortCommentsAndMovies, num);
+     }
 
-    // TODO 自己的讨论（我发起的，我回复的）
-    // TODO discus和 movie
+    // 自己的讨论（我发起的，我回复的）
+    // discus和 movie
+    @RequestMapping(value = "/userDiscusses", method = RequestMethod.GET)
+    public UserDiscussesResponse getMyDiscusses() {
+        Integer userId = RequestUtils.GetUser(request);
+        int pageIndex = RequestUtils.GetPage(request);
+        int pageSize = RequestUtils.GetPageSize(request);
 
+        List<DiscussesAndMovie> discussesAndMovies = discussesAndMovieService.selectByUserId(userId, pageIndex, pageSize);
+        long num = discussesAndMovieService.countDiscusses(userId);
+        return new UserDiscussesResponse(discussesAndMovies, num);
+    }
 }

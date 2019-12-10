@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -21,7 +22,7 @@ public class DiscussesInfoResponse {
     @Expose
     String userAvatar;
     @Expose
-    String discussesCreateTime;
+    Date discussesCreateTime;
     @Expose
     String discussesContent;
     @Expose
@@ -45,7 +46,7 @@ public class DiscussesInfoResponse {
         @Expose
         String userAvatar;
         @Expose
-        String replyCreateTime;
+        Date replyCreateTime;
         @Expose
         String replyContent;
         @Expose
@@ -53,7 +54,7 @@ public class DiscussesInfoResponse {
         @Expose
         Integer likeNum;
 
-        public Reply(int replyId, String userName, String userAvatar, String replyCreateTime, String replyContent) {
+        public Reply(int replyId, String userName, String userAvatar, Date replyCreateTime, String replyContent) {
             this.replyId = replyId;
             this.userName = userName;
             this.userAvatar = userAvatar;

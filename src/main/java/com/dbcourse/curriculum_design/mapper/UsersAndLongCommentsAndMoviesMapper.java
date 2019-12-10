@@ -36,13 +36,12 @@ public interface UsersAndLongCommentsAndMoviesMapper {
      * @author Christy
      */
 
-    @Select("SELECT Username, CreateTimeDate, EditTimeDate, Score, LongCommentsTitle, LongCommentsContent, MovieCover, MovieName\n" +
-            "FROM UsersAndLongCommentsAndMovies\n" +
-            "WHERE(UserId = #{userId, jdbcType=INTEGER})\n" +
+    @Select("SELECT * " +
+            "FROM UsersAndLongCommentsAndMovies " +
+            "WHERE(UserId = #{userId, jdbcType=INTEGER}) " +
             "ORDER BY EditTimeDate DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    @ResultMap("BaseResultMap")
     List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
 
     /**

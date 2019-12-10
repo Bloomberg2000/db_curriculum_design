@@ -1,6 +1,6 @@
 package com.dbcourse.curriculum_design.controller.UserController.bean.response;
 
-import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
+import com.dbcourse.curriculum_design.model.DiscussesAndMovie;
 import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,10 +11,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class UserLongCommentsInfoResponse {
+public class UserDiscussesResponse {
     @Expose
-    List<UsersAndLongCommentsAndMovies> usersAndLongCommentsAndMoviesList;
+    List<DiscussesAndMovie> discusses;
     @Expose
-    Integer longCommentsNum;
+    long discussesNum;
 }

@@ -88,7 +88,7 @@ public class DiscussesController {
                     // 拼入这个评论的父评论
                     if (r.getDiscussesrepliesparentid() != null && r.getDiscussesrepliesparentid().equals(parentReply.getDiscussesrepliesid())) {
                         reply = new DiscussesInfoResponse.Reply(parentReply.getDiscussesrepliesid(), parentReply.getUsername(), parentReply.getUseravatar()
-                                , String.valueOf(parentReply.getDiscussesrepliescreatetime().getTime()), parentReply.getDiscussesrepliescontent());
+                                , parentReply.getDiscussesrepliescreatetime(), parentReply.getDiscussesrepliescontent());
                         break;
                     }
 
@@ -105,7 +105,7 @@ public class DiscussesController {
                     }
             }
             DiscussesInfoResponse.Reply nr = new DiscussesInfoResponse.Reply(r.getDiscussesrepliesid(), reply, r.getUsername(), r.getUseravatar(),
-                    String.valueOf(r.getDiscussesrepliescreatetime().getTime()), r.getDiscussesrepliescontent(), like, r.getDiscussesreplieslikenum());
+                    r.getDiscussesrepliescreatetime(), r.getDiscussesrepliescontent(), like, r.getDiscussesreplieslikenum());
             response.newReply(nr);
 
         }
@@ -113,7 +113,7 @@ public class DiscussesController {
         response.setUserName(usersAndDiscusses.getNickname());
         response.setUserAvatar(usersAndDiscusses.getUseravatar());
         response.setDiscussesContent(usersAndDiscusses.getDiscussesname());
-        response.setDiscussesCreateTime(String.valueOf(usersAndDiscusses.getDiscussescreatetime().getTime()));
+        response.setDiscussesCreateTime(usersAndDiscusses.getDiscussescreatetime());
         response.setReplyNum(repliesNum);
 
         return response;

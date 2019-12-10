@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -38,6 +39,6 @@ public class DiscussesResponse {
         @Expose
         String avatar;
         @Expose
-        String createTime;
+        Date createTime;
     }
 }
