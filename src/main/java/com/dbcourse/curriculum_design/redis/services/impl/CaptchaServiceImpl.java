@@ -4,6 +4,7 @@ package com.dbcourse.curriculum_design.redis.services.impl;
 import com.dbcourse.curriculum_design.redis.services.CaptchaService;
 import com.dbcourse.curriculum_design.utils.CaptchaGenerator;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -37,6 +38,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     private String storeCaptcha(String key){
         String captcha = CaptchaGenerator.generate();
+
         stringRedisTemplate.opsForValue().set(key, captcha, 1, TimeUnit.HOURS);
         return captcha;
     }

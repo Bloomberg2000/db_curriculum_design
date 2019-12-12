@@ -4,29 +4,15 @@ import com.dbcourse.curriculum_design.controller.MoviesController.bean.request.M
 import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.*;
 import com.dbcourse.curriculum_design.elasticsearch.SearchMovie;
 import com.dbcourse.curriculum_design.model.*;
+import com.dbcourse.curriculum_design.redis.services.HotMovieService;
 import com.dbcourse.curriculum_design.service.*;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
-import org.apache.http.HttpHost;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping(value = "/api/movie", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
@@ -64,6 +50,9 @@ public class MovieController {
     @Resource
     private UsersAndDiscussesService usersAndDiscussesService;
 
+    @Resource
+    private HotMovieService hotMovieService;
+
     /**
      * 返回电影的详细信息
      *
@@ -73,22 +62,23 @@ public class MovieController {
     public MovieInfoResponse MovieInfo(@PathVariable("id") int id) {
         MovieInfoResponse result = new MovieInfoResponse();
         Movies movies = moviesService.getMovieById(id);
-        if (movies != null) {
-            result.setMovies(movies);
-            List<MoviesAndStaffs> staffs = moviesAndStaffsService.getStaffsByMovieId(id);
-            result.setStaffs(staffs);
+        if (movies == null) {
+            return new MovieInfoResponse();
         }
-
+        hotMovieService.addMovieAccessNum(id);
+        result.setMovies(movies);
+        List<MoviesAndStaffs> staffs = moviesAndStaffsService.getStaffsByMovieId(id);
+        result.setStaffs(staffs);
         // 拉评分
-        long star5Num = shortCommentsService.countShortCommentsByScore((short) 5);
-        long star4Num = shortCommentsService.countShortCommentsByScore((short) 4);
-        long star3Num = shortCommentsService.countShortCommentsByScore((short) 3);
-        long star2Num = shortCommentsService.countShortCommentsByScore((short) 2);
-        long star1Num = shortCommentsService.countShortCommentsByScore((short) 1);
+        long star5Num = shortCommentsService.countShortCommentsByScore(id, (short) 5);
+        long star4Num = shortCommentsService.countShortCommentsByScore(id, (short) 4);
+        long star3Num = shortCommentsService.countShortCommentsByScore(id, (short) 3);
+        long star2Num = shortCommentsService.countShortCommentsByScore(id, (short) 2);
+        long star1Num = shortCommentsService.countShortCommentsByScore(id, (short) 1);
 
         long starSum = star5Num + star4Num + star3Num + star2Num + star1Num;
         long d = starSum;
-        if (d == 0){
+        if (d == 0) {
             d = 1;
         }
 
@@ -223,7 +213,7 @@ public class MovieController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public MoviesSearchResponse SearchMovies(@RequestBody MovieSearchRequest movieSearchRequest){
+    public MoviesSearchResponse SearchMovies(@RequestBody MovieSearchRequest movieSearchRequest) {
         SearchMovie movie = new SearchMovie();
         int pageNum = RequestUtils.GetPage(request);
         int pageSizeNum = RequestUtils.GetPageSize(request);
@@ -233,10 +223,23 @@ public class MovieController {
             builder.append(" ");
         });
         String terms = builder.toString();
-        Object[] r = movie.search(terms,pageNum, pageSizeNum);
-        MoviesSearchResponse response =  new MoviesSearchResponse(r[0], r[1]);
+        Object[] r = movie.search(terms, pageNum, pageSizeNum);
+        MoviesSearchResponse response = new MoviesSearchResponse(r[0], r[1]);
         movie.closeClient();
         return response;
     }
+
+    // TODO 为你推荐
+
+    // 正在热映
+    @RequestMapping(value = "/latest", method = RequestMethod.GET)
+    public LatestMoviesResponse SearchMovies() {
+        // TODO month可传
+        return new LatestMoviesResponse(moviesService.getMoviesByLatest(1));
+    }
+
+    // TODO 热门电影
+
+    // TODO 热门评论
 
 }

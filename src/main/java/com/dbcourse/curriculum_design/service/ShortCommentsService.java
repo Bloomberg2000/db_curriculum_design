@@ -35,7 +35,7 @@ public interface ShortCommentsService {
 
     ShortComments getShortCommentByUserIdAndMovieId(int userId, int movieId);
 
-    long countShortCommentsByScore(Short score);
+    long countShortCommentsByScore(int movieId, short score);
 
     /**
      * 加载电影短评

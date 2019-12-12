@@ -40,6 +40,8 @@ public interface MoviesService {
     List<Movies> getTopNumMovies(Integer num);
 
     List<Movies> searchMoviesByName(String name);
+
+    List<Movies> getMoviesByLatest(int month);
 }
 
 

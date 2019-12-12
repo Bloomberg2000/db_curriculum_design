@@ -7,6 +7,9 @@ import com.dbcourse.curriculum_design.service.MoviesService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -87,6 +90,20 @@ public class MoviesServiceImpl implements MoviesService {
         return moviesMapper.selectByExample(example);
     }
 
+    @Override
+    public List<Movies> getMoviesByLatest(int month) {
+        if (month < 0 )
+            month = 1;
+        else if (month > 3)
+            month = 3;
+        Date now  = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.MONTH, -1 * month);
+        MoviesExample example = new MoviesExample();
+        example.createCriteria().andDReleaseDateGreaterThanOrEqualTo(calendar.getTime());
+        return moviesMapper.selectByExample(example);
+    }
 }
 
 
