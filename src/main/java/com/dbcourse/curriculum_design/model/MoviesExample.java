@@ -931,6 +931,66 @@ public class MoviesExample {
             addCriterion("f_movie_score not between", value1, value2, "fMovieScore");
             return (Criteria) this;
         }
+
+        public Criteria andDEditTimeIsNull() {
+            addCriterion("d_edit_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeIsNotNull() {
+            addCriterion("d_edit_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeEqualTo(Date value) {
+            addCriterion("d_edit_time =", value, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeNotEqualTo(Date value) {
+            addCriterion("d_edit_time <>", value, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeGreaterThan(Date value) {
+            addCriterion("d_edit_time >", value, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("d_edit_time >=", value, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeLessThan(Date value) {
+            addCriterion("d_edit_time <", value, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeLessThanOrEqualTo(Date value) {
+            addCriterion("d_edit_time <=", value, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeIn(List<Date> values) {
+            addCriterion("d_edit_time in", values, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeNotIn(List<Date> values) {
+            addCriterion("d_edit_time not in", values, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeBetween(Date value1, Date value2) {
+            addCriterion("d_edit_time between", value1, value2, "dEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDEditTimeNotBetween(Date value1, Date value2) {
+            addCriterion("d_edit_time not between", value1, value2, "dEditTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

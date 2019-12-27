@@ -2,12 +2,9 @@ package com.dbcourse.curriculum_design.mapper;
 
 import com.dbcourse.curriculum_design.model.Movies;
 import com.dbcourse.curriculum_design.model.MoviesExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.ResultMap;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MoviesMapper {
@@ -74,12 +71,10 @@ public interface MoviesMapper {
     @ResultMap("BaseResultMap")
     List<Movies> getRecommendMovies(int num);
 
-
     @Select("select * from Movies " +
             "order by d_release_date DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER} - 1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
     @ResultMap("BaseResultMap")
     List<Movies> getMoviesByPage(int pageIndex, int pageSize);
-
 }

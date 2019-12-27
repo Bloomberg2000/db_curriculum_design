@@ -56,6 +56,9 @@ public class UsersAndLongCommentsAndMovies implements Serializable {
     @Expose
     private String useravatar;
 
+    @Expose
+    private String plaintext;
+
     private static final long serialVersionUID = 1L;
 
     public static UsersAndLongCommentsAndMoviesBuilder builder() {
