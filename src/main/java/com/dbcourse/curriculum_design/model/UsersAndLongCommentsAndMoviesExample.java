@@ -1004,6 +1004,76 @@ public class UsersAndLongCommentsAndMoviesExample {
             addCriterion("UserAvatar not between", value1, value2, "useravatar");
             return (Criteria) this;
         }
+
+        public Criteria andPlaintextIsNull() {
+            addCriterion("PlainText is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextIsNotNull() {
+            addCriterion("PlainText is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextEqualTo(String value) {
+            addCriterion("PlainText =", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextNotEqualTo(String value) {
+            addCriterion("PlainText <>", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextGreaterThan(String value) {
+            addCriterion("PlainText >", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextGreaterThanOrEqualTo(String value) {
+            addCriterion("PlainText >=", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextLessThan(String value) {
+            addCriterion("PlainText <", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextLessThanOrEqualTo(String value) {
+            addCriterion("PlainText <=", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextLike(String value) {
+            addCriterion("PlainText like", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextNotLike(String value) {
+            addCriterion("PlainText not like", value, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextIn(List<String> values) {
+            addCriterion("PlainText in", values, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextNotIn(List<String> values) {
+            addCriterion("PlainText not in", values, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextBetween(String value1, String value2) {
+            addCriterion("PlainText between", value1, value2, "plaintext");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaintextNotBetween(String value1, String value2) {
+            addCriterion("PlainText not between", value1, value2, "plaintext");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

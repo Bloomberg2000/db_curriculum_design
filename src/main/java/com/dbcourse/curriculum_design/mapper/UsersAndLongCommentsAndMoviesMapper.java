@@ -54,7 +54,6 @@ public interface UsersAndLongCommentsAndMoviesMapper {
     //    @ResultMap("BaseResultMap")
     Integer countLongComments(Integer userId);
 
-
     @Select("select top (#{num}) * \n" +
             "from UsersAndLongCommentsAndMovies\n" +
             "ORDER BY ((LongCommentsLikeNum + 1.0) / POWER((DATEDIFF(day, CreateTimeDate , getdate())) + 2, 2)) desc")
