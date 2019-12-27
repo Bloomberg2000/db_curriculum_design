@@ -7,8 +7,9 @@ import java.util.List;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.mapper.UsersAndLongCommentsAndMoviesMapper;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
+
 @Service
-public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCommentsAndMoviesService{
+public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCommentsAndMoviesService {
 
     @Resource
     private UsersAndLongCommentsAndMoviesMapper usersAndLongCommentsAndMoviesMapper;
@@ -39,13 +40,13 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
     }
 
     @Override
-    public int updateByExampleSelective(UsersAndLongCommentsAndMovies record,UsersAndLongCommentsAndMoviesExample example) {
-        return usersAndLongCommentsAndMoviesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(UsersAndLongCommentsAndMovies record, UsersAndLongCommentsAndMoviesExample example) {
+        return usersAndLongCommentsAndMoviesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(UsersAndLongCommentsAndMovies record,UsersAndLongCommentsAndMoviesExample example) {
-        return usersAndLongCommentsAndMoviesMapper.updateByExample(record,example);
+    public int updateByExample(UsersAndLongCommentsAndMovies record, UsersAndLongCommentsAndMoviesExample example) {
+        return usersAndLongCommentsAndMoviesMapper.updateByExample(record, example);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
 
     /**
      * 在用户信息页面显示的长评
+     *
      * @param userId 用户id
      * @return
      */
@@ -65,11 +67,32 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
 
     /**
      * 用户id的长评总数
+     *
      * @param userId
      * @return
      */
     @Override
-    public Integer countLongComments(Integer userId) {
+    public long countLongComments(Integer userId) {
         return usersAndLongCommentsAndMoviesMapper.countLongComments(userId);
     }
+
+    @Override
+    public List<UsersAndLongCommentsAndMovies> searchLongCommentsByTitle(String str) {
+        UsersAndLongCommentsAndMoviesExample example = new UsersAndLongCommentsAndMoviesExample();
+        example.createCriteria().andLongcommentstitleLike(String.format("%%%s%%", str));
+        return usersAndLongCommentsAndMoviesMapper.selectByExample(example);
+    }
+
+    @Override
+    public UsersAndLongCommentsAndMovies getLongCommentsById(int id) {
+        UsersAndLongCommentsAndMoviesExample example = new UsersAndLongCommentsAndMoviesExample();
+        example.createCriteria().andLongcommentsidEqualTo(id);
+        List<UsersAndLongCommentsAndMovies> longCommentsAndMovies = usersAndLongCommentsAndMoviesMapper.selectByExample(example);
+        if (longCommentsAndMovies.size() > 0) {
+            return longCommentsAndMovies.get(0);
+        }
+        return null;
+    }
 }
+
+

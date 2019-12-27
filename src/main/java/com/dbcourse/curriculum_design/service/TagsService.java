@@ -38,4 +38,6 @@ public interface TagsService {
      * @return
      */
     List<Tags> getTopNumTags(Integer nTagsnum);
+
+    List<Tags> searchTagsByName(String name);
 }

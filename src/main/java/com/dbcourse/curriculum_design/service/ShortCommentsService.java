@@ -35,7 +35,7 @@ public interface ShortCommentsService {
 
     ShortComments getShortCommentByUserIdAndMovieId(int userId, int movieId);
 
-    long countShortCommentsByScore(Short score);
+    long countShortCommentsByScore(int movieId, short score);
 
     /**
      * 加载电影短评
@@ -47,5 +47,6 @@ public interface ShortCommentsService {
     // 插入或修改评论
     ShortComments PutShortComments(ShortComments record);
 
+    long countShortCommentsByMovieId(int movieId);
 
 }

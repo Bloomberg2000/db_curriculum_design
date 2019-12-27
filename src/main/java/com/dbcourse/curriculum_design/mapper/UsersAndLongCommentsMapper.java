@@ -25,7 +25,7 @@ public interface UsersAndLongCommentsMapper {
     int batchInsert(@Param("list") List<UsersAndLongComments> list);
 
     @Select("select * from UsersAndLongComments " +
-            "where MovieId = #{movieId}" +
+            "where MovieId = #{movieId} " +
             "order by LongCommentsId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only ")

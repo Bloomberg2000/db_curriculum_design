@@ -1,7 +1,13 @@
 package com.dbcourse.curriculum_design.redis.services;
 
 public interface CaptchaService {
-    String StoreEmailCaptcha(String email);
+    String StoreSignUpEmailCaptcha(String email);
 
-    String GetEmailCaptcha(String email);
+    String GetSignUpEmailCaptcha(String email);
+
+    String StorePasswordEmailCaptcha(String email);
+
+    String GetPasswordEmailCaptcha(String email);
+
+
 }

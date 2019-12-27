@@ -28,7 +28,7 @@ public class ShortCommentsController {
     private HttpServletRequest request;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public StatusResponse AddShortComments(@RequestBody AddShortCommentRequest addShortCommentRequest) {
         Integer user = RequestUtils.GetUser(request);
         ShortComments shortComments = ShortComments.builder()

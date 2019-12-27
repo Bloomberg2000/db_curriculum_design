@@ -16,33 +16,27 @@ import lombok.NoArgsConstructor;
 public class MoviesAndStaffs implements Serializable {
 
     @SerializedName("staff_id")
+    @Expose
     private Integer staffid;
 
     @Expose(serialize = false)
     private Integer moiveid;
 
     @SerializedName("staff_type")
+    @Expose
     private Integer stafftype;
 
     @SerializedName("staff_name")
+    @Expose
     private String staffname;
 
     @SerializedName("staff_gender")
+    @Expose
     private Short staffgender;
 
-    @SerializedName("staff_birthday")
-    private String staffbirthday;
-
-    @SerializedName("staff_occupation")
-    private String staffoccupation;
-
-    @SerializedName("staff_foreignname")
-    private String staffforeignname;
-
-    @SerializedName("staff_birthplace")
-    private String staffbirthplace;
 
     @SerializedName("staff_photo")
+    @Expose
     private String staffphoto;
 
     private static final long serialVersionUID = 1L;

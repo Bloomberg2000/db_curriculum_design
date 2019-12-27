@@ -79,5 +79,12 @@ public class StaffsServiceImpl implements StaffsService {
     public Staffs getStaffById(int id) {
         return staffsMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Staffs> searchStaffsByName(String name) {
+        StaffsExample example = new StaffsExample();
+        example.createCriteria().andCNameLike(String.format("%%%s%%", name));
+        return staffsMapper.selectByExample(example);
+    }
 }
 

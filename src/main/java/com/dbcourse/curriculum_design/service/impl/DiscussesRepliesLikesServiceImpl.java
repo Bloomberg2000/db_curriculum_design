@@ -82,7 +82,8 @@ public class DiscussesRepliesLikesServiceImpl implements DiscussesRepliesLikesSe
     @Override
     public List<DiscussesRepliesLikes> getDiscussesRepliesLikesByDIdListAndUserId(List<Integer> ids, int userId) {
         DiscussesRepliesLikesExample example = new DiscussesRepliesLikesExample();
-        example.createCriteria().andNDiscussReplyIdIn(ids).andNUserIdEqualTo(userId);
+        if (ids != null && ids.size() > 0) example.createCriteria().andNDiscussReplyIdIn(ids).andNUserIdEqualTo(userId);
+        else return null;
         return discussesRepliesLikesMapper.selectByExample(example);
     }
 

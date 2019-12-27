@@ -26,7 +26,7 @@ public interface MoviesInfoAndStaffsIdMapper {
     int batchInsert(@Param("list") List<MoviesInfoAndStaffsId> list);
 
     @Select("select * from MoviesInfoAndStaffsId " +
-            "where StaffId = #{staffId}" +
+            "where StaffId = #{staffId} " +
             "order by MoiveId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")

@@ -35,4 +35,6 @@ public interface UsersService {
     Users selectUserByEmailOrPhone(String user);
 
     Users loginUserByEmailOrPhone(String user, String password);
+
+    void updatePasswordByUserId(int userId, String password);
 }

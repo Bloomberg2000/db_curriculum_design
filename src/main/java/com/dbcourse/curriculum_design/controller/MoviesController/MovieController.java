@@ -1,14 +1,13 @@
 package com.dbcourse.curriculum_design.controller.MoviesController;
 
+import com.dbcourse.curriculum_design.controller.MoviesController.bean.request.MovieSearchRequest;
 import com.dbcourse.curriculum_design.controller.MoviesController.bean.response.*;
+import com.dbcourse.curriculum_design.elasticsearch.SearchMovie;
 import com.dbcourse.curriculum_design.model.*;
+import com.dbcourse.curriculum_design.redis.services.HotMovieService;
 import com.dbcourse.curriculum_design.service.*;
-import com.dbcourse.curriculum_design.utils.HtmlToPlainText;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +19,12 @@ import java.util.List;
 public class MovieController {
     @Resource
     private HttpServletRequest request;
+
+    @Resource
+    private LongCommentsService longCommentsService;
+
+    @Resource
+    private DiscussesService discussesService;
 
     @Resource
     private MoviesService moviesService;
@@ -44,6 +49,10 @@ public class MovieController {
 
     @Resource
     private UsersAndDiscussesService usersAndDiscussesService;
+
+    @Resource
+    private HotMovieService hotMovieService;
+
     /**
      * 返回电影的详细信息
      *
@@ -53,26 +62,31 @@ public class MovieController {
     public MovieInfoResponse MovieInfo(@PathVariable("id") int id) {
         MovieInfoResponse result = new MovieInfoResponse();
         Movies movies = moviesService.getMovieById(id);
-        if (movies != null) {
-            result.setMovies(movies);
-            List<MoviesAndStaffs> staffs = moviesAndStaffsService.getStaffsByMovieId(id);
-            result.setStaffs(staffs);
+        if (movies == null) {
+            return new MovieInfoResponse();
         }
-
+        hotMovieService.addMovieAccessNum(id);
+        result.setMovies(movies);
+        List<MoviesAndStaffs> staffs = moviesAndStaffsService.getStaffsByMovieId(id);
+        result.setStaffs(staffs);
         // 拉评分
-        long star5Num = shortCommentsService.countShortCommentsByScore((short) 5);
-        long star4Num = shortCommentsService.countShortCommentsByScore((short) 4);
-        long star3Num = shortCommentsService.countShortCommentsByScore((short) 3);
-        long star2Num = shortCommentsService.countShortCommentsByScore((short) 2);
-        long star1Num = shortCommentsService.countShortCommentsByScore((short) 1);
+        long star5Num = shortCommentsService.countShortCommentsByScore(id, (short) 5);
+        long star4Num = shortCommentsService.countShortCommentsByScore(id, (short) 4);
+        long star3Num = shortCommentsService.countShortCommentsByScore(id, (short) 3);
+        long star2Num = shortCommentsService.countShortCommentsByScore(id, (short) 2);
+        long star1Num = shortCommentsService.countShortCommentsByScore(id, (short) 1);
 
         long starSum = star5Num + star4Num + star3Num + star2Num + star1Num;
+        long d = starSum;
+        if (d == 0) {
+            d = 1;
+        }
 
-        result.setScore(ScoreCount.builder().star5((double) star5Num / starSum)
-                .star4((double) star4Num / starSum)
-                .star3((double) star3Num / starSum)
-                .star2((double) star2Num / starSum)
-                .star1((double) star1Num / starSum)
+        result.setScore(ScoreCount.builder().star5((double) star5Num / d)
+                .star4((double) star4Num / d)
+                .star3((double) star3Num / d)
+                .star2((double) star2Num / d)
+                .star1((double) star1Num / d)
                 .comment_num(starSum).build());
 
         // TODO 返回电影获奖情况
@@ -132,12 +146,13 @@ public class MovieController {
         } else {
             usersAndShortComments.forEach(s -> shortCommentsResponse.newShort(s, false));
         }
-
+        shortCommentsResponse.setShortCommentsNum(shortCommentsService.countShortCommentsByMovieId(movieId));
         return shortCommentsResponse;
     }
 
     /**
      * 获取电影长评列表
+     *
      * @param movieId
      * @return
      */
@@ -150,23 +165,19 @@ public class MovieController {
         List<UsersAndLongComments> longComments = usersAndLongCommentsService.getLongCommentsByPage(movieId, pageNum, pageSizeNum);
         longComments.forEach(c -> {
             LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
-                    .username(c.getNickname()).avatar(c.getUseravatar())
-                    .createTime(String.valueOf(c.getLongcommentscreatetime().getTime()))
+                    .username(c.getNickname()).avatar(c.getUseravatar()).longCommentsId(c.getLongcommentsid())
+                    .createTime(c.getLongcommentscreatetime())
                     .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
-                    .title(c.getLongcommentstitle()).build();
-            String content = HtmlToPlainText.toPlainText(c.getLongcommentscontent());
-            if (content.length() > 100){
-                content = content.substring(0, 100);
-            }
-            comment.setContent(content);
+                    .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).build();
             response.addComment(comment);
         });
-
+        response.setCommentsNum(longCommentsService.countLongCommentsByMovieId(movieId));
         return response;
     }
 
     /**
      * 获取电影讨论区
+     *
      * @param movieId
      * @return
      */
@@ -179,11 +190,12 @@ public class MovieController {
         List<UsersAndDiscusses> longComments = usersAndDiscussesService.getDiscussesByPage(movieId, pageNum, pageSizeNum);
         longComments.forEach(c -> response.addComment(DiscussesResponse.Discus.builder()
                 .avatar(c.getUseravatar())
-                .createTime(String.valueOf(c.getDiscussescreatetime().getTime()))
+                .createTime(c.getDiscussescreatetime())
                 .title(c.getDiscussesname())
                 .username(c.getNickname())
+                .DiscusId(c.getDiscussesid())
                 .build()));
-
+        response.setDiscusesNum(discussesService.countDiscussesByMovieId(movieId));
         return response;
     }
 
@@ -200,5 +212,34 @@ public class MovieController {
         return new TopNumMovieInfoResponse(movies);
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public MoviesSearchResponse SearchMovies(@RequestBody MovieSearchRequest movieSearchRequest) {
+        SearchMovie movie = new SearchMovie();
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
+        StringBuilder builder = new StringBuilder();
+        movieSearchRequest.getTerms().forEach(t -> {
+            builder.append(t.replaceAll("\\s*", ""));
+            builder.append(" ");
+        });
+        String terms = builder.toString();
+        Object[] r = movie.search(terms, pageNum, pageSizeNum);
+        MoviesSearchResponse response = new MoviesSearchResponse(r[0], r[1]);
+        movie.closeClient();
+        return response;
+    }
+
+    // TODO 为你推荐
+
+    // 正在热映
+    @RequestMapping(value = "/latest", method = RequestMethod.GET)
+    public LatestMoviesResponse SearchMovies() {
+        // TODO month可传
+        return new LatestMoviesResponse(moviesService.getMoviesByLatest(1));
+    }
+
+    // TODO 热门电影
+
+    // TODO 热门评论
 
 }

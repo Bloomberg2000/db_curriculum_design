@@ -26,7 +26,7 @@ public class LongCommentsController {
     private HttpServletRequest request;
 
     @Resource
-    private UsersAndLongCommentsService usersAndLongCommentsService;
+    private UsersAndLongCommentsAndMoviesService usersAndLongCommentsAndMoviesService;
 
     @Resource
     private LongCommentsLikesService longCommentsLikesService;
@@ -50,7 +50,7 @@ public class LongCommentsController {
         int pageNum = RequestUtils.GetPage(request);
         int pageSizeNum = RequestUtils.GetPageSize(request);
 
-        UsersAndLongComments comment = usersAndLongCommentsService.getLongCommentsById(id);
+        UsersAndLongCommentsAndMovies comment = usersAndLongCommentsAndMoviesService.getLongCommentsById(id);
         if (comment == null) {
             return response;
         }
@@ -72,32 +72,36 @@ public class LongCommentsController {
         if (user != null) {
             like = longCommentsLikesService.getCommentLikeByCommentsAndUserId(user, id);
         }
-        LongCommentsInfoResponse.Reply reply;
-        List<UsersAndLongCommentsRelies> ParentReplies = usersAndLongCommentsReliesService.getRepliesByParentsIds(new ArrayList<>(parentsIds));
-        for (UsersAndLongCommentsRelies r : relies) {
-            reply = null;
-            for (UsersAndLongCommentsRelies parentReply : ParentReplies) {
-                if (r.getLongcommentsreplyparent().equals(parentReply.getLongcommentsreplyid())) {
-                    reply = new LongCommentsInfoResponse.Reply(
-                            parentReply.getUsername(),
-                            parentReply.getUseravatar(),
-                            String.valueOf(parentReply.getLongcommentsreplycreatetime().getTime()),
-                            parentReply.getLongcommentsreplycontent()
-                    );
-                    break;
+        if (parentsIds.size() > 0){
+            LongCommentsInfoResponse.Reply reply;
+            List<UsersAndLongCommentsRelies> ParentReplies = usersAndLongCommentsReliesService.getRepliesByParentsIds(new ArrayList<>(parentsIds));
+            for (UsersAndLongCommentsRelies r : relies) {
+                reply = null;
+                for (UsersAndLongCommentsRelies parentReply : ParentReplies) {
+                    if (r.getLongcommentsreplyparent().equals(parentReply.getLongcommentsreplyid())) {
+                        reply = new LongCommentsInfoResponse.Reply(
+                                parentReply.getLongcommentsreplyid(),
+                                parentReply.getUsername(),
+                                parentReply.getUseravatar(),
+                                parentReply.getLongcommentsreplycreatetime(),
+                                parentReply.getLongcommentsreplycontent()
+                        );
+                        break;
+                    }
                 }
+                response.newReply(new LongCommentsInfoResponse.Reply(
+                        reply,
+                        r.getLongcommentsreplyid(),
+                        r.getUsername(),
+                        r.getUseravatar(),
+                        r.getLongcommentsreplycreatetime(),
+                        r.getLongcommentsreplycontent()
+                ));
             }
-            response.newReply(new LongCommentsInfoResponse.Reply(
-                    reply,
-                    r.getUsername(),
-                    r.getUseravatar(),
-                    String.valueOf(r.getLongcommentsreplycreatetime().getTime()),
-                    r.getLongcommentsreplycontent()
-            ));
         }
         response.setComments(comment);
         if (like == null) {
-            response.setLikeType(0);
+            response.setLikeType(-1);
         } else {
             response.setLikeType(like.getNType());
         }
@@ -106,11 +110,11 @@ public class LongCommentsController {
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public StatusResponse PostLongComments(@RequestBody PostLongCommentsRequest postLongCommentsRequest) {
 
         int score;
-        Integer user = (Integer) request.getSession().getAttribute("user");
+        Integer user = RequestUtils.GetUser(request);
         ShortComments shortComments = shortCommentsService.getShortCommentByUserIdAndMovieId(user, postLongCommentsRequest.getMovieId());
         if (shortComments != null) {
             score = shortComments.getNScore();
@@ -125,12 +129,13 @@ public class LongCommentsController {
             ).getNScore();
         }
         LongComments comments = LongComments.builder()
+                .nUserId(user)
                 .cContent(postLongCommentsRequest.getContent())
                 .cTitle(postLongCommentsRequest.getTitle())
                 .nMovieId(postLongCommentsRequest.getMovieId())
                 .nScore((short) score)
                 .dCreateTime(new Date()).build();
-        longCommentsService.insert(comments);
+        longCommentsService.insertSelective(comments);
 
         return StatusResponse.ok();
     }

@@ -4,9 +4,7 @@ import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMoviesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.ResultMap;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndLongCommentsAndMoviesMapper {
@@ -26,25 +24,24 @@ public interface UsersAndLongCommentsAndMoviesMapper {
 
     int batchInsert(@Param("list") List<UsersAndLongCommentsAndMovies> list);
 
-
     /**
      * 显示在用户个人信息页上
      * 通过用户id找到发表的长评，list长评题目/内容///打分/用户名/电影名/电影封面
      * 按照发表时间降序排列
-     * @author Christy
-     * @param userId 用户id
+     *
+     * @param userId    用户id
      * @param pageIndex
      * @param pageSize
      * @return a list of UsersAndLongComments
+     * @author Christy
      */
 
-    @Select("SELECT Username, CreateTimeDate, EditTimeDate, Score, LongCommentsTitle, LongCommentsContent, MovieCover, MovieName\n" +
-            "FROM UsersAndLongCommentsAndMovies\n" +
-             "WHERE(UserId = #{userId, jdbcType=INTEGER})\n" +
-                     "ORDER BY EditTimeDate DESC " +
-                     "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
-                     "fetch next #{pageSize,jdbcType=INTEGER} rows only")
-    @ResultMap("BaseResultMap")
+    @Select("SELECT * " +
+            "FROM UsersAndLongCommentsAndMovies " +
+            "WHERE(UserId = #{userId, jdbcType=INTEGER}) " +
+            "ORDER BY EditTimeDate DESC " +
+            "offset ((#{pageIndex,jdbcType=INTEGER}-1) * #{pageSize,jdbcType=INTEGER}) rows " +
+            "fetch next #{pageSize,jdbcType=INTEGER} rows only")
     List<UsersAndLongCommentsAndMovies> selectByUserId(Integer userId, Integer pageIndex, Integer pageSize);
 
     /**

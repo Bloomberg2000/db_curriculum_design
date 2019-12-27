@@ -34,10 +34,14 @@ public interface LongCommentsService {
     int batchInsert(List<LongComments> list);
 
     /**
-     * @author christy
      * @param n_movie_id movie的n_id
      * @return a list of LongComments.
+     * @author christy
      */
     List<LongComments> getLongCommentsByMovieId(Integer n_movie_id);
+
+    long countLongCommentsByMovieId(int movieId);
+
 }
+
 

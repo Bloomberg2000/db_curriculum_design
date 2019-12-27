@@ -43,6 +43,8 @@ public class LongComments implements Serializable {
 
     private Integer nUnlikeNum;
 
+    private String cPlainTextContent;
+
     private static final long serialVersionUID = 1L;
 
     public static LongCommentsBuilder builder() {
