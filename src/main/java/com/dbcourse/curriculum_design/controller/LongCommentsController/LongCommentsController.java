@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api/longComments", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
@@ -73,7 +70,7 @@ public class LongCommentsController {
         if (user != null) {
             like = longCommentsLikesService.getCommentLikeByCommentsAndUserId(user, id);
         }
-        if (parentsIds.size() > 0){
+        if (parentsIds.size() > 0) {
             LongCommentsInfoResponse.Reply reply;
             List<UsersAndLongCommentsRelies> ParentReplies = usersAndLongCommentsReliesService.getRepliesByParentsIds(new ArrayList<>(parentsIds));
             for (UsersAndLongCommentsRelies r : relies) {
@@ -171,8 +168,40 @@ public class LongCommentsController {
 
     // 热门评论
     @RequestMapping(value = "/hot", method = RequestMethod.GET)
-    public HotLongCommentsResponse HotComments(){
-        return new HotLongCommentsResponse(usersAndLongCommentsAndMoviesService.getHotComments(15));
+    public HotLongCommentsResponse HotComments() {
+        List<Map<String, Object>> res = new ArrayList<>();
+
+        List<UsersAndLongCommentsAndMovies> comments = usersAndLongCommentsAndMoviesService.getHotComments(15);
+        Integer user = (Integer) request.getSession().getAttribute("user");
+
+        if (user != null) {
+            List<Integer> longCommentsIds = new ArrayList<>();
+            comments.forEach(l -> longCommentsIds.add(l.getLongcommentsid()));
+            List<LongCommentsLikes> likes = longCommentsLikesService.getLongCommentsLikesByCommentsIdListAndUserId(longCommentsIds, user);
+            comments.forEach(c -> {
+                int likeType = -1;
+                for (LongCommentsLikes l : likes) {
+                    if (c.getLongcommentsid().equals(l.getNLongCommentId())) {
+                        likeType = l.getNType();
+                        break;
+                    }
+                }
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("comments", c);
+                map.put("likeType", likeType);
+                res.add(map);
+            });
+        } else {
+            comments.forEach(c -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("comments", c);
+                map.put("likeType", -1);
+                res.add(map);
+            });
+        }
+
+        return new HotLongCommentsResponse(res);
     }
 
 }
