@@ -44,7 +44,7 @@ public class DiscussesController {
     @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
     public DiscussesInfoResponse GetDiscussesInfo(@PathVariable int id) {
         DiscussesInfoResponse response = new DiscussesInfoResponse();
-
+        // 获取页面编号和页面大小
         int pageNum = RequestUtils.GetPage(request);
         int pageSizeNum = RequestUtils.GetPageSize(request);
 
