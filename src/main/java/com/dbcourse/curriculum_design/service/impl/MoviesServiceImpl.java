@@ -7,6 +7,9 @@ import com.dbcourse.curriculum_design.service.MoviesService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -80,6 +83,54 @@ public class MoviesServiceImpl implements MoviesService {
         return moviesMapper.getTopNumMovies(num);
     }
 
+    @Override
+    public List<Movies> searchMoviesByName(String name) {
+        MoviesExample example = new MoviesExample();
+        example.createCriteria().andCNameLike(String.format("%%%s%%", name));
+        return moviesMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Movies> getMoviesByLatest(int month) {
+        if (month < 0 )
+            month = 1;
+        else if (month > 3)
+            month = 3;
+        Date now  = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.MONTH, -1 * month);
+        MoviesExample example = new MoviesExample();
+        example.createCriteria().andDReleaseDateGreaterThanOrEqualTo(calendar.getTime());
+        return moviesMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Movies> getHotMovies(int num) {
+        if (num < 0 || num > 30){
+            num = 30;
+        }
+        return moviesMapper.getHotMovies(num);
+    }
+
+    @Override
+    public List<Movies> getRecommendMovies(int num) {
+        if (num < 0 || num > 30){
+            num = 30;
+        }
+        return moviesMapper.getRecommendMovies(num);
+    }
+
+    @Override
+    public List<Movies> getMoviesByPage(int pageIndex, int pageSize) {
+        if (pageIndex <= 0) {
+            pageIndex = 1;
+        }
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+        return moviesMapper.getMoviesByPage(pageIndex, pageSize);
+    }
 }
 
 

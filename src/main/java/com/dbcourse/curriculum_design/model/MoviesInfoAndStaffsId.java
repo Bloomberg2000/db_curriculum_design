@@ -16,14 +16,19 @@ public class MoviesInfoAndStaffsId implements Serializable {
     @Expose(serialize = false)
     private Integer staffid;
 
+    @Expose
     private Integer moiveid;
 
+    @Expose
     private Integer stafftype;
 
+    @Expose
     private String moviename;
 
+    @Expose
     private String moviecover;
 
+    @Expose
     private Float moviescore;
 
     private static final long serialVersionUID = 1L;

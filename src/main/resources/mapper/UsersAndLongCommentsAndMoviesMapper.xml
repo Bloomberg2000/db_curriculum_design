@@ -15,6 +15,9 @@
     <result column="LongCommentsContent" jdbcType="VARCHAR" property="longcommentscontent" />
     <result column="MovieCover" jdbcType="VARCHAR" property="moviecover" />
     <result column="MovieName" jdbcType="VARCHAR" property="moviename" />
+    <result column="LongCommentsLikeNum" jdbcType="INTEGER" property="longcommentslikenum" />
+    <result column="LongCommentsUnLikeNum" jdbcType="INTEGER" property="longcommentsunlikenum" />
+    <result column="UserAvatar" jdbcType="VARCHAR" property="useravatar" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,7 +82,8 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     UserId, LongCommentsId, MovieId, UserName, CreateTimeDate, EditTimeDate, Score, LongCommentsTitle, 
-    LongCommentsContent, MovieCover, MovieName
+    LongCommentsContent, MovieCover, MovieName, LongCommentsLikeNum, LongCommentsUnLikeNum, 
+    UserAvatar
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMoviesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -108,11 +112,13 @@
     insert into dbo.UsersAndLongCommentsAndMovies (UserId, LongCommentsId, MovieId, 
       UserName, CreateTimeDate, EditTimeDate, 
       Score, LongCommentsTitle, LongCommentsContent, 
-      MovieCover, MovieName)
+      MovieCover, MovieName, LongCommentsLikeNum, 
+      LongCommentsUnLikeNum, UserAvatar)
     values (#{userid,jdbcType=INTEGER}, #{longcommentsid,jdbcType=INTEGER}, #{movieid,jdbcType=INTEGER}, 
       #{username,jdbcType=VARCHAR}, #{createtimedate,jdbcType=TIMESTAMP}, #{edittimedate,jdbcType=TIMESTAMP}, 
       #{score,jdbcType=SMALLINT}, #{longcommentstitle,jdbcType=VARCHAR}, #{longcommentscontent,jdbcType=VARCHAR}, 
-      #{moviecover,jdbcType=VARCHAR}, #{moviename,jdbcType=VARCHAR})
+      #{moviecover,jdbcType=VARCHAR}, #{moviename,jdbcType=VARCHAR}, #{longcommentslikenum,jdbcType=INTEGER}, 
+      #{longcommentsunlikenum,jdbcType=INTEGER}, #{useravatar,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies">
     <!--@mbg.generated-->
@@ -151,6 +157,15 @@
       <if test="moviename != null">
         MovieName,
       </if>
+      <if test="longcommentslikenum != null">
+        LongCommentsLikeNum,
+      </if>
+      <if test="longcommentsunlikenum != null">
+        LongCommentsUnLikeNum,
+      </if>
+      <if test="useravatar != null">
+        UserAvatar,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -185,6 +200,15 @@
       </if>
       <if test="moviename != null">
         #{moviename,jdbcType=VARCHAR},
+      </if>
+      <if test="longcommentslikenum != null">
+        #{longcommentslikenum,jdbcType=INTEGER},
+      </if>
+      <if test="longcommentsunlikenum != null">
+        #{longcommentsunlikenum,jdbcType=INTEGER},
+      </if>
+      <if test="useravatar != null">
+        #{useravatar,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -232,6 +256,15 @@
       <if test="record.moviename != null">
         MovieName = #{record.moviename,jdbcType=VARCHAR},
       </if>
+      <if test="record.longcommentslikenum != null">
+        LongCommentsLikeNum = #{record.longcommentslikenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.longcommentsunlikenum != null">
+        LongCommentsUnLikeNum = #{record.longcommentsunlikenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.useravatar != null">
+        UserAvatar = #{record.useravatar,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -250,7 +283,10 @@
       LongCommentsTitle = #{record.longcommentstitle,jdbcType=VARCHAR},
       LongCommentsContent = #{record.longcommentscontent,jdbcType=VARCHAR},
       MovieCover = #{record.moviecover,jdbcType=VARCHAR},
-      MovieName = #{record.moviename,jdbcType=VARCHAR}
+      MovieName = #{record.moviename,jdbcType=VARCHAR},
+      LongCommentsLikeNum = #{record.longcommentslikenum,jdbcType=INTEGER},
+      LongCommentsUnLikeNum = #{record.longcommentsunlikenum,jdbcType=INTEGER},
+      UserAvatar = #{record.useravatar,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,13 +295,16 @@
     <!--@mbg.generated-->
     insert into dbo.UsersAndLongCommentsAndMovies
     (UserId, LongCommentsId, MovieId, UserName, CreateTimeDate, EditTimeDate, Score, 
-      LongCommentsTitle, LongCommentsContent, MovieCover, MovieName)
+      LongCommentsTitle, LongCommentsContent, MovieCover, MovieName, LongCommentsLikeNum, 
+      LongCommentsUnLikeNum, UserAvatar)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.userid,jdbcType=INTEGER}, #{item.longcommentsid,jdbcType=INTEGER}, #{item.movieid,jdbcType=INTEGER}, 
         #{item.username,jdbcType=VARCHAR}, #{item.createtimedate,jdbcType=TIMESTAMP}, #{item.edittimedate,jdbcType=TIMESTAMP}, 
         #{item.score,jdbcType=SMALLINT}, #{item.longcommentstitle,jdbcType=VARCHAR}, #{item.longcommentscontent,jdbcType=VARCHAR}, 
-        #{item.moviecover,jdbcType=VARCHAR}, #{item.moviename,jdbcType=VARCHAR})
+        #{item.moviecover,jdbcType=VARCHAR}, #{item.moviename,jdbcType=VARCHAR}, #{item.longcommentslikenum,jdbcType=INTEGER}, 
+        #{item.longcommentsunlikenum,jdbcType=INTEGER}, #{item.useravatar,jdbcType=VARCHAR}
+        )
     </foreach>
   </insert>
 </mapper>

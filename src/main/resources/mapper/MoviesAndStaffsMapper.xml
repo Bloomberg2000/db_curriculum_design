@@ -9,10 +9,6 @@
     <result column="StaffType" jdbcType="INTEGER" property="stafftype" />
     <result column="StaffName" jdbcType="VARCHAR" property="staffname" />
     <result column="StaffGender" jdbcType="SMALLINT" property="staffgender" />
-    <result column="StaffBirthday" jdbcType="VARCHAR" property="staffbirthday" />
-    <result column="StaffOccupation" jdbcType="VARCHAR" property="staffoccupation" />
-    <result column="StaffForeignName" jdbcType="VARCHAR" property="staffforeignname" />
-    <result column="StaffBirthPlace" jdbcType="VARCHAR" property="staffbirthplace" />
     <result column="StaffPhoto" jdbcType="VARCHAR" property="staffphoto" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -77,8 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    StaffId, MoiveId, StaffType, StaffName, StaffGender, StaffBirthday, StaffOccupation, 
-    StaffForeignName, StaffBirthPlace, StaffPhoto
+    StaffId, MoiveId, StaffType, StaffName, StaffGender, StaffPhoto
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffsExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -105,13 +100,11 @@
   <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffs">
     <!--@mbg.generated-->
     insert into dbo.MoviesAndStaffs (StaffId, MoiveId, StaffType, 
-      StaffName, StaffGender, StaffBirthday, 
-      StaffOccupation, StaffForeignName, StaffBirthPlace, 
-      StaffPhoto)
+      StaffName, StaffGender, StaffPhoto
+      )
     values (#{staffid,jdbcType=INTEGER}, #{moiveid,jdbcType=INTEGER}, #{stafftype,jdbcType=INTEGER}, 
-      #{staffname,jdbcType=VARCHAR}, #{staffgender,jdbcType=SMALLINT}, #{staffbirthday,jdbcType=VARCHAR}, 
-      #{staffoccupation,jdbcType=VARCHAR}, #{staffforeignname,jdbcType=VARCHAR}, #{staffbirthplace,jdbcType=VARCHAR}, 
-      #{staffphoto,jdbcType=VARCHAR})
+      #{staffname,jdbcType=VARCHAR}, #{staffgender,jdbcType=SMALLINT}, #{staffphoto,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.MoviesAndStaffs">
     <!--@mbg.generated-->
@@ -132,18 +125,6 @@
       <if test="staffgender != null">
         StaffGender,
       </if>
-      <if test="staffbirthday != null">
-        StaffBirthday,
-      </if>
-      <if test="staffoccupation != null">
-        StaffOccupation,
-      </if>
-      <if test="staffforeignname != null">
-        StaffForeignName,
-      </if>
-      <if test="staffbirthplace != null">
-        StaffBirthPlace,
-      </if>
       <if test="staffphoto != null">
         StaffPhoto,
       </if>
@@ -163,18 +144,6 @@
       </if>
       <if test="staffgender != null">
         #{staffgender,jdbcType=SMALLINT},
-      </if>
-      <if test="staffbirthday != null">
-        #{staffbirthday,jdbcType=VARCHAR},
-      </if>
-      <if test="staffoccupation != null">
-        #{staffoccupation,jdbcType=VARCHAR},
-      </if>
-      <if test="staffforeignname != null">
-        #{staffforeignname,jdbcType=VARCHAR},
-      </if>
-      <if test="staffbirthplace != null">
-        #{staffbirthplace,jdbcType=VARCHAR},
       </if>
       <if test="staffphoto != null">
         #{staffphoto,jdbcType=VARCHAR},
@@ -207,18 +176,6 @@
       <if test="record.staffgender != null">
         StaffGender = #{record.staffgender,jdbcType=SMALLINT},
       </if>
-      <if test="record.staffbirthday != null">
-        StaffBirthday = #{record.staffbirthday,jdbcType=VARCHAR},
-      </if>
-      <if test="record.staffoccupation != null">
-        StaffOccupation = #{record.staffoccupation,jdbcType=VARCHAR},
-      </if>
-      <if test="record.staffforeignname != null">
-        StaffForeignName = #{record.staffforeignname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.staffbirthplace != null">
-        StaffBirthPlace = #{record.staffbirthplace,jdbcType=VARCHAR},
-      </if>
       <if test="record.staffphoto != null">
         StaffPhoto = #{record.staffphoto,jdbcType=VARCHAR},
       </if>
@@ -235,10 +192,6 @@
       StaffType = #{record.stafftype,jdbcType=INTEGER},
       StaffName = #{record.staffname,jdbcType=VARCHAR},
       StaffGender = #{record.staffgender,jdbcType=SMALLINT},
-      StaffBirthday = #{record.staffbirthday,jdbcType=VARCHAR},
-      StaffOccupation = #{record.staffoccupation,jdbcType=VARCHAR},
-      StaffForeignName = #{record.staffforeignname,jdbcType=VARCHAR},
-      StaffBirthPlace = #{record.staffbirthplace,jdbcType=VARCHAR},
       StaffPhoto = #{record.staffphoto,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -247,14 +200,12 @@
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into dbo.MoviesAndStaffs
-    (StaffId, MoiveId, StaffType, StaffName, StaffGender, StaffBirthday, StaffOccupation, 
-      StaffForeignName, StaffBirthPlace, StaffPhoto)
+    (StaffId, MoiveId, StaffType, StaffName, StaffGender, StaffPhoto)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.staffid,jdbcType=INTEGER}, #{item.moiveid,jdbcType=INTEGER}, #{item.stafftype,jdbcType=INTEGER}, 
-        #{item.staffname,jdbcType=VARCHAR}, #{item.staffgender,jdbcType=SMALLINT}, #{item.staffbirthday,jdbcType=VARCHAR}, 
-        #{item.staffoccupation,jdbcType=VARCHAR}, #{item.staffforeignname,jdbcType=VARCHAR}, 
-        #{item.staffbirthplace,jdbcType=VARCHAR}, #{item.staffphoto,jdbcType=VARCHAR})
+        #{item.staffname,jdbcType=VARCHAR}, #{item.staffgender,jdbcType=SMALLINT}, #{item.staffphoto,jdbcType=VARCHAR}
+        )
     </foreach>
   </insert>
 </mapper>

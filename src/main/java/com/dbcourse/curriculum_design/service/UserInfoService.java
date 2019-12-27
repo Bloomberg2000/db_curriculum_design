@@ -34,6 +34,6 @@ public interface UserInfoService {
 
     UserInfo getUserInfoById(int userId);
 
-    int updateByUserId(int userId, UserInfo record);
+    void updateByUserId(int userId, UserInfo record);
 }
 

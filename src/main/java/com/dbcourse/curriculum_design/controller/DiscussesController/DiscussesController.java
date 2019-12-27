@@ -50,7 +50,7 @@ public class DiscussesController {
 
         // 获取讨论的详细页面
         UsersAndDiscusses usersAndDiscusses = usersAndDiscussesService.getUsersAndDiscussesById(id);
-        if (usersAndDiscusses == null){
+        if (usersAndDiscusses == null) {
             return response;
         }
         // 获取讨论的回复信息
@@ -83,42 +83,44 @@ public class DiscussesController {
         for (UsersAndDiscussesReplies r : replies) {
             reply = null;
             like = false;
-            for (UsersAndDiscussesReplies parentReply : ParentReplies) {
-                // 拼入这个评论的父评论
-                if (r.getDiscussesrepliesparentid().equals(parentReply.getDiscussesrepliesid())) {
-                    reply = new DiscussesInfoResponse.Reply(parentReply.getUsername(), parentReply.getUseravatar()
-                            , String.valueOf(parentReply.getDiscussesrepliescreatetime().getTime()), parentReply.getDiscussesrepliescontent());
-                    break;
-                }
+            if (ParentReplies != null)
+                for (UsersAndDiscussesReplies parentReply : ParentReplies) {
+                    // 拼入这个评论的父评论
+                    if (r.getDiscussesrepliesparentid() != null && r.getDiscussesrepliesparentid().equals(parentReply.getDiscussesrepliesid())) {
+                        reply = new DiscussesInfoResponse.Reply(parentReply.getDiscussesrepliesid(), parentReply.getUsername(), parentReply.getUseravatar()
+                                , parentReply.getDiscussesrepliescreatetime(), parentReply.getDiscussesrepliescontent());
+                        break;
+                    }
 
-            }
+                }
 
             // 拼入是否对这个评论点赞
             if (user != null) {
-                for (DiscussesRepliesLikes l : likes) {
-                    if (l.getNDiscussReplyId().equals(r.getDiscussesid())) {
-                        like = true;
-                        break;
+                if (likes != null)
+                    for (DiscussesRepliesLikes l : likes) {
+                        if (l.getNDiscussReplyId().equals(r.getDiscussesrepliesid())) {
+                            like = true;
+                            break;
+                        }
                     }
-                }
             }
-
-            response.newReply(new DiscussesInfoResponse.Reply(reply, r.getUsername(), r.getUseravatar(),
-                    String.valueOf(r.getDiscussesrepliescreatetime().getTime()), r.getDiscussesrepliescontent(), like, r.getDiscussesreplieslikenum()));
+            DiscussesInfoResponse.Reply nr = new DiscussesInfoResponse.Reply(r.getDiscussesrepliesid(), reply, r.getUsername(), r.getUseravatar(),
+                    r.getDiscussesrepliescreatetime(), r.getDiscussesrepliescontent(), like, r.getDiscussesreplieslikenum());
+            response.newReply(nr);
 
         }
 
         response.setUserName(usersAndDiscusses.getNickname());
         response.setUserAvatar(usersAndDiscusses.getUseravatar());
         response.setDiscussesContent(usersAndDiscusses.getDiscussesname());
-        response.setDiscussesCreateTime(String.valueOf(usersAndDiscusses.getDiscussescreatetime().getTime()));
+        response.setDiscussesCreateTime(usersAndDiscusses.getDiscussescreatetime());
         response.setReplyNum(repliesNum);
 
         return response;
     }
 
     // 发起讨论
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public StatusResponse AddDiscusses(@RequestBody DiscussesRequest discussesRequest) {
         Integer user = RequestUtils.GetUser(request);
         discussesService.insert(Discusses.builder().cName(discussesRequest.getDiscussesName())
@@ -127,20 +129,20 @@ public class DiscussesController {
     }
 
     @RequestMapping(value = "/{id:\\d+}/reply", method = RequestMethod.POST)
-    public StatusResponse AddDiscussesReply(@PathVariable String id,
+    public StatusResponse AddDiscussesReply(@PathVariable int id,
                                             @RequestBody ReplyRequest replyRequest) {
         Integer user = RequestUtils.GetUser(request);
-        discussesRepliesService.insert(DiscussesReplies.builder()
+        discussesRepliesService.insertSelective(DiscussesReplies.builder()
                 .cContent(replyRequest.getContent())
                 .dCreateTime(new Date())
-                .nDiscussId(replyRequest.getDiscussesId())
+                .nDiscussId(id)
                 .nParentId(replyRequest.getParentId())
                 .nUserId(user).build());
         return StatusResponse.ok();
     }
 
     @RequestMapping(value = "/reply/like", method = RequestMethod.POST)
-    public StatusResponse LikeDiscussesReply(@RequestBody DiscussesReplyLikeRequest discussesReplyLikeRequest){
+    public StatusResponse LikeDiscussesReply(@RequestBody DiscussesReplyLikeRequest discussesReplyLikeRequest) {
         Integer user = RequestUtils.GetUser(request);
         DiscussesRepliesLikes like = DiscussesRepliesLikes.builder()
                 .nDiscussReplyId(discussesReplyLikeRequest.getReplyId()).nUserId(user).build();

@@ -2,6 +2,7 @@ package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.LongCommentsLikesMapper;
 import com.dbcourse.curriculum_design.mapper.LongCommentsMapper;
+import com.dbcourse.curriculum_design.model.LongCommentsExample;
 import com.dbcourse.curriculum_design.model.LongCommentsLikes;
 import com.dbcourse.curriculum_design.model.LongCommentsLikesExample;
 import com.dbcourse.curriculum_design.service.LongCommentsLikesService;
@@ -112,4 +113,10 @@ public class LongCommentsLikesServiceImpl implements LongCommentsLikesService {
         longCommentsLikesMapper.insert(record);
     }
 
+    @Override
+    public List<LongCommentsLikes> getLongCommentsLikesByCommentsIdListAndUserId(List<Integer> ids, int userId) {
+        LongCommentsLikesExample example = new LongCommentsLikesExample();
+        example.createCriteria().andNLongCommentIdIn(ids).andNUserIdEqualTo(userId);
+        return longCommentsLikesMapper.selectByExample(example);
+    }
 }

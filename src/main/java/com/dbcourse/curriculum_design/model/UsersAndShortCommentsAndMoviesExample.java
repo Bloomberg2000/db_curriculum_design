@@ -744,6 +744,66 @@ public class UsersAndShortCommentsAndMoviesExample {
             addCriterion("MovieName not between", value1, value2, "moviename");
             return (Criteria) this;
         }
+
+        public Criteria andLikenumIsNull() {
+            addCriterion("LikeNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumIsNotNull() {
+            addCriterion("LikeNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumEqualTo(Integer value) {
+            addCriterion("LikeNum =", value, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumNotEqualTo(Integer value) {
+            addCriterion("LikeNum <>", value, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumGreaterThan(Integer value) {
+            addCriterion("LikeNum >", value, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("LikeNum >=", value, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumLessThan(Integer value) {
+            addCriterion("LikeNum <", value, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumLessThanOrEqualTo(Integer value) {
+            addCriterion("LikeNum <=", value, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumIn(List<Integer> values) {
+            addCriterion("LikeNum in", values, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumNotIn(List<Integer> values) {
+            addCriterion("LikeNum not in", values, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumBetween(Integer value1, Integer value2) {
+            addCriterion("LikeNum between", value1, value2, "likenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLikenumNotBetween(Integer value1, Integer value2) {
+            addCriterion("LikeNum not between", value1, value2, "likenum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

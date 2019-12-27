@@ -26,7 +26,7 @@ public interface UsersAndLongCommentsReliesMapper {
     int batchInsert(@Param("list") List<UsersAndLongCommentsRelies> list);
 
     @Select("select * from UsersAndLongCommentsRelies " +
-            "where LongCommentsId = #{commentsId}" +
+            "where LongCommentsId = #{commentsId} " +
             "order by LongCommentsReplyId DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER}-1)*#{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only ")

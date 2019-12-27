@@ -16,7 +16,7 @@ public class MailUtil {
     private static final String SMTPSSL = "true";
 
     // 邮箱需要设置的信息
-    private static final String sendEmailAddress = "orange@noqaqs.cn";
+    private static final String sendEmailAddress = "orangego@noqaqs.cn";
     private static final String sendEmailPassword = "Pb123456";
 
 
@@ -41,7 +41,7 @@ public class MailUtil {
         Message message = new MimeMessage(session);
         try {
             //设置发件人
-            message.setFrom(new InternetAddress("lzy@noqaqs.cn"));
+            message.setFrom(new InternetAddress(sendEmailAddress));
             //设置收件人
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
             //设置主题
@@ -51,8 +51,8 @@ public class MailUtil {
             message.setContent(String.format("你的验证码是 %s", captcha), "text/html;charset=UTF-8");
             //发送一封邮件
             Transport.send(message);
-        } catch (MessagingException ignored) {
-
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 }

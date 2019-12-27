@@ -82,5 +82,10 @@ public class TagsServiceImpl implements TagsService {
 
     }
 
-
+    @Override
+    public List<Tags> searchTagsByName(String name) {
+        TagsExample example = new TagsExample();
+        example.createCriteria().andCContentLike(String.format("%%%s%%", name));
+        return tagsMapper.selectByExample(example);
+    }
 }

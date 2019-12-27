@@ -1,12 +1,14 @@
 package com.dbcourse.curriculum_design.controller.DiscussesController.bean.response;
 
 
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -15,12 +17,18 @@ import java.util.List;
 @NoArgsConstructor
 public class DiscussesInfoResponse {
 
+    @Expose
     String userName;
+    @Expose
     String userAvatar;
-    String discussesCreateTime;
+    @Expose
+    Date discussesCreateTime;
+    @Expose
     String discussesContent;
+    @Expose
     long replyNum;
 
+    @Expose
     List<Reply> replies = new ArrayList<>();
 
     public void newReply(Reply reply){
@@ -29,16 +37,25 @@ public class DiscussesInfoResponse {
 
     @AllArgsConstructor
     public static class Reply{
+        @Expose
+        int replyId;
+        @Expose
         Reply parent;
+        @Expose
         String userName;
+        @Expose
         String userAvatar;
-        String replyCreateTime;
+        @Expose
+        Date replyCreateTime;
+        @Expose
         String replyContent;
-        boolean like;
-        int likeNum;
+        @Expose
+        Boolean like;
+        @Expose
+        Integer likeNum;
 
-
-        public Reply(String userName, String userAvatar, String replyCreateTime, String replyContent) {
+        public Reply(int replyId, String userName, String userAvatar, Date replyCreateTime, String replyContent) {
+            this.replyId = replyId;
             this.userName = userName;
             this.userAvatar = userAvatar;
             this.replyCreateTime = replyCreateTime;

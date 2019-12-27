@@ -7,8 +7,9 @@ import com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies;
 import com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMoviesExample;
 import com.dbcourse.curriculum_design.mapper.UsersAndShortCommentsAndMoviesMapper;
 import com.dbcourse.curriculum_design.service.UsersAndShortCommentsAndMoviesService;
+
 @Service
-public class UsersAndShortCommentsAndMoviesServiceImpl implements UsersAndShortCommentsAndMoviesService{
+public class UsersAndShortCommentsAndMoviesServiceImpl implements UsersAndShortCommentsAndMoviesService {
 
     @Resource
     private UsersAndShortCommentsAndMoviesMapper usersAndShortCommentsAndMoviesMapper;
@@ -39,13 +40,13 @@ public class UsersAndShortCommentsAndMoviesServiceImpl implements UsersAndShortC
     }
 
     @Override
-    public int updateByExampleSelective(UsersAndShortCommentsAndMovies record,UsersAndShortCommentsAndMoviesExample example) {
-        return usersAndShortCommentsAndMoviesMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(UsersAndShortCommentsAndMovies record, UsersAndShortCommentsAndMoviesExample example) {
+        return usersAndShortCommentsAndMoviesMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(UsersAndShortCommentsAndMovies record,UsersAndShortCommentsAndMoviesExample example) {
-        return usersAndShortCommentsAndMoviesMapper.updateByExample(record,example);
+    public int updateByExample(UsersAndShortCommentsAndMovies record, UsersAndShortCommentsAndMoviesExample example) {
+        return usersAndShortCommentsAndMoviesMapper.updateByExample(record, example);
     }
 
     @Override
@@ -74,3 +75,5 @@ public class UsersAndShortCommentsAndMoviesServiceImpl implements UsersAndShortC
     }
 
 }
+
+
