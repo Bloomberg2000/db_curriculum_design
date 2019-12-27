@@ -22,7 +22,7 @@ public class LongCommentsResponse {
     @Expose
     long commentsNum;
 
-    public void addComment(LongComment longComment){
+    public void addComment(LongComment longComment) {
         comments.add(longComment);
     }
 
@@ -30,7 +30,7 @@ public class LongCommentsResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class LongComment{
+    public static class LongComment {
         @Expose
         int longCommentsId;
         @Expose
@@ -47,5 +47,11 @@ public class LongCommentsResponse {
         int likeNum;
         @Expose
         int unlikeNum;
+        @Expose
+        int userId;
+        @Expose
+        int likeType;
+        @Expose
+        int score;
     }
 }

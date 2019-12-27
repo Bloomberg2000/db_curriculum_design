@@ -4,7 +4,7 @@ import com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies;
 import com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMoviesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndShortCommentsAndMoviesMapper {
@@ -23,4 +23,9 @@ public interface UsersAndShortCommentsAndMoviesMapper {
     int updateByExample(@Param("record") UsersAndShortCommentsAndMovies record, @Param("example") UsersAndShortCommentsAndMoviesExample example);
 
     int batchInsert(@Param("list") List<UsersAndShortCommentsAndMovies> list);
+
+    @Select("select top #{num} * " +
+            "from UsersAndShortCommentsAndMovies " +
+            "ORDER BY ((LikeNum + 1.0) / POWER((DATEDIFF(day, CreateTimeDate , getdate())) + 2, 2)) desc")
+    List<UsersAndShortCommentsAndMovies> getHotComments(int num);
 }

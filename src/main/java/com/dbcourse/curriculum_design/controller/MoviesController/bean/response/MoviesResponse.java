@@ -11,6 +11,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LatestMoviesResponse {
+public class MoviesResponse {
     List<Movies> movies;
 }

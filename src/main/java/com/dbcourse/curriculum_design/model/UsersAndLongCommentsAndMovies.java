@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsersAndLongCommentsAndMovies implements Serializable {
-    @Expose(serialize = false)
+    @Expose
     private Integer userid;
 
     @Expose
@@ -29,6 +29,7 @@ public class UsersAndLongCommentsAndMovies implements Serializable {
     @Expose
     private Date createtimedate;
 
+    @Expose
     private Date edittimedate;
 
     @Expose

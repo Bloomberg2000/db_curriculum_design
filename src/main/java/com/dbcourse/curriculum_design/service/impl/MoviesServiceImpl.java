@@ -104,6 +104,33 @@ public class MoviesServiceImpl implements MoviesService {
         example.createCriteria().andDReleaseDateGreaterThanOrEqualTo(calendar.getTime());
         return moviesMapper.selectByExample(example);
     }
+
+    @Override
+    public List<Movies> getHotMovies(int num) {
+        if (num < 0 || num > 30){
+            num = 30;
+        }
+        return moviesMapper.getHotMovies(num);
+    }
+
+    @Override
+    public List<Movies> getRecommendMovies(int num) {
+        if (num < 0 || num > 30){
+            num = 30;
+        }
+        return moviesMapper.getRecommendMovies(num);
+    }
+
+    @Override
+    public List<Movies> getMoviesByPage(int pageIndex, int pageSize) {
+        if (pageIndex <= 0) {
+            pageIndex = 1;
+        }
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
+        return moviesMapper.getMoviesByPage(pageIndex, pageSize);
+    }
 }
 
 

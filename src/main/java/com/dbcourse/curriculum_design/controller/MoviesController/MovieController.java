@@ -24,6 +24,9 @@ public class MovieController {
     private LongCommentsService longCommentsService;
 
     @Resource
+    private LongCommentsLikesService longCommentsLikesService;
+
+    @Resource
     private DiscussesService discussesService;
 
     @Resource
@@ -90,6 +93,8 @@ public class MovieController {
                 .comment_num(starSum).build());
 
         // TODO 返回电影获奖情况
+
+
         return result;
     }
 
@@ -163,14 +168,40 @@ public class MovieController {
 
         LongCommentsResponse response = new LongCommentsResponse();
         List<UsersAndLongComments> longComments = usersAndLongCommentsService.getLongCommentsByPage(movieId, pageNum, pageSizeNum);
-        longComments.forEach(c -> {
-            LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
-                    .username(c.getNickname()).avatar(c.getUseravatar()).longCommentsId(c.getLongcommentsid())
-                    .createTime(c.getLongcommentscreatetime())
-                    .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
-                    .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).build();
-            response.addComment(comment);
-        });
+        // 判断是否点过赞
+        Integer user = (Integer) request.getSession().getAttribute("user");
+        if (user != null) {
+            List<Integer> longCommentsIds = new ArrayList<>();
+            longComments.forEach(l -> longCommentsIds.add(l.getLongcommentsid()));
+
+            // 筛选Like
+            List<LongCommentsLikes> likes = longCommentsLikesService.getLongCommentsLikesByCommentsIdListAndUserId(longCommentsIds, user);
+            for (UsersAndLongComments c : longComments) {
+                int likeType = -1;
+                for (LongCommentsLikes l : likes) {
+                    if (c.getLongcommentsid().equals(l.getNLongCommentId())) {
+                        likeType = l.getNType();
+                        break;
+                    }
+                }
+                LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
+                        .username(c.getNickname()).avatar(c.getUseravatar()).longCommentsId(c.getLongcommentsid())
+                        .createTime(c.getLongcommentscreatetime())
+                        .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
+                        .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).score(c.getLongcommentsscore()).likeType(likeType).userId(c.getUserid()).build();
+                response.addComment(comment);
+            }
+        } else {
+            longComments.forEach(c -> {
+                LongCommentsResponse.LongComment comment = LongCommentsResponse.LongComment.builder()
+                        .username(c.getNickname()).avatar(c.getUseravatar()).longCommentsId(c.getLongcommentsid())
+                        .createTime(c.getLongcommentscreatetime())
+                        .likeNum(c.getLongcommentslikenum()).unlikeNum(c.getLongcommentsunlikenum())
+                        .title(c.getLongcommentstitle()).content(c.getLongcommentscontent()).likeType(-1).userId(c.getUserid()).score(c.getLongcommentsscore()).build();
+                response.addComment(comment);
+            });
+        }
+
         response.setCommentsNum(longCommentsService.countLongCommentsByMovieId(movieId));
         return response;
     }
@@ -229,17 +260,34 @@ public class MovieController {
         return response;
     }
 
-    // TODO 为你推荐
+    // 为你推荐
+    // TODO random
+    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
+    public MoviesResponse RecommendMovies() {
+        return new MoviesResponse(moviesService.getRecommendMovies(10));
+    }
+
 
     // 正在热映
     @RequestMapping(value = "/latest", method = RequestMethod.GET)
-    public LatestMoviesResponse SearchMovies() {
+    public MoviesResponse LatestMovies() {
         // TODO month可传
-        return new LatestMoviesResponse(moviesService.getMoviesByLatest(1));
+        return new MoviesResponse(moviesService.getMoviesByLatest(1));
     }
 
-    // TODO 热门电影
+    // 热门电影
+    @RequestMapping(value = "/hot", method = RequestMethod.GET)
+    public MoviesResponse HotMovies() {
+        return new MoviesResponse(moviesService.getHotMovies(15));
+    }
 
-    // TODO 热门评论
+    // 电影列表
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public MoviesResponse GetMoviesList() {
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
+        return new MoviesResponse(moviesService.getMoviesByPage(pageNum, pageSizeNum));
+    }
+
 
 }

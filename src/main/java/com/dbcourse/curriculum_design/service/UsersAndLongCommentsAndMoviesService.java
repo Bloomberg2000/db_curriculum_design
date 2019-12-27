@@ -42,6 +42,9 @@ public interface UsersAndLongCommentsAndMoviesService {
 
     UsersAndLongCommentsAndMovies getLongCommentsById(int id);
 
+    List<UsersAndLongCommentsAndMovies> getHotComments(int num);
+
 }
+
 
 

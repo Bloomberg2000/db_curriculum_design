@@ -1,12 +1,13 @@
 package com.dbcourse.curriculum_design.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMoviesExample;
-import java.util.List;
-import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.mapper.UsersAndLongCommentsAndMoviesMapper;
+import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
+import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMoviesExample;
 import com.dbcourse.curriculum_design.service.UsersAndLongCommentsAndMoviesService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCommentsAndMoviesService {
@@ -93,6 +94,15 @@ public class UsersAndLongCommentsAndMoviesServiceImpl implements UsersAndLongCom
         }
         return null;
     }
+
+    @Override
+    public List<UsersAndLongCommentsAndMovies> getHotComments(int num) {
+        if (num < 0 || num > 30) {
+            num = 30;
+        }
+        return usersAndLongCommentsAndMoviesMapper.getHotComments(num);
+    }
 }
+
 
 

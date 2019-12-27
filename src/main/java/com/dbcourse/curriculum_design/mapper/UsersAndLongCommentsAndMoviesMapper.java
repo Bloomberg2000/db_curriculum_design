@@ -4,7 +4,7 @@ import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMovies;
 import com.dbcourse.curriculum_design.model.UsersAndLongCommentsAndMoviesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.ResultMap;import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UsersAndLongCommentsAndMoviesMapper {
@@ -53,4 +53,10 @@ public interface UsersAndLongCommentsAndMoviesMapper {
             "WHERE UserId = #{userId, jdbcType=INTEGER}")
     //    @ResultMap("BaseResultMap")
     Integer countLongComments(Integer userId);
+
+
+    @Select("select top #{num} *\n" +
+            "from UsersAndLongCommentsAndMovies\n" +
+            "ORDER BY ((LongCommentsLikeNum + 1.0) / POWER((DATEDIFF(day, CreateTimeDate , getdate())) + 2, 2)) desc")
+    List<UsersAndLongCommentsAndMovies> getHotComments(int num);
 }

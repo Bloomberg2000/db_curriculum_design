@@ -4,6 +4,7 @@ package com.dbcourse.curriculum_design.controller.LongCommentsController;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.request.LongCommentsLikeRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsReplyRequest;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.request.PostLongCommentsRequest;
+import com.dbcourse.curriculum_design.controller.LongCommentsController.response.HotLongCommentsResponse;
 import com.dbcourse.curriculum_design.controller.LongCommentsController.response.LongCommentsInfoResponse;
 import com.dbcourse.curriculum_design.controller.been.response.StatusResponse;
 import com.dbcourse.curriculum_design.model.*;
@@ -166,6 +167,12 @@ public class LongCommentsController {
         longCommentsLikesService.likeOrUnLike(LongCommentsLikes.builder()
                 .nLongCommentId(id).nType(likeRequest.getType()).nUserId(user).build());
         return StatusResponse.ok();
+    }
+
+    // 热门评论
+    @RequestMapping(value = "/hot", method = RequestMethod.GET)
+    public HotLongCommentsResponse HotComments(){
+        return new HotLongCommentsResponse(usersAndLongCommentsAndMoviesService.getHotComments(15));
     }
 
 }
