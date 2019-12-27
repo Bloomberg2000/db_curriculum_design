@@ -18,5 +18,6 @@ import java.util.List;
 public class MoviesResponse {
     @Expose
     List<Movies> movies;
+    @Expose
     UserInfo user;
 }
