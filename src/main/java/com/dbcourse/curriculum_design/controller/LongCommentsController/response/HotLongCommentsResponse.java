@@ -7,10 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @Data
 public class HotLongCommentsResponse {
     @Expose
-    List<UsersAndLongCommentsAndMovies> comments;
+    List<Map<String, Object>> comments;
 }

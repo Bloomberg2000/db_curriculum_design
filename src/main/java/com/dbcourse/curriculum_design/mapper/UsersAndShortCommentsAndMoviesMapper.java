@@ -24,7 +24,7 @@ public interface UsersAndShortCommentsAndMoviesMapper {
 
     int batchInsert(@Param("list") List<UsersAndShortCommentsAndMovies> list);
 
-    @Select("select top #{num} * " +
+    @Select("select top (#{num}) * " +
             "from UsersAndShortCommentsAndMovies " +
             "ORDER BY ((LikeNum + 1.0) / POWER((DATEDIFF(day, CreateTimeDate , getdate())) + 2, 2)) desc")
     List<UsersAndShortCommentsAndMovies> getHotComments(int num);

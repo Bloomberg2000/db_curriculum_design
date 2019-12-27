@@ -49,7 +49,8 @@ public interface MoviesMapper {
     List<Movies> getTopNumMovies(Integer num);
 
     @Select("select " +
-            "top #{num, jdbcType=INTEGER} " +
+            "top (#{num, jdbcType=INTEGER}) " +
+            "MAX(M.n_id) as n_id, " +
             "MAX(c_name) as c_name, " +
             "MAX(n_film_length) as n_film_length, " +
             "MAX(c_alias) c_alias, " +
@@ -65,10 +66,12 @@ public interface MoviesMapper {
             "         INNER JOIN ShortComments SC on M.n_id = SC.n_movie_id " +
             "group by M.n_id " +
             "order by ((count(SC.n_id) + 1.0) / POWER((DATEDIFF(day, GETDATE(), MAX(M.d_release_date))) + 2, 2)) desc")
+    @ResultMap("BaseResultMap")
     List<Movies> getHotMovies(Integer num);
 
     @Select("select  * from Movies where Movies.n_id in\n" +
-            "(select top #{num}  Movies.n_id from Movies order by newid())")
+            "(select top (#{num})  Movies.n_id from Movies order by newid())")
+    @ResultMap("BaseResultMap")
     List<Movies> getRecommendMovies(int num);
 
 
@@ -76,6 +79,7 @@ public interface MoviesMapper {
             "order by d_release_date DESC " +
             "offset ((#{pageIndex,jdbcType=INTEGER} - 1) * #{pageSize,jdbcType=INTEGER}) rows " +
             "fetch next #{pageSize,jdbcType=INTEGER} rows only")
+    @ResultMap("BaseResultMap")
     List<Movies> getMoviesByPage(int pageIndex, int pageSize);
 
 }
