@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/movie", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
@@ -288,10 +290,14 @@ public class MovieController {
 
     // 电影列表
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public MoviesResponse GetMoviesList() {
+    public Map<String, Object> GetMoviesList() {
         int pageNum = RequestUtils.GetPage(request);
         int pageSizeNum = RequestUtils.GetPageSize(request);
-        return new MoviesResponse(moviesService.getMoviesByPage(pageNum, pageSizeNum));
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("movies", moviesService.getMoviesByPage(pageNum, pageSizeNum));
+        res.put("num", moviesService.countMovies());
+        return res;
     }
 
 

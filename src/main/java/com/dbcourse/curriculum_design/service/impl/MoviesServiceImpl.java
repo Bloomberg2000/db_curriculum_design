@@ -131,6 +131,11 @@ public class MoviesServiceImpl implements MoviesService {
         }
         return moviesMapper.getMoviesByPage(pageIndex, pageSize);
     }
+
+    @Override
+    public long countMovies() {
+        return moviesMapper.countByExample(new MoviesExample());
+    }
 }
 
 
