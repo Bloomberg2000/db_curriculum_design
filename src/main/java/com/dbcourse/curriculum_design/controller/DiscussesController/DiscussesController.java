@@ -38,6 +38,9 @@ public class DiscussesController {
     DiscussesRepliesLikesService discussesRepliesLikesService;
 
     @Resource
+    MoviesService moviesService;
+
+    @Resource
     DiscussesService discussesService;
 
     // 查看讨论详细
@@ -115,6 +118,8 @@ public class DiscussesController {
         response.setDiscussesContent(usersAndDiscusses.getDiscussesname());
         response.setDiscussesCreateTime(usersAndDiscusses.getDiscussescreatetime());
         response.setReplyNum(repliesNum);
+        response.setMovieId(usersAndDiscusses.getMovieid());
+        response.setMovieName(moviesService.selectByPrimaryKey(usersAndDiscusses.getMovieid()).getCName());
 
         return response;
     }
