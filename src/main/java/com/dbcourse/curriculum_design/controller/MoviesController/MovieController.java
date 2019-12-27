@@ -56,6 +56,10 @@ public class MovieController {
     @Resource
     private HotMovieService hotMovieService;
 
+    @Resource
+    private AwardsAndMovieIdService awardsAndMovieIdService;
+
+
     /**
      * 返回电影的详细信息
      *
@@ -92,8 +96,9 @@ public class MovieController {
                 .star1((double) star1Num / d)
                 .comment_num(starSum).build());
 
-        // TODO 返回电影获奖情况
-
+        // 返回电影获奖情况
+        List<AwardsAndMovieId> awards = awardsAndMovieIdService.getAwards(id);
+        result.setAwards(awards);
 
         return result;
     }
