@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbcourse.curriculum_design.mapper.AwardsAndMovieIdMapper">
+  <resultMap id="BaseResultMap" type="com.dbcourse.curriculum_design.model.AwardsAndMovieId">
+    <!--@mbg.generated-->
+    <!--@Table dbo.AwardsAndMovieId-->
+    <result column="AwardId" jdbcType="INTEGER" property="awardid" />
+    <result column="AwardName" jdbcType="VARCHAR" property="awardname" />
+    <result column="AwardStartTime" jdbcType="TIMESTAMP" property="awardstarttime" />
+    <result column="AwardEndTime" jdbcType="TIMESTAMP" property="awardendtime" />
+    <result column="AwardLocation" jdbcType="VARCHAR" property="awardlocation" />
+    <result column="MovieId" jdbcType="INTEGER" property="movieid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    AwardId, AwardName, AwardStartTime, AwardEndTime, AwardLocation, MovieId
+  </sql>
+  <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.AwardsAndMovieIdExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dbo.AwardsAndMovieId
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dbcourse.curriculum_design.model.AwardsAndMovieIdExample">
+    <!--@mbg.generated-->
+    delete from dbo.AwardsAndMovieId
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dbcourse.curriculum_design.model.AwardsAndMovieId">
+    <!--@mbg.generated-->
+    insert into dbo.AwardsAndMovieId (AwardId, AwardName, AwardStartTime, 
+      AwardEndTime, AwardLocation, MovieId
+      )
+    values (#{awardid,jdbcType=INTEGER}, #{awardname,jdbcType=VARCHAR}, #{awardstarttime,jdbcType=TIMESTAMP}, 
+      #{awardendtime,jdbcType=TIMESTAMP}, #{awardlocation,jdbcType=VARCHAR}, #{movieid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.AwardsAndMovieId">
+    <!--@mbg.generated-->
+    insert into dbo.AwardsAndMovieId
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="awardid != null">
+        AwardId,
+      </if>
+      <if test="awardname != null">
+        AwardName,
+      </if>
+      <if test="awardstarttime != null">
+        AwardStartTime,
+      </if>
+      <if test="awardendtime != null">
+        AwardEndTime,
+      </if>
+      <if test="awardlocation != null">
+        AwardLocation,
+      </if>
+      <if test="movieid != null">
+        MovieId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="awardid != null">
+        #{awardid,jdbcType=INTEGER},
+      </if>
+      <if test="awardname != null">
+        #{awardname,jdbcType=VARCHAR},
+      </if>
+      <if test="awardstarttime != null">
+        #{awardstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="awardendtime != null">
+        #{awardendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="awardlocation != null">
+        #{awardlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="movieid != null">
+        #{movieid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dbcourse.curriculum_design.model.AwardsAndMovieIdExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from dbo.AwardsAndMovieId
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.AwardsAndMovieId
+    <set>
+      <if test="record.awardid != null">
+        AwardId = #{record.awardid,jdbcType=INTEGER},
+      </if>
+      <if test="record.awardname != null">
+        AwardName = #{record.awardname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardstarttime != null">
+        AwardStartTime = #{record.awardstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.awardendtime != null">
+        AwardEndTime = #{record.awardendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.awardlocation != null">
+        AwardLocation = #{record.awardlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieid != null">
+        MovieId = #{record.movieid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update dbo.AwardsAndMovieId
+    set AwardId = #{record.awardid,jdbcType=INTEGER},
+      AwardName = #{record.awardname,jdbcType=VARCHAR},
+      AwardStartTime = #{record.awardstarttime,jdbcType=TIMESTAMP},
+      AwardEndTime = #{record.awardendtime,jdbcType=TIMESTAMP},
+      AwardLocation = #{record.awardlocation,jdbcType=VARCHAR},
+      MovieId = #{record.movieid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into dbo.AwardsAndMovieId
+    (AwardId, AwardName, AwardStartTime, AwardEndTime, AwardLocation, MovieId)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.awardid,jdbcType=INTEGER}, #{item.awardname,jdbcType=VARCHAR}, #{item.awardstarttime,jdbcType=TIMESTAMP}, 
+        #{item.awardendtime,jdbcType=TIMESTAMP}, #{item.awardlocation,jdbcType=VARCHAR}, 
+        #{item.movieid,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>
