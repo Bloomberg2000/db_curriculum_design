@@ -50,6 +50,7 @@ public interface MoviesMapper {
 
     @Select("select " +
             "top (#{num, jdbcType=INTEGER}) " +
+            "MAX(M.n_id) as n_id, " +
             "MAX(c_name) as c_name, " +
             "MAX(n_film_length) as n_film_length, " +
             "MAX(c_alias) c_alias, " +
