@@ -1,12 +1,16 @@
 package com.dbcourse.curriculum_design.service.impl;
 
 import com.dbcourse.curriculum_design.mapper.ShortCommentsMapper;
+import com.dbcourse.curriculum_design.model.Movies;
+import com.dbcourse.curriculum_design.model.MoviesExample;
 import com.dbcourse.curriculum_design.model.ShortComments;
 import com.dbcourse.curriculum_design.model.ShortCommentsExample;
+import com.dbcourse.curriculum_design.service.MoviesService;
 import com.dbcourse.curriculum_design.service.ShortCommentsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,6 +18,9 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
 
     @Resource
     private ShortCommentsMapper shortCommentsMapper;
+
+    @Resource
+    private MoviesService moviesService;
 
     @Override
     public long countByExample(ShortCommentsExample example) {
@@ -122,6 +129,28 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
         }
 
         shortCommentsMapper.insert(record);
+
+        int id = record.getNMovieId();
+        long star5Num = this.countShortCommentsByScore(id, (short) 5);
+        long star4Num = this.countShortCommentsByScore(id, (short) 4);
+        long star3Num = this.countShortCommentsByScore(id, (short) 3);
+        long star2Num = this.countShortCommentsByScore(id, (short) 2);
+        long star1Num = this.countShortCommentsByScore(id, (short) 1);
+
+        long starSum = star5Num + star4Num + star3Num + star2Num + star1Num;
+        long d = starSum;
+        if (d == 0) {
+            d = 1;
+        }
+
+        float score = (star1Num / d) * 2 + (star2Num / d) * 4 + (star3Num / d) * 6 + (star4Num / d) * 8 + (star5Num / d) * 10;
+
+        Movies movies = Movies.builder().fMovieScore(score).dEditTime(new Date()).build();
+
+        MoviesExample movieExample = new MoviesExample();
+        movieExample.createCriteria().andNIdEqualTo(record.getNMovieId());
+        moviesService.updateByExampleSelective(movies, movieExample);
+
         return record;
     }
 

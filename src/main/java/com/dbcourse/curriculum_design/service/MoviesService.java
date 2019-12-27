@@ -33,7 +33,6 @@ public interface MoviesService {
     int batchInsert(List<Movies> list);
 
     /**
-     *
      * @param num
      * @return
      */
@@ -50,7 +49,10 @@ public interface MoviesService {
     List<Movies> getMoviesByPage(int pageIndex, int pageSize);
 
     long countMovies();
+
+    Movies selectByPrimaryKey(Integer nId);
 }
+
 
 
 

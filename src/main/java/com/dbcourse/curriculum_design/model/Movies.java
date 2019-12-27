@@ -73,6 +73,9 @@ public class Movies implements Serializable {
     @Expose
     private Float fMovieScore;
 
+
+    private Date dEditTime;
+
     private static final long serialVersionUID = 1L;
 
     public static MoviesBuilder builder() {

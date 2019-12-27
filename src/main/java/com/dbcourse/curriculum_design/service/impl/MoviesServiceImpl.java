@@ -92,11 +92,11 @@ public class MoviesServiceImpl implements MoviesService {
 
     @Override
     public List<Movies> getMoviesByLatest(int month) {
-        if (month < 0 )
+        if (month < 0)
             month = 1;
         else if (month > 3)
             month = 3;
-        Date now  = new Date();
+        Date now = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         calendar.add(Calendar.MONTH, -1 * month);
@@ -107,7 +107,7 @@ public class MoviesServiceImpl implements MoviesService {
 
     @Override
     public List<Movies> getHotMovies(int num) {
-        if (num < 0 || num > 30){
+        if (num < 0 || num > 30) {
             num = 30;
         }
         return moviesMapper.getHotMovies(num);
@@ -115,7 +115,7 @@ public class MoviesServiceImpl implements MoviesService {
 
     @Override
     public List<Movies> getRecommendMovies(int num) {
-        if (num < 0 || num > 30){
+        if (num < 0 || num > 30) {
             num = 30;
         }
         return moviesMapper.getRecommendMovies(num);
@@ -136,7 +136,13 @@ public class MoviesServiceImpl implements MoviesService {
     public long countMovies() {
         return moviesMapper.countByExample(new MoviesExample());
     }
+
+    @Override
+    public Movies selectByPrimaryKey(Integer nId) {
+        return moviesMapper.selectByPrimaryKey(nId);
+    }
 }
+
 
 
 
