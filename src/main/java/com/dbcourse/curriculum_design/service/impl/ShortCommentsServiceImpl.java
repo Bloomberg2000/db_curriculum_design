@@ -91,7 +91,7 @@ public class ShortCommentsServiceImpl implements ShortCommentsService {
     @Override
     public long countShortCommentsByScore(int movieId, short score) {
         ShortCommentsExample example = new ShortCommentsExample();
-        example.createCriteria().andNScoreEqualTo(score);
+        example.createCriteria().andNMovieIdEqualTo(movieId).andNScoreEqualTo(score);
         return shortCommentsMapper.countByExample(example);
     }
 
