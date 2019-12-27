@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,9 @@ public class UserController {
 
     @Resource
     private HttpServletRequest request;
+
+    @Resource
+    private HttpServletResponse httpServletResponse;
 
     @Resource
     UsersService usersService;
@@ -54,6 +58,7 @@ public class UserController {
         // 验证用户身份是否正确
         Users user = usersService.loginUserByEmailOrPhone(loginRequest.getUsername(), loginRequest.getPassword());
         if (user == null) {
+            httpServletResponse.setStatus(401);
             return StatusResponse.err("401", "username or password is wrong");
         }
 
@@ -75,10 +80,12 @@ public class UserController {
         // 判断该邮箱是否已经被注册了
         Users user = usersService.selectUserByEmailOrPhone(email);
         if (user != null) {
+            httpServletResponse.setStatus(401);
             return StatusResponse.err("401", "user is exist");
         }
         String captcha = captchaService.GetSignUpEmailCaptcha(email);
         if (captcha == null || !captcha.equals(signUpRequest.getCaptcha())) {
+            httpServletResponse.setStatus(403);
             return StatusResponse.err("403", "captcha error");
         }
         String createTime = String.valueOf(new Date().getTime());
@@ -103,6 +110,7 @@ public class UserController {
         Users user = usersService.selectUserByEmailOrPhone(email);
         // 判断该邮箱是否已经被注册了
         if (user != null    ) {
+            httpServletResponse.setStatus(401);
             return StatusResponse.err("401", "user is exist");
         }
         String captcha = captchaService.StoreSignUpEmailCaptcha(email);
@@ -145,6 +153,7 @@ public class UserController {
         // 判断该邮箱是否已经被注册了
         Users user = usersService.selectUserByEmailOrPhone(email);
         if (user == null) {
+            httpServletResponse.setStatus(401);
             return StatusResponse.err("401", "user is not exist");
         }
         String captcha = captchaService.StorePasswordEmailCaptcha(email);
@@ -160,6 +169,7 @@ public class UserController {
         // TODO 通过正则表达式验证是否为邮箱
         String captcha = captchaService.GetPasswordEmailCaptcha(changePasswordRequest.getEmail());
         if (captcha == null || !captcha.equals(changePasswordRequest.getCaptcha())) {
+            httpServletResponse.setStatus(403);
             return StatusResponse.err("403", "captcha error");
         }
         usersService.updatePasswordByUserId(user, changePasswordRequest.getPassword());

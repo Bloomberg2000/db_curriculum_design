@@ -104,7 +104,7 @@ public class UsersServiceImpl implements UsersService {
         example.createCriteria().andCEmailEqualTo(userNum);
         example.or().andCPhonenumEqualTo(userNum);
         List<Users> users = usersMapper.selectByExample(example);
-        if (userNum.length() > 0) {
+        if (users.size() > 0) {
             Users user = users.get(0);
             String needVerifyPassword = SHA256Util.Encrypt(String.format("%s-%s", password, user.getCCreateTime()));
             if (needVerifyPassword != null && needVerifyPassword.equals(user.getCPassword())) {
