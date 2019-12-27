@@ -14,6 +14,7 @@
     <result column="ShortCommentsContent" jdbcType="VARCHAR" property="shortcommentscontent" />
     <result column="MovieCover" jdbcType="VARCHAR" property="moviecover" />
     <result column="MovieName" jdbcType="VARCHAR" property="moviename" />
+    <result column="LikeNum" jdbcType="INTEGER" property="likenum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -78,7 +79,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     UserId, ShortCommentsId, MovieId, UserName, CreateTimeDate, EditTimeDate, Score, 
-    ShortCommentsContent, MovieCover, MovieName
+    ShortCommentsContent, MovieCover, MovieName, LikeNum
   </sql>
   <select id="selectByExample" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMoviesExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -107,11 +108,11 @@
     insert into dbo.UsersAndShortCommentsAndMovies (UserId, ShortCommentsId, MovieId, 
       UserName, CreateTimeDate, EditTimeDate, 
       Score, ShortCommentsContent, MovieCover, 
-      MovieName)
+      MovieName, LikeNum)
     values (#{userid,jdbcType=INTEGER}, #{shortcommentsid,jdbcType=INTEGER}, #{movieid,jdbcType=INTEGER}, 
       #{username,jdbcType=VARCHAR}, #{createtimedate,jdbcType=TIMESTAMP}, #{edittimedate,jdbcType=TIMESTAMP}, 
       #{score,jdbcType=SMALLINT}, #{shortcommentscontent,jdbcType=VARCHAR}, #{moviecover,jdbcType=VARCHAR}, 
-      #{moviename,jdbcType=VARCHAR})
+      #{moviename,jdbcType=VARCHAR}, #{likenum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dbcourse.curriculum_design.model.UsersAndShortCommentsAndMovies">
     <!--@mbg.generated-->
@@ -147,6 +148,9 @@
       <if test="moviename != null">
         MovieName,
       </if>
+      <if test="likenum != null">
+        LikeNum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -178,6 +182,9 @@
       </if>
       <if test="moviename != null">
         #{moviename,jdbcType=VARCHAR},
+      </if>
+      <if test="likenum != null">
+        #{likenum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -222,6 +229,9 @@
       <if test="record.moviename != null">
         MovieName = #{record.moviename,jdbcType=VARCHAR},
       </if>
+      <if test="record.likenum != null">
+        LikeNum = #{record.likenum,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -239,7 +249,8 @@
       Score = #{record.score,jdbcType=SMALLINT},
       ShortCommentsContent = #{record.shortcommentscontent,jdbcType=VARCHAR},
       MovieCover = #{record.moviecover,jdbcType=VARCHAR},
-      MovieName = #{record.moviename,jdbcType=VARCHAR}
+      MovieName = #{record.moviename,jdbcType=VARCHAR},
+      LikeNum = #{record.likenum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -248,13 +259,14 @@
     <!--@mbg.generated-->
     insert into dbo.UsersAndShortCommentsAndMovies
     (UserId, ShortCommentsId, MovieId, UserName, CreateTimeDate, EditTimeDate, Score, 
-      ShortCommentsContent, MovieCover, MovieName)
+      ShortCommentsContent, MovieCover, MovieName, LikeNum)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.userid,jdbcType=INTEGER}, #{item.shortcommentsid,jdbcType=INTEGER}, #{item.movieid,jdbcType=INTEGER}, 
         #{item.username,jdbcType=VARCHAR}, #{item.createtimedate,jdbcType=TIMESTAMP}, #{item.edittimedate,jdbcType=TIMESTAMP}, 
         #{item.score,jdbcType=SMALLINT}, #{item.shortcommentscontent,jdbcType=VARCHAR}, 
-        #{item.moviecover,jdbcType=VARCHAR}, #{item.moviename,jdbcType=VARCHAR})
+        #{item.moviecover,jdbcType=VARCHAR}, #{item.moviename,jdbcType=VARCHAR}, #{item.likenum,jdbcType=INTEGER}
+        )
     </foreach>
   </insert>
 </mapper>

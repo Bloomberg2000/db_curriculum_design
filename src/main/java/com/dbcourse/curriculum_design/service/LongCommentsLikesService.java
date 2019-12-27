@@ -35,4 +35,7 @@ public interface LongCommentsLikesService {
     LongCommentsLikes getCommentLikeByCommentsAndUserId(int userId, int commentsId);
 
     void likeOrUnLike(LongCommentsLikes like);
+
+    List<LongCommentsLikes> getLongCommentsLikesByCommentsIdListAndUserId(List<Integer> ids, int userId);
+
 }

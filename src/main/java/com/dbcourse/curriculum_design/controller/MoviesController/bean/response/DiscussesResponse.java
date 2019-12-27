@@ -1,11 +1,13 @@
 package com.dbcourse.curriculum_design.controller.MoviesController.bean.response;
 
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -13,7 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DiscussesResponse {
+    @Expose
     List<DiscussesResponse.Discus> discuses = new ArrayList<>();
+
+    @Expose
+    long discusesNum;
 
     public void addComment(DiscussesResponse.Discus discus){
         discuses.add(discus);
@@ -24,9 +30,15 @@ public class DiscussesResponse {
     @NoArgsConstructor
     @Builder
     public static class Discus {
+        @Expose
+        int DiscusId;
+        @Expose
         String title;
+        @Expose
         String username;
+        @Expose
         String avatar;
-        String createTime;
+        @Expose
+        Date createTime;
     }
 }

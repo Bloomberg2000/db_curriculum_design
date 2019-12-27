@@ -33,5 +33,7 @@ public interface StaffsService {
     int batchInsert(List<Staffs> list);
 
     Staffs getStaffById(int id);
+
+    List<Staffs> searchStaffsByName(String name);
 }
 

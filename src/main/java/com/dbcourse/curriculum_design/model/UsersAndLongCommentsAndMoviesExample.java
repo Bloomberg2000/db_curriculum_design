@@ -814,6 +814,196 @@ public class UsersAndLongCommentsAndMoviesExample {
             addCriterion("MovieName not between", value1, value2, "moviename");
             return (Criteria) this;
         }
+
+        public Criteria andLongcommentslikenumIsNull() {
+            addCriterion("LongCommentsLikeNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumIsNotNull() {
+            addCriterion("LongCommentsLikeNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumEqualTo(Integer value) {
+            addCriterion("LongCommentsLikeNum =", value, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumNotEqualTo(Integer value) {
+            addCriterion("LongCommentsLikeNum <>", value, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumGreaterThan(Integer value) {
+            addCriterion("LongCommentsLikeNum >", value, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("LongCommentsLikeNum >=", value, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumLessThan(Integer value) {
+            addCriterion("LongCommentsLikeNum <", value, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumLessThanOrEqualTo(Integer value) {
+            addCriterion("LongCommentsLikeNum <=", value, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumIn(List<Integer> values) {
+            addCriterion("LongCommentsLikeNum in", values, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumNotIn(List<Integer> values) {
+            addCriterion("LongCommentsLikeNum not in", values, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumBetween(Integer value1, Integer value2) {
+            addCriterion("LongCommentsLikeNum between", value1, value2, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentslikenumNotBetween(Integer value1, Integer value2) {
+            addCriterion("LongCommentsLikeNum not between", value1, value2, "longcommentslikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumIsNull() {
+            addCriterion("LongCommentsUnLikeNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumIsNotNull() {
+            addCriterion("LongCommentsUnLikeNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumEqualTo(Integer value) {
+            addCriterion("LongCommentsUnLikeNum =", value, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumNotEqualTo(Integer value) {
+            addCriterion("LongCommentsUnLikeNum <>", value, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumGreaterThan(Integer value) {
+            addCriterion("LongCommentsUnLikeNum >", value, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("LongCommentsUnLikeNum >=", value, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumLessThan(Integer value) {
+            addCriterion("LongCommentsUnLikeNum <", value, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumLessThanOrEqualTo(Integer value) {
+            addCriterion("LongCommentsUnLikeNum <=", value, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumIn(List<Integer> values) {
+            addCriterion("LongCommentsUnLikeNum in", values, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumNotIn(List<Integer> values) {
+            addCriterion("LongCommentsUnLikeNum not in", values, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumBetween(Integer value1, Integer value2) {
+            addCriterion("LongCommentsUnLikeNum between", value1, value2, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andLongcommentsunlikenumNotBetween(Integer value1, Integer value2) {
+            addCriterion("LongCommentsUnLikeNum not between", value1, value2, "longcommentsunlikenum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarIsNull() {
+            addCriterion("UserAvatar is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarIsNotNull() {
+            addCriterion("UserAvatar is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarEqualTo(String value) {
+            addCriterion("UserAvatar =", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarNotEqualTo(String value) {
+            addCriterion("UserAvatar <>", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarGreaterThan(String value) {
+            addCriterion("UserAvatar >", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarGreaterThanOrEqualTo(String value) {
+            addCriterion("UserAvatar >=", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarLessThan(String value) {
+            addCriterion("UserAvatar <", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarLessThanOrEqualTo(String value) {
+            addCriterion("UserAvatar <=", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarLike(String value) {
+            addCriterion("UserAvatar like", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarNotLike(String value) {
+            addCriterion("UserAvatar not like", value, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarIn(List<String> values) {
+            addCriterion("UserAvatar in", values, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarNotIn(List<String> values) {
+            addCriterion("UserAvatar not in", values, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarBetween(String value1, String value2) {
+            addCriterion("UserAvatar between", value1, value2, "useravatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseravatarNotBetween(String value1, String value2) {
+            addCriterion("UserAvatar not between", value1, value2, "useravatar");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

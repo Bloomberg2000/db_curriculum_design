@@ -82,5 +82,10 @@ public class DiscussesServiceImpl implements DiscussesService {
         return discussesMapper.selectByExample(example);
     }
 
-
+    @Override
+    public long countDiscussesByMovieId(int movieId) {
+        DiscussesExample example = new DiscussesExample();
+        example.createCriteria().andNMovieIdEqualTo(movieId);
+        return discussesMapper.countByExample(example);
+    }
 }

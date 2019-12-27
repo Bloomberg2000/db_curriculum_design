@@ -60,7 +60,8 @@ public class UsersAndDiscussesRepliesServiceImpl implements UsersAndDiscussesRep
 
     public List<UsersAndDiscussesReplies> getRepliesByParentsIds(List<Integer> ids) {
         UsersAndDiscussesRepliesExample example = new UsersAndDiscussesRepliesExample();
-        example.createCriteria().andDiscussesidIn(ids);
+        if (ids != null && ids.size() > 0)example.createCriteria().andDiscussesrepliesidIn(ids);
+        else return null;
         return usersAndDiscussesRepliesMapper.selectByExample(example);
     }
 }

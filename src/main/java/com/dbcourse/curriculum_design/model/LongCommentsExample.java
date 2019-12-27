@@ -784,6 +784,76 @@ public class LongCommentsExample {
             addCriterion("n_unlike_num not between", value1, value2, "nUnlikeNum");
             return (Criteria) this;
         }
+
+        public Criteria andCPlainTextContentIsNull() {
+            addCriterion("c_plain_text_content is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentIsNotNull() {
+            addCriterion("c_plain_text_content is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentEqualTo(String value) {
+            addCriterion("c_plain_text_content =", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentNotEqualTo(String value) {
+            addCriterion("c_plain_text_content <>", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentGreaterThan(String value) {
+            addCriterion("c_plain_text_content >", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentGreaterThanOrEqualTo(String value) {
+            addCriterion("c_plain_text_content >=", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentLessThan(String value) {
+            addCriterion("c_plain_text_content <", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentLessThanOrEqualTo(String value) {
+            addCriterion("c_plain_text_content <=", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentLike(String value) {
+            addCriterion("c_plain_text_content like", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentNotLike(String value) {
+            addCriterion("c_plain_text_content not like", value, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentIn(List<String> values) {
+            addCriterion("c_plain_text_content in", values, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentNotIn(List<String> values) {
+            addCriterion("c_plain_text_content not in", values, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentBetween(String value1, String value2) {
+            addCriterion("c_plain_text_content between", value1, value2, "cPlainTextContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCPlainTextContentNotBetween(String value1, String value2) {
+            addCriterion("c_plain_text_content not between", value1, value2, "cPlainTextContent");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

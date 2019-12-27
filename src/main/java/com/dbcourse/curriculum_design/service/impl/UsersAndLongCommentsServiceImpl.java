@@ -61,9 +61,9 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         UsersAndLongCommentsExample example = new UsersAndLongCommentsExample();
         example.createCriteria().andLongcommentsidEqualTo(longCommentsId);
         List<UsersAndLongComments> comments = usersAndLongCommentsMapper.selectByExample(example);
-        if (comments.size() > 0){
+        if (comments.size() > 0) {
             return comments.get(0);
-        }else {
+        } else {
             return null;
         }
     }
@@ -86,4 +86,5 @@ public class UsersAndLongCommentsServiceImpl implements UsersAndLongCommentsServ
         return usersAndLongCommentsMapper.getLongCommentsByPage(movieId, page, size);
     }
 }
+
 

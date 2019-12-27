@@ -39,6 +39,16 @@ public interface MoviesService {
      */
     List<Movies> getTopNumMovies(Integer num);
 
+    List<Movies> searchMoviesByName(String name);
+
+    List<Movies> getMoviesByLatest(int month);
+
+    List<Movies> getHotMovies(int num);
+
+    List<Movies> getRecommendMovies(int num);
+
+    List<Movies> getMoviesByPage(int pageIndex, int pageSize);
+
 }
 
 

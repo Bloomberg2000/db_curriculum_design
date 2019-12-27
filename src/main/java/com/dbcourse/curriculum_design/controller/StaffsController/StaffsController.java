@@ -1,16 +1,16 @@
 package com.dbcourse.curriculum_design.controller.StaffsController;
 
 
+import com.dbcourse.curriculum_design.controller.StaffsController.request.StaffsSearchRequest;
 import com.dbcourse.curriculum_design.controller.StaffsController.response.StaffsResponse;
+import com.dbcourse.curriculum_design.controller.StaffsController.response.StaffsSearchResponse;
+import com.dbcourse.curriculum_design.elasticsearch.SearchStaff;
 import com.dbcourse.curriculum_design.model.MoviesInfoAndStaffsId;
 import com.dbcourse.curriculum_design.model.Staffs;
 import com.dbcourse.curriculum_design.service.MoviesInfoAndStaffsIdService;
 import com.dbcourse.curriculum_design.service.StaffsService;
 import com.dbcourse.curriculum_design.utils.RequestUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -49,5 +49,19 @@ public class StaffsController {
         return response;
     }
 
-
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public StaffsSearchResponse SearchStaffs(@RequestBody StaffsSearchRequest staffsSearchRequest){
+        int pageNum = RequestUtils.GetPage(request);
+        int pageSizeNum = RequestUtils.GetPageSize(request);
+        SearchStaff searchStaff = new SearchStaff();
+        StringBuilder builder = new StringBuilder();
+        staffsSearchRequest.getTerms().forEach(t -> {
+            builder.append(t.replaceAll("\\s*", ""));
+            builder.append(" ");
+        });
+        String terms = builder.toString();
+        Object[] o = searchStaff.search(staffsSearchRequest.getName(), terms, pageNum, pageSizeNum);
+        searchStaff.closeClient();
+        return new StaffsSearchResponse(o[0], o[1]);
+    }
 }
