@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -53,13 +55,16 @@ public class UserController {
      * 用户登录
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public StatusResponse Login(@RequestBody LoginRequest loginRequest) {
+    public Map<String, Object> Login(@RequestBody LoginRequest loginRequest) {
 
+        Map<String, Object> res = new HashMap<>();
         // 验证用户身份是否正确
         Users user = usersService.loginUserByEmailOrPhone(loginRequest.getUsername(), loginRequest.getPassword());
         if (user == null) {
             httpServletResponse.setStatus(401);
-            return StatusResponse.err("401", "username or password is wrong");
+            res.put("code", 401);
+            res.put("msg", "username or password is wrong");
+            return res;
         }
 
         // 设置 Session
@@ -67,26 +72,35 @@ public class UserController {
 
         session.setAttribute("user", user.getNId());
 
-        return StatusResponse.ok();
+        res.put("user", userInfoService.getUserInfoById(user.getNId()));
+        return res;
     }
 
     /**
      * 用户注册
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public StatusResponse SignUp(@RequestBody SignUpRequest signUpRequest) {
+    public Map<String, Object> SignUp(@RequestBody SignUpRequest signUpRequest) {
+
+        Map<String, Object> res = new HashMap<>();
+
+
         // 比较用户所发送的验证码是否正确
         String email = signUpRequest.getEmail();
         // 判断该邮箱是否已经被注册了
         Users user = usersService.selectUserByEmailOrPhone(email);
         if (user != null) {
             httpServletResponse.setStatus(401);
-            return StatusResponse.err("401", "user is exist");
+            res.put("code", 401);
+            res.put("msg", "user is exist");
+            return res;
         }
         String captcha = captchaService.GetSignUpEmailCaptcha(email);
         if (captcha == null || !captcha.equals(signUpRequest.getCaptcha())) {
             httpServletResponse.setStatus(403);
-            return StatusResponse.err("403", "captcha error");
+            res.put("code", 403);
+            res.put("msg", "captcha error");
+            return res;
         }
         String createTime = String.valueOf(new Date().getTime());
 
@@ -98,7 +112,9 @@ public class UserController {
         usersService.insert(user);
         HttpSession session = request.getSession();
         session.setAttribute("user", user.getNId());
-        return StatusResponse.ok();
+
+        res.put("user", userInfoService.getUserInfoById(user.getNId()));
+        return res;
     }
 
     /**

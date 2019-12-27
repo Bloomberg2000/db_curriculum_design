@@ -26,6 +26,9 @@ public class MovieController {
     private LongCommentsService longCommentsService;
 
     @Resource
+    private UserInfoService userInfoService;
+
+    @Resource
     private LongCommentsLikesService longCommentsLikesService;
 
     @Resource
@@ -271,21 +274,27 @@ public class MovieController {
     // TODO random
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public MoviesResponse RecommendMovies() {
-        return new MoviesResponse(moviesService.getRecommendMovies(10));
+        Integer user = (Integer) request.getSession().getAttribute("user");
+
+        if (user == null)
+            return new MoviesResponse(moviesService.getRecommendMovies(10), null);
+        else
+            return new MoviesResponse(moviesService.getRecommendMovies(10), userInfoService.getUserInfoById(user));
     }
+
 
 
     // 正在热映
     @RequestMapping(value = "/latest", method = RequestMethod.GET)
     public MoviesResponse LatestMovies() {
         // TODO month可传
-        return new MoviesResponse(moviesService.getMoviesByLatest(1));
+        return MoviesResponse.builder().movies(moviesService.getMoviesByLatest(3)).build();
     }
 
     // 热门电影
     @RequestMapping(value = "/hot", method = RequestMethod.GET)
     public MoviesResponse HotMovies() {
-        return new MoviesResponse(moviesService.getHotMovies(15));
+        return MoviesResponse.builder().movies(moviesService.getHotMovies(15)).build();
     }
 
     // 电影列表
