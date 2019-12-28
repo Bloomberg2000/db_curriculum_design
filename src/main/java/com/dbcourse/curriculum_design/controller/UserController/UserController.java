@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -27,6 +30,9 @@ public class UserController {
 
     @Resource
     private HttpServletRequest request;
+
+    @Resource
+    private HttpServletResponse httpServletResponse;
 
     @Resource
     UsersService usersService;
@@ -49,12 +55,16 @@ public class UserController {
      * 用户登录
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public StatusResponse Login(@RequestBody LoginRequest loginRequest) {
+    public Map<String, Object> Login(@RequestBody LoginRequest loginRequest) {
 
+        Map<String, Object> res = new HashMap<>();
         // 验证用户身份是否正确
         Users user = usersService.loginUserByEmailOrPhone(loginRequest.getUsername(), loginRequest.getPassword());
         if (user == null) {
-            return StatusResponse.err("401", "username or password is wrong");
+            httpServletResponse.setStatus(401);
+            res.put("code", 401);
+            res.put("msg", "username or password is wrong");
+            return res;
         }
 
         // 设置 Session
@@ -62,24 +72,35 @@ public class UserController {
 
         session.setAttribute("user", user.getNId());
 
-        return StatusResponse.ok();
+        res.put("user", userInfoService.getUserInfoById(user.getNId()));
+        return res;
     }
 
     /**
      * 用户注册
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public StatusResponse SignUp(@RequestBody SignUpRequest signUpRequest) {
+    public Map<String, Object> SignUp(@RequestBody SignUpRequest signUpRequest) {
+
+        Map<String, Object> res = new HashMap<>();
+
+
         // 比较用户所发送的验证码是否正确
         String email = signUpRequest.getEmail();
         // 判断该邮箱是否已经被注册了
         Users user = usersService.selectUserByEmailOrPhone(email);
         if (user != null) {
-            return StatusResponse.err("401", "user is exist");
+            httpServletResponse.setStatus(401);
+            res.put("code", 401);
+            res.put("msg", "user is exist");
+            return res;
         }
         String captcha = captchaService.GetSignUpEmailCaptcha(email);
         if (captcha == null || !captcha.equals(signUpRequest.getCaptcha())) {
-            return StatusResponse.err("403", "captcha error");
+            httpServletResponse.setStatus(403);
+            res.put("code", 403);
+            res.put("msg", "captcha error");
+            return res;
         }
         String createTime = String.valueOf(new Date().getTime());
 
@@ -91,7 +112,9 @@ public class UserController {
         usersService.insert(user);
         HttpSession session = request.getSession();
         session.setAttribute("user", user.getNId());
-        return StatusResponse.ok();
+
+        res.put("user", userInfoService.getUserInfoById(user.getNId()));
+        return res;
     }
 
     /**
@@ -103,6 +126,7 @@ public class UserController {
         Users user = usersService.selectUserByEmailOrPhone(email);
         // 判断该邮箱是否已经被注册了
         if (user != null    ) {
+            httpServletResponse.setStatus(401);
             return StatusResponse.err("401", "user is exist");
         }
         String captcha = captchaService.StoreSignUpEmailCaptcha(email);
@@ -145,6 +169,7 @@ public class UserController {
         // 判断该邮箱是否已经被注册了
         Users user = usersService.selectUserByEmailOrPhone(email);
         if (user == null) {
+            httpServletResponse.setStatus(401);
             return StatusResponse.err("401", "user is not exist");
         }
         String captcha = captchaService.StorePasswordEmailCaptcha(email);
@@ -160,6 +185,7 @@ public class UserController {
         // TODO 通过正则表达式验证是否为邮箱
         String captcha = captchaService.GetPasswordEmailCaptcha(changePasswordRequest.getEmail());
         if (captcha == null || !captcha.equals(changePasswordRequest.getCaptcha())) {
+            httpServletResponse.setStatus(403);
             return StatusResponse.err("403", "captcha error");
         }
         usersService.updatePasswordByUserId(user, changePasswordRequest.getPassword());

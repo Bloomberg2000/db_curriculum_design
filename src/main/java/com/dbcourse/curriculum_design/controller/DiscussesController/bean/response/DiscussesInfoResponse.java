@@ -27,6 +27,10 @@ public class DiscussesInfoResponse {
     String discussesContent;
     @Expose
     long replyNum;
+    @Expose
+    int movieId;
+    @Expose
+    String movieName;
 
     @Expose
     List<Reply> replies = new ArrayList<>();
